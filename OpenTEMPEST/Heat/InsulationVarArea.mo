@@ -9,9 +9,9 @@ model InsulationVarArea
   parameter SI.Area area2 "area2";
   parameter SI.Length depth "depth";
   parameter SI.Temperature TStart "Start temperature";
-  ThermoPower.Thermal.HT ht1 annotation (Placement(transformation(extent={{-12,40},
+  OpenTEMPEST.Interfaces.HT ht1 annotation (Placement(transformation(extent={{-12,40},
             {8,60}}),    iconTransformation(extent={{-12,40},{8,60}})));
-  ThermoPower.Thermal.HT ht2 annotation (Placement(transformation(extent={{-10,-60},
+  OpenTEMPEST.Interfaces.HT ht2 annotation (Placement(transformation(extent={{-10,-60},
             {10,-40}}),  iconTransformation(extent={{-10,-60},{10,-40}})));
   OpenTEMPEST.Heat.conductiveHT conductiveHT1(
     lambda=lambda,
@@ -26,7 +26,7 @@ model InsulationVarArea
   Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatCapacitor(C=c*rho*
         depth*1/2*(area1 + area2),                                                                 T(start=TStart))
     annotation (Placement(transformation(extent={{-10,-6},{10,14}})));
-  ThermoPower.Thermal.HT htC annotation (Placement(transformation(extent={{-12,-8},
+  OpenTEMPEST.Interfaces.HT htC annotation (Placement(transformation(extent={{-12,-8},
             {8,12}}),    iconTransformation(extent={{-12,-8},{8,12}})));
 equation
   connect(heatCapacitor.port, conductiveHT1.side1)

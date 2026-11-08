@@ -10,14 +10,14 @@ model ConductiveFV "Conductive thermal resistance without mass"
   parameter SI.Area A "cross sectional area";
   //parameter SI.Density rho "Density of element";
 
- //outer ThermoPower.System system "System wide properties";
+ //outer OpenTEMPEST.System system "System wide properties";
   //Units.AbsoluteTemperature T[N](start=Tstart) "Node temperatures";
   SI.HeatFlowRate Q_m "mean heat flux of side 1";
   //SI.HeatFlux phi_2 "mean heat flux of side 2";
-  ThermoPower.Thermal.DHTVolumes side1(N=N) "Internal surface"
+  OpenTEMPEST.Interfaces.DHTVolumes side1(N=N) "Internal surface"
     annotation (Placement(transformation(extent={{-40,20},{40,40}}, rotation=
             0), iconTransformation(extent={{-40,20},{40,40}})));
-  ThermoPower.Thermal.DHTVolumes side2(N=N) "External surface"
+  OpenTEMPEST.Interfaces.DHTVolumes side2(N=N) "External surface"
     annotation (Placement(transformation(extent={{-40,-42},{40,-20}},
           rotation=0), iconTransformation(extent={{-40,-42},{40,-20}})));
 equation

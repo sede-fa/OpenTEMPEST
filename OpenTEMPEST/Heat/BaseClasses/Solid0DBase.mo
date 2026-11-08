@@ -42,19 +42,19 @@ partial model Solid0DBase
   SI.HeatFlowRate Qext "User-defined heat source or sink for each CV";
 
   // Thermal ports
-  ThermoPower.Thermal.HT hT_xN annotation (Placement(transformation(extent={{100,-10},
+  OpenTEMPEST.Interfaces.HT hT_xN annotation (Placement(transformation(extent={{100,-10},
             {120,10}}), iconTransformation(extent={{100,-10},{120,10}})));
-  ThermoPower.Thermal.HT hT_zN annotation (Placement(transformation(extent={{-60,60},
+  OpenTEMPEST.Interfaces.HT hT_zN annotation (Placement(transformation(extent={{-60,60},
             {-40,80}}),     iconTransformation(extent={{-60,60},{-40,80}})));
-  ThermoPower.Thermal.HT hT_z0 annotation (Placement(transformation(extent={{-60,-80},
+  OpenTEMPEST.Interfaces.HT hT_z0 annotation (Placement(transformation(extent={{-60,-80},
             {-40,-60}}), iconTransformation(extent={{-60,-80},{-40,-60}})));
-  ThermoPower.Thermal.HT hT_y0 annotation (Placement(transformation(extent={{40,-80},
+  OpenTEMPEST.Interfaces.HT hT_y0 annotation (Placement(transformation(extent={{40,-80},
             {60,-60}}),    iconTransformation(extent={{40,-80},{60,-60}})));
-  ThermoPower.Thermal.HT hT_yN annotation (Placement(transformation(extent={{40,60},
+  OpenTEMPEST.Interfaces.HT hT_yN annotation (Placement(transformation(extent={{40,60},
             {60,80}}),  iconTransformation(extent={{40,60},{60,80}})));
-  ThermoPower.Thermal.HT hT_int annotation (Placement(transformation(extent={{-10,-10},
+  OpenTEMPEST.Interfaces.HT hT_int annotation (Placement(transformation(extent={{-10,-10},
             {10,10}}), iconTransformation(extent={{-10,-10},{10,10}})));
-  ThermoPower.Thermal.HT hT_x0 annotation (Placement(transformation(extent={{-120,
+  OpenTEMPEST.Interfaces.HT hT_x0 annotation (Placement(transformation(extent={{-120,
             -10},{-100,10}}),
                          iconTransformation(extent={{-120,-10},{-100,10}})));
 

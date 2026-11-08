@@ -36,17 +36,17 @@ model BlackBoxHexGeneric
   SI.HeatFlowRate Qf;
   SI.HeatFlowRate QmaxA, QmaxB;
 
-  ThermoPower.Gas.FlangeA inletB(redeclare package Medium = MediumB) annotation (
+  OpenTEMPEST.Interfaces.GasFlangeA inletB(redeclare package Medium = MediumB) annotation (
       Placement(transformation(rotation=0, extent={{-80,-40},{-60,-20}}),
         iconTransformation(extent={{-100,-60},{-60,-20}})));
-  ThermoPower.Gas.FlangeA inletA(redeclare package Medium = MediumA)
+  OpenTEMPEST.Interfaces.GasFlangeA inletA(redeclare package Medium = MediumA)
                                                                   annotation (
       Placement(transformation(rotation=0, extent={{-80,40},{-60,60}}),
         iconTransformation(extent={{60,20},{100,60}})));
-  ThermoPower.Gas.FlangeB outletA(redeclare package Medium = MediumA) annotation (
+  OpenTEMPEST.Interfaces.GasFlangeB outletA(redeclare package Medium = MediumA) annotation (
       Placement(transformation(rotation=0, extent={{80,40},{100,60}}),
         iconTransformation(extent={{-100,20},{-60,60}})));
-  ThermoPower.Gas.FlangeB outletB(redeclare package Medium = MediumB) annotation (
+  OpenTEMPEST.Interfaces.GasFlangeB outletB(redeclare package Medium = MediumB) annotation (
       Placement(transformation(rotation=0, extent={{80,-40},{100,-20}}),
         iconTransformation(extent={{60,-60},{100,-20}})));
   OpenTEMPEST.Flow.SensGasProperty sensBOut(
@@ -113,7 +113,7 @@ model BlackBoxHexGeneric
     TOutput=true,
     rhoOutput=false)
     annotation (Placement(transformation(extent={{46,44},{66,64}})));
-  ThermoPower.Gas.SinkPressure sinkPressureA(
+  OpenTEMPEST.Flow.SinkPressure sinkPressureA(
     redeclare package Medium = MediumA,
     p0=100000,
     T=Tstart,
@@ -121,7 +121,7 @@ model BlackBoxHexGeneric
     use_in_p0=true,
     use_in_T=false)
     annotation (Placement(transformation(extent={{-26,40},{-6,60}})));
-  ThermoPower.Gas.SourceMassFlow sourceMassFlowA(
+  OpenTEMPEST.Flow.SourceMassFlow sourceMassFlowA(
     redeclare package Medium = MediumA,
     p0=100000,
     T=Tstart,
@@ -130,7 +130,7 @@ model BlackBoxHexGeneric
     use_in_T=true,
     use_in_X=true)
     annotation (Placement(transformation(extent={{18,40},{38,60}})));
-  ThermoPower.Gas.SinkPressure sinkPressureB(
+  OpenTEMPEST.Flow.SinkPressure sinkPressureB(
     redeclare package Medium = MediumB,
     p0=100000,
     T=Tstart,
@@ -138,7 +138,7 @@ model BlackBoxHexGeneric
     use_in_p0=true,
     use_in_T=false)
     annotation (Placement(transformation(extent={{-16,-40},{4,-20}})));
-  ThermoPower.Gas.SourceMassFlow sourceMassFlowB(
+  OpenTEMPEST.Flow.SourceMassFlow sourceMassFlowB(
     redeclare package Medium = MediumB,
     p0=100000,
     T=Tstart,
@@ -147,7 +147,7 @@ model BlackBoxHexGeneric
     use_in_T=true,
     use_in_X=true)
     annotation (Placement(transformation(extent={{20,-40},{40,-20}})));
-  ThermoPower.Thermal.HT htAmbA annotation (Placement(transformation(extent={{-10,84},{10,104}}), iconTransformation(extent={{-6,60},{6,72}})));
+  OpenTEMPEST.Interfaces.HT htAmbA annotation (Placement(transformation(extent={{-10,84},{10,104}}), iconTransformation(extent={{-6,60},{6,72}})));
   Modelica.Blocks.Sources.RealExpression rexTAOut(y=TAOut)
     annotation (Placement(transformation(extent={{4,18},{24,38}})));
   Modelica.Blocks.Sources.RealExpression rexTBOut(y=TBOut)
@@ -156,7 +156,7 @@ model BlackBoxHexGeneric
                                                                          annotation (Placement(transformation(extent={{-16,70},{-4,82}})));
   Modelica.Blocks.Continuous.FirstOrder firstOrder1(T=1e-5, y_start=y_start_p0)
                                                                           annotation (Placement(transformation(extent={{50,-8},{38,4}})));
-  ThermoPower.Thermal.HT htAmbB annotation (Placement(transformation(extent={{-10,-104},{10,-84}}), iconTransformation(extent={{-6,-72},{6,-60}})));
+  OpenTEMPEST.Interfaces.HT htAmbB annotation (Placement(transformation(extent={{-10,-104},{10,-84}}), iconTransformation(extent={{-6,-72},{6,-60}})));
 equation
 
   htAmbA.Q_flow = 0.15*(htAmbA.T - TAOut);

@@ -37,10 +37,10 @@ partial model Flow1DBaseClass
   // Centre cell values
   SI.MassFlowRate mf[N] "Mass flow rate in and leaving CV";
 
-  ThermoPower.Gas.FlangeA infl(redeclare package Medium = Medium)
+  OpenTEMPEST.Interfaces.GasFlangeA infl(redeclare package Medium = Medium)
       annotation (Placement(transformation(extent={{-100,-8},{-80,12}}),
         iconTransformation(extent={{-108,-16},{-80,12}})));
-  ThermoPower.Gas.FlangeB outfl(redeclare package Medium = Medium)
+  OpenTEMPEST.Interfaces.GasFlangeB outfl(redeclare package Medium = Medium)
       annotation (Placement(transformation(extent={{80,-10},{100,10}}),
         iconTransformation(extent={{80,-14},{108,14}})));
 

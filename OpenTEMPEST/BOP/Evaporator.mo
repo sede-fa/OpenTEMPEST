@@ -10,7 +10,7 @@ model Evaporator
   parameter Modelica.SIunits.SpecificHeatCapacity cm
     "Specific heat capacity of the drum's metal";
 
-  parameter ThermoPower.Units.HydraulicConductance Kv "Nominal hydraulic conductance of the control valve";
+  parameter OpenTEMPEST.Units.HydraulicConductance Kv "Nominal hydraulic conductance of the control valve";
 
   parameter Modelica.SIunits.Pressure pStart "Pressure start value"
     annotation (Dialog(tab="Initialisation"));
@@ -28,13 +28,13 @@ model Evaporator
     annotation (Placement(transformation(extent={{-100,-10},{-80,10}})));
   ThermoPower.Water.SinkPressure sinkPressure(use_in_p0=true)
     annotation (Placement(transformation(extent={{10,-10},{30,10}})));
-  ThermoPower.Gas.SourceMassFlow sourceMassFlow(
+  OpenTEMPEST.Flow.SourceMassFlow sourceMassFlow(
     redeclare package Medium = gasPhaseMedium,
     Xnom={1e-5,1e-5,1e-5,1e-5,1,1e-5},          use_in_w0=true, use_in_T=true)
     annotation (Placement(transformation(extent={{38,10},{58,-10}})));
-  ThermoPower.Gas.FlangeB outlet(redeclare package Medium = gasPhaseMedium)
+  OpenTEMPEST.Interfaces.GasFlangeB outlet(redeclare package Medium = gasPhaseMedium)
     annotation (Placement(transformation(extent={{80,-10},{100,10}})));
-  ThermoPower.Gas.SensP sensP(redeclare package Medium = gasPhaseMedium)
+  OpenTEMPEST.Flow.SensP sensP(redeclare package Medium = gasPhaseMedium)
     annotation (Placement(transformation(extent={{80,-6},{60,14}})));
   ThermoPower.Water.ValveLin valveLin(Kv=Kv)
     annotation (Placement(transformation(extent={{-54,-10},{-34,10}})));
@@ -42,7 +42,7 @@ model Evaporator
     annotation (Placement(transformation(extent={{-12,6},{8,-14}})));
   ThermoPower.Water.SensW sensW
     annotation (Placement(transformation(extent={{-32,6},{-12,-14}})));
-  ThermoPower.Thermal.HT hT
+  OpenTEMPEST.Interfaces.HT hT
     annotation (Placement(transformation(extent={{-12,80},{8,100}}),
         iconTransformation(extent={{-10,40},{10,60}})));
   Modelica.Blocks.Interfaces.RealInput controlValvePosition

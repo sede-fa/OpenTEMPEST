@@ -19,9 +19,9 @@ model Compressor
 
   Real nFrac;
 
-  ThermoPower.Gas.FlangeA inlet(redeclare package Medium = Medium)
+  OpenTEMPEST.Interfaces.GasFlangeA inlet(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{-100,-10},{-80,10}})));
-  ThermoPower.Gas.FlangeB outlet(redeclare package Medium = Medium)
+  OpenTEMPEST.Interfaces.GasFlangeB outlet(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{80,-10},{100,10}})));
 
   ThermoPower.Electrical.Load load(Pnom=10000, usePowerInput=true)
@@ -29,7 +29,7 @@ model Compressor
   ThermoPower.Electrical.PowerConnection powerConnection
     annotation (Placement(transformation(extent={{-40,60},{-20,80}}),
         iconTransformation(extent={{-40,60},{-20,80}})));
-  ThermoPower.Thermal.HT heatLosses
+  OpenTEMPEST.Interfaces.HT heatLosses
     annotation (Placement(transformation(extent={{20,60},{40,80}}),
         iconTransformation(extent={{20,60},{40,80}})));
   Modelica.Blocks.Sources.RealExpression realExpressionPEl(y=inlet.m_flow*(

@@ -124,27 +124,27 @@ model CellCFSimp
             {-126,40}}),       iconTransformation(extent={{-148,18},{-126,40}})));
   Modelica.Electrical.Analog.Interfaces.NegativePin pin_n annotation (Placement(transformation(extent={{-148,58},
             {-126,80}}), iconTransformation(extent={{-148,58},{-126,80}})));
-  ThermoPower.Gas.FlangeA fuelIn(redeclare package Medium = Medium.Fuel_CH4)
+  OpenTEMPEST.Interfaces.GasFlangeA fuelIn(redeclare package Medium = Medium.Fuel_CH4)
     annotation (Placement(transformation(extent={{-148,100},{-128,120}}),
         iconTransformation(extent={{-148,100},{-128,120}})));
-  ThermoPower.Gas.FlangeA airIn(redeclare package Medium = Medium.Air_Medium)
+  OpenTEMPEST.Interfaces.GasFlangeA airIn(redeclare package Medium = Medium.Air_Medium)
     annotation (Placement(transformation(extent={{-150,-118},{-130,-98}}),
         iconTransformation(extent={{-150,-118},{-130,-98}})));
-  ThermoPower.Gas.FlangeB fuelOut(redeclare package Medium = Medium.Fuel_CH4)
+  OpenTEMPEST.Interfaces.GasFlangeB fuelOut(redeclare package Medium = Medium.Fuel_CH4)
     annotation (Placement(transformation(extent={{128,74},{148,94}})));
-  ThermoPower.Gas.FlangeB airout(redeclare package Medium = Medium.Air_Medium)
+  OpenTEMPEST.Interfaces.GasFlangeB airout(redeclare package Medium = Medium.Air_Medium)
     annotation (Placement(transformation(extent={{130,-86},{150,-66}}),
         iconTransformation(extent={{130,-86},{150,-66}})));
-  ThermoPower.Thermal.DHTVolumes dHT_x0(N=nY)
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_x0(N=nY)
     annotation (Placement(transformation(extent={{-140,-60},{-122,-20}}),
         iconTransformation(extent={{-140,-60},{-122,-20}})));
-  ThermoPower.Thermal.DHTVolumes dHT_y0(N=nX)
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_y0(N=nX)
     annotation (Placement(transformation(extent={{-6,-6},{6,6}}, origin={140,-26}),
         iconTransformation(extent={{-70,-140},{72,-120}})));
-  ThermoPower.Thermal.DHTVolumes dHT_yN(N=nX)
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_yN(N=nX)
     annotation (Placement(transformation(extent={{-6,-6},{6,6}}, origin={140,26}),
         iconTransformation(extent={{-70,122},{72,140}})));
-  ThermoPower.Thermal.DHTVolumes dHT_xN(N=nY)
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_xN(N=nY)
     annotation (Placement(transformation(extent={{-5,-16},{5,16}},
                                                                  origin={135,4}),
         iconTransformation(extent={{122,-20},{140,20}})));

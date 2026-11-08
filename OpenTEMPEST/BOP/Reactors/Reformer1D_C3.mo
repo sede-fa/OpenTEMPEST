@@ -8,7 +8,7 @@ model Reformer1D_C3
     redeclare package Medium = OpenTEMPEST.Medium.Fuel_C3);
   import SI = Modelica.SIunits;
 
-  ThermoPower.Thermal.DHTVolumes wall(N=N)
+  OpenTEMPEST.Interfaces.DHTVolumes wall(N=N)
                                        "HT through cylindrical wall" annotation (Placement(
         transformation(extent={{-80,30},{80,50}}),iconTransformation(extent={{-80,34},
             {80,50}})));

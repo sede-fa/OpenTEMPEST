@@ -69,7 +69,7 @@ model ExpansionTank "Header with metal walls for water/steam flows"
   parameter Real gasShareStart = 0.1 "Start share gas"
     annotation (Dialog(tab="Initialisation"));
 
-  replaceable ThermoPower.Thermal.HT thermalPort "Internal surface of metal wall"
+  replaceable OpenTEMPEST.Interfaces.HT thermalPort "Internal surface of metal wall"
     annotation (Dialog(enable=false), Placement(transformation(extent={{-24,
             50},{24,64}}, rotation=0)));
 equation

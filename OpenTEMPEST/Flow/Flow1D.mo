@@ -26,7 +26,7 @@ model Flow1D "1D flow model FVM, uses UDS and LUDS"
 //   SI.DynamicViscosity eta[N];
 //   SI.PrandtlNumber Pr[N];
 
-  ThermoPower.Thermal.DHTVolumes wall(N=N)
+  OpenTEMPEST.Interfaces.DHTVolumes wall(N=N)
                                        "HT through cylindrical wall" annotation (Placement(
         transformation(extent={{-80,30},{80,50}}),iconTransformation(extent={{-80,34},
             {80,50}})));

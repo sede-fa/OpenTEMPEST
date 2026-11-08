@@ -5,13 +5,13 @@ model MultiSplitter
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
     annotation(choicesAllMatching = true);
 
-  ThermoPower.Gas.FlangeB outlet[nOutlets](redeclare package Medium = Medium)
+  OpenTEMPEST.Interfaces.GasFlangeB outlet[nOutlets](redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{60,0},{80,20}}),
         iconTransformation(extent={{40,-20},{80,20}})));
-  ThermoPower.Gas.FlangeA inlet(redeclare package Medium = Medium)
+  OpenTEMPEST.Interfaces.GasFlangeA inlet(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{-60,0},{-40,20}}),
         iconTransformation(extent={{-80,-20},{-40,20}})));
-  ThermoPower.Gas.FlowSplit flowSplit[nOutlets-1](redeclare package Medium = Medium,
+  OpenTEMPEST.Flow.FlowSplit flowSplit[nOutlets-1](redeclare package Medium = Medium,
     allowFlowReversal=true,
     checkFlowDirection=true,
     rev_inlet=true,

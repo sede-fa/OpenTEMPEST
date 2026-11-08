@@ -140,10 +140,10 @@ model CoolingCycle "Heat exchanger with integrated water cycle."
         MediumCooling)                     annotation (Placement(transformation(
           rotation=0, extent={{-110,-112},{-90,-92}}), iconTransformation(
           extent={{-144,-146},{-90,-92}})));
-  ThermoPower.Gas.FlangeA gasInlet(redeclare package Medium = MediumHeating)
+  OpenTEMPEST.Interfaces.GasFlangeA gasInlet(redeclare package Medium = MediumHeating)
     annotation (Placement(transformation(rotation=0, extent={{-110,90},{-90,110}}),
         iconTransformation(extent={{-144,92},{-90,146}})));
-  ThermoPower.Gas.FlangeB gasOutlet(redeclare package Medium = MediumHeating)
+  OpenTEMPEST.Interfaces.GasFlangeB gasOutlet(redeclare package Medium = MediumHeating)
                            annotation (Placement(transformation(rotation=0,
           extent={{88,88},{108,108}}), iconTransformation(extent={{94,90},{150,146}})));
   Modelica.Blocks.Interfaces.RealOutput TR

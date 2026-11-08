@@ -293,13 +293,13 @@ public
     final nPorts_b=Ncell,
     nDummyPorts_b=Ncell - NdetailedCell) annotation (Placement(transformation(extent={{-68,-96},{-56,-66}})));
 
-  ThermoPower.Gas.FlangeA fuelIn(redeclare package Medium = Medium.Fuel_CH4)
+  OpenTEMPEST.Interfaces.GasFlangeA fuelIn(redeclare package Medium = Medium.Fuel_CH4)
     annotation (Placement(transformation(extent={{-130,38},{-110,58}})));
-  ThermoPower.Gas.FlangeA airIn(redeclare package Medium = Medium.Air_Medium)
+  OpenTEMPEST.Interfaces.GasFlangeA airIn(redeclare package Medium = Medium.Air_Medium)
     annotation (Placement(transformation(extent={{-130,-86},{-110,-66}})));
-  ThermoPower.Gas.FlangeB fuelOut(redeclare package Medium = Medium.Fuel_CH4)
+  OpenTEMPEST.Interfaces.GasFlangeB fuelOut(redeclare package Medium = Medium.Fuel_CH4)
     annotation (Placement(transformation(extent={{110,38},{130,58}})));
-  ThermoPower.Gas.FlangeB airOut(redeclare package Medium = Medium.Air_Medium)
+  OpenTEMPEST.Interfaces.GasFlangeB airOut(redeclare package Medium = Medium.Air_Medium)
     annotation (Placement(transformation(extent={{108,-86},{128,-66}})));
 
   Flow.Manifold_out manifold_outFuel(redeclare package Medium = Medium.Fuel_CH4,

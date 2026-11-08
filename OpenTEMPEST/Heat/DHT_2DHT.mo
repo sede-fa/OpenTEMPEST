@@ -1,16 +1,16 @@
 within OpenTEMPEST.Heat;
 model DHT_2DHT
-  ThermoPower.Thermal.DHTVolumes DHTSingle(N=n)
+  OpenTEMPEST.Interfaces.DHTVolumes DHTSingle(N=n)
     annotation (Placement(transformation(extent={{-10,60},{10,80}}),
         iconTransformation(extent={{-60,40},{60,60}})));
 
   parameter Integer n "number of volumens at single port";
   parameter Real r "split ratio of the volumes";
 
-  ThermoPower.Thermal.DHTVolumes DHT1(N=integer(r*n))
+  OpenTEMPEST.Interfaces.DHTVolumes DHT1(N=integer(r*n))
     annotation (Placement(transformation(extent={{-80,-80},{-60,-60}}),
         iconTransformation(extent={{-80,-60},{-20,-40}})));
-  ThermoPower.Thermal.DHTVolumes DHT2(N=n - DHT1.N)
+  OpenTEMPEST.Interfaces.DHTVolumes DHT2(N=n - DHT1.N)
     annotation (Placement(transformation(extent={{60,-60},{80,-40}}),
         iconTransformation(extent={{20,-60},{80,-40}})));
 protected

@@ -1,7 +1,7 @@
 within OpenTEMPEST.Flow;
 model SourceMassFlowEC
   "Flow rate source for gas flows in electrochemical processes"
-  extends ThermoPower.Icons.Gas.SourceW;
+  extends OpenTEMPEST.Icons.GasSource;
   replaceable package Medium = OpenTEMPEST.Medium.Fuel_CH4;
                                                          //Modelica.Media.Interfaces.PartialMedium
   Medium.BaseProperties gas(
@@ -27,7 +27,7 @@ model SourceMassFlowEC
   parameter Boolean molarInputComposition = false "Input compostions are molar instead of mass" annotation(choices(checkBox=true));
   parameter Modelica.SIunits.ElectricCurrent I0=0 "Nominal electrical current";
   parameter Real RC0 = 0.7 "Nominal reactant conversion";
-  parameter ThermoPower.Units.HydraulicConductance G=0 "HydraulicConductance";
+  parameter OpenTEMPEST.Units.HydraulicConductance G=0 "HydraulicConductance";
   parameter Boolean allowFlowReversal=system.allowFlowReversal
     "= true to allow flow reversal, false restricts to design direction"
     annotation(Evaluate=true);
@@ -50,7 +50,7 @@ model SourceMassFlowEC
     "Use connector input for the composition"                                  annotation(Dialog(group="External inputs"), choices(checkBox=true));
   parameter Boolean use_in_mfFGPerCell = false
     "Use connector input for mfFGPerCell"                                  annotation(Dialog(group="External inputs"), choices(checkBox=true));
-  outer ThermoPower.System system "System wide properties";
+  outer OpenTEMPEST.System system "System wide properties";
 
   Medium.MassFlowRate w "Nominal mass flow rate";
   Medium.MoleFraction Y[Medium.nX];
@@ -60,7 +60,7 @@ model SourceMassFlowEC
   Real zFC[Medium.nX] = {2,8,0,2,0,0};
   Real zEC[Medium.nX] = {0,-2/in_RC_internal,2,0,2,0}; // Actual RC will vary based on extent of MSR reaction by -2/RC*Percent_Extent_of_MSR
 
-  ThermoPower.Gas.FlangeB flange(redeclare package Medium = Medium, m_flow(max=
+  OpenTEMPEST.Interfaces.GasFlangeB flange(redeclare package Medium = Medium, m_flow(max=
           if allowFlowReversal then +Modelica.Constants.inf else 0))
     annotation (Placement(transformation(extent={{80,-20},{120,20}}, rotation=0)));
   Modelica.Blocks.Interfaces.RealInput in_I if use_in_I annotation (Placement(

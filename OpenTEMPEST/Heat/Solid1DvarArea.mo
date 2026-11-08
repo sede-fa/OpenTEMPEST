@@ -42,12 +42,12 @@ model Solid1DvarArea
   parameter SI.SpecificHeatCapacity cpCustom = 1 annotation(Dialog(group="Custom Material Only"));
 
   // Thermal ports
-  ThermoPower.Thermal.HT hT_x0 annotation (Placement(transformation(extent={{-120,
+  OpenTEMPEST.Interfaces.HT hT_x0 annotation (Placement(transformation(extent={{-120,
             -10},{-100,10}}),
                          iconTransformation(extent={{-120,-10},{-100,10}})));
-  ThermoPower.Thermal.HT hT_xN annotation (Placement(transformation(extent={{100,-10},
+  OpenTEMPEST.Interfaces.HT hT_xN annotation (Placement(transformation(extent={{100,-10},
             {120,10}}), iconTransformation(extent={{100,-10},{120,10}})));
-  ThermoPower.Thermal.DHTVolumes dhT_int(N=N)   annotation (Placement(transformation(extent={{-10,-10},
+  OpenTEMPEST.Interfaces.DHTVolumes dhT_int(N=N)   annotation (Placement(transformation(extent={{-10,-10},
             {10,10}}),  iconTransformation(extent={{-10,-10},{10,10}})));
 
 initial equation

@@ -203,20 +203,20 @@ model CellGeneral "Crossflow generalized cell model with possibility to select 2
   Modelica.Electrical.Analog.Interfaces.NegativePin pin_n annotation (Placement(transformation(extent={{-110,16},{-90,36}})));
 
   // Flanges
-  ThermoPower.Gas.FlangeA fuelIn(redeclare package Medium =
+  OpenTEMPEST.Interfaces.GasFlangeA fuelIn(redeclare package Medium =
         OpenTEMPEST.Medium.Fuel_CH4) annotation (Placement(transformation(extent={{-112,50},{-92,70}})));
-  ThermoPower.Gas.FlangeA airIn(redeclare package Medium =
+  OpenTEMPEST.Interfaces.GasFlangeA airIn(redeclare package Medium =
         OpenTEMPEST.Medium.Air_Medium) annotation (Placement(transformation(extent={{-112,-70},{-92,-50}})));
-  ThermoPower.Gas.FlangeB fuelOut(redeclare package Medium =
+  OpenTEMPEST.Interfaces.GasFlangeB fuelOut(redeclare package Medium =
         OpenTEMPEST.Medium.Fuel_CH4) annotation (Placement(transformation(extent={{90,50},{110,70}})));
-  ThermoPower.Gas.FlangeB airOut(redeclare package Medium =
+  OpenTEMPEST.Interfaces.GasFlangeB airOut(redeclare package Medium =
         OpenTEMPEST.Medium.Air_Medium) annotation (Placement(transformation(extent={{90,-70},{110,-50}})));
 
   // Heat ports
-  ThermoPower.Thermal.DHTVolumes dHT_x0(N=nY) annotation (Placement(transformation(extent={{-106,-34},{-94,-22}})));
-  ThermoPower.Thermal.DHTVolumes dHT_xN(N=nY) annotation (Placement(transformation(extent={{94,0},{106,12}})));
-  ThermoPower.Thermal.DHTVolumes dHT_y0(N=nX) annotation (Placement(transformation(extent={{-106,-92},{-94,-80}})));
-  ThermoPower.Thermal.DHTVolumes dHT_yN(N=nX) annotation (Placement(transformation(extent={{-106,80},{-94,92}})));
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_x0(N=nY) annotation (Placement(transformation(extent={{-106,-34},{-94,-22}})));
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_xN(N=nY) annotation (Placement(transformation(extent={{94,0},{106,12}})));
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_y0(N=nX) annotation (Placement(transformation(extent={{-106,-92},{-94,-80}})));
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_yN(N=nX) annotation (Placement(transformation(extent={{-106,80},{-94,92}})));
   Heat.DHTVolumes2D dHT2_z1(i=nX, j=nY) annotation (Placement(transformation(extent={{36,94},{46,104}})));
   Heat.DHTVolumes2D dHT2_z0(i=nX, j=nY) annotation (Placement(transformation(extent={{36,-104},{46,-94}})));
 

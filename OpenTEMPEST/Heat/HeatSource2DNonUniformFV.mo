@@ -1,7 +1,7 @@
 within OpenTEMPEST.Heat;
 model HeatSource2DNonUniformFV
   "Distributed Heat Flow Source for Finite Volume models with non-uniformly distributed flow"
-  extends ThermoPower.Icons.HeatFlow;
+  extends OpenTEMPEST.Icons.HeatFlow;
   parameter Integer nX = 1 "Number of volumes x-direction";
   parameter Integer nY = 1 "Number of volumes y-direction";
   OpenTEMPEST.Heat.DHTVolumes2D wall(i=nX, j=nY) annotation (Placement(

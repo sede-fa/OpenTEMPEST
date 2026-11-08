@@ -7,7 +7,7 @@ model SimpleGasHeater
 
   parameter Integer nHT = 1 "number of heat port in flow direction";
 
-  ThermoPower.Thermal.HT ht[nHT] annotation (Placement(transformation(extent={{-20,
+  OpenTEMPEST.Interfaces.HT ht[nHT] annotation (Placement(transformation(extent={{-20,
             20},{0,40}}), iconTransformation(extent={{-20,20},{20,60}})));
 
 protected

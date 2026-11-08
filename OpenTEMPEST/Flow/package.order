@@ -17,3 +17,9 @@ SourceMassFlow
 SinkPressure
 SourceMassFlowEC
 ThreeWayValve
+SensP
+SensT
+SensW
+ThroughMassFlow
+FlowSplit
+FlowJoin

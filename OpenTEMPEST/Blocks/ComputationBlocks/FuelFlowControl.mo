@@ -32,7 +32,7 @@ model FuelFlowControl
     "Use connector input for the reactant conversion" annotation(Dialog(group="External inputs"), choices(checkBox=true));
   parameter Boolean use_in_composition = false
     "Use connector input for the composition"                                  annotation(Dialog(group="External inputs"), choices(checkBox=true));
-  outer ThermoPower.System system "System wide properties";
+  outer OpenTEMPEST.System system "System wide properties";
 
   Medium.MassFlowRate w "Nominal mass flow rate";
   Medium.MoleFraction Y[Medium.nX];

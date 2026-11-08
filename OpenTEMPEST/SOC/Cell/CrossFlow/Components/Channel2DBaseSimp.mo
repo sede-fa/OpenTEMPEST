@@ -67,10 +67,10 @@ partial model Channel2DBaseSimp
   SI.MassFlowRate massTransfer[nX] "Mass source term due to electrochemical ion transport";
 
   // Inlet and outlet flanges
-  ThermoPower.Gas.FlangeA infl(redeclare package Medium = Medium)  annotation (Placement(transformation(extent={{-106,0},
+  OpenTEMPEST.Interfaces.GasFlangeA infl(redeclare package Medium = Medium)  annotation (Placement(transformation(extent={{-106,0},
             {-86,20}}),
         iconTransformation(extent={{-114,-8},{-86,20}})));
-  ThermoPower.Gas.FlangeB outfl(redeclare package Medium = Medium)  annotation (Placement(transformation(extent={{80,-10},{100,10}}),
+  OpenTEMPEST.Interfaces.GasFlangeB outfl(redeclare package Medium = Medium)  annotation (Placement(transformation(extent={{80,-10},{100,10}}),
         iconTransformation(extent={{86,-8},{114,20}})));
 
   // Heat ports PEN and IC

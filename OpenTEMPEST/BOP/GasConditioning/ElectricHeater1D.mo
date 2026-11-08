@@ -29,9 +29,9 @@ model ElectricHeater1D
   parameter Real Efficiency(max=1, min=0)
     "thermal efficiency of the heater";
 
-  ThermoPower.Gas.FlangeA flangeA(redeclare package Medium = Medium)
+  OpenTEMPEST.Interfaces.GasFlangeA flangeA(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{-110,-10},{-90,10}})));
-  ThermoPower.Gas.FlangeB flangeB(redeclare package Medium = Medium)
+  OpenTEMPEST.Interfaces.GasFlangeB flangeB(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{90,-10},{110,10}})));
   OpenTEMPEST.Flow.Flow1D2w flow1D2w(
     redeclare package Medium = Medium,
@@ -51,7 +51,7 @@ model ElectricHeater1D
   ThermoPower.Electrical.Load load(Pnom(displayUnit="kW") = 5000, usePowerInput=
        true) annotation (Placement(transformation(extent={{56,58},{76,38}})));
 public
-  ThermoPower.Thermal.HeatSource1DFV heatSource1DFV(final Nw=N)
+  OpenTEMPEST.Heat.HeatSource1DFV heatSource1DFV(final Nw=N)
     annotation (Placement(transformation(extent={{-10,8},{10,28}})));
   Modelica.Blocks.Math.Gain efficiency(k=Efficiency) annotation (Placement(
         transformation(
@@ -68,7 +68,7 @@ public
         origin={0,38})));
   ThermoPower.Electrical.PowerConnection port annotation (Placement(
         transformation(rotation=0, extent={{40,-50},{60,-30}})));
-  ThermoPower.Thermal.DHTVolumes heatloss(final N=N) annotation (Placement(
+  OpenTEMPEST.Interfaces.DHTVolumes heatloss(final N=N) annotation (Placement(
         transformation(extent={{-4,-40},{6,-30}}), iconTransformation(
           extent={{-8,-44},{6,-30}})));
 equation

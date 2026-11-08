@@ -35,7 +35,7 @@ model Stack0DTest "Simple example model using the model Stack0D, adiabatic"
     TASR(start=681.85)) annotation (Placement(transformation(extent={{-28,-26},{28,28}})));
   BOP.PowerElectronics powerElectronics(nChannels=1, currentFactor=1)
                                         annotation (Placement(transformation(extent={{-110,-12},{-84,12}})));
-  ThermoPower.Gas.SourceMassFlow airSource(
+  OpenTEMPEST.Flow.SourceMassFlow airSource(
     redeclare package Medium = OpenTEMPEST.Medium.Air_Medium,
     w0=nCells*4.29048E-04,
     p0=1.1*sinkAir.p0,
@@ -43,11 +43,11 @@ model Stack0DTest "Simple example model using the model Stack0D, adiabatic"
            annotation (Placement(transformation(extent={{-112,-64},{-92,-44}},
           rotation=0)));
 
-  ThermoPower.Gas.SinkPressure sinkAir(
+  OpenTEMPEST.Flow.SinkPressure sinkAir(
     redeclare package Medium = OpenTEMPEST.Medium.Air_Medium,
     p0=pStart,
     use_in_p0=false) annotation (Placement(transformation(extent={{88,-58},{108,-38}},rotation=0)));
-  ThermoPower.Gas.SinkPressure sinkFuel(redeclare package Medium =
+  OpenTEMPEST.Flow.SinkPressure sinkFuel(redeclare package Medium =
         OpenTEMPEST.Medium.Fuel_CH4,                                                            p0=pStart)
     annotation (Placement(transformation(extent={{88,32},{108,52}}, rotation=0)));
   ThermoPower.Electrical.Grid grid(Pgrid=55555555555) annotation (Placement(transformation(extent={{-82,-36},{-62,-16}})));

@@ -12,9 +12,9 @@ model RadiativeHeatTransferGenericEnumerate
   replaceable parameter Enumerations.RadiationSpecialCases specialCase=
       Enumerations.RadiationSpecialCases.case3 "Radiation Special Case";
 
-  ThermoPower.Thermal.HT side1 annotation (
+  OpenTEMPEST.Interfaces.HT side1 annotation (
     Placement(transformation(extent = {{-26, 2}, {8, 36}}), iconTransformation(extent = {{-8, 20}, {8, 36}})));
-  ThermoPower.Thermal.HT side2 annotation (
+  OpenTEMPEST.Interfaces.HT side2 annotation (
     Placement(transformation(extent = {{-26, -2}, {8, -36}}), iconTransformation(extent = {{-8, -20}, {8, -36}})));
 equation
 

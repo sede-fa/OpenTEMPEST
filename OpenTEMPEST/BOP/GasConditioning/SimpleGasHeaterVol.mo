@@ -3,13 +3,13 @@ model SimpleGasHeaterVol
   extends Flow.BaseClasses.simpleGasHeaterBase;
 
   import SI = Modelica.SIunits;
-  parameter ThermoPower.Units.HydraulicResistance R=1 "Hydraulic resistance";
+  parameter OpenTEMPEST.Units.HydraulicResistance R=1 "Hydraulic resistance";
   parameter Boolean includePressureLoss=false;
   parameter Boolean noInitialPressure=false
     "Remove initial equation on pressure"
     annotation (Dialog(tab="Initialisation"),choices(checkBox=true));
 
-  ThermoPower.Thermal.HT ht annotation (Placement(transformation(extent={{-10,54},
+  OpenTEMPEST.Interfaces.HT ht annotation (Placement(transformation(extent={{-10,54},
             {10,74}}), iconTransformation(extent={{-20,20},{20,60}})));
 
   ThermoPower.Gas.Plenum plenum(
@@ -28,11 +28,11 @@ model SimpleGasHeaterVol
 
   Modelica.Blocks.Continuous.FirstOrder firstOrder(T=6)
     annotation (Placement(transformation(extent={{50,20},{30,40}})));
-  ThermoPower.Gas.PressDropLin pressDropLin(redeclare package Medium = medium,
+  OpenTEMPEST.Flow.PressDropLin pressDropLin(redeclare package Medium = medium,
       R=R)
  if includePressureLoss
     annotation (Placement(transformation(extent={{22,-10},{42,10}})));
-  ThermoPower.Gas.SensW sensW(redeclare package Medium = medium) if not
+  OpenTEMPEST.Flow.SensW sensW(redeclare package Medium = medium) if not
     includePressureLoss
     annotation (Placement(transformation(extent={{22,-30},{42,-10}})));
 

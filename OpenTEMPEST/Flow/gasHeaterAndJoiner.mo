@@ -21,16 +21,16 @@ model gasHeaterAndJoiner
   parameter SI.Length[3] d={0.02,0.02,0.02} "diameter of flow channel in a pipe";
   parameter SI.MassFlowRate maximalFlow = -1 "maximal mass flow rate";
 
-  ThermoPower.Gas.FlangeA inletA(redeclare package Medium = medium) annotation (
+  OpenTEMPEST.Interfaces.GasFlangeA inletA(redeclare package Medium = medium) annotation (
       Placement(transformation(extent={{-100,32},{-72,60}}), iconTransformation(
           extent={{-80,20},{-40,60}})));
-  ThermoPower.Gas.FlangeB outlet(redeclare package Medium = medium) annotation (
+  OpenTEMPEST.Interfaces.GasFlangeB outlet(redeclare package Medium = medium) annotation (
       Placement(transformation(extent={{52,-8},{80,20}}), iconTransformation(
           extent={{40,-20},{80,20}})));
-  ThermoPower.Thermal.HT ht[3] annotation (Placement(transformation(extent={{-10,30},
+  OpenTEMPEST.Interfaces.HT ht[3] annotation (Placement(transformation(extent={{-10,30},
             {10,50}}),     iconTransformation(extent={{-18,-20},{22,20}})));
 
-  ThermoPower.Gas.FlangeA inletB(redeclare package Medium = medium) annotation (
+  OpenTEMPEST.Interfaces.GasFlangeA inletB(redeclare package Medium = medium) annotation (
       Placement(transformation(extent={{-100,-46},{-72,-18}}), iconTransformation(
           extent={{-80,-60},{-40,-20}})));
   OpenTEMPEST.BOP.GasConditioning.SimpleGasHeater simpleGasHeaterA(
@@ -47,7 +47,7 @@ model gasHeaterAndJoiner
     nParallel=nParallel[1],
     useAlphaIn=false,
     nHT=1) annotation (Placement(transformation(extent={{-54,18},{-34,38}})));
-  ThermoPower.Gas.FlowJoin flowJoin(redeclare package Medium = medium)
+  OpenTEMPEST.Flow.FlowJoin flowJoin(redeclare package Medium = medium)
     annotation (Placement(transformation(extent={{-20,-4},{0,16}})));
   OpenTEMPEST.BOP.GasConditioning.SimpleGasHeater simpleGasHeaterB(
     redeclare package medium = medium,

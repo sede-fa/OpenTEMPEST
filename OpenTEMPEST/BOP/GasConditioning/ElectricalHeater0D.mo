@@ -18,10 +18,10 @@ model ElectricalHeater0D
 
 //  parameter
 
-  ThermoPower.Gas.FlangeA inlet(redeclare package Medium = Medium)
+  OpenTEMPEST.Interfaces.GasFlangeA inlet(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{-100,-10},{-80,10}}),
         iconTransformation(extent={{-100,-20},{-60,20}})));
-  ThermoPower.Gas.FlangeB outlet(redeclare package Medium = Medium)
+  OpenTEMPEST.Interfaces.GasFlangeB outlet(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{80,0},{100,20}}),
         iconTransformation(extent={{60,-20},{100,20}})));
   SimpleGasHeater simpleGasHeater(

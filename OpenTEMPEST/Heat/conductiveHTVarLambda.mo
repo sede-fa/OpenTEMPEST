@@ -1,6 +1,6 @@
 within OpenTEMPEST.Heat;
 model conductiveHTVarLambda
-  extends ThermoPower.Icons.HeatFlow;
+  extends OpenTEMPEST.Icons.HeatFlow;
   import SI = Modelica.SIunits;
   SI.ThermalConductivity lambda "thermalConductivity";
   SI.Temperature T;
@@ -12,9 +12,9 @@ model conductiveHTVarLambda
   parameter Boolean matConst = false "c and lambda = f(TStart) = const.";
   parameter Real Fac=1 "Correction factor for thermal conductivity";
 
-  ThermoPower.Thermal.HT side1 annotation (Placement(transformation(extent={{-40,
+  OpenTEMPEST.Interfaces.HT side1 annotation (Placement(transformation(extent={{-40,
             20},{40,40}}, rotation=0)));
-  ThermoPower.Thermal.HT side2 annotation (Placement(transformation(extent={{-40,
+  OpenTEMPEST.Interfaces.HT side2 annotation (Placement(transformation(extent={{-40,
             -20},{40,-42}}, rotation=0)));
 
  // parameter Modelica.SIunits.ThermalConductivity lambda=

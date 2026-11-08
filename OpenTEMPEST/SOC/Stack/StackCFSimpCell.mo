@@ -143,13 +143,13 @@ model StackCFSimpCell
             -28},{-90,-8}})));
   Modelica.Electrical.Analog.Interfaces.NegativePin pin_n annotation (Placement(transformation(extent={{-110,20},
             {-90,40}})));
-  ThermoPower.Gas.FlangeA fuelIn(redeclare package Medium = Medium.Fuel_CH4)
+  OpenTEMPEST.Interfaces.GasFlangeA fuelIn(redeclare package Medium = Medium.Fuel_CH4)
     annotation (Placement(transformation(extent={{-110,48},{-90,68}})));
-  ThermoPower.Gas.FlangeA airIn(redeclare package Medium = Medium.Air_Medium)
+  OpenTEMPEST.Interfaces.GasFlangeA airIn(redeclare package Medium = Medium.Air_Medium)
     annotation (Placement(transformation(extent={{-110,-62},{-90,-42}})));
-  ThermoPower.Gas.FlangeB fuelOut(redeclare package Medium = Medium.Fuel_CH4)
+  OpenTEMPEST.Interfaces.GasFlangeB fuelOut(redeclare package Medium = Medium.Fuel_CH4)
     annotation (Placement(transformation(extent={{90,30},{110,50}})));
-  ThermoPower.Gas.FlangeB airout(redeclare package Medium = Medium.Air_Medium)
+  OpenTEMPEST.Interfaces.GasFlangeB airout(redeclare package Medium = Medium.Air_Medium)
     annotation (Placement(transformation(extent={{90,-44},{110,-24}})));
 
   Heat.DHT_DHTVolumes2D dHT_DHT2_yN(i=Ncell, j=nX)
@@ -175,22 +175,22 @@ model StackCFSimpCell
     annotation (Placement(transformation(extent={{94,62},{106,74}})));
   Heat.DHTVolumes2D dHT2_y0(i=Ncell, j=nX)
     annotation (Placement(transformation(extent={{94,-70},{106,-58}})));
-  ThermoPower.Thermal.DHTVolumes dHTtopPlate_x0(N=nY)
+  OpenTEMPEST.Interfaces.DHTVolumes dHTtopPlate_x0(N=nY)
     annotation (Placement(transformation(extent={{-106,76},{-94,88}})));
-  ThermoPower.Thermal.DHTVolumes dHTtopPlate_xN(N=nY)
+  OpenTEMPEST.Interfaces.DHTVolumes dHTtopPlate_xN(N=nY)
     annotation (Placement(transformation(extent={{94,82},{106,94}})));
-  ThermoPower.Thermal.DHTVolumes dHTbottomPlate_xN(N=nY)
+  OpenTEMPEST.Interfaces.DHTVolumes dHTbottomPlate_xN(N=nY)
     annotation (Placement(transformation(extent={{94,-90},{106,-78}})));
-  ThermoPower.Thermal.DHTVolumes dHTbottomPlate_x0(N=nY)
+  OpenTEMPEST.Interfaces.DHTVolumes dHTbottomPlate_x0(N=nY)
     annotation (Placement(transformation(extent={{-106,-86},{-94,-74}})));
 
-  ThermoPower.Thermal.DHTVolumes dHTtopPlate_yN(N=nX)
+  OpenTEMPEST.Interfaces.DHTVolumes dHTtopPlate_yN(N=nX)
     annotation (Placement(transformation(extent={{30,94},{42,106}})));
-  ThermoPower.Thermal.DHTVolumes dHTbottomPlate_yN(N=nX)
+  OpenTEMPEST.Interfaces.DHTVolumes dHTbottomPlate_yN(N=nX)
     annotation (Placement(transformation(extent={{30,-106},{42,-94}})));
-  ThermoPower.Thermal.DHTVolumes dHTtopPlate_y0(N=nX)
+  OpenTEMPEST.Interfaces.DHTVolumes dHTtopPlate_y0(N=nX)
     annotation (Placement(transformation(extent={{-44,94},{-32,106}})));
-  ThermoPower.Thermal.DHTVolumes dHTbottomPlate_y0(N=nX)
+  OpenTEMPEST.Interfaces.DHTVolumes dHTbottomPlate_y0(N=nX)
     annotation (Placement(transformation(extent={{-44,-106},{-32,-94}})));
 equation
 

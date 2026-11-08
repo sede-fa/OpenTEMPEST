@@ -7,10 +7,10 @@ partial model Element1D
     "Heat flow rate from dHT0 -> dHT1";
   Modelica.SIunits.TemperatureDifference dT[N] "dHT0.T - dHT1.T";
 public
-  ThermoPower.Thermal.DHTVolumes dHT0(N=N) annotation (Placement(
+  OpenTEMPEST.Interfaces.DHTVolumes dHT0(N=N) annotation (Placement(
         transformation(extent={{-102,-6},{-90,6}}), iconTransformation(extent={{-102,-6},
             {-90,6}})));
-  ThermoPower.Thermal.DHTVolumes dHT1(N=N) annotation (Placement(
+  OpenTEMPEST.Interfaces.DHTVolumes dHT1(N=N) annotation (Placement(
         transformation(extent={{90,-6},{102,6}}), iconTransformation(extent={{90,-6},
             {102,6}})));
 equation

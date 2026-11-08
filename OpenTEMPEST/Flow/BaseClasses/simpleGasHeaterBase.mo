@@ -21,7 +21,7 @@ partial model simpleGasHeaterBase
     parameter Boolean allowFlowReversal=system.allowFlowReversal
     "= true to allow flow reversal, false restricts to design direction"
     annotation(Evaluate=true);
-  outer ThermoPower.System system "System wide properties";
+  outer OpenTEMPEST.System system "System wide properties";
 
    SI.CoefficientOfHeatTransfer alpha;
   Real Nu;
@@ -36,10 +36,10 @@ partial model simpleGasHeaterBase
    SI.PerUnit Pr "Prandtl numbers";
   medium.ThermalConductivity lambda "Thermal conductivity";
 
-  ThermoPower.Gas.FlangeA inlet(redeclare package Medium = medium) annotation (
+  OpenTEMPEST.Interfaces.GasFlangeA inlet(redeclare package Medium = medium) annotation (
       Placement(transformation(extent={{-100,-10},{-80,10}}),
         iconTransformation(extent={{-100,-20},{-60,20}})));
-  ThermoPower.Gas.FlangeB outlet(redeclare package Medium = medium) annotation (
+  OpenTEMPEST.Interfaces.GasFlangeB outlet(redeclare package Medium = medium) annotation (
      Placement(transformation(extent={{80,0},{100,20}}), iconTransformation(
           extent={{60,-20},{100,20}})));
   Modelica.Blocks.Interfaces.RealInput alphaIn if useAlphaIn annotation (

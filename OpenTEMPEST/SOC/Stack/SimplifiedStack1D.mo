@@ -63,7 +63,7 @@ model SimplifiedStack1D
   parameter SI.ThermalConductivity kFoam=3.576 "Thermal Conductivity of Ni Foam" annotation (Dialog(tab="Fuel Channel"));
   parameter SI.SpecificHeatCapacity cpFoam=440       "Specific heat capacity of Ni in FC" annotation (Dialog(tab="Fuel Channel"));
   parameter SI.Density rhoFoam(displayUnit="kg/m3")=8908 "Density of Ni in FC" annotation (Dialog(tab="Fuel Channel"));
-  parameter ThermoPower.Units.HydraulicResistance HyR_Fuel=50000000     "Hydraulic resistance of fuel channel of each single cell in stack" annotation (Dialog(tab="Fuel Channel"));
+  parameter OpenTEMPEST.Units.HydraulicResistance HyR_Fuel=50000000     "Hydraulic resistance of fuel channel of each single cell in stack" annotation (Dialog(tab="Fuel Channel"));
 
   // AC parameters
   replaceable package ACMedium = Medium.Air_Medium         annotation (Dialog(tab="Air Channel"));
@@ -72,7 +72,7 @@ model SimplifiedStack1D
   parameter Real Nu_PENac=8 "Nusselt number air channel on PEN side" annotation (Dialog(tab="Air Channel"));
   parameter Real Nu_ICac=7.5 "Nusselt Number air channel on IC side" annotation (Dialog(tab="Air Channel"));
   parameter SI.ThermalConductivity kAC=0.0262 "Thermal Conductivity of air channel" annotation (Dialog(tab="Air Channel"));
-  parameter ThermoPower.Units.HydraulicResistance HyR_Air=6000000 "Hydraulic resistance of air channel of each single cell in stack" annotation (Dialog(tab="Air Channel"));
+  parameter OpenTEMPEST.Units.HydraulicResistance HyR_Air=6000000 "Hydraulic resistance of air channel of each single cell in stack" annotation (Dialog(tab="Air Channel"));
 
   // Interconnect parameters
   parameter SI.ThermalConductivity kIC=0.2812 "Thermal Conductivity of solid parallel to windows" annotation (Dialog(tab="Interconnect"));
@@ -149,10 +149,10 @@ public
     redeclare package Medium = Medium.Air_Medium,
     final nPorts_b=Ncell,
     nDummyPorts_b=Ncell - NdetailedCell) annotation (Placement(transformation(extent={{-76,-80},{-64,-48}})));
-  ThermoPower.Gas.FlangeB fuelOut(redeclare package Medium = Medium.Fuel_CH4)
+  OpenTEMPEST.Interfaces.GasFlangeB fuelOut(redeclare package Medium = Medium.Fuel_CH4)
     annotation (Placement(transformation(extent={{110,56},{130,76}}),
         iconTransformation(extent={{110,56},{130,76}})));
-  ThermoPower.Gas.FlangeB airOut(redeclare package Medium = Medium.Air_Medium)
+  OpenTEMPEST.Interfaces.GasFlangeB airOut(redeclare package Medium = Medium.Air_Medium)
     annotation (Placement(transformation(extent={{110,-72},{130,-52}}),
         iconTransformation(extent={{110,-72},{130,-52}})));
   Flow.Manifold_out manifold_outFuel(redeclare package Medium = Medium.Fuel_CH4,
@@ -161,10 +161,10 @@ public
   Flow.Manifold_out manifold_outAir(redeclare package Medium =
         Medium.Air_Medium, nPorts_a=NdetailedCell)
     annotation (Placement(transformation(extent={{36,-18},{56,2}})));
-  ThermoPower.Gas.FlangeA fuelIn(redeclare package Medium = Medium.Fuel_CH4)
+  OpenTEMPEST.Interfaces.GasFlangeA fuelIn(redeclare package Medium = Medium.Fuel_CH4)
     annotation (Placement(transformation(extent={{-138,56},{-118,76}}),
         iconTransformation(extent={{-138,56},{-118,76}})));
-  ThermoPower.Gas.FlangeA airIn(redeclare package Medium = Medium.Air_Medium)
+  OpenTEMPEST.Interfaces.GasFlangeA airIn(redeclare package Medium = Medium.Air_Medium)
     annotation (Placement(transformation(extent={{-140,-80},{-120,-60}}),
         iconTransformation(extent={{-140,-80},{-120,-60}})));
 
@@ -175,24 +175,24 @@ public
     annotation (Placement(transformation(extent={{-136,-18},{-116,2}}),
         iconTransformation(extent={{-136,-18},{-116,2}})));
 
-  ThermoPower.Thermal.DHTVolumes dHT_top(N=N) annotation (Placement(
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_top(N=N) annotation (Placement(
         transformation(extent={{-22,78},{-2,98}}),iconTransformation(extent={{-50,
             30},{44,48}})));
-  ThermoPower.Thermal.DHTVolumes dHT_bottom(N=N) annotation (Placement(
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_bottom(N=N) annotation (Placement(
         transformation(extent={{-32,-96},{-12,-76}}),
                                                     iconTransformation(extent={{
             -50,-52},{44,-34}})));
 
-  ThermoPower.Thermal.DHTVolumes dHT_y0(N=N) annotation (Placement(
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_y0(N=N) annotation (Placement(
         transformation(extent={{6,100},{64,110}}),   iconTransformation(extent={{-56,100},{64,110}})));
 
-  ThermoPower.Thermal.DHTVolumes dHT_y1(N=N) annotation (Placement(
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_y1(N=N) annotation (Placement(
         transformation(extent={{12,-110},{70,-100}}),  iconTransformation(
           extent={{-60,-110},{60,-100}})));
-  ThermoPower.Thermal.DHTVolumes dHT_x0(N=Ncell)
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_x0(N=Ncell)
     annotation (Placement(transformation(extent={{-132,-38},{-112,-18}}),
         iconTransformation(extent={{-132,-36},{-120,4}})));
-  ThermoPower.Thermal.DHTVolumes dHT_xN(N=Ncell)
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_xN(N=Ncell)
     annotation (Placement(transformation(extent={{108,-10},{128,10}}),
         iconTransformation(extent={{116,-20},{128,20}})));
   Components.FlowInterpolator flowInterpolator(
@@ -325,9 +325,9 @@ public
     each cpCustom=cpIntermediatePlate)
     annotation (Placement(transformation(extent={{48,36},{68,56}})));
 
-  ThermoPower.Thermal.HT hTPlates_x1[nIMPs+2]
+  OpenTEMPEST.Interfaces.HT hTPlates_x1[nIMPs+2]
     annotation (Placement(transformation(extent={{110,30},{130,50}}), iconTransformation(extent={{110,34},{130,54}})));
-  ThermoPower.Thermal.HT hTPlates_x0[nIMPs+2]
+  OpenTEMPEST.Interfaces.HT hTPlates_x0[nIMPs+2]
     annotation (Placement(transformation(extent={{-126,34},{-106,54}}), iconTransformation(extent={{-134,34},{-114,54}})));
 //protected
   Heat.HTs_DHT hTs_DHT_x0(each N=Ncell)

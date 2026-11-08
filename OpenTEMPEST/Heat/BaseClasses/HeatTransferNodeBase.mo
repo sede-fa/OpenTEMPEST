@@ -3,9 +3,9 @@ partial model HeatTransferNodeBase
 
   parameter Integer N = 5;
 
-  ThermoPower.Thermal.DHTVolumes coldWall(N=N)
+  OpenTEMPEST.Interfaces.DHTVolumes coldWall(N=N)
     annotation (Placement(transformation(extent={{-40,40},{40,60}})));
-  ThermoPower.Thermal.DHTVolumes hotWall(N=N)
+  OpenTEMPEST.Interfaces.DHTVolumes hotWall(N=N)
     annotation (Placement(transformation(extent={{-40,-40},{40,-20}})));
 
 equation

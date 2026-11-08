@@ -31,28 +31,28 @@ model FlowInterpolator1D
 
   Integer detailedIdx[nCell-nSimplified-nNonUnitOrSimpCells] = Modelica.Math.BooleanVectors.index(not isRedu);
 
-  ThermoPower.Gas.FlangeB fuelExit(redeclare package Medium = Fuel) annotation (
+  OpenTEMPEST.Interfaces.GasFlangeB fuelExit(redeclare package Medium = Fuel) annotation (
      Placement(transformation(extent={{90,40},{110,60}}), iconTransformation(
           extent={{60,20},{100,60}})));
-  ThermoPower.Gas.FlangeB airExit(redeclare package Medium = Air) annotation (
+  OpenTEMPEST.Interfaces.GasFlangeB airExit(redeclare package Medium = Air) annotation (
       Placement(transformation(extent={{90,-60},{110,-40}}), iconTransformation(
           extent={{60,-60},{100,-20}})));
-  ThermoPower.Gas.FlangeA fuelInlet(redeclare package Medium = Fuel)
+  OpenTEMPEST.Interfaces.GasFlangeA fuelInlet(redeclare package Medium = Fuel)
     annotation (Placement(transformation(extent={{-100,40},{-80,60}}), iconTransformation(extent={{-120,20},{-80,60}})));
-  ThermoPower.Gas.FlangeA airInlet(redeclare package Medium = Air)
+  OpenTEMPEST.Interfaces.GasFlangeA airInlet(redeclare package Medium = Air)
     annotation (Placement(transformation(extent={{-110,-60},{-90,-40}}), iconTransformation(extent={{-120,-60},{-80,-20}})));
-  ThermoPower.Gas.SinkPressure sinkPressure(redeclare package Medium = Fuel,
+  OpenTEMPEST.Flow.SinkPressure sinkPressure(redeclare package Medium = Fuel,
     p0=pStartFuel,
     T=TStart,
     Xnom=XFuelStart,
       use_in_p0=true)
     annotation (Placement(transformation(extent={{-40,40},{-20,60}})));
-  ThermoPower.Gas.SinkPressure sinkPressure1(redeclare package Medium = Air,
+  OpenTEMPEST.Flow.SinkPressure sinkPressure1(redeclare package Medium = Air,
     p0=pStartAir,
     T=TStart,
       use_in_p0=true)
     annotation (Placement(transformation(extent={{-40,-60},{-20,-40}})));
-  ThermoPower.Gas.SourceMassFlow sourceMassFlowFuel(
+  OpenTEMPEST.Flow.SourceMassFlow sourceMassFlowFuel(
     redeclare package Medium = Fuel,
     p0=pStartFuel,
     Xnom=XFuelStart,
@@ -61,7 +61,7 @@ model FlowInterpolator1D
     use_in_T=true,
     use_in_X=true)
     annotation (Placement(transformation(extent={{20,40},{40,60}})));
-  ThermoPower.Gas.SourceMassFlow sourceMassFlowAir(
+  OpenTEMPEST.Flow.SourceMassFlow sourceMassFlowAir(
     redeclare package Medium = Air,
     p0=pStartAir,
     w0=0.001,
@@ -70,12 +70,12 @@ model FlowInterpolator1D
     use_in_X=true)
     annotation (Placement(transformation(extent={{28,-60},{48,-40}})));
 protected
-  ThermoPower.Gas.SensP sensP(redeclare package Medium = Fuel)
+  OpenTEMPEST.Flow.SensP sensP(redeclare package Medium = Fuel)
     annotation (Placement(transformation(extent={{50,44},{70,64}})));
-  ThermoPower.Gas.SensP sensP1(redeclare package Medium = Air)
+  OpenTEMPEST.Flow.SensP sensP1(redeclare package Medium = Air)
     annotation (Placement(transformation(extent={{50,-56},{70,-36}})));
 
-  ThermoPower.Gas.SensW sensW1(redeclare package Medium = Air)
+  OpenTEMPEST.Flow.SensW sensW1(redeclare package Medium = Air)
     annotation (Placement(transformation(extent={{-64,-56},{-44,-36}})));
   Modelica.Blocks.Math.Product product
     annotation (Placement(transformation(extent={{-10,52},{0,62}})));
@@ -84,7 +84,7 @@ protected
   Modelica.Blocks.Sources.Constant const(k=nCell/(nCell - nSimplified))
     annotation (Placement(transformation(extent={{-70,-6},{-58,6}})));
 public
-  ThermoPower.Thermal.DHTVolumes dHT[nCell](each N=N) annotation (Placement(
+  OpenTEMPEST.Interfaces.DHTVolumes dHT[nCell](each N=N) annotation (Placement(
         transformation(extent={{-94,-4},{-80,10}}), iconTransformation(extent={{
             -94,-4},{-80,10}})));
 protected
@@ -105,7 +105,7 @@ protected
     TOutput=true,
     rhoOutput=false)
     annotation (Placement(transformation(extent={{-80,44},{-60,64}})));
-  ThermoPower.Gas.SensT sensTAir(redeclare package Medium = Air,
+  OpenTEMPEST.Flow.SensT sensTAir(redeclare package Medium = Air,
       allowFlowReversal=false)
     annotation (Placement(transformation(extent={{-84,-56},{-64,-36}})));
 public

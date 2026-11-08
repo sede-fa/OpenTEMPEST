@@ -7,16 +7,16 @@ model ForcedFlowMultiSplitter
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
     annotation(choicesAllMatching = true);
 
-  ThermoPower.Gas.FlangeA inlet(redeclare package Medium = Medium)
+  OpenTEMPEST.Interfaces.GasFlangeA inlet(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{-60,-10},{-40,10}})));
-  ThermoPower.Gas.FlangeB outlet[nOutlets](redeclare package Medium = Medium)
+  OpenTEMPEST.Interfaces.GasFlangeB outlet[nOutlets](redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{40,-10},{60,10}})));
-  ThermoPower.Gas.ThroughMassFlow throughMassFlow[nOutlets-1](
+  OpenTEMPEST.Flow.ThroughMassFlow throughMassFlow[nOutlets-1](
     redeclare package Medium = Medium,
     each w0=0.00001,
     each use_in_w0=true)
     annotation (Placement(transformation(extent={{12,-10},{32,10}})));
-  ThermoPower.Gas.SensW sensW(redeclare package Medium = Medium)
+  OpenTEMPEST.Flow.SensW sensW(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{-34,-6},{-14,14}})));
   Modelica.Blocks.Sources.Constant const(k=1/nOutlets)
     annotation (Placement(transformation(extent={{-100,32},{-80,52}})));

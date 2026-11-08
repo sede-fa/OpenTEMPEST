@@ -1,6 +1,6 @@
 within OpenTEMPEST.BOP.GasConditioning;
 model Separator "Separator with metal walls for gas flows"
-  extends ThermoPower.Icons.Gas.Mixer;
+  extends OpenTEMPEST.Icons.Mixer;
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
     annotation(choicesAllMatching = true);
   Medium.BaseProperties gas(
@@ -55,18 +55,18 @@ model Separator "Separator with metal walls for gas flows"
   Medium.MassFraction XoS[Medium.nXi] "Outlet seperated composition";
   Modelica.SIunits.Time Tr "Residence time";
 
-  ThermoPower.Gas.FlangeA inlet(redeclare package Medium = Medium, m_flow(min=
+  OpenTEMPEST.Interfaces.GasFlangeA inlet(redeclare package Medium = Medium, m_flow(min=
           if allowFlowReversal then -Modelica.Constants.inf else 0))
     annotation (Placement(transformation(extent={{-120,-20},{-80,20}}, rotation=
            0)));
-  ThermoPower.Gas.FlangeB outletMain(redeclare package Medium = Medium, m_flow(
+  OpenTEMPEST.Interfaces.GasFlangeB outletMain(redeclare package Medium = Medium, m_flow(
         max=if allowFlowReversal then +Modelica.Constants.inf else 0))
     annotation (Placement(transformation(extent={{60,40},{100,80}}, rotation=0)));
-  ThermoPower.Gas.FlangeB outletSeperated(redeclare package Medium = Medium,
+  OpenTEMPEST.Interfaces.GasFlangeB outletSeperated(redeclare package Medium = Medium,
       m_flow(min=if allowFlowReversal then -Modelica.Constants.inf else 0))
     annotation (Placement(transformation(extent={{60,-80},{100,-40}}, rotation=0)));
 
-  replaceable ThermoPower.Thermal.HT thermalPort annotation (Placement(transformation(
+  replaceable OpenTEMPEST.Interfaces.HT thermalPort annotation (Placement(transformation(
           extent={{-38,60},{42,80}}, rotation=0)));
 equation
   M = gas.d*V "Gas mass";

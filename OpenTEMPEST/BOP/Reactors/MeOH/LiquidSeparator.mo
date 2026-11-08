@@ -24,17 +24,17 @@ model LiquidSeparator
   SI.MassFlowRate mfGas;
 //   SI.MassFlowRate mfGasAbs;
 
-  inner ThermoPower.System system annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
-  ThermoPower.Gas.FlangeA infl(redeclare package Medium = GasMix) "Inlet port connector for gas entering the reactor"  annotation (Placement(transformation(extent={{-100,-20},{-60,20}}), iconTransformation(extent={{-100,
+  inner OpenTEMPEST.System system annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
+  OpenTEMPEST.Interfaces.GasFlangeA infl(redeclare package Medium = GasMix) "Inlet port connector for gas entering the reactor"  annotation (Placement(transformation(extent={{-100,-20},{-60,20}}), iconTransformation(extent={{-100,
             -20},{-60,20}})));
-  ThermoPower.Gas.FlangeB outflGas(redeclare package Medium = GasMix) "Outlet port connector of gas mixture stream leaving separator"  annotation (Placement(transformation(
+  OpenTEMPEST.Interfaces.GasFlangeB outflGas(redeclare package Medium = GasMix) "Outlet port connector of gas mixture stream leaving separator"  annotation (Placement(transformation(
           extent={{60,10},{100,50}}), iconTransformation(extent={{60,10},{
             100,50}})));
   ThermoPower.Water.FlangeB outflLiquid(redeclare package Medium =
         ThermoPower.Water.StandardWater)                                                            "Outlet port connector of single component gas stream leaving separator"  annotation (Placement(transformation(extent={{60,-50},{100,-10}}),
         iconTransformation(extent={{60,-50},{100,-10}})));
 
-    ThermoPower.Thermal.HT hT annotation (Placement(transformation(extent={{-16,60},
+    OpenTEMPEST.Interfaces.HT hT annotation (Placement(transformation(extent={{-16,60},
              {16,92}}), iconTransformation(extent={{-12,50},{12,74}})));
 equation
 

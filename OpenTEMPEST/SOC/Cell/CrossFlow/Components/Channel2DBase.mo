@@ -66,9 +66,9 @@ partial model Channel2DBase
   SI.Energy Emg[nX, nY] "Energy density in control volume";
   SI.MassFlowRate massTransfer[nX, nY] "Ion transfer rate";
 
-  ThermoPower.Gas.FlangeA infl[nY](redeclare package Medium = Medium)  annotation (Placement(transformation(extent={{-100,-8},{-80,12}}),
+  OpenTEMPEST.Interfaces.GasFlangeA infl[nY](redeclare package Medium = Medium)  annotation (Placement(transformation(extent={{-100,-8},{-80,12}}),
         iconTransformation(extent={{-108,-16},{-80,12}})));
-  ThermoPower.Gas.FlangeB outfl[nY](redeclare package Medium = Medium)  annotation (Placement(transformation(extent={{80,-10},{100,10}}),
+  OpenTEMPEST.Interfaces.GasFlangeB outfl[nY](redeclare package Medium = Medium)  annotation (Placement(transformation(extent={{80,-10},{100,10}}),
         iconTransformation(extent={{80,-14},{108,14}})));
   Heat.DHTVolumes2D Q_IC(i=nX, j=nY) "HT Between Channel and IC" annotation (
       Placement(transformation(extent={{-62,34},{-40,52}}), iconTransformation(

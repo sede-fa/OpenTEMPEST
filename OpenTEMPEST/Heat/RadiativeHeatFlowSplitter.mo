@@ -23,10 +23,10 @@ model RadiativeHeatFlowSplitter
         extent={{-10,-10},{10,10}},
         rotation=-90,
         origin={0,0})));
-  ThermoPower.Thermal.HT side1 annotation (
+  OpenTEMPEST.Interfaces.HT side1 annotation (
     Placement(transformation(extent={{70,-20},{110,20}}),   iconTransformation(extent={{-8,20},
             {8,36}})));
-  ThermoPower.Thermal.HT side2[nCombinedPorts] annotation (Placement(transformation(extent={{
+  OpenTEMPEST.Interfaces.HT side2[nCombinedPorts] annotation (Placement(transformation(extent={{
             -110,-20},{-70,20}}), iconTransformation(extent={{-8,-36},{8,-20}})));
   Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow[
     nCombinedPorts]

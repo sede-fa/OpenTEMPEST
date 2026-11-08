@@ -36,11 +36,11 @@ model MeOHEnergyBalance
   SI.MolarFlowRate nfDryTot "total molar flow of inflow";
   Real ratio "ratio that relates H2 consumption with CO and CO2 fractions at inlet";
 
-  ThermoPower.Gas.FlangeA infl(redeclare package Medium =
+  OpenTEMPEST.Interfaces.GasFlangeA infl(redeclare package Medium =
         OpenTEMPEST.Medium.Fuel_MethanolReactor) annotation (Placement(
         transformation(extent={{-128,-40},{-100,-12}}), iconTransformation(
           extent={{-128,-40},{-100,-12}})));
-  ThermoPower.Gas.FlangeB outflPurge(redeclare package Medium =
+  OpenTEMPEST.Interfaces.GasFlangeB outflPurge(redeclare package Medium =
         OpenTEMPEST.Medium.Fuel_MethanolReactor) annotation (Placement(
         transformation(extent={{100,0},{128,28}}), iconTransformation(extent={{
             100,0},{128,28}})));
@@ -51,10 +51,10 @@ model MeOHEnergyBalance
         rotation=0), iconTransformation(extent={{102,-38},{126,-14}})));
   Modelica.Blocks.Sources.RealExpression realWProduct(y=-mfProduct) annotation (Placement(transformation(extent={{54,-8},{66,8}})));
 
-  ThermoPower.Thermal.HT hT annotation (Placement(transformation(extent={{-16,60},
+  OpenTEMPEST.Interfaces.HT hT annotation (Placement(transformation(extent={{-16,60},
              {16,92}}), iconTransformation(extent={{-12,34},{12,58}})));
 
-  ThermoPower.Gas.SourceMassFlow sourceMFPurge(
+  OpenTEMPEST.Flow.SourceMassFlow sourceMFPurge(
     redeclare package Medium = OpenTEMPEST.Medium.Fuel_MethanolReactor,
     use_in_w0=true,
     use_in_T=true,
@@ -65,11 +65,11 @@ model MeOHEnergyBalance
   Modelica.Blocks.Sources.RealExpression realTPurge(y=TPurge)
                                                     annotation (Placement(transformation(extent={{30,50},{44,66}})));
 
-  inner ThermoPower.System system annotation (Placement(transformation(extent={{-134,56},{-114,76}})));
-  ThermoPower.Gas.SinkPressure sinkPressure(redeclare package Medium =
+  inner OpenTEMPEST.System system annotation (Placement(transformation(extent={{-134,56},{-114,76}})));
+  OpenTEMPEST.Flow.SinkPressure sinkPressure(redeclare package Medium =
         OpenTEMPEST.Medium.Fuel_MethanolReactor, use_in_p0=true)
     annotation (Placement(transformation(extent={{-72,-10},{-52,10}})));
-  ThermoPower.Gas.SensP sensP(redeclare package Medium =
+  OpenTEMPEST.Flow.SensP sensP(redeclare package Medium =
         OpenTEMPEST.Medium.Fuel_MethanolReactor)
     annotation (Placement(transformation(extent={{70,34},{90,54}})));
 

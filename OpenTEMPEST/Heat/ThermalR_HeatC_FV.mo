@@ -9,9 +9,9 @@ model ThermalR_HeatC_FV
     "Start value of the temperature of element";
   SI.Temperature T(start=Tstart, displayUnit="degC")
     "Temperature of element";
-  ThermoPower.Thermal.DHTVolumes dHT(final N = N) annotation (Placement(transformation(extent={{-10,
+  OpenTEMPEST.Interfaces.DHTVolumes dHT(final N = N) annotation (Placement(transformation(extent={{-10,
             -40},{10,-20}}), iconTransformation(extent={{-10,-38},{10,-18}})));
-  ThermoPower.Thermal.HT hT annotation (Placement(transformation(extent={{-10,20},
+  OpenTEMPEST.Interfaces.HT hT annotation (Placement(transformation(extent={{-10,20},
             {10,40}}), iconTransformation(extent={{-10,22},{10,42}})));
 equation
   T = hT.T;

@@ -2,7 +2,7 @@ within OpenTEMPEST.Heat;
 model HTs_DHTVolumes2D "HT to DHT adaptor"
   parameter Integer i=1 "number of volumes in direction 1";
   parameter Integer j=1 "number of volumes in direction 2";
-  ThermoPower.Thermal.HT HT_ports[i,j] annotation (Placement(transformation(extent={{-140,-20},{-100,20}}, rotation=0),
+  OpenTEMPEST.Interfaces.HT HT_ports[i,j] annotation (Placement(transformation(extent={{-140,-20},{-100,20}}, rotation=0),
         iconTransformation(extent={{-140,-20},{-100,20}})));
   OpenTEMPEST.Heat.DHTVolumes2D DHT_port(i=i, j=j) annotation (Placement(
         transformation(extent={{100,-40},{120,40}}, rotation=0)));

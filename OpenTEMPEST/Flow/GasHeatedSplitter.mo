@@ -22,20 +22,20 @@ model GasHeatedSplitter
   parameter SI.Length[3] d={0.02,0.02,0.02} "diameter of flow channel in a pipe";
   parameter SI.MassFlowRate maximalFlow = -1 "maximal mass flow rate";
 
-  ThermoPower.Gas.FlangeA inlet(redeclare package Medium = medium)
+  OpenTEMPEST.Interfaces.GasFlangeA inlet(redeclare package Medium = medium)
                                                                  annotation (
       Placement(transformation(extent={{-114,-14},{-86,14}}),iconTransformation(
           extent={{-80,-20},{-40,20}})));
-  ThermoPower.Gas.FlangeB outletA(redeclare package Medium = medium)
+  OpenTEMPEST.Interfaces.GasFlangeB outletA(redeclare package Medium = medium)
     annotation (Placement(transformation(extent={{52,32},{80,60}}),
         iconTransformation(extent={{40,20},{80,60}})));
-  ThermoPower.Gas.FlangeB outletB(redeclare package Medium = medium)
+  OpenTEMPEST.Interfaces.GasFlangeB outletB(redeclare package Medium = medium)
     annotation (Placement(transformation(extent={{52,-48},{80,-20}}),
         iconTransformation(extent={{40,-60},{80,-20}})));
-  ThermoPower.Thermal.HT ht[3] annotation (Placement(transformation(extent={{-10,30},
+  OpenTEMPEST.Interfaces.HT ht[3] annotation (Placement(transformation(extent={{-10,30},
             {10,50}}),     iconTransformation(extent={{-18,-20},{22,20}})));
 
-  ThermoPower.Gas.FlowSplit flowSplit(redeclare package Medium = medium)
+  OpenTEMPEST.Flow.FlowSplit flowSplit(redeclare package Medium = medium)
     annotation (Placement(transformation(extent={{-14,-10},{6,10}})));
   OpenTEMPEST.BOP.GasConditioning.SimpleGasHeater simpleGasHeaterA(
     redeclare package medium = medium,

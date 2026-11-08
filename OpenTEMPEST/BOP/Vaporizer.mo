@@ -16,7 +16,7 @@ model Vaporizer
                                            annotation (Placement(transformation(
           rotation=0, extent={{-134,-7},{-112,15}}), iconTransformation(extent={
             {-100,-100},{-48,-48}})));
-  ThermoPower.Gas.FlangeB gasOutlet1(redeclare package Medium = MediumOutput)
+  OpenTEMPEST.Interfaces.GasFlangeB gasOutlet1(redeclare package Medium = MediumOutput)
                            annotation (Placement(transformation(rotation=0,
           extent={{106,-4},{126,16}}), iconTransformation(extent={{50,50},{100,100}})));
 protected
@@ -38,16 +38,16 @@ public
     Vlstart=0.005,
     noInitialPressure=true)
     annotation (Placement(transformation(extent={{-68,-8},{-48,12}})));
-  ThermoPower.Thermal.HeatSource1DFV heatSource1DFV(Nw=5) annotation (Placement(
+  OpenTEMPEST.Heat.HeatSource1DFV heatSource1DFV(Nw=5) annotation (Placement(
         transformation(
         extent={{-10,10},{10,-10}},
         rotation=90,
         origin={-2,-42})));
   ThermoPower.Thermal.HT_DHTVolumes hT_DHTVolumes(N=5)
     annotation (Placement(transformation(extent={{-56,-46},{-42,-32}})));
-  ThermoPower.Gas.SensW sensW(redeclare package Medium = MediumInput)
+  OpenTEMPEST.Flow.SensW sensW(redeclare package Medium = MediumInput)
     annotation (Placement(transformation(extent={{-36,14},{-16,-6}})));
-  ThermoPower.Gas.SourceMassFlow sourceMassFlow(
+  OpenTEMPEST.Flow.SourceMassFlow sourceMassFlow(
     redeclare package Medium = MediumOutput,
     p0=100000,
     Xnom={1e-5,1e-5,1e-5,1e-5,1,1e-5},
@@ -69,7 +69,7 @@ public
         origin={-26,-42})));
   ThermoPower.Water.SensW sensW1(redeclare package Medium = MediumInput)
     annotation (Placement(transformation(extent={{-98,-12},{-78,8}})));
-  ThermoPower.Gas.SensP sensP(redeclare package Medium = MediumOutput)
+  OpenTEMPEST.Flow.SensP sensP(redeclare package Medium = MediumOutput)
     annotation (Placement(transformation(extent={{104,2},{84,22}})));
   Modelica.Blocks.Continuous.LimPID PIDPessure(
     controllerType=Modelica.Blocks.Types.SimpleController.PI,
@@ -81,7 +81,7 @@ public
        true) annotation (Placement(transformation(extent={{10,-94},{30,-74}})));
   ThermoPower.Electrical.PowerConnection port annotation (Placement(
         transformation(rotation=0, extent={{20,-120},{40,-100}})));
-  ThermoPower.Thermal.DHTVolumes dHTVolumes(N=5)
+  OpenTEMPEST.Interfaces.DHTVolumes dHTVolumes(N=5)
                                             if thermalInput
     annotation (Placement(transformation(extent={{-34,-120},{-14,-100}})));
   ThermoPower.Water.ValveLin valveLin(redeclare package Medium =

@@ -1,6 +1,6 @@
 within OpenTEMPEST.BOP;
 model FanSimple
-  extends ThermoPower.Icons.Gas.Fan;
+  extends OpenTEMPEST.Icons.Fan;
   import SI = Modelica.SIunits;
 
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
@@ -26,14 +26,14 @@ model FanSimple
   parameter Boolean allowFlowReversal=system.allowFlowReversal
     "= true to allow flow reversal, false restricts to design direction"
   annotation(Evaluate=true);
-  outer ThermoPower.System system "System wide properties";
+  outer OpenTEMPEST.System system "System wide properties";
 
-  ThermoPower.Gas.FlangeA fl_inlet(
+  OpenTEMPEST.Interfaces.GasFlangeA fl_inlet(
     h_outflow(start=hStart),
     redeclare package Medium = Medium,
     m_flow(min=if allowFlowReversal then -Modelica.Constants.inf else 0))
     annotation (Placement(transformation(extent={{-100,2},{-60,42}}, rotation=0)));
-  ThermoPower.Gas.FlangeB fl_outlet(
+  OpenTEMPEST.Interfaces.GasFlangeB fl_outlet(
     h_outflow(start=hStart),
     redeclare package Medium = Medium,
     m_flow(max=if allowFlowReversal then +Modelica.Constants.inf else 0))

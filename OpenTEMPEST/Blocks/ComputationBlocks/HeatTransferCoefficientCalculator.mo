@@ -36,14 +36,14 @@ model HeatTransferCoefficientCalculator
     redeclare model HeatTransfer =
         ThermoPower.Thermal.HeatTransferFV.DittusBoelter)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
-  ThermoPower.Gas.SourceMassFlow sourceMassFlow(redeclare package Medium =
+  OpenTEMPEST.Flow.SourceMassFlow sourceMassFlow(redeclare package Medium =
         Medium,
     p0=p,
     T=T,
     Xnom=X,
     w0=mf)
     annotation (Placement(transformation(extent={{-100,-10},{-80,10}})));
-  ThermoPower.Gas.SinkPressure sinkPressure(
+  OpenTEMPEST.Flow.SinkPressure sinkPressure(
     redeclare package Medium = Medium,
     p0=p,
     T=T,

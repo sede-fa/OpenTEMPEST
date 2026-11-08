@@ -44,10 +44,10 @@ model MeOHReactorSystem
         extent={{-6,6},{6,-6}},
         rotation=90,
         origin={34,-2})));
-  ThermoPower.Gas.SensT sensTInter(redeclare package Medium =
+  OpenTEMPEST.Flow.SensT sensTInter(redeclare package Medium =
         OpenTEMPEST.Medium.Fuel_MethanolReactor)
     annotation (Placement(transformation(extent={{-16,-26},{-2,-12}})));
-  ThermoPower.Gas.SensP sensPInter(redeclare package Medium =
+  OpenTEMPEST.Flow.SensP sensPInter(redeclare package Medium =
         OpenTEMPEST.Medium.Fuel_MethanolReactor)
     annotation (Placement(transformation(extent={{16,-26},{2,-12}})));
   OpenTEMPEST.Flow.SensGasProperty sensGasHighP(
@@ -59,7 +59,7 @@ model MeOHReactorSystem
     etaOutput=false,
     rhoOutput=false)
     annotation (Placement(transformation(extent={{36,18},{50,32}})));
-  ThermoPower.Gas.SensP sensPHigh(redeclare package Medium =
+  OpenTEMPEST.Flow.SensP sensPHigh(redeclare package Medium =
         OpenTEMPEST.Medium.Fuel_MethanolReactor)
     annotation (Placement(transformation(extent={{66,30},{52,44}})));
   Modelica.Blocks.Math.Gain gain(k=1/25e5)
@@ -108,12 +108,12 @@ model MeOHReactorSystem
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={-62,-36})));
-  inner ThermoPower.System system
+  inner OpenTEMPEST.System system
     annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
   Modelica.Blocks.Interfaces.RealOutput mfMeOH annotation (Placement(
         transformation(extent={{94,-40},{114,-20}}), iconTransformation(extent={{94,-62},
             {120,-36}})));
-  ThermoPower.Gas.SensT sensTSeperator(redeclare package Medium =
+  OpenTEMPEST.Flow.SensT sensTSeperator(redeclare package Medium =
         OpenTEMPEST.Medium.Fuel_MethanolReactor) annotation (Placement(
         transformation(
         extent={{-7,7},{7,-7}},
@@ -198,7 +198,7 @@ model MeOHReactorSystem
         origin={28,62})));
   Modelica.Blocks.Sources.Constant const2(k=225 + 273.15)
     annotation (Placement(transformation(extent={{56,56},{44,68}})));
-  ThermoPower.Thermal.HT hT annotation (Placement(transformation(extent={{-12,
+  OpenTEMPEST.Interfaces.HT hT annotation (Placement(transformation(extent={{-12,
             94},{12,118}}), iconTransformation(extent={{-10,38},{10,58}})));
   Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow
     annotation (Placement(transformation(extent={{-22,76},{-2,96}})));
@@ -218,7 +218,7 @@ model MeOHReactorSystem
     annotation (Placement(transformation(extent={{6,8},{-6,-8}},
         rotation=90,
         origin={-60,6})));
-  ThermoPower.Gas.FlangeA infl(redeclare package Medium =
+  OpenTEMPEST.Interfaces.GasFlangeA infl(redeclare package Medium =
         OpenTEMPEST.Medium.Fuel_MethanolReactor) annotation (Placement(
         transformation(extent={{-114,38},{-94,58}}), iconTransformation(extent=
             {{-122,-6},{-94,22}})));
@@ -226,7 +226,7 @@ model MeOHReactorSystem
         ThermoPower.Water.StandardWater) annotation (Placement(transformation(
           extent={{-66,-102},{-46,-82}}),iconTransformation(extent={{-74,-110},
             {-46,-82}})));
-  ThermoPower.Gas.FlangeB outflPurge(redeclare package Medium =
+  OpenTEMPEST.Interfaces.GasFlangeB outflPurge(redeclare package Medium =
         OpenTEMPEST.Medium.Fuel_MethanolReactor) annotation (Placement(
         transformation(extent={{102,2},{122,22}}), iconTransformation(extent={{
             94,-6},{122,22}})));

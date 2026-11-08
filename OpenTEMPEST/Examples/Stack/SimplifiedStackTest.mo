@@ -24,7 +24,7 @@ model SimplifiedStackTest
     annotation (Placement(transformation(extent={{-28,-26},{28,28}})));
   BOP.PowerElectronics powerElectronics(nChannels=1, currentFactor=1)
                                         annotation (Placement(transformation(extent={{-110,-12},{-84,12}})));
-  ThermoPower.Gas.SourceMassFlow
+  OpenTEMPEST.Flow.SourceMassFlow
                         fuelSource(
     redeclare package Medium = OpenTEMPEST.Medium.Fuel_CH4,
     p0=pStart,
@@ -32,7 +32,7 @@ model SimplifiedStackTest
     Xnom={0.012281,1e-5,1e-5,1e-5,0.987703,1e-5},
     w0=0.0002025395)
                    annotation (Placement(transformation(extent={{-112,32},{-92,52}})));
-  ThermoPower.Gas.SourceMassFlow airSource(
+  OpenTEMPEST.Flow.SourceMassFlow airSource(
     redeclare package Medium = OpenTEMPEST.Medium.Air_Medium,
     w0=1e-4,
     p0=pStart,
@@ -45,11 +45,11 @@ model SimplifiedStackTest
     duration=200,
     startTime=1e3)                                           annotation (Placement(transformation(extent={{-216,32},{-196,52}})));
 
-  ThermoPower.Gas.SinkPressure sinkAir(
+  OpenTEMPEST.Flow.SinkPressure sinkAir(
     redeclare package Medium = OpenTEMPEST.Medium.Air_Medium,
     p0=pStart,
     use_in_p0=false) annotation (Placement(transformation(extent={{88,-58},{108,-38}},rotation=0)));
-  ThermoPower.Gas.SinkPressure sinkFuel(redeclare package Medium =
+  OpenTEMPEST.Flow.SinkPressure sinkFuel(redeclare package Medium =
         OpenTEMPEST.Medium.Fuel_CH4,                                                            p0=pStart)
     annotation (Placement(transformation(extent={{88,32},{108,52}}, rotation=0)));
   ThermoPower.Electrical.Grid grid(Pgrid=55555555555) annotation (Placement(transformation(extent={{-82,-36},{-62,-16}})));

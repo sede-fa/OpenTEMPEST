@@ -1,7 +1,7 @@
 within OpenTEMPEST.Heat.BaseClasses;
 partial model TempSource2DBase
   "Base Model Distributed Temperature Source for 2D Finite Volume models"
-  extends ThermoPower.Icons.HeatFlow;
+  extends OpenTEMPEST.Icons.HeatFlow;
   parameter Integer nX = 1 "Number of volumes x-direction";
   parameter Integer nY = 1 "Number of volumes y-direction";
 

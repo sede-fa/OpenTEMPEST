@@ -127,15 +127,15 @@ model Cell
             {-86,20}}), iconTransformation(extent={{-106,0},{-86,20}})));
   Modelica.Electrical.Analog.Interfaces.NegativePin pin_n annotation (Placement(transformation(extent={{-106,40},
             {-86,60}}), iconTransformation(extent={{-106,40},{-86,60}})));
-  ThermoPower.Gas.FlangeA fuelIn(redeclare package Medium = Medium.Fuel_CH4)
+  OpenTEMPEST.Interfaces.GasFlangeA fuelIn(redeclare package Medium = Medium.Fuel_CH4)
     annotation (Placement(transformation(extent={{-112,68},{-92,88}}),
         iconTransformation(extent={{-112,68},{-92,88}})));
-  ThermoPower.Gas.FlangeA airIn(redeclare package Medium = Medium.Air_Medium)
+  OpenTEMPEST.Interfaces.GasFlangeA airIn(redeclare package Medium = Medium.Air_Medium)
     annotation (Placement(transformation(extent={{-110,-110},{-90,-90}}),
         iconTransformation(extent={{-110,-110},{-90,-90}})));
-  ThermoPower.Gas.FlangeB fuelOut(redeclare package Medium = Medium.Fuel_CH4)
+  OpenTEMPEST.Interfaces.GasFlangeB fuelOut(redeclare package Medium = Medium.Fuel_CH4)
     annotation (Placement(transformation(extent={{90,50},{110,70}})));
-  ThermoPower.Gas.FlangeB airout(redeclare package Medium = Medium.Air_Medium)
+  OpenTEMPEST.Interfaces.GasFlangeB airout(redeclare package Medium = Medium.Air_Medium)
     annotation (Placement(transformation(extent={{90,-70},{110,-50}})));
   OpenTEMPEST.Heat.Solid2D iCAir(
     redeclare package SolidMat = OpenTEMPEST.Solid.Material.Crofer22APU,
@@ -155,13 +155,13 @@ model Cell
     lY=lY,
     lZ=lZsolid)
     annotation (Placement(transformation(extent={{-4,86},{16,106}})));
-  ThermoPower.Thermal.DHTVolumes dHT_x0(N=nY)
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_x0(N=nY)
     annotation (Placement(transformation(extent={{-100,-60},{-88,-20}}),
         iconTransformation(extent={{-100,-60},{-88,-20}})));
-  ThermoPower.Thermal.DHTVolumes dHT_y0(N=nX)
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_y0(N=nX)
     annotation (Placement(transformation(extent={{-52,-120},{58,-108}}),
         iconTransformation(extent={{-52,-120},{58,-108}})));
-  ThermoPower.Thermal.DHTVolumes dHT_yN(N=nX)
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_yN(N=nX)
     annotation (Placement(transformation(extent={{-54,88},{56,100}}),
         iconTransformation(extent={{-54,88},{56,100}})));
   Heat.DHTVolumes2D dHT2_z1(i=nX, j=nY) annotation (Placement(transformation(
@@ -170,7 +170,7 @@ model Cell
   Heat.DHTVolumes2D dHT2_z0(i=nX, j=nY) annotation (Placement(transformation(
           extent={{-16,-146},{20,-138}}), iconTransformation(extent={{-52,-68},
             {58,-44}})));
-  ThermoPower.Thermal.DHTVolumes dHT_xN(N=nY)
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_xN(N=nY)
     annotation (Placement(transformation(extent={{86,-20},{100,20}}),
         iconTransformation(extent={{86,-20},{100,20}})));
   Components.CrossFlowTopology crossFlowTopology1(

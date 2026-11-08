@@ -3,10 +3,10 @@ model HTs_DHT "Several HTs to DHT adapterFV"
   import SI = Modelica.SIunits;
   parameter Integer N "Number of HTs (= number of nodes on DHT side)";
 
-  ThermoPower.Thermal.HT
+  OpenTEMPEST.Interfaces.HT
      HT_ports[N] annotation (Placement(transformation(extent={{-140,-16},{-100,24}},
           rotation=0), iconTransformation(extent={{-140,-18},{-100,22}})));
-  ThermoPower.Thermal.DHTVolumes
+  OpenTEMPEST.Interfaces.DHTVolumes
       DHT_port(N=N) annotation (Placement(transformation(extent={{100,-40},{
             120,40}}, rotation=0), iconTransformation(extent={{100,-40},{120,40}})));
 equation

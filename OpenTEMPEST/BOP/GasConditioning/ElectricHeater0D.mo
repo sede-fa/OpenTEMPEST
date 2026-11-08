@@ -1,6 +1,6 @@
 within OpenTEMPEST.BOP.GasConditioning;
 model ElectricHeater0D
-  extends ThermoPower.Icons.Gas.Tube;
+  extends OpenTEMPEST.Icons.Tube;
   replaceable package Medium = OpenTEMPEST.Medium.Fuel_CH4 constrainedby Modelica.Media.Interfaces.PartialMedium
     "Medium model"
     annotation(choicesAllMatching = true);
@@ -58,13 +58,13 @@ public
         extent={{10,-10},{-10,10}},
         rotation=90,
         origin={-50,50})));
-  ThermoPower.Gas.FlangeA fl_inlet(redeclare package Medium = Medium)
+  OpenTEMPEST.Interfaces.GasFlangeA fl_inlet(redeclare package Medium = Medium)
     annotation (Placement(transformation(rotation=0, extent={{-100,0},{-80,20}}),
         iconTransformation(extent={{-120,-20},{-80,20}})));
   ThermoPower.Electrical.PowerConnection powerConnection annotation (Placement(
         transformation(rotation=0, extent={{0,60},{20,80}}), iconTransformation(
           extent={{-20,40},{20,80}})));
-  ThermoPower.Gas.FlangeB fl_outlet(redeclare package Medium =
+  OpenTEMPEST.Interfaces.GasFlangeB fl_outlet(redeclare package Medium =
         Medium) annotation (Placement(transformation(rotation=0,
           extent={{80,-20},{100,0}}), iconTransformation(extent={{80,-20},{120,20}})));
   Modelica.Blocks.Interfaces.RealOutput out_TAct(unit="K") annotation (Placement(
@@ -76,7 +76,7 @@ public
   Modelica.Thermal.HeatTransfer.Components.HeatCapacitor heatCapacitor(C=C, T(
         start=TStart))
     annotation (Placement(transformation(extent={{40,52},{60,72}})));
-  ThermoPower.Thermal.HT htAmb annotation (Placement(transformation(extent={{40,2},{
+  OpenTEMPEST.Interfaces.HT htAmb annotation (Placement(transformation(extent={{40,2},{
             60,22}}),       iconTransformation(extent={{60,-60},{80,-40}})));
 equation
   connect(heater.ht[1], prescribedHeatFlow.port)

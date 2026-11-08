@@ -21,16 +21,16 @@ public
         extent={{-10,-10},{10,10}},
         rotation=270,
         origin={0,60})));
-  ThermoPower.Gas.FlangeA infl(redeclare package Medium = Medium.Fuel_CH4)
+  OpenTEMPEST.Interfaces.GasFlangeA infl(redeclare package Medium = Medium.Fuel_CH4)
     annotation (Placement(transformation(extent={{-128,-14},{-100,14}}),
         iconTransformation(extent={{-120,-20},{-80,20}})));
-  ThermoPower.Gas.FlangeB outflPurge(redeclare package Medium = Medium.Fuel_CH4)
+  OpenTEMPEST.Interfaces.GasFlangeB outflPurge(redeclare package Medium = Medium.Fuel_CH4)
     annotation (Placement(transformation(extent={{88,-14},{116,14}}),
         iconTransformation(extent={{80,-20},{120,20}})));
-  ThermoPower.Gas.SinkPressure sinkPressure(redeclare package Medium =
+  OpenTEMPEST.Flow.SinkPressure sinkPressure(redeclare package Medium =
         Medium.Fuel_CH4, use_in_p0=true)
     annotation (Placement(transformation(extent={{-44,-10},{-24,10}})));
-  ThermoPower.Gas.FlangeB outflUse(redeclare package Medium =
+  OpenTEMPEST.Interfaces.GasFlangeB outflUse(redeclare package Medium =
         Medium.Fuel_MethanolReactor) annotation (Placement(transformation(
           extent={{-14,-90},{14,-62}}), iconTransformation(extent={{-20,-120},{
             20,-80}})));
@@ -45,20 +45,20 @@ public
     etaOutput=false,
     rhoOutput=false)
     annotation (Placement(transformation(extent={{-96,-4},{-82,10}})));
-  ThermoPower.Gas.SensP sensPPurge(redeclare package Medium = Medium.Fuel_CH4)
+  OpenTEMPEST.Flow.SensP sensPPurge(redeclare package Medium = Medium.Fuel_CH4)
     annotation (Placement(transformation(extent={{84,-4},{68,12}})));
-  ThermoPower.Gas.SensP sensPUse(redeclare package Medium =
+  OpenTEMPEST.Flow.SensP sensPUse(redeclare package Medium =
         Medium.Fuel_MethanolReactor) annotation (Placement(transformation(
         extent={{8,8},{-8,-8}},
         rotation=-90,
         origin={-14,-50})));
-  ThermoPower.Gas.SourceMassFlow sourceMFPurge(
+  OpenTEMPEST.Flow.SourceMassFlow sourceMFPurge(
     redeclare package Medium = Medium.Fuel_CH4,
     use_in_w0=true,
     use_in_T=true,
     use_in_X=true)
     annotation (Placement(transformation(extent={{40,-10},{60,10}})));
-  ThermoPower.Gas.SourceMassFlow sourceMFUse(
+  OpenTEMPEST.Flow.SourceMassFlow sourceMFUse(
     redeclare package Medium = Medium.Fuel_MethanolReactor,
     Xnom={0.12616,1e-05,0.2969,0.5769,1e-05,1e-05,1e-05},
     use_in_w0=true,
@@ -67,7 +67,7 @@ public
         extent={{-10,-10},{10,10}},
         rotation=-90,
         origin={0,-36})));
-  inner ThermoPower.System system
+  inner OpenTEMPEST.System system
     annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
 
 equation
