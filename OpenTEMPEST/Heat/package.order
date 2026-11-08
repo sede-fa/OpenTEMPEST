@@ -30,3 +30,5 @@ PrescribedTemperature1D
 TempSource2DUniform
 TempSource2DNonUniform
 HeatSource2DNonUniformFV
+ConvHTFV
+HeatSource1DNonUniformFV
