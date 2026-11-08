@@ -74,13 +74,13 @@ partial model Channel1DBase
   SI.EnergyFlowRate deltaH = infl.m_flow*infl.h_outflow + outfl.m_flow*outfl.h_outflow;
   SI.EnergyFlowRate EB = deltaH + sum(QgasExt);
 
-  ThermoPower.Gas.FlangeA infl(redeclare package Medium = Medium)  annotation (Placement(transformation(extent={{-100,-8},{-80,12}}),
+  OpenTEMPEST.Interfaces.GasFlangeA infl(redeclare package Medium = Medium)  annotation (Placement(transformation(extent={{-100,-8},{-80,12}}),
         iconTransformation(extent={{-108,-16},{-80,12}})));
-  ThermoPower.Gas.FlangeB outfl(redeclare package Medium = Medium)  annotation (Placement(transformation(extent={{80,-10},{100,10}}),
+  OpenTEMPEST.Interfaces.GasFlangeB outfl(redeclare package Medium = Medium)  annotation (Placement(transformation(extent={{80,-10},{100,10}}),
         iconTransformation(extent={{80,-14},{108,14}})));
-  ThermoPower.Thermal.DHTVolumes Q_IC(N=N) "HT Between Channel and IC"  annotation (Placement(transformation(extent={{-62,34},{-40,52}}),
+  OpenTEMPEST.Interfaces.DHTVolumes Q_IC(N=N) "HT Between Channel and IC"  annotation (Placement(transformation(extent={{-62,34},{-40,52}}),
         iconTransformation(extent={{-26,34},{26,46}})));
-  ThermoPower.Thermal.DHTVolumes Q_PEN(N=N) "HT Between Channel and PEN"  annotation (Placement(transformation(extent={{-60,-32},{-38,-14}}),
+  OpenTEMPEST.Interfaces.DHTVolumes Q_PEN(N=N) "HT Between Channel and PEN"  annotation (Placement(transformation(extent={{-60,-32},{-38,-14}}),
         iconTransformation(extent={{-26,-40},{24,-28}})));
   Electrochem.Interfaces.VariablesStream PEN_in[N](each nspecies=nSpecies)
     annotation (Placement(transformation(

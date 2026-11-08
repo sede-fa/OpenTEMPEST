@@ -53,7 +53,7 @@ model Cell
   parameter SI.ThermalConductivity kFoam=4 annotation (Dialog(tab="Fuel Channel"));
   parameter SI.SpecificHeatCapacity cpFoam=400 annotation (Dialog(tab="Fuel Channel"));
   parameter SI.Density rhoFoam=9000 annotation (Dialog(tab="Fuel Channel"));
-  parameter ThermoPower.Units.HydraulicResistance HyR_Fuel=50000000 "Hydraulic resistance of fuel channel of each single cell in stack"
+  parameter OpenTEMPEST.Units.HydraulicResistance HyR_Fuel=50000000 "Hydraulic resistance of fuel channel of each single cell in stack"
     annotation (Dialog(tab="Fuel Channel"));
 
   // AC parameters
@@ -64,7 +64,7 @@ model Cell
   parameter Real pDropAC=0.04 annotation (Dialog(tab="Air Channel"));
   parameter Real Nu_PENac=8 "Nusselt number air channel on PEN side" annotation (Dialog(tab="Air Channel"));
   parameter Real Nu_ICac=8 "Nusselt Number air channel on IC side" annotation (Dialog(tab="Air Channel"));
-  parameter ThermoPower.Units.HydraulicResistance HyR_Air=6000000 "Hydraulic resistance of air channel of each single cell in stack" annotation (Dialog(tab="Air Channel"));
+  parameter OpenTEMPEST.Units.HydraulicResistance HyR_Air=6000000 "Hydraulic resistance of air channel of each single cell in stack" annotation (Dialog(tab="Air Channel"));
 
   //IC parameters
   parameter SI.SpectralEmissivity epsilon_ic=0.1 "emissivity of surface of IC" annotation (Dialog(tab="Interconnect"));
@@ -73,24 +73,24 @@ model Cell
   parameter SI.SpecificHeatCapacity cpIC=500 "specific heat capcity of IC" annotation (Dialog(tab="Interconnect"));
   parameter SI.ThermalConductivity LambdaIC=25 "thermal conductivity of IC" annotation (Dialog(tab="Interconnect"));
 
-  ThermoPower.Gas.FlangeA fuelFlangeIn(redeclare package Medium = FCMedium)
+  OpenTEMPEST.Interfaces.GasFlangeA fuelFlangeIn(redeclare package Medium = FCMedium)
     annotation (Placement(transformation(extent={{-110,44},{-90,64}}), iconTransformation(extent={{-110,44},{-90,64}})));
-  ThermoPower.Gas.FlangeB fuelFlangeOut(redeclare package Medium = FCMedium)
+  OpenTEMPEST.Interfaces.GasFlangeB fuelFlangeOut(redeclare package Medium = FCMedium)
     annotation (Placement(transformation(extent={{90,44},{110,64}}), iconTransformation(extent={{90,44},{110,64}})));
-  ThermoPower.Gas.FlangeA airFlangeIn(redeclare package Medium = ACMedium)
+  OpenTEMPEST.Interfaces.GasFlangeA airFlangeIn(redeclare package Medium = ACMedium)
     annotation (Placement(transformation(extent={{-110,-76},{-90,-56}}), iconTransformation(extent={{-110,-76},{-90,-56}})));
-  ThermoPower.Gas.FlangeB airFlangeOut(redeclare package Medium = ACMedium)
+  OpenTEMPEST.Interfaces.GasFlangeB airFlangeOut(redeclare package Medium = ACMedium)
     annotation (Placement(transformation(extent={{90,-58},{110,-38}}), iconTransformation(extent={{90,-58},{110,-38}})));
   Modelica.Electrical.Analog.Interfaces.PositivePin pin_p
     annotation (Placement(transformation(extent={{-106,-54},{-86,-34}}), iconTransformation(extent={{-106,-54},{-86,-34}})));
   Modelica.Electrical.Analog.Interfaces.NegativePin pin_n
     annotation (Placement(transformation(extent={{-106,-32},{-86,-12}}), iconTransformation(extent={{-106,-32},{-86,-12}})));
-  ThermoPower.Thermal.DHTVolumes dHT_z1(N=N) annotation (Placement(transformation(extent={{-60,-80},{-40,-60}}), iconTransformation(extent={{-62,64},{-42,84}})));
-  ThermoPower.Thermal.DHTVolumes dHT_z0(N=N) annotation (Placement(transformation(extent={{-60,72},{-40,92}}), iconTransformation(extent={{-60,-80},{-40,-60}})));
-  ThermoPower.Thermal.DHTVolumes dHT_y0(N=N) annotation (Placement(transformation(extent={{24,72},{44,92}}), iconTransformation(extent={{24,84},{44,92}})));
-  ThermoPower.Thermal.DHTVolumes dHT_y1(N=N) annotation (Placement(transformation(extent={{72,-80},{92,-60}}), iconTransformation(extent={{16,-94},{36,-86}})));
-  ThermoPower.Thermal.HT hT_x0 annotation (Placement(transformation(extent={{-106,-10},{-86,10}}), iconTransformation(extent={{-106,-10},{-86,10}})));
-  ThermoPower.Thermal.HT hT_xN annotation (Placement(transformation(extent={{88,-10},{108,10}}), iconTransformation(extent={{88,-10},{108,10}})));
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_z1(N=N) annotation (Placement(transformation(extent={{-60,-80},{-40,-60}}), iconTransformation(extent={{-62,64},{-42,84}})));
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_z0(N=N) annotation (Placement(transformation(extent={{-60,72},{-40,92}}), iconTransformation(extent={{-60,-80},{-40,-60}})));
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_y0(N=N) annotation (Placement(transformation(extent={{24,72},{44,92}}), iconTransformation(extent={{24,84},{44,92}})));
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_y1(N=N) annotation (Placement(transformation(extent={{72,-80},{92,-60}}), iconTransformation(extent={{16,-94},{36,-86}})));
+  OpenTEMPEST.Interfaces.HT hT_x0 annotation (Placement(transformation(extent={{-106,-10},{-86,10}}), iconTransformation(extent={{-106,-10},{-86,10}})));
+  OpenTEMPEST.Interfaces.HT hT_xN annotation (Placement(transformation(extent={{88,-10},{108,10}}), iconTransformation(extent={{88,-10},{108,10}})));
 
   OpenTEMPEST.SOC.Cell.Cell1D.Components.AirChannel airChannel(
     N=N,
@@ -149,7 +149,7 @@ model Cell
     A2=lX*lYac)
     annotation (Placement(transformation(extent={{14,-44},{34,-24}})));
 
-  ThermoPower.Thermal.ConvHTFV convHTFV(Nv=N, G=LambdaIC/lZac*(lY - lYac)*lX) "why is this here?"
+  OpenTEMPEST.Heat.ConvHTFV convHTFV(Nv=N, G=LambdaIC/lZac*(lY - lYac)*lX) "why is this here?"
                                                                               annotation (Placement(transformation(extent={{-52,-42},
             {-32,-22}})));
 
@@ -177,11 +177,11 @@ model Cell
     cpCustom=cpIC)
     annotation (Placement(transformation(extent={{-24,78},{-4,58}})));
 
-  ThermoPower.Gas.PressDropLin pressDropLin1(
+  OpenTEMPEST.Flow.PressDropLin pressDropLin1(
     redeclare package Medium = FCMedium,
     final R=HyR_Fuel,
     final allowFlowReversal=false) annotation (Placement(transformation(extent={{40,28},{60,48}})));
-  ThermoPower.Gas.PressDropLin pressDropLin3(
+  OpenTEMPEST.Flow.PressDropLin pressDropLin3(
     redeclare package Medium = ACMedium,
     final R=HyR_Air,
     final allowFlowReversal=false) annotation (Placement(transformation(extent={{58,-58},{78,-38}})));

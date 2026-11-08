@@ -21,10 +21,10 @@ model RadHTFV "Distributed Radiation block model - uses multiple single blocks"
         extent={{10,-10},{-10,10}},
         rotation=-90,
         origin={-50,42})));
-  ThermoPower.Thermal.DHTVolumes side1(N=N) annotation (Placement(
+  OpenTEMPEST.Interfaces.DHTVolumes side1(N=N) annotation (Placement(
         transformation(extent={{-20,40},{0,48}}), iconTransformation(extent={
             {-20,40},{20,48}})));
-  ThermoPower.Thermal.DHTVolumes side2(N=N) annotation (Placement(
+  OpenTEMPEST.Interfaces.DHTVolumes side2(N=N) annotation (Placement(
         transformation(extent={{-20,-8},{0,0}}), iconTransformation(extent={{
             -20,-8},{20,0}})));
   OpenTEMPEST.Heat.HTs_DHT hTs_DHT1(N=N) annotation (Placement(transformation(

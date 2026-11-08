@@ -29,25 +29,25 @@ model SimplifiedCellBlock
     rhoCustom=rho_solidCustom,
     cpCustom=cp_solidCustom)
     annotation (Placement(transformation(extent={{-16,-14},{16,16}})));
-  ThermoPower.Thermal.HT hTactive_x0[nCellVertMult]
+  OpenTEMPEST.Interfaces.HT hTactive_x0[nCellVertMult]
     annotation (Placement(transformation(extent={{-116,-10},{-96,10}}),
         iconTransformation(extent={{-110,-4},{-96,10}})));
-  ThermoPower.Thermal.HT hTactive_x1[nCellVertMult]
+  OpenTEMPEST.Interfaces.HT hTactive_x1[nCellVertMult]
     annotation (Placement(transformation(extent={{88,-10},{108,10}}),
         iconTransformation(extent={{94,-4},{108,10}})));
-  ThermoPower.Thermal.DHTVolumes dHTactive_y0(each N=N) annotation (Placement(
+  OpenTEMPEST.Interfaces.DHTVolumes dHTactive_y0(each N=N) annotation (Placement(
         transformation(extent={{-42,86},{46,104}}),   iconTransformation(extent={{-40,92},
             {46,104}})));
-  ThermoPower.Thermal.DHTVolumes dHTactive_y1(each N=N) annotation (Placement(
+  OpenTEMPEST.Interfaces.DHTVolumes dHTactive_y1(each N=N) annotation (Placement(
         transformation(extent={{-40,-108},{48,-90}}), iconTransformation(extent={{-38,
             -102},{48,-90}})));
-  ThermoPower.Thermal.DHTVolumes dHTactive_z0(each N=N) annotation (Placement(
+  OpenTEMPEST.Interfaces.DHTVolumes dHTactive_z0(each N=N) annotation (Placement(
         transformation(extent={{42,-70},{70,-44}}),   iconTransformation(extent={{44,-70},
             {68,-50}})));
-  ThermoPower.Thermal.DHTVolumes dHTactive_z1(each N=N) annotation (Placement(
+  OpenTEMPEST.Interfaces.DHTVolumes dHTactive_z1(each N=N) annotation (Placement(
         transformation(extent={{-70,44},{-42,70}}),   iconTransformation(extent={{-66,52},
             {-42,70}})));
-   ThermoPower.Thermal.HeatSource1DNonUniformFV heatSource1DNonUniformFV(Nw=N)
+   OpenTEMPEST.Heat.HeatSource1DNonUniformFV heatSource1DNonUniformFV(Nw=N)
            annotation (Placement(transformation(extent={{-86,-42},{-66,-22}})));
   Electrochem.Interfaces.SimpFlowInfoPort simpFlowInfoPortIn[N] annotation (
       Placement(transformation(extent={{-62,-82},{-42,-62}}),

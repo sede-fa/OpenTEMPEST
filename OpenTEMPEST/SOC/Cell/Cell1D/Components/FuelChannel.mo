@@ -33,9 +33,9 @@ model FuelChannel
   SI.EnergyFlowRate Qcond[N];
   SI.EnergyFlowRate q_electrochem[N] =  rHEL.*(H_h2 .- H_h2o) .+ rCEL.*(H_co .- H_co2);
 
-  ThermoPower.Thermal.HT hTNi_x0 "conductive HT through Ni at x=0" annotation (Placement(transformation(extent={{-104,
+  OpenTEMPEST.Interfaces.HT hTNi_x0 "conductive HT through Ni at x=0" annotation (Placement(transformation(extent={{-104,
             18},{-84,38}}), iconTransformation(extent={{-104,18},{-84,38}})));
-  ThermoPower.Thermal.HT hTNi_xN "conductive HT through Ni at x=L" annotation (Placement(transformation(extent={{82,
+  OpenTEMPEST.Interfaces.HT hTNi_xN "conductive HT through Ni at x=L" annotation (Placement(transformation(extent={{82,
             20},{102,40}}), iconTransformation(extent={{82,20},{102,40}})));
 
 protected
