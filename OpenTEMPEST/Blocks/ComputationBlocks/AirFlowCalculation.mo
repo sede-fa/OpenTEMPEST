@@ -7,12 +7,12 @@ block AirFlowCalculation
 
   parameter Integer nCells "Number of cells that are fed by this source";
 
-  parameter Modelica.SIunits.ElectricCurrent I0=0 "Nominal electrical current ";
+  parameter Modelica.Units.SI.ElectricCurrent I0=0 "Nominal electrical current ";
   parameter Real OU0=0.25 "Nominal oxygen utilization";
   parameter Real yO2Out0=0.40 "Nominal outlet oxygen molar compostion";
   parameter Real lambdaSF0=2 "Nominal air number (lambda, sunfire style) ";
   parameter Real zFuel0=1.8 "Nominal zFuel ";
-  parameter Modelica.SIunits.MassFlowRate mfMin = 0.005 "Minimum mass flow";
+  parameter Modelica.Units.SI.MassFlowRate mfMin = 0.005 "Minimum mass flow";
 
   Modelica.Blocks.Interfaces.RealInput in_I(unit="A")
                                             if use_in_I "Current input"

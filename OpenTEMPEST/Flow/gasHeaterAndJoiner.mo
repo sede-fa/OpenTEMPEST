@@ -1,7 +1,7 @@
 within OpenTEMPEST.Flow;
 model gasHeaterAndJoiner
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   replaceable package medium =
       Modelica.Media.Interfaces.PartialMedium                          annotation(choicesAllMatching = true);

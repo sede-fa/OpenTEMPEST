@@ -2,7 +2,7 @@
 model CellCFSimp
   "Simplified crossflow cell with 1D fuel and air channels, 2D heat ports and variable stream connectors directly in channel models."
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   // General parameters
   parameter Integer nX=3 "Number of control volumes in first direction";

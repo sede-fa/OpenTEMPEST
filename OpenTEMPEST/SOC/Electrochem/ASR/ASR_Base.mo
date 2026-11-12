@@ -1,7 +1,7 @@
 within OpenTEMPEST.SOC.Electrochem.ASR;
 partial model ASR_Base "Base Model for ASR objects"
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   parameter Real A=1.0;
   parameter Real B=1.0;

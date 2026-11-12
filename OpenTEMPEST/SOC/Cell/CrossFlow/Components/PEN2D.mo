@@ -3,7 +3,7 @@ model PEN2D
   extends Heat.BaseClasses.Solid2DBase(        redeclare package SolidMat =
         OpenTEMPEST.Solid.Material.Custom);
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   parameter SI.CurrentDensity Jstart=0;
 

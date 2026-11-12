@@ -1,7 +1,7 @@
 within OpenTEMPEST.SOC.Cell.CrossFlow.Components;
 model FuelChannel2DSimp "Fuel channel model 1D discretised with 2D interfaces"
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   extends Channel2DBaseSimp(
     heatTransferCorrelationFormDuct=true,

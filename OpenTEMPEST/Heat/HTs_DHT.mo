@@ -1,6 +1,6 @@
 within OpenTEMPEST.Heat;
 model HTs_DHT "Several HTs to DHT adapterFV"
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   parameter Integer N "Number of HTs (= number of nodes on DHT side)";
 
   OpenTEMPEST.Interfaces.HT

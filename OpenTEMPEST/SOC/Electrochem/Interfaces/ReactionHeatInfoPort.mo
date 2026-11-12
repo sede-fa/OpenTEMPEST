@@ -1,11 +1,11 @@
 within OpenTEMPEST.SOC.Electrochem.Interfaces;
 connector ReactionHeatInfoPort
-  Modelica.SIunits.EnthalpyFlowRate H_r;
-  Modelica.SIunits.Voltage Vop;
-  Modelica.SIunits.Voltage Vid;
-  Modelica.SIunits.Current I;
-  Modelica.SIunits.Temperature TPEN;
-  Modelica.SIunits.EnthalpyFlowRate LHVFlow;
+  Modelica.Units.SI.EnthalpyFlowRate H_r;
+  Modelica.Units.SI.Voltage Vop;
+  Modelica.Units.SI.Voltage Vid;
+  Modelica.Units.SI.Current I;
+  Modelica.Units.SI.Temperature TPEN;
+  Modelica.Units.SI.EnthalpyFlowRate LHVFlow;
 
   annotation (
     Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})),

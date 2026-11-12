@@ -2,7 +2,7 @@ within OpenTEMPEST.Flow;
 model ThreeWayValve
   "time controlled three-way valve for switching between two flow paths 'purge' and 'use'"
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   parameter Boolean useTimeInput = true "Use the input connector for opening direction";
   parameter SI.Time fixTime=1e4 "Fixed start time when the input connector not used" annotation (Dialog(group="Valve Opening", enable=not useTimeInput));
   parameter SI.MassFraction X7 = 0 "mass fraction value of methanol added in reactor path";

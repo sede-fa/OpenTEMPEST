@@ -6,15 +6,15 @@ partial package SolidMatBase
 
   model BaseProperties "model that calls function for T-dependent k,cp,rho with coefficients in 'data' stored in 'SolidMaterialsData'"
 
-  Modelica.SIunits.Density rho "density, kg/m³";
-    Modelica.SIunits.SpecificHeatCapacity cp "heat capacity, J/kg/K";
-    Modelica.SIunits.ThermalConductivity k_long "heat conductivity in longitudinal direction of layering";
-    Modelica.SIunits.ThermalConductivity k_trans "heat conductivity in transversal direction of layering";
-    input Modelica.SIunits.Temperature T "temperature, K";
-    parameter Modelica.SIunits.ThermalConductivity kCustom_trans = 1 "heat conductivity in transversal direction of layering";
-    parameter Modelica.SIunits.ThermalConductivity kCustom_long = 1 "heat conductivity in longitudinal direction of layering";
-    parameter Modelica.SIunits.SpecificHeatCapacity cpCustom = 1 "heat capacity, J/kg/K";
-    parameter Modelica.SIunits.Density rhoCustom = 1 "density, kg/m³";
+  Modelica.Units.SI.Density rho "density, kg/m³";
+    Modelica.Units.SI.SpecificHeatCapacity cp "heat capacity, J/kg/K";
+    Modelica.Units.SI.ThermalConductivity k_long "heat conductivity in longitudinal direction of layering";
+    Modelica.Units.SI.ThermalConductivity k_trans "heat conductivity in transversal direction of layering";
+    input Modelica.Units.SI.Temperature T "temperature, K";
+    parameter Modelica.Units.SI.ThermalConductivity kCustom_trans = 1 "heat conductivity in transversal direction of layering";
+    parameter Modelica.Units.SI.ThermalConductivity kCustom_long = 1 "heat conductivity in longitudinal direction of layering";
+    parameter Modelica.Units.SI.SpecificHeatCapacity cpCustom = 1 "heat capacity, J/kg/K";
+    parameter Modelica.Units.SI.Density rhoCustom = 1 "density, kg/m³";
 
   equation
 

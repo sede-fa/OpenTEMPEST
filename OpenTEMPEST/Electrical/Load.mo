@@ -1,11 +1,11 @@
 within OpenTEMPEST.Electrical;
 model Load "Electrical load drawing a reference active power from the grid"
-  parameter Modelica.SIunits.Power Pnom "Nominal active power consumption";
+  parameter Modelica.Units.SI.Power Pnom "Nominal active power consumption";
   parameter Boolean usePowerInput=false "Use input connector for the power reference";
   replaceable function powerCurve = OpenTEMPEST.Blocks.Functions.one
     "Normalised power consumption versus normalised frequency deviation (default: constant)"
     annotation (Inline=true);
-  final parameter Modelica.SIunits.Frequency fnom=system.fnom "Nominal frequency";
+  final parameter Modelica.Units.SI.Frequency fnom=system.fnom "Nominal frequency";
   constant Real pi=Modelica.Constants.pi;
   outer OpenTEMPEST.System system "System object";
 
@@ -17,9 +17,9 @@ model Load "Electrical load drawing a reference active power from the grid"
     annotation (Placement(transformation(extent={{-120,-20},{-80,20}}),
         iconTransformation(extent={{-120,-20},{-80,20}})));
 
-  Modelica.SIunits.Power P "Actual active power consumption";
-  Modelica.SIunits.Power Pref "Reference active power consumption";
-  Modelica.SIunits.Frequency f "Grid frequency";
+  Modelica.Units.SI.Power P "Actual active power consumption";
+  Modelica.Units.SI.Power Pref "Reference active power consumption";
+  Modelica.Units.SI.Frequency f "Grid frequency";
 
 protected
   Modelica.Blocks.Interfaces.RealInput referencePower_int "Internal power reference";

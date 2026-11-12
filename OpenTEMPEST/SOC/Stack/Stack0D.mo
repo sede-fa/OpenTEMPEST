@@ -2,7 +2,7 @@
 model Stack0D
   "0D stack based on lumped ASR expression assuming full internal steam reforming (CH4 outlet is 0) with no pressure loss."
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   parameter Integer nCells = 30 "Number of electrochemical cells connected in series";
   parameter Integer nParallel = 1 "Parallel stacks with equal voltage";

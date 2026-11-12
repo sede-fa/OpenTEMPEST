@@ -1,6 +1,6 @@
 within OpenTEMPEST.SOC.Stack;
 model SimplifiedStack1D
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   parameter Integer N(min=3)=3 annotation (Dialog(tab = "General"));
   parameter Integer Ncell(min=2)=30 annotation (Dialog(tab = "General"));
   parameter Integer[:] verticalBlockSize={3, 3, 2, 2, 2, 1, 1, 1, 1, 2, 2, 3, 3} "Vertical size of the simplified blocks (e. g. 3 represents three cells merged in one simplfied block). Sum needs to be Ncell-NdetailedCell" annotation (Dialog(tab = "General"));

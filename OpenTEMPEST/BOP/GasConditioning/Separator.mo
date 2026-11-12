@@ -15,11 +15,11 @@ model Separator "Separator with metal walls for gas flows"
     p(start=pstart, stateSelect=StateSelect.prefer),
     T(start=Tstart, stateSelect=StateSelect.prefer),
     Xi(start=Xstart[1:Medium.nXi], each stateSelect=StateSelect.prefer));
-  parameter Modelica.SIunits.Volume V "Inner volume";
-  parameter Modelica.SIunits.Area S=0 "Inner surface";
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer gamma=0
+  parameter Modelica.Units.SI.Volume V "Inner volume";
+  parameter Modelica.Units.SI.Area S=0 "Inner surface";
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer gamma=0
     "Heat Transfer Coefficient" annotation (Evaluate=true);
-  parameter Modelica.SIunits.HeatCapacity Cm=0 "Metal heat capacity"
+  parameter Modelica.Units.SI.HeatCapacity Cm=0 "Metal heat capacity"
     annotation (Evaluate=true);
   parameter Boolean allowFlowReversal=system.allowFlowReversal
     "= true to allow flow reversal, false restricts to design direction"
@@ -44,16 +44,16 @@ model Separator "Separator with metal walls for gas flows"
     annotation (Dialog(tab="Initialisation"),choices(checkBox=true));
   parameter Real seperationFactor[Medium.nXi] "Seperated fraction per species";
 
-  Modelica.SIunits.Mass M "Gas total mass";
-  Modelica.SIunits.InternalEnergy E "Gas total energy";
-  Modelica.SIunits.Temperature Tm(start=Tmstart) "Wall temperature";
+  Modelica.Units.SI.Mass M "Gas total mass";
+  Modelica.Units.SI.InternalEnergy E "Gas total energy";
+  Modelica.Units.SI.Temperature Tm(start=Tmstart) "Wall temperature";
   Medium.SpecificEnthalpy hi "Inlet specific enthalpy";
   Medium.SpecificEnthalpy hoM "Outlet main specific enthalpy";
   Medium.SpecificEnthalpy hoS "Outlet seperated specific enthalpy";
   Medium.MassFraction Xi[Medium.nXi] "Inlet composition";
   Medium.MassFraction XoM[Medium.nXi] "Outlet main composition";
   Medium.MassFraction XoS[Medium.nXi] "Outlet seperated composition";
-  Modelica.SIunits.Time Tr "Residence time";
+  Modelica.Units.SI.Time Tr "Residence time";
 
   OpenTEMPEST.Interfaces.GasFlangeA inlet(redeclare package Medium = Medium, m_flow(min=
           if allowFlowReversal then -Modelica.Constants.inf else 0))

@@ -1,7 +1,7 @@
 within OpenTEMPEST.BOP;
 model FanSimple
   extends OpenTEMPEST.Icons.Fan;
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
     "Medium model"

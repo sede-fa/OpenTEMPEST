@@ -2,7 +2,7 @@ within OpenTEMPEST.SOC.Electrochem.Components;
 model Crossflow_Electrochem
   "Crossflow: Steam Electrolysis with B-V, Ohmic ASR and Diffusion. SOEC paper parameters and equations"
   extends OpenTEMPEST.SOC.Electrochem.Components.ElectrochemBase;
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   replaceable model ASRobj = OpenTEMPEST.SOC.Electrochem.ASR.ASR_Ohm_ESC (
                                                                         A = 35.316e4,B = -1.264e-2,Yo = 27.266e-2)

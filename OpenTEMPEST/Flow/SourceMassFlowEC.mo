@@ -25,7 +25,7 @@ model SourceMassFlowEC
   parameter Medium.MoleFraction Ynom[Medium.nX]=if molarInputComposition then compositionNom else Medium.massToMoleFractions(Xnom,Medium.MMX)
     "Nominal gas composition" annotation (Dialog(tab="Calculated parameter"));
   parameter Boolean molarInputComposition = false "Input compostions are molar instead of mass" annotation(choices(checkBox=true));
-  parameter Modelica.SIunits.ElectricCurrent I0=0 "Nominal electrical current";
+  parameter Modelica.Units.SI.ElectricCurrent I0=0 "Nominal electrical current";
   parameter Real RC0 = 0.7 "Nominal reactant conversion";
   parameter OpenTEMPEST.Units.HydraulicConductance G=0 "HydraulicConductance";
   parameter Boolean allowFlowReversal=system.allowFlowReversal
@@ -33,13 +33,13 @@ model SourceMassFlowEC
     annotation(Evaluate=true);
   parameter Integer nCells "Number of cells that are fed by this source";
 
-  parameter Modelica.SIunits.ElectricCurrent minCurrentForDosing = 15
+  parameter Modelica.Units.SI.ElectricCurrent minCurrentForDosing = 15
     "Minimal absolute current to calculate flows based on current" annotation(Dialog(group="Minimal flow"));
   parameter Boolean doseFGUnderIMin = false
     "Use forming gas (FormingGasComposition) instead of given compostion if flow is below minimal current" annotation(Dialog(group="Minimal flow"), choices(checkBox=true));
-  parameter Modelica.SIunits.MassFlowRate mfFGPerCell = 6/1000/1440
+  parameter Modelica.Units.SI.MassFlowRate mfFGPerCell = 6/1000/1440
     "Forming gas (FormingGasComposition) mass flow per cell at 0 A if activated" annotation(Dialog(group="Minimal flow"));
-  parameter Modelica.SIunits.MassFraction minH2OXiforIout = 0.05 "Minimum H2/H2O (FC/EC) Massfraction for current signal to pass on";
+  parameter Modelica.Units.SI.MassFraction minH2OXiforIout = 0.05 "Minimum H2/H2O (FC/EC) Massfraction for current signal to pass on";
   parameter Boolean use_in_I = false
     "Use connector input for the electrical current" annotation(Dialog(group="External inputs"), choices(checkBox=true));
   parameter Boolean use_in_RC = false
@@ -116,7 +116,7 @@ protected
   Modelica.Blocks.Interfaces.RealInput in_composition_internal[Medium.nX];
   Modelica.Blocks.Interfaces.RealInput in_mfFGPerCell_internal;
 
-  Modelica.SIunits.ElectricCurrent IForDosing;
+  Modelica.Units.SI.ElectricCurrent IForDosing;
 
 equation
 

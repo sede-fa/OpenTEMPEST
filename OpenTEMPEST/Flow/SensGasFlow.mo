@@ -18,8 +18,8 @@ model SensGasFlow "Sensor for flow parameters of gas flows"
     "= true to allow flow reversal, false restricts to design direction"
     annotation(Evaluate=true);
 
-  Modelica.SIunits.MolarMass M = 1/sum(outlet.Xi_outflow[:]./Medium.MMX[:]);
-  Modelica.SIunits.MolarFlowRate n_f = inlet.m_flow/M;
+  Modelica.Units.SI.MolarMass M = 1/sum(outlet.Xi_outflow[:]./Medium.MMX[:]);
+  Modelica.Units.SI.MolarFlowRate n_f = inlet.m_flow/M;
 
   outer OpenTEMPEST.System system "System wide properties";
   OpenTEMPEST.Interfaces.GasFlangeA inlet(redeclare package Medium = Medium, m_flow(min=

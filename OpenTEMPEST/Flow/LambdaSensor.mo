@@ -1,6 +1,6 @@
 within OpenTEMPEST.Flow;
 model LambdaSensor "\"Enter Desc\""
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   replaceable package Fuel = Medium.Fuel_CH4;
   SI.MoleFraction x_out[Fuel.nX] "molar fractions in outgoing stream / -";
   SI.MoleFraction x_in[Fuel.nX] "molar fractions in ingoing stream / -";

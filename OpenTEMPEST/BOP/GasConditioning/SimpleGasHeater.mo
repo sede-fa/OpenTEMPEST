@@ -1,7 +1,7 @@
 within OpenTEMPEST.BOP.GasConditioning;
 model SimpleGasHeater
   extends Flow.BaseClasses.simpleGasHeaterBase;
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
    medium.BaseProperties gas(p(start = pStart, fixed=false), T(start = TStart, fixed=false), Xi(start = xStart[1:medium.nXi], fixed=false));
 

@@ -2,7 +2,7 @@ within OpenTEMPEST.Blocks.ComputationBlocks;
 block SlewRateLimiterVariable "Limits the slew rate of a signal"
   extends Modelica.Blocks.Interfaces.SISO;
   import Modelica.Constants.small;
-  parameter Modelica.SIunits.Time Td(min=small) = 0.001
+  parameter Modelica.Units.SI.Time Td(min=small) = 0.001
     "Derivative time constant";
   parameter Modelica.Blocks.Types.Init initType=Modelica.Blocks.Types.Init.SteadyState
     "Type of initialization (SteadyState implies y = u)"

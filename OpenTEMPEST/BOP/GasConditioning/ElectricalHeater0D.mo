@@ -1,7 +1,7 @@
 within OpenTEMPEST.BOP.GasConditioning;
 model ElectricalHeater0D
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   replaceable package Medium = OpenTEMPEST.Medium.Fuel_CH4
                                                         constrainedby Modelica.Media.Interfaces.PartialMedium

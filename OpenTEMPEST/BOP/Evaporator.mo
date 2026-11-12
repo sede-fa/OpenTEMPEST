@@ -7,15 +7,15 @@ model Evaporator
       Modelica.Media.Interfaces.PartialMedium annotation (choicesAllMatching=true);
   package WaterMedium = Modelica.Media.Water.StandardWater "Water/steam medium";
 
-  parameter Modelica.SIunits.Volume Vd "Drum internal volume";
-  parameter Modelica.SIunits.Mass Mm "Drum metal mass";
-  parameter Modelica.SIunits.SpecificHeatCapacity cm "Specific heat capacity of the drum's metal";
+  parameter Modelica.Units.SI.Volume Vd "Drum internal volume";
+  parameter Modelica.Units.SI.Mass Mm "Drum metal mass";
+  parameter Modelica.Units.SI.SpecificHeatCapacity cm "Specific heat capacity of the drum's metal";
 
   parameter OpenTEMPEST.Units.HydraulicConductance Kv "Nominal hydraulic conductance of the control valve";
 
-  parameter Modelica.SIunits.Pressure pStart "Pressure start value"
+  parameter Modelica.Units.SI.Pressure pStart "Pressure start value"
     annotation (Dialog(tab="Initialisation"));
-  parameter Modelica.SIunits.Volume VlStart "Start value of drum water volume"
+  parameter Modelica.Units.SI.Volume VlStart "Start value of drum water volume"
     annotation (Dialog(tab="Initialisation"));
 
   Modelica.Fluid.Examples.DrumBoiler.BaseClasses.EquilibriumDrumBoiler drumEquilibrium(

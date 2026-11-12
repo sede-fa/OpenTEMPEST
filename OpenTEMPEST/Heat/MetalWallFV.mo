@@ -2,28 +2,28 @@ within OpenTEMPEST.Heat;
 model MetalWallFV "Metal wall with Nw finite volumes and an internal and an external distributed heat port"
   extends OpenTEMPEST.Icons.HeatFlow;
   parameter Integer Nw(min=1)=1 "Number of volumes on the wall ports";
-  parameter Modelica.SIunits.Mass M "Mass";
-  parameter Modelica.SIunits.SpecificHeatCapacity cm "Specific heat capacity of the metal";
-  parameter Modelica.SIunits.HeatCapacity Cm=M*cm "Heat capacity of the wall";
+  parameter Modelica.Units.SI.Mass M "Mass";
+  parameter Modelica.Units.SI.SpecificHeatCapacity cm "Specific heat capacity of the metal";
+  parameter Modelica.Units.SI.HeatCapacity Cm=M*cm "Heat capacity of the wall";
   parameter Boolean WallRes=false "Wall thermal resistance accounted for";
-  parameter Modelica.SIunits.ThermalConductance UA_ext=0
+  parameter Modelica.Units.SI.ThermalConductance UA_ext=0
     "Equivalent thermal conductance of the outer half-wall" annotation (Dialog(enable=WallRes));
-  parameter Modelica.SIunits.ThermalConductance UA_int=UA_ext
+  parameter Modelica.Units.SI.ThermalConductance UA_int=UA_ext
     "Equivalent thermal conductance of the inner half-wall" annotation (Dialog(enable=WallRes));
-  parameter Modelica.SIunits.Temperature Tstartbar=300 "Average temperature"
+  parameter Modelica.Units.SI.Temperature Tstartbar=300 "Average temperature"
     annotation (Dialog(tab="Initialisation"));
-  parameter Modelica.SIunits.Temperature Tstart1=Tstartbar "Temperature start value - first volume"
+  parameter Modelica.Units.SI.Temperature Tstart1=Tstartbar "Temperature start value - first volume"
     annotation (Dialog(tab="Initialisation"));
-  parameter Modelica.SIunits.Temperature TstartN=Tstartbar "Temperature start value - last volume"
+  parameter Modelica.Units.SI.Temperature TstartN=Tstartbar "Temperature start value - last volume"
     annotation (Dialog(tab="Initialisation"));
-  parameter Modelica.SIunits.Temperature Tvolstart[Nw]=
+  parameter Modelica.Units.SI.Temperature Tvolstart[Nw]=
       if Nw == 1 then {Tstart1} else linspace(Tstart1, TstartN, Nw)
     annotation (Dialog(tab="Initialisation"));
   parameter OpenTEMPEST.Enumerations.InitOptions initOpt=system.initOpt "Initialisation option"
     annotation (Dialog(tab="Initialisation"));
   outer OpenTEMPEST.System system "System wide properties";
 
-  Modelica.SIunits.Temperature Tvol[Nw](start=Tvolstart) "Volume temperatures";
+  Modelica.Units.SI.Temperature Tvol[Nw](start=Tvolstart) "Volume temperatures";
   OpenTEMPEST.Interfaces.DHTVolumes int(final N=Nw, T(start=Tvolstart)) "Internal surface"
     annotation (Placement(transformation(extent={{-40,20},{40,40}})));
   OpenTEMPEST.Interfaces.DHTVolumes ext(final N=Nw, T(start=Tvolstart)) "External surface"

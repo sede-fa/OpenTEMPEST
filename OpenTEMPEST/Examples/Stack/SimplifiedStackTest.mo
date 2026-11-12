@@ -3,7 +3,7 @@ model SimplifiedStackTest
   "Simple example model using the model blackBoxStack, adiabatic"
   extends Modelica.Icons.Example;
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   // Initial conditions
   parameter SI.Pressure pStart=100000;

@@ -3,7 +3,7 @@ model FuelChannel2D
   extends Channel2DBase(
     redeclare package Medium = OpenTEMPEST.Medium.Fuel_CH4);
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   // Kinetic parameters
   constant Real A_WGSf = 0.0171 annotation(Dialog(tab="Kinetics"));

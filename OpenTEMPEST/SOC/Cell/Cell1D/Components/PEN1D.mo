@@ -2,7 +2,7 @@
 model PEN1D
   extends Heat.BaseClasses.Solid1DBase;
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   parameter SI.CurrentDensity Jstart = 0;
 

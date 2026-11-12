@@ -5,13 +5,13 @@ model ExpansionTank "Header with metal walls for water/steam flows"
                                             "Medium model"
     annotation(choicesAllMatching = true);
   Medium.ThermodynamicState fluidState "Thermodynamic state of the fluid";
-  parameter Modelica.SIunits.Volume V "Inner volume";
-  parameter Modelica.SIunits.Area S=0 "Internal surface";
-  parameter Modelica.SIunits.Position H=0 "Elevation of outlet over inlet"
+  parameter Modelica.Units.SI.Volume V "Inner volume";
+  parameter Modelica.Units.SI.Area S=0 "Internal surface";
+  parameter Modelica.Units.SI.Position H=0 "Elevation of outlet over inlet"
     annotation (Evaluate=true);
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer gamma=0
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer gamma=0
     "Heat Transfer Coefficient" annotation (Evaluate=true);
-  parameter Modelica.SIunits.HeatCapacity Cm=0 "Metal Heat Capacity"
+  parameter Modelica.Units.SI.HeatCapacity Cm=0 "Metal Heat Capacity"
     annotation (Evaluate=true);
   parameter Boolean allowFlowReversal=system.allowFlowReversal
     "= true to allow flow reversal, false restricts to design direction"
@@ -56,16 +56,16 @@ model ExpansionTank "Header with metal walls for water/steam flows"
     "Fluid specific enthalpy";
   Medium.SpecificEnthalpy hi "Inlet specific enthalpy";
   Medium.SpecificEnthalpy ho "Outlet specific enthalpy";
-  Modelica.SIunits.Mass M "Fluid mass";
-  Modelica.SIunits.Energy E "Fluid energy";
+  Modelica.Units.SI.Mass M "Fluid mass";
+  Modelica.Units.SI.Energy E "Fluid energy";
   Medium.Temperature T "Fluid temperature";
   Medium.Temperature Tm(start=Tmstart) "Wall temperature";
-  Modelica.SIunits.Time Tr "Residence time";
+  Modelica.Units.SI.Time Tr "Residence time";
   Real dM_dt;
   Real dE_dt;
 
-  Modelica.SIunits.Volume VG "gas volume";
-  Modelica.SIunits.Volume VL "liquid volume";
+  Modelica.Units.SI.Volume VG "gas volume";
+  Modelica.Units.SI.Volume VL "liquid volume";
   parameter Real gasShareStart = 0.1 "Start share gas"
     annotation (Dialog(tab="Initialisation"));
 

@@ -2,7 +2,7 @@ within OpenTEMPEST.Blocks.ComputationBlocks;
 model HeatTransferCoefficientCalculator
   "Laminar flat-plate Nusselt number and heat transfer coefficient from the gas properties at a given state"
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
     annotation (choicesAllMatching=true);

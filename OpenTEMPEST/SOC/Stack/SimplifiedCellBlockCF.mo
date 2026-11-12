@@ -1,6 +1,6 @@
 ﻿within OpenTEMPEST.SOC.Stack;
 model SimplifiedCellBlockCF
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   parameter Integer nX=5    "number of CVs in the x-direction";
   parameter Integer nY=5    "number of CVs in the y-direction";
   parameter Integer nCellVertMult=1 "Number of cells this object is representing in z direction";

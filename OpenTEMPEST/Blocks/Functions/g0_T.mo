@@ -5,7 +5,7 @@ function g0_T
   Example: G_h2o = g0_T(T=T, data=Modelica.Media.IdealGases.Common.SingleGasesData.H2O);
   "
   extends Modelica.Icons.Function;
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   input Modelica.Media.IdealGases.Common.DataRecord data "Ideal gas data";
   input SI.Temperature T "Temperature";
   output SI.SpecificGibbsFreeEnergy g;

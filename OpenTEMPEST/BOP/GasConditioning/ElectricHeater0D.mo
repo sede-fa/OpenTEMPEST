@@ -5,15 +5,15 @@ model ElectricHeater0D
     "Medium model"
     annotation(choicesAllMatching = true);
 
-  parameter Modelica.SIunits.Power PMax = 5000 "Maximal power";
+  parameter Modelica.Units.SI.Power PMax = 5000 "Maximal power";
 
   parameter Real PI_k(unit="1")=20          "Gain of controller";
-  parameter Modelica.SIunits.Time PI_Ti(min=Modelica.Constants.small)=300
+  parameter Modelica.Units.SI.Time PI_Ti(min=Modelica.Constants.small)=300
     "Time constant of controller's Integrator block" annotation (Dialog(enable=
           controllerType == .Modelica.Blocks.Types.SimpleController.PI or
           controllerType == .Modelica.Blocks.Types.SimpleController.PID));
-  parameter Modelica.SIunits.HeatCapacity C=7800*500*0.05*0.01 "Heat capacity of element (= cp*m)";
-  parameter Modelica.SIunits.Temperature TStart(displayUnit="degC")
+  parameter Modelica.Units.SI.HeatCapacity C=7800*500*0.05*0.01 "Heat capacity of element (= cp*m)";
+  parameter Modelica.Units.SI.Temperature TStart(displayUnit="degC")
     "Temperature of element";
   SimpleGasHeater heater(
     redeclare package medium = Medium,

@@ -1,6 +1,6 @@
 within OpenTEMPEST.SOC.Stack;
 model Stack1D
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   parameter Integer N(min=3)=3;
   parameter Integer Ncell(min=2)=5;

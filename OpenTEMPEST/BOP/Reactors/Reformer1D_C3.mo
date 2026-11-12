@@ -6,7 +6,7 @@ model Reformer1D_C3
     rhoCat=7130,
     por=0.75,
     redeclare package Medium = OpenTEMPEST.Medium.Fuel_C3);
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   OpenTEMPEST.Interfaces.DHTVolumes wall(N=N)
                                        "HT through cylindrical wall" annotation (Placement(

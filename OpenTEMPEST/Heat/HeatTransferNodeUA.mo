@@ -2,7 +2,7 @@ within OpenTEMPEST.Heat;
 model HeatTransferNodeUA
   extends OpenTEMPEST.Heat.BaseClasses.HeatTransferNodeBase;
 
-    import SI = Modelica.SIunits;
+    import SI = Modelica.Units.SI;
     parameter Real UAnom=1;
     parameter SI.MassFlowRate mfNom=1;
 

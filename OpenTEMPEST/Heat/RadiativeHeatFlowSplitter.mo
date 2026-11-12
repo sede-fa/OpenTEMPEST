@@ -2,7 +2,7 @@ within OpenTEMPEST.Heat;
 model RadiativeHeatFlowSplitter
   "Splits a radiative heat flow using only one reference temperature"
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   parameter Integer nCombinedPorts(min=2) "number of heat ports that are combined, the firsts' temperature is used for radiation";
   parameter SI.SpectralEmissivity epsilon1 "emissivity of surface 1";

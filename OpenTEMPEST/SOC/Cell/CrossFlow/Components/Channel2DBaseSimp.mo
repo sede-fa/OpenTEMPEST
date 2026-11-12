@@ -2,7 +2,7 @@
 partial model Channel2DBaseSimp
   "Base model for SOC cell channels 1D discretised with 2D interfaces - need to give pressure drop at top level"
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   replaceable package Medium = Modelica.Media.IdealGases.Common.MixtureGasNasa
     annotation(choicesAllMatching = true);
   parameter Integer nX(min=3) = 5 "Number of control volumes in first direction";
@@ -31,9 +31,9 @@ partial model Channel2DBaseSimp
   parameter Real Nu_IC "Nusselt number for convective heat transfer at IC interface";
 
   // Ribs thermophysical parameters - CFY (94.9% Cr, 5% Fe, 0.1% Y)
-  parameter Modelica.SIunits.ThermalConductivity kRibs=40 "Thermal conductivity of CFY ribs in W/mK (35-45 W/mK for 20-900 °C)"  annotation(Dialog(tab="Ribs"));
-  parameter Modelica.SIunits.SpecificHeatCapacity cpRibs = 451.8 "Specific heat capacity of ribs material"  annotation(Dialog(tab="Ribs"));
-  parameter Modelica.SIunits.Density rhoRibs = 7233 "Calculated CFY ribs density in kg/m3"  annotation(Dialog(tab="Ribs"));
+  parameter Modelica.Units.SI.ThermalConductivity kRibs=40 "Thermal conductivity of CFY ribs in W/mK (35-45 W/mK for 20-900 °C)"  annotation(Dialog(tab="Ribs"));
+  parameter Modelica.Units.SI.SpecificHeatCapacity cpRibs = 451.8 "Specific heat capacity of ribs material"  annotation(Dialog(tab="Ribs"));
+  parameter Modelica.Units.SI.Density rhoRibs = 7233 "Calculated CFY ribs density in kg/m3"  annotation(Dialog(tab="Ribs"));
 
   // Control Volume sizing
   SI.Volume dV = dx*lY*lZ "Control volume size";

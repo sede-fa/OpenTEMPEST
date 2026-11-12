@@ -3,7 +3,7 @@ model Ploss
   "Is needed to take the power loss in PowerElectronics into account."
 extends Modelica.Blocks.Interfaces.SISO;
 
-  parameter Modelica.SIunits.Power Pdesign = 2377;
+  parameter Modelica.Units.SI.Power Pdesign = 2377;
   parameter Real a = 0.048212553240941;
   parameter Real b = 0.009846461934665;
   parameter Real c = 0.011514564183595;
@@ -11,8 +11,8 @@ extends Modelica.Blocks.Interfaces.SISO;
 //protected
   Real PlossRel;
   Real x;
-  Modelica.SIunits.Power P;
-  Modelica.SIunits.Power Ploss;
+  Modelica.Units.SI.Power P;
+  Modelica.Units.SI.Power Ploss;
 
 equation
 

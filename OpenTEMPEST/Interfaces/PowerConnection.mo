@@ -1,7 +1,7 @@
 within OpenTEMPEST.Interfaces;
 connector PowerConnection "Electrical power connector (active power and voltage angle)"
-  flow Modelica.SIunits.Power P "Active power flow into the port";
-  Modelica.SIunits.Angle theta "Voltage angle in a frame rotating at nominal frequency";
+  flow Modelica.Units.SI.Power P "Active power flow into the port";
+  Modelica.Units.SI.Angle theta "Voltage angle in a frame rotating at nominal frequency";
   annotation (
     Icon(graphics={Rectangle(
           extent={{-100,100},{100,-100}},

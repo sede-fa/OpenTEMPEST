@@ -1,7 +1,7 @@
 within OpenTEMPEST.SOC.Cell.Cell1D.Components;
 partial model Channel1DBase
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   replaceable package Medium = Modelica.Media.IdealGases.Common.MixtureGasNasa
     annotation(choicesAllMatching = true);
   parameter Integer N(min=3) = 5;

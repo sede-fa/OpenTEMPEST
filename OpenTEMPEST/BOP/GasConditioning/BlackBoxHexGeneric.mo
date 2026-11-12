@@ -1,7 +1,7 @@
 within OpenTEMPEST.BOP.GasConditioning;
 model BlackBoxHexGeneric
 
-   import SI = Modelica.SIunits;
+   import SI = Modelica.Units.SI;
 
   replaceable package MediumA = Medium.Air_Medium         constrainedby
     Modelica.Media.Interfaces.PartialMedium

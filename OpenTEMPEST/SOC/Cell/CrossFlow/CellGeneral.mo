@@ -1,7 +1,7 @@
 ﻿within OpenTEMPEST.SOC.Cell.CrossFlow;
 model CellGeneral "Crossflow generalized cell model with possibility to select 2D or 1D channels"
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   parameter Integer nX=5 "Number of control volumes in the x-direction";
   parameter Integer nY=5 "Number of control volumes in the y-direction";

@@ -1,7 +1,7 @@
 within OpenTEMPEST.BOP.Reactors.MeOH;
 model MeOHEnergyBalance
   "Methanol reactor model, balancing component and heat streams, based on defined inflow and fixed conversion rate"
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   replaceable package Medium = OpenTEMPEST.Medium.Fuel_MethanolReactor;
 
   extends Modelica.Icons.UnderConstruction;

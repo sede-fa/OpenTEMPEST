@@ -1,6 +1,6 @@
 within OpenTEMPEST.SOC.Cell.Cell1D;
 model Cell
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   replaceable package FCMedium = OpenTEMPEST.Medium.Fuel_CH4
                                                          annotation (Dialog(tab="Fuel Channel"));
   replaceable package ACMedium = OpenTEMPEST.Medium.Air_Medium

@@ -1,7 +1,7 @@
 within OpenTEMPEST.Heat;
 model InsulationVarArea
   extends Modelica.Icons.ObsoleteModel; //should be replaced by Solid0DVarArea
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   parameter SI.ThermalConductivity lambda "thermalConductivity";
   parameter SI.SpecificHeatCapacity c "SpecificHeatCapacity";
   parameter SI.Density rho "Density";

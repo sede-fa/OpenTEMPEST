@@ -2,7 +2,7 @@
 partial model BV_ElectrochemBase
   "Air and Ohmic Overvoltages calculated here. Voltage Balance equation also here. Fuel side overvoltages calculated at level above as well as q_electroChem"
   extends OpenTEMPEST.SOC.Electrochem.Components.ElectrochemBase;
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   replaceable model ASRobj = ASR.ASR_Ohm_ESC (
       A=35.316e4,

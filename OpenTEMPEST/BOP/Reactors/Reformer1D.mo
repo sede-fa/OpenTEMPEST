@@ -2,7 +2,7 @@ within OpenTEMPEST.BOP.Reactors;
 model Reformer1D
   extends Flow.BaseClasses.PFRBaseClass(redeclare package Medium =
         OpenTEMPEST.Medium.Fuel_CH4);
-import SI = Modelica.SIunits;
+import SI = Modelica.Units.SI;
 
   parameter Real Fac_ref = 1;
   parameter Real Fac_wgs = 0.75;

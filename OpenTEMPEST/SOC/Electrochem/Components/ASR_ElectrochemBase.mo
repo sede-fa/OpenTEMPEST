@@ -2,7 +2,7 @@ within OpenTEMPEST.SOC.Electrochem.Components;
 partial model ASR_ElectrochemBase "Base model for electrochemistry with only ASR approach"
   extends OpenTEMPEST.SOC.Electrochem.Components.ElectrochemBase;
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   replaceable model ASRobj = OpenTEMPEST.SOC.Electrochem.ASR.ASR_Base
                                             constrainedby OpenTEMPEST.SOC.Electrochem.ASR.ASR_Base                   annotation(choicesAllMatching=true);

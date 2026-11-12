@@ -2,10 +2,10 @@ within OpenTEMPEST.Blocks.Sources;
 model MultiRamp "Generate signal with n ramps"
   parameter Integer n=3 "number of ramps";
   parameter Real height[n]=ones(n) "Height of ramps";
-  parameter Modelica.SIunits.Time duration[n](min=zeros(n), start=2*ones(n))=zeros(n)
+  parameter Modelica.Units.SI.Time duration[n](min=zeros(n), start=2*ones(n))=zeros(n)
     "Duration of ramp (= 0.0 gives a Step)";
   parameter Real offset=0 "Offset of output signal";
-  parameter Modelica.SIunits.Time startTime[n]=zeros(n)
+  parameter Modelica.Units.SI.Time startTime[n]=zeros(n)
     "Output = offset for time < startTime";
   extends Modelica.Blocks.Interfaces.SO;
   Modelica.Blocks.Sources.Ramp ramp[n](

@@ -3,10 +3,10 @@ block VectorRamp
 
   parameter Real height[nout] = target-offset "Height of ramps";
   parameter Real target[nout] = fill(1,nout) "Target of the output signals";
-  parameter Modelica.SIunits.Time duration(min=0.0, start=2)
+  parameter Modelica.Units.SI.Time duration(min=0.0, start=2)
     "Duration of ramp (= 0.0 gives a Step)";
   parameter Real offset[nout] = fill(1,nout) "Offset of output signals";
-  parameter Modelica.SIunits.Time startTime=0
+  parameter Modelica.Units.SI.Time startTime=0
     "Output = offset for time < startTime";
 
   extends Modelica.Blocks.Interfaces.MO;

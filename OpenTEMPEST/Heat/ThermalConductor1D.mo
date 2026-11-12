@@ -2,7 +2,7 @@ within OpenTEMPEST.Heat;
 model ThermalConductor1D
   "Lumped thermal element transporting heat without storing it with 1D thermal ports"
   extends BaseClasses.Element1D;
-  parameter Modelica.SIunits.ThermalConductance G
+  parameter Modelica.Units.SI.ThermalConductance G
     "Constant thermal conductance of material";
 
 equation

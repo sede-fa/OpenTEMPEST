@@ -2,7 +2,7 @@ within OpenTEMPEST.Heat;
 model Solid0DvarArea
   "solid 1D volume with area variation along the x-axis (truncated pyramid with base area in y-z-plane)"
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   replaceable package SolidMat = OpenTEMPEST.Solid.SolidMatBase annotation(choicesAllMatching = true);
 
   SolidMat.BaseProperties solid(T=T, kCustom_trans=kCustom, kCustom_long=kCustom, rhoCustom=rhoCustom, cpCustom=cpCustom);

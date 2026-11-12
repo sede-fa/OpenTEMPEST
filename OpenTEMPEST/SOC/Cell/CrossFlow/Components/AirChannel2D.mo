@@ -3,7 +3,7 @@ model AirChannel2D
   extends Channel2DBase(
     redeclare package Medium = OpenTEMPEST.Medium.Air_Medium);
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   // Pressure Drop
   SI.PressureDifference dp[nX,nY]=Blocks.Functions.pressureDropDarcy(

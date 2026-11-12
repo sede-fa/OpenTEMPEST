@@ -3,7 +3,7 @@ model MeOHReactorSystem
   "System representing a MeOH reactor process with separation, compression and heat transfer for heat balancing purposes"
   extends Modelica.Icons.UnderConstruction;
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
    parameter Real conversion = 0.9 "ratio C/H>=0.25; const conversion rate nMeOH/(nCO+nCO2)in"
    annotation (Dialog(tab="MeOH Reactor"));
   parameter SI.Temperature TReactor=260 + 273.15

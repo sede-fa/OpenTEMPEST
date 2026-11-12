@@ -7,7 +7,7 @@ model Plenum "Rigid adiabatic gas volume with a thermal port"
     p(start=pstart, stateSelect=StateSelect.prefer),
     T(start=Tstart, stateSelect=StateSelect.prefer),
     Xi(start=Xstart[1:Medium.nXi], each stateSelect=StateSelect.prefer));
-  parameter Modelica.SIunits.Volume V "Inner volume";
+  parameter Modelica.Units.SI.Volume V "Inner volume";
   parameter Boolean allowFlowReversal=system.allowFlowReversal
     "= true to allow flow reversal, false restricts to design direction"
     annotation (Evaluate=true);
@@ -25,13 +25,13 @@ model Plenum "Rigid adiabatic gas volume with a thermal port"
   parameter Boolean noInitialTemperature=false "Remove initial equation on temperature"
     annotation (Dialog(tab="Initialisation"), choices(checkBox=true));
 
-  Modelica.SIunits.Mass M "Total mass";
-  Modelica.SIunits.InternalEnergy E "Total internal energy";
+  Modelica.Units.SI.Mass M "Total mass";
+  Modelica.Units.SI.InternalEnergy E "Total internal energy";
   Medium.SpecificEnthalpy hi "Inlet specific enthalpy";
   Medium.SpecificEnthalpy ho "Outlet specific enthalpy";
   Medium.MassFraction Xi_i[Medium.nXi] "Inlet composition";
   Medium.MassFraction Xi_o[Medium.nXi] "Outlet composition";
-  Modelica.SIunits.Time Tr "Residence time";
+  Modelica.Units.SI.Time Tr "Residence time";
 
   OpenTEMPEST.Interfaces.GasFlangeA inlet(redeclare package Medium = Medium,
       m_flow(min=if allowFlowReversal then -Modelica.Constants.inf else 0))

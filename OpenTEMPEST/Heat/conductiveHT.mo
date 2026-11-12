@@ -1,7 +1,7 @@
 within OpenTEMPEST.Heat;
 model conductiveHT
   extends OpenTEMPEST.Icons.HeatFlow;
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   parameter SI.ThermalConductivity lambda "thermalConductivity";
   parameter SI.Length L "length";
   parameter SI.Area A "cross sectional area";

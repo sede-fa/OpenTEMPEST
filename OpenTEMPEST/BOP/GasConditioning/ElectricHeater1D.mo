@@ -1,14 +1,14 @@
 within OpenTEMPEST.BOP.GasConditioning;
 model ElectricHeater1D
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
     annotation(choicesAllMatching = true);
   parameter Integer N(min=3) = 5;
   parameter Integer Ntubes = 1 "number of individual tubes";
   parameter Boolean LUDS = true "Set LU discretisation";
 
-  parameter Modelica.SIunits.Length L "length of the heater tube";
+  parameter Modelica.Units.SI.Length L "length of the heater tube";
   parameter SI.Length Dhyd "hydraulic diameter of the heater tube";
   parameter SI.Area A "cross sectional area of the heater ";
 
@@ -16,13 +16,13 @@ model ElectricHeater1D
   parameter Real  dpdx "nominal pressure drop";
 
   // intialisation options
-  parameter Modelica.SIunits.Temperature TStartIn
+  parameter Modelica.Units.SI.Temperature TStartIn
     "Inlet temperature to the heater starting value";
-  parameter Modelica.SIunits.Temperature TStartOut
+  parameter Modelica.Units.SI.Temperature TStartOut
     "starting outlet temperature";
-  parameter Modelica.SIunits.Pressure pStart
+  parameter Modelica.Units.SI.Pressure pStart
     "start pressure for initialization";
-  parameter Modelica.SIunits.MassFraction xStart[Medium.nX]=Medium.reference_X
+  parameter Modelica.Units.SI.MassFraction xStart[Medium.nX]=Medium.reference_X
     "starting composition for initilization";
 
   // performance parameters

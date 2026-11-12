@@ -1,7 +1,7 @@
 within OpenTEMPEST.SOC.Stack.Components;
 model FlowInterpolator1D
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   parameter Integer nCell(min = 3) "total number of single cells";
   parameter Integer N "Number of control volumes";

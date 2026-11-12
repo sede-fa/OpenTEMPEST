@@ -1,7 +1,7 @@
 within OpenTEMPEST.SOC.Stack;
 model StackCFSimpCell
   "Stack based on the crossflow cell with 1D fuel and air channels"
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   // general parameters
   parameter Integer nX=5 "Number of control volumes in first direction" annotation(Dialog(group="General Parameters"));

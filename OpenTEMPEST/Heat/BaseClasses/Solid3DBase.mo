@@ -1,7 +1,7 @@
 within OpenTEMPEST.Heat.BaseClasses;
 partial model Solid3DBase
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   replaceable package SolidMat = OpenTEMPEST.Solid.SolidMatBase annotation(choicesAllMatching = true);
 
   parameter Integer nX(min=3) = 3 "Number of CVs in the solid in x-direction";

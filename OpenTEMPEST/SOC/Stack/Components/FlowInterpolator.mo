@@ -1,7 +1,7 @@
 within OpenTEMPEST.SOC.Stack.Components;
 model FlowInterpolator
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   parameter Integer nCell(min = 3) "total number of single cells";
   parameter Integer nSimplified(min = 1) "number of simplified cells among nCell";

@@ -2,7 +2,7 @@ within OpenTEMPEST.Flow;
 model Flow1D "1D flow model FVM, uses UDS and LUDS"
   extends Modelica.Icons.UnderConstruction; // use flux interpolator and remove comments
   extends OpenTEMPEST.Flow.BaseClasses.Flow1DBaseClass;
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   parameter Real dpdxNom = 100 "Pressure drop in pipe Pa/m";
   parameter Boolean LUDS=false "Set true for linear upwind differencing";

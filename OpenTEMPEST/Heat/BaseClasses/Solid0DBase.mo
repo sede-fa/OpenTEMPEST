@@ -9,7 +9,7 @@ partial model Solid0DBase
     rhoCustom=rhoCustom,
     cpCustom=cpCustom) "Material properties object";
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
     // Initial Values
   parameter SI.Temperature Tstartbar = 1073.15 "Uniform initial temperature of the solid" annotation(Dialog(group="Initialisation"));

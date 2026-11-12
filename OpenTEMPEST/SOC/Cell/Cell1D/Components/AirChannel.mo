@@ -4,7 +4,7 @@ model AirChannel
     pStartOut=(1 - pDrop)*pStartIn,
     redeclare package Medium = OpenTEMPEST.Medium.Air_Medium);
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   // Pressure Drop
   parameter Real pDrop(max=0.99) "pressure drop as a factor of inlet pressure (between 0 and 0.99)";

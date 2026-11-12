@@ -13,18 +13,18 @@ model FuelFlowControl
   parameter Medium.MoleFraction Ynom[Medium.nX]=if molarInputComposition then compositionNom else Medium.massToMoleFractions(Xnom,Medium.MMX)
     "Nominal gas composition" annotation (Dialog(tab="Calculated parameter"));
   parameter Boolean molarInputComposition = false "Input compostions are molar instead of mass" annotation(choices(checkBox=true));
-  parameter Modelica.SIunits.ElectricCurrent I0=0 "Nominal electrical current";
+  parameter Modelica.Units.SI.ElectricCurrent I0=0 "Nominal electrical current";
   parameter Real RC0 = 0.7 "Nominal reactant conversion";
   parameter Integer nCells "Number of cells that are fed by this source";
-  parameter Modelica.SIunits.Time tSmooth(start=1) "Base time constant for PT1 output smoothing";
-  parameter Modelica.SIunits.MassFlowRate mfStart "Initial value for the mass flow";
-  parameter Modelica.SIunits.ElectricCurrent IStart "Initial value for the current";
+  parameter Modelica.Units.SI.Time tSmooth(start=1) "Base time constant for PT1 output smoothing";
+  parameter Modelica.Units.SI.MassFlowRate mfStart "Initial value for the mass flow";
+  parameter Modelica.Units.SI.ElectricCurrent IStart "Initial value for the current";
 
-  parameter Modelica.SIunits.ElectricCurrent minCurrentForDosing = 15
+  parameter Modelica.Units.SI.ElectricCurrent minCurrentForDosing = 15
     "Minimal absolute current to calculate flows based on current" annotation(Dialog(group="Minimal flow"));
   parameter Boolean doseFGUnderIMin = false
     "Use forming gas (FormingGasComposition) instead of given compostion if flow is below minimal current" annotation(Dialog(group="Minimal flow"), choices(checkBox=true));
-  parameter Modelica.SIunits.MassFlowRate mfFGPerCell = 6/1000/1440
+  parameter Modelica.Units.SI.MassFlowRate mfFGPerCell = 6/1000/1440
     "Forming gas (FormingGasComposition) mass flow per cell at 0 A if activated" annotation(Dialog(group="Minimal flow"));
   parameter Boolean use_in_I = false
     "Use connector input for the electrical current" annotation(Dialog(group="External inputs"), choices(checkBox=true));
@@ -95,7 +95,7 @@ protected
   Modelica.Blocks.Interfaces.RealInput in_RC_internal;
   Modelica.Blocks.Interfaces.RealInput in_composition_internal[Medium.nX];
 
-  Modelica.SIunits.ElectricCurrent IForDosing;
+  Modelica.Units.SI.ElectricCurrent IForDosing;
 
 equation
 

@@ -1,11 +1,11 @@
 within OpenTEMPEST.Heat;
 model ConductiveFV "Conductive thermal resistance without mass"
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   parameter Integer N(min=1) = 2 "Number of nodes";
  // parameter SI.SpecificHeatCapacity cap
  //   "Specific heat capacity of metal";
   parameter SI.ThermalConductivity lambda "thermalConductivity";
- // Modelica.SIunits.Temperature Tmea;
+ // Modelica.Units.SI.Temperature Tmea;
   parameter SI.Length L "length between heat ports";
   parameter SI.Area A "cross sectional area";
   //parameter SI.Density rho "Density of element";

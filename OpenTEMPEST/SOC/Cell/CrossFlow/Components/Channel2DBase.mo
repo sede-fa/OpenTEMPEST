@@ -1,7 +1,7 @@
 ﻿within OpenTEMPEST.SOC.Cell.CrossFlow.Components;
 partial model Channel2DBase
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   replaceable package Medium = Modelica.Media.IdealGases.Common.MixtureGasNasa
     annotation(choicesAllMatching = true);

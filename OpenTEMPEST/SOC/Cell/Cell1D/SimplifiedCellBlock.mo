@@ -1,6 +1,6 @@
 within OpenTEMPEST.SOC.Cell.Cell1D;
 model SimplifiedCellBlock
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   parameter Integer N(min=3)=5 "number of CVs in each layer";
   parameter Integer nCellVertMult=1 "number of cells this object is representing in z direction";
 

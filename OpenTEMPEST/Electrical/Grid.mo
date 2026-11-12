@@ -1,17 +1,17 @@
 within OpenTEMPEST.Electrical;
 model Grid "Ideal grid with finite droop"
-  parameter Modelica.SIunits.Power Pgrid "Total nominal power installed on the grid";
-  final parameter Modelica.SIunits.Power Poff(fixed=false)
+  parameter Modelica.Units.SI.Power Pgrid "Total nominal power installed on the grid";
+  final parameter Modelica.Units.SI.Power Poff(fixed=false)
     "Offset that guarantees f = fnom at initialisation";
   parameter Real droop=0.05 "Grid droop (per unit)";
-  final parameter Modelica.SIunits.Frequency fnom=system.fnom "Nominal frequency";
+  final parameter Modelica.Units.SI.Frequency fnom=system.fnom "Nominal frequency";
   constant Real pi=Modelica.Constants.pi;
   outer OpenTEMPEST.System system "System object";
 
   OpenTEMPEST.Interfaces.PowerConnection port
     annotation (Placement(transformation(extent={{-100,-14},{-72,14}}),
         iconTransformation(extent={{-100,-14},{-72,14}})));
-  Modelica.SIunits.Frequency f "Grid frequency";
+  Modelica.Units.SI.Frequency f "Grid frequency";
 equation
   der(port.theta) = 2*pi*f;
   f = fnom*(1 + droop*(port.P - Poff)/Pgrid);

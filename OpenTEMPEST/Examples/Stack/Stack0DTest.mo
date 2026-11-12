@@ -2,7 +2,7 @@ within OpenTEMPEST.Examples.Stack;
 model Stack0DTest "Simple example model using the model Stack0D, adiabatic"
   extends Modelica.Icons.Example;
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   // Initial conditions
   parameter SI.Pressure pStart=100000;

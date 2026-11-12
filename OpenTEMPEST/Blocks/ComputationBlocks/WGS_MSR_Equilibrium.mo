@@ -3,7 +3,7 @@ model WGS_MSR_Equilibrium
   "Model computing equilibrium considering WGS and MSR reactions, for above 500°C"
 
 //   extends Modelica.Icons.Function;
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
 //   input Real T "Temperature";
 //   input SI.MassFraction xIn[Medium.nX] "Inlet composition, mass fractions";

@@ -14,5 +14,5 @@ For now feel free to try out the models in your modelica enviornment (We have te
 
 # Requirements
 - Dymola (no guarantee that the models run with OpenModelica or other Modelica enviornments, but we'll be working on it)
-- Modelica Standard Library (currently 3.2.3; moving to 4.1)
+- Modelica Standard Library (4.1)
 

@@ -2,7 +2,7 @@ within OpenTEMPEST.BOP.Reactors;
 model Combustor0D
   "0D combustor assuming complete combustion of fuels. Needs lambda >=1"
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   package Air = Medium.Air_Medium;
   package Fuel = Medium.Fuel_CH4;
   package Exhaust = Medium.SimpleExhaust;

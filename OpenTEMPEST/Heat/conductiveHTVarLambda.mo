@@ -1,7 +1,7 @@
 within OpenTEMPEST.Heat;
 model conductiveHTVarLambda
   extends OpenTEMPEST.Icons.HeatFlow;
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   SI.ThermalConductivity lambda "thermalConductivity";
   SI.Temperature T;
   parameter SI.Length L "length";
@@ -17,7 +17,7 @@ model conductiveHTVarLambda
   OpenTEMPEST.Interfaces.HT side2 annotation (Placement(transformation(extent={{-40,
             -20},{40,-42}}, rotation=0)));
 
- // parameter Modelica.SIunits.ThermalConductivity lambda=
+ // parameter Modelica.Units.SI.ThermalConductivity lambda=
  //   if matOpt == InsulationOptions.Ultra then Fac*(2.9352e-8*T^2 - 1.175e-5*T + 0.01881) else 5;
 
 equation

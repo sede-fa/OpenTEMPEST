@@ -1,7 +1,7 @@
 within OpenTEMPEST.BOP;
 model PumpSimple "simple pump model for incompressible fluids"
     extends OpenTEMPEST.Icons.WaterPump;
-    import SI = Modelica.SIunits;
+    import SI = Modelica.Units.SI;
 
     replaceable package Medium = Modelica.Media.Water.StandardWater
     constrainedby Modelica.Media.Interfaces.PartialMedium "Medium model"  annotation(choicesAllMatching = true);

@@ -1,11 +1,11 @@
 within OpenTEMPEST;
 model System "System-wide properties (add one at the top level of every simulation model)"
   extends Modelica.Fluid.System;
-  parameter Modelica.SIunits.Frequency fnom=50 "Nominal grid frequency (Electrical package)";
+  parameter Modelica.Units.SI.Frequency fnom=50 "Nominal grid frequency (Electrical package)";
   parameter OpenTEMPEST.Enumerations.InitOptions initOpt=OpenTEMPEST.Enumerations.InitOptions.noInit
     "Default initialisation option for OpenTEMPEST components that support it";
-  final parameter Modelica.SIunits.Temperature T_amb=T_ambient "Ambient temperature (alias of T_ambient)";
-  final parameter Modelica.SIunits.AbsolutePressure p_amb=p_ambient "Ambient pressure (alias of p_ambient)";
+  final parameter Modelica.Units.SI.Temperature T_amb=T_ambient "Ambient temperature (alias of T_ambient)";
+  final parameter Modelica.Units.SI.AbsolutePressure p_amb=p_ambient "Ambient pressure (alias of p_ambient)";
   annotation (
     defaultComponentName="system",
     defaultComponentPrefixes="inner",

@@ -2,7 +2,7 @@ within OpenTEMPEST.BOP.GasConditioning;
 model SimpleGasHeaterVol
   extends Flow.BaseClasses.simpleGasHeaterBase;
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   parameter OpenTEMPEST.Units.HydraulicResistance R=1 "Hydraulic resistance";
   parameter Boolean includePressureLoss=false;
   parameter Boolean noInitialPressure=false

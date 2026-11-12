@@ -1,19 +1,19 @@
 within OpenTEMPEST.Blocks.ComputationBlocks;
 model TemperatureControllerV1
 
-  parameter Modelica.SIunits.Temperature TFuelMax = 900;
-  parameter Modelica.SIunits.Temperature TFuelMin = 650;
-  parameter Modelica.SIunits.Temperature TAirMax = 900;
-  parameter Modelica.SIunits.Temperature TAirMin = 600;
-  parameter Modelica.SIunits.MassFlowRate mfAirMax = 25/1000;
-  parameter Modelica.SIunits.MassFlowRate mfAirMin = 4/1000;
+  parameter Modelica.Units.SI.Temperature TFuelMax = 900;
+  parameter Modelica.Units.SI.Temperature TFuelMin = 650;
+  parameter Modelica.Units.SI.Temperature TAirMax = 900;
+  parameter Modelica.Units.SI.Temperature TAirMin = 600;
+  parameter Modelica.Units.SI.MassFlowRate mfAirMax = 25/1000;
+  parameter Modelica.Units.SI.MassFlowRate mfAirMin = 4/1000;
 
-  parameter Modelica.SIunits.Temperature TITIn = 825;
-  parameter Modelica.SIunits.MassFlowRate mfITAir = 4/1000;
+  parameter Modelica.Units.SI.Temperature TITIn = 825;
+  parameter Modelica.Units.SI.MassFlowRate mfITAir = 4/1000;
 
-  Modelica.SIunits.Temperature TFuel_internal;
-  Modelica.SIunits.Temperature TAir_internal;
-  Modelica.SIunits.MassFlowRate mfAir_internal;
+  Modelica.Units.SI.Temperature TFuel_internal;
+  Modelica.Units.SI.Temperature TAir_internal;
+  Modelica.Units.SI.MassFlowRate mfAir_internal;
   Modelica.Blocks.Interfaces.RealInput in_TITIn
     "1 for maximum heating and 0 for maximum cooling" annotation (Placement(
         transformation(extent={{-118,24},{-78,64}}), iconTransformation(extent=

@@ -1,6 +1,6 @@
 within OpenTEMPEST.SOC.Stack;
 model SimplifiedStackCF
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   parameter Integer nX(min=3)=5   "Number of control volumes in the x-direction" annotation (Dialog(tab = "General"));
   parameter Integer nY(min=3)=5   "Number of control volumes in the y-direction" annotation (Dialog(tab = "General"));

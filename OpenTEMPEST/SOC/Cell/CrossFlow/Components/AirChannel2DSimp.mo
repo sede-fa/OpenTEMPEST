@@ -1,7 +1,7 @@
 within OpenTEMPEST.SOC.Cell.CrossFlow.Components;
 model AirChannel2DSimp "Air channel model 1D discretised with 2D interfaces"
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   extends Channel2DBaseSimp(
     redeclare package Medium = OpenTEMPEST.Medium.Air_Medium);

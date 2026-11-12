@@ -3,7 +3,7 @@ model FuelChannel
   extends OpenTEMPEST.SOC.Cell.Cell1D.Components.Channel1DBase(
     redeclare package Medium = OpenTEMPEST.Medium.Fuel_CH4);
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   // Thermal
   SI.Temperature T[N](start = TStart) "Average Temperature in CV";
 
