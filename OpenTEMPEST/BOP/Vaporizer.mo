@@ -57,12 +57,14 @@ protected
 
   Modelica.Fluid.Sensors.TemperatureTwoPort sensT(redeclare package Medium = MediumInput, tau=0) annotation (Placement(transformation(extent={{-18,14},{2,-6}})));
 
-  OpenTEMPEST.Heat.MetalWallFV metalWallFV(
-    Nw=5,
-    M=mfNom/mfDesign*10,
-    cm=450,
-    WallRes=true,
-    UA_ext=mfNom/mfDesign*1500,
+  OpenTEMPEST.Heat.Wall1D metalWallFV(
+    N=5,
+    lX=1,
+    lY=1,
+    lZ=0.01,
+    rhoCustom=mfNom/mfDesign*10/(1*1*0.01),
+    cpCustom=450,
+    kCustom_trans=mfNom/mfDesign*1500*0.5*0.01/(1*1),
     Tstartbar=1.1*(45.668*ln(pStart) - 426.44) + 273.15)
                  annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
@@ -117,15 +119,15 @@ equation
   connect(sensW.port_b, sensT.port_a);
   connect(sensT.port_b, sinkPressure.ports[1]);
   connect(sensT.T, sourceMassFlow.in_T);
-  connect(hT_DHTVolumes.DHT_port, metalWallFV.int);
+  connect(hT_DHTVolumes.DHT_port, metalWallFV.dhT_int);
   connect(sensW1.port_b, drumEquilibrium1.port_a);
   connect(sensP.p, sinkPressure.p_in);
   connect(sensW1.port_a, waterInlet);
   connect(sensP.flange, gasOutlet1);
-  connect(heatSource1DFV.wall, metalWallFV.ext);
+  connect(heatSource1DFV.wall, metalWallFV.dhT_ext);
   connect(port, load.port);
   connect(load.referencePower, heatSource1DFV.power);
-  connect(metalWallFV.ext, dHTVolumes);
+  connect(metalWallFV.dhT_ext, dHTVolumes);
   connect(drumEquilibrium1.port_b, valveLin.port_a);
   connect(valveLin.port_b, sensW.port_a);
   connect(sensW.m_flow, PIDValue.u_m);

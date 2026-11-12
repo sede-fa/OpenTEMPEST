@@ -67,19 +67,23 @@ model CoolingCycle "Heat exchanger with integrated water cycle."
         rotation=90,
         origin={-48,12})));
 
-  OpenTEMPEST.Heat.MetalWallFV metalWallFV(
-    Nw=4,
-    M=2,
-    cm=900,
-    WallRes=true,
-    UA_ext=UACooling)
+  OpenTEMPEST.Heat.Wall1D metalWallFV(
+    N=4,
+    lX=1,
+    lY=1,
+    lZ=0.01,
+    rhoCustom=2/(1*1*0.01),
+    cpCustom=900,
+    kCustom_trans=(UACooling)*0.5*0.01/(1*1))
     annotation (Placement(transformation(extent={{-4,-66},{16,-46}})));
-  OpenTEMPEST.Heat.MetalWallFV metalWallFV1(
-    Nw=4,
-    M=2,
-    cm=900,
-    WallRes=true,
-    UA_ext=15000/10)
+  OpenTEMPEST.Heat.Wall1D metalWallFV1(
+    N=4,
+    lX=1,
+    lY=1,
+    lZ=0.01,
+    rhoCustom=2/(1*1*0.01),
+    cpCustom=900,
+    kCustom_trans=(15000/10)*0.5*0.01/(1*1))
     annotation (Placement(transformation(extent={{-6,56},{14,36}})));
 
   Modelica.Fluid.Pipes.DynamicPipe flow1DFV2(
@@ -155,17 +159,17 @@ protected
 equation
   connect(pump.port_b, flow1DFV.port_a);
   connect(flow1DFV.port_b, SensT_A_in.port_a);
-  connect(metalWallFV.int, adapterLoopCooled.DHT_port);
+  connect(metalWallFV.dhT_int, adapterLoopCooled.DHT_port);
   connect(adapterLoopCooled.HT_ports, flow1DFV1.heatPorts);
-  connect(metalWallFV1.int, adapterLoopHeated.DHT_port);
+  connect(metalWallFV1.dhT_int, adapterLoopHeated.DHT_port);
   connect(adapterLoopHeated.HT_ports, flow1DFV.heatPorts);
   connect(adapterCooling.HT_ports, flow1DFV2.heatPorts);
-  connect(adapterCooling.DHT_port, metalWallFV.ext);
+  connect(adapterCooling.DHT_port, metalWallFV.dhT_ext);
   connect(SensT_A_in.port_b, flow1DFV1.port_a);
   connect(flow1DFV1.port_b, expansionTank.inlet);
   connect(expansionTank.outlet, pump.port_a);
   connect(adapterHeating.HT_ports, flow1DFV3.heatPorts);
-  connect(adapterHeating.DHT_port, metalWallFV1.ext);
+  connect(adapterHeating.DHT_port, metalWallFV1.dhT_ext);
   connect(SensT_A_in.T, PID.u_m);
   connect(u_s, PID.u_s);
   connect(waterInlet, flow1DFV2.port_a);

@@ -35,9 +35,7 @@ protected
 equation
   // Flat plate - laminar boundary layer, isothermal surface
   Nu = 0.664*Re^0.5*Pr^(1/3);
-  // NOTE: kept as in the previous ThermoPower-based version, which multiplied by the dynamic viscosity.
-  // The dimensionally consistent form would use the thermal conductivity k instead of mu.
-  alpha = Nu*mu/Dhyd;
+  alpha = Nu*k/Dhyd;
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)));
 end HeatTransferCoefficientCalculator;
