@@ -9,7 +9,7 @@ the type name changed when they are migrated.
 </p>
 <ul>
 <li><code>GasFlangeA/B</code> extend <code>Modelica.Fluid.Interfaces.FluidPort</code>, so they can be
-connected directly to Modelica.Fluid components and (during the migration) to ThermoPower gas flanges.</li>
+connected directly to Modelica.Fluid components.</li>
 <li><code>HT</code> extends <code>Modelica.Thermal.HeatTransfer.Interfaces.HeatPort</code>
 (variables <code>T</code> and <code>Q_flow</code>).</li>
 <li><code>DHTVolumes</code> is a distributed heat port with one temperature <code>T[N]</code> and one heat flow

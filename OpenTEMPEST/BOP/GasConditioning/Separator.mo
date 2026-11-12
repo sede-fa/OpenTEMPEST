@@ -24,7 +24,7 @@ model Separator "Separator with metal walls for gas flows"
   parameter Boolean allowFlowReversal=system.allowFlowReversal
     "= true to allow flow reversal, false restricts to design direction"
     annotation(Evaluate=true);
-  outer ThermoPower.System system "System wide properties";
+  outer OpenTEMPEST.System system "System wide properties";
   parameter Medium.AbsolutePressure pstart=1e5 "Pressure start value"
     annotation (Dialog(tab="Initialisation"));
   parameter Medium.Temperature Tstart=300 "Temperature start value"
@@ -33,7 +33,7 @@ model Separator "Separator with metal walls for gas flows"
     "Start gas composition" annotation (Dialog(tab="Initialisation"));
   parameter Medium.Temperature Tmstart=Tstart "Metal wall start temperature"
     annotation (Dialog(tab="Initialisation"));
-  parameter ThermoPower.Choices.Init.Options initOpt=system.initOpt
+  parameter OpenTEMPEST.Enumerations.InitOptions initOpt=system.initOpt
     "Initialisation option"
     annotation (Dialog(tab="Initialisation"));
   parameter Boolean noInitialPressure=false
@@ -125,9 +125,9 @@ equation
     "Residence time";
 initial equation
   // Initial conditions
-  if initOpt == ThermoPower.Choices.Init.Options.noInit then
+  if initOpt == OpenTEMPEST.Enumerations.InitOptions.noInit then
     // do nothing
-  elseif initOpt == ThermoPower.Choices.Init.Options.fixedState then
+  elseif initOpt == OpenTEMPEST.Enumerations.InitOptions.fixedState then
     if not noInitialPressure then
       gas.p = pstart;
     end if;
@@ -138,7 +138,7 @@ initial equation
     if (Cm > 0 and gamma > 0) then
       Tm  = Tmstart;
     end if;
-  elseif initOpt == ThermoPower.Choices.Init.Options.steadyState then
+  elseif initOpt == OpenTEMPEST.Enumerations.InitOptions.steadyState then
     if not noInitialPressure then
       der(gas.p) = 0;
     end if;
@@ -149,7 +149,7 @@ initial equation
     if (Cm > 0 and gamma > 0) then
       der(Tm) = 0;
     end if;
-  elseif initOpt == ThermoPower.Choices.Init.Options.steadyStateNoP then
+  elseif initOpt == OpenTEMPEST.Enumerations.InitOptions.steadyStateNoP then
     if not noInitialTemperature then
       der(gas.T) = 0;
     end if;

@@ -1,17 +1,19 @@
 within OpenTEMPEST;
 model System "System-wide properties (add one at the top level of every simulation model)"
-  // TEMPORARY: extends ThermoPower.System so that one `inner OpenTEMPEST.System system` also satisfies the
-  // ThermoPower water components (BOP) that have not been migrated yet. When the last ThermoPower
-  // component is gone, replace the extends clause by the parameters
-  // allowFlowReversal, p_amb, T_amb and initOpt (type OpenTEMPEST.Enumerations.InitOptions).
-  extends ThermoPower.System;
+  extends Modelica.Fluid.System;
+  parameter Modelica.SIunits.Frequency fnom=50 "Nominal grid frequency (Electrical package)";
+  parameter OpenTEMPEST.Enumerations.InitOptions initOpt=OpenTEMPEST.Enumerations.InitOptions.noInit
+    "Default initialisation option for OpenTEMPEST components that support it";
+  final parameter Modelica.SIunits.Temperature T_amb=T_ambient "Ambient temperature (alias of T_ambient)";
+  final parameter Modelica.SIunits.AbsolutePressure p_amb=p_ambient "Ambient pressure (alias of p_ambient)";
   annotation (
     defaultComponentName="system",
     defaultComponentPrefixes="inner",
     missingInnerMessage="No \"system\" component is defined. Drag OpenTEMPEST.System into the top level of your model.",
     Documentation(info="<html>
-<p>Provides <code>allowFlowReversal</code>, <code>p_amb</code>, <code>T_amb</code> and <code>initOpt</code> as
-<code>outer system</code> to all components. Currently still based on <code>ThermoPower.System</code> (see the
-comment in the source); it becomes a standalone model when ThermoPower is removed.</p>
+<p>System object for OpenTEMPEST. It extends <code>Modelica.Fluid.System</code>, so a single
+<code>inner OpenTEMPEST.System system</code> also satisfies every Modelica.Fluid component. It adds the nominal grid frequency
+<code>fnom</code> (used by <code>Electrical</code>), the default initialisation option <code>initOpt</code>, and the aliases
+<code>T_amb</code> and <code>p_amb</code> that ThermoPower models used.</p>
 </html>"));
 end System;

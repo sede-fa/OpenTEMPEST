@@ -10,8 +10,8 @@ equation
   inlet.m_flow + outlet.m_flow = 0;
   inlet.p = outlet.p;
   gas.p = inlet.p;
-  gas.h = actualStream(inlet.h_outflow);
-  gas.Xi = actualStream(inlet.Xi_outflow);
+  gas.h = inStream(inlet.h_outflow);
+  gas.Xi = inStream(inlet.Xi_outflow);
   T = gas.T;
   annotation (Documentation(info="<html>
 <p>Temperature sensor in the flow path (no pressure drop, no storage). Replaces <code>ThermoPower.Gas.SensT</code>.</p>

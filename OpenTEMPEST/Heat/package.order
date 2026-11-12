@@ -33,3 +33,5 @@ HeatSource2DNonUniformFV
 ConvHTFV
 HeatSource1DNonUniformFV
 HeatSource1DFV
+HT_DHTVolumes
+MetalWallFV

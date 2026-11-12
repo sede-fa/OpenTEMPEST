@@ -1,7 +1,7 @@
 within OpenTEMPEST.BOP.GasConditioning;
 model ExpansionTank "Header with metal walls for water/steam flows"
-  extends ThermoPower.Icons.Water.Header;
-  replaceable package Medium = ThermoPower.Water.StandardWater constrainedby Modelica.Media.Interfaces.PartialMedium
+  extends OpenTEMPEST.Icons.WaterHeader;
+  replaceable package Medium = Modelica.Media.Water.StandardWater constrainedby Modelica.Media.Interfaces.PartialMedium
                                             "Medium model"
     annotation(choicesAllMatching = true);
   Medium.ThermodynamicState fluidState "Thermodynamic state of the fluid";
@@ -16,20 +16,20 @@ model ExpansionTank "Header with metal walls for water/steam flows"
   parameter Boolean allowFlowReversal=system.allowFlowReversal
     "= true to allow flow reversal, false restricts to design direction"
     annotation(Evaluate=true);
-  outer ThermoPower.System system "System wide properties";
-  parameter ThermoPower.Choices.FluidPhase.FluidPhases FluidPhaseStart=ThermoPower.Choices.FluidPhase.FluidPhases.Liquid
+  outer OpenTEMPEST.System system "System wide properties";
+  parameter OpenTEMPEST.Enumerations.FluidPhases FluidPhaseStart=OpenTEMPEST.Enumerations.FluidPhases.Liquid
     "Fluid phase (only for initialization!)"
     annotation (Dialog(tab="Initialisation"));
   parameter Medium.AbsolutePressure pstart "Pressure start value"
     annotation (Dialog(tab="Initialisation"));
-  parameter Medium.SpecificEnthalpy hstart=if FluidPhaseStart == ThermoPower.Choices.FluidPhase.FluidPhases.Liquid
-       then 1e5 else if FluidPhaseStart == ThermoPower.Choices.FluidPhase.FluidPhases.Steam
+  parameter Medium.SpecificEnthalpy hstart=if FluidPhaseStart == OpenTEMPEST.Enumerations.FluidPhases.Liquid
+       then 1e5 else if FluidPhaseStart == OpenTEMPEST.Enumerations.FluidPhases.Steam
        then 3e6 else 1e6 "Specific enthalpy start value"
     annotation (Dialog(tab="Initialisation"));
   parameter Medium.Temperature Tmstart=300
     "Metal wall temperature start value"
     annotation (Dialog(tab="Initialisation"));
-  parameter ThermoPower.Choices.Init.Options initOpt=system.initOpt
+  parameter OpenTEMPEST.Enumerations.InitOptions initOpt=system.initOpt
     "Initialisation option"
     annotation (Dialog(tab="Initialisation"));
   parameter Boolean noInitialPressure=false
@@ -39,13 +39,13 @@ model ExpansionTank "Header with metal walls for water/steam flows"
     "Remove initial equation on enthalpy"
     annotation (Dialog(tab="Initialisation"),choices(checkBox=true));
 
-  ThermoPower.Water.FlangeA inlet(
+  Modelica.Fluid.Interfaces.FluidPort_a inlet(
     h_outflow(start=hstart),
     redeclare package Medium = Medium,
     m_flow(min=if allowFlowReversal then -Modelica.Constants.inf else 0))
     annotation (Placement(transformation(extent={{-122,-20},{-80,20}}, rotation=
            0)));
-  ThermoPower.Water.FlangeB outlet(
+  Modelica.Fluid.Interfaces.FluidPort_b outlet(
     h_outflow(start=hstart),
     redeclare package Medium = Medium,
     m_flow(max=if allowFlowReversal then +Modelica.Constants.inf else 0))
@@ -111,9 +111,9 @@ equation
     "Residence time";
 initial equation
   // Initial conditions
-  if initOpt == ThermoPower.Choices.Init.Options.noInit then
+  if initOpt == OpenTEMPEST.Enumerations.InitOptions.noInit then
     // do nothing
-  elseif initOpt == ThermoPower.Choices.Init.Options.fixedState then
+  elseif initOpt == OpenTEMPEST.Enumerations.InitOptions.fixedState then
     if not noInitialPressure then
       p = pstart;
     end if;
@@ -123,7 +123,7 @@ initial equation
     if (Cm > 0 and gamma > 0) then
       Tm = Tmstart;
     end if;
-  elseif initOpt == ThermoPower.Choices.Init.Options.steadyState then
+  elseif initOpt == OpenTEMPEST.Enumerations.InitOptions.steadyState then
     if not noInitialEnthalpy then
       der(h) = 0;
     end if;
@@ -133,7 +133,7 @@ initial equation
     if (Cm > 0 and gamma > 0) then
       der(Tm) = 0;
     end if;
-  elseif initOpt == ThermoPower.Choices.Init.Options.steadyStateNoP then
+  elseif initOpt == OpenTEMPEST.Enumerations.InitOptions.steadyStateNoP then
     if not noInitialEnthalpy then
       der(h) = 0;
     end if;

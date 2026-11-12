@@ -24,9 +24,9 @@ model Compressor
   OpenTEMPEST.Interfaces.GasFlangeB outlet(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{80,-10},{100,10}})));
 
-  ThermoPower.Electrical.Load load(Pnom=10000, usePowerInput=true)
+  OpenTEMPEST.Electrical.Load load(Pnom=10000, usePowerInput=true)
     annotation (Placement(transformation(extent={{-10,40},{10,60}})));
-  ThermoPower.Electrical.PowerConnection powerConnection
+  OpenTEMPEST.Interfaces.PowerConnection powerConnection
     annotation (Placement(transformation(extent={{-40,60},{-20,80}}),
         iconTransformation(extent={{-40,60},{-20,80}})));
   OpenTEMPEST.Interfaces.HT heatLosses

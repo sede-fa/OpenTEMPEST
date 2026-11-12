@@ -34,12 +34,12 @@ model MeOHReactorSystem
   Compressor compressor2(redeclare package Medium =
         OpenTEMPEST.Medium.Fuel_MethanolReactor)
     annotation (Placement(transformation(extent={{16,32},{36,12}})));
-  ThermoPower.Electrical.Grid grid(Pgrid=999999999) annotation (Placement(
+  OpenTEMPEST.Electrical.Grid grid(Pgrid=999999999) annotation (Placement(
         transformation(
         extent={{7,-7},{-7,7}},
         rotation=90,
         origin={19,-1})));
-  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature fixedTemperature(T=system.T_amb)
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature fixedTemperature(T=system.T_ambient)
                       annotation (Placement(transformation(
         extent={{-6,6},{6,-6}},
         rotation=90,
@@ -68,13 +68,13 @@ model MeOHReactorSystem
   Compressor compressor1(eta=0.9, redeclare package Medium =
         OpenTEMPEST.Medium.Fuel_MethanolReactor)
     annotation (Placement(transformation(extent={{-38,-12},{-18,-32}})));
-  ThermoPower.Electrical.Grid grid1(Pgrid=999999999)
+  OpenTEMPEST.Electrical.Grid grid1(Pgrid=999999999)
                                                     annotation (Placement(
         transformation(
         extent={{7,-7},{-7,7}},
         rotation=90,
         origin={-37,-43})));
-  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature fixedTemperature1(T=system.T_amb)
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature fixedTemperature1(T=system.T_ambient)
                       annotation (Placement(transformation(
         extent={{-6,6},{6,-6}},
         rotation=90,
@@ -222,8 +222,8 @@ model MeOHReactorSystem
         OpenTEMPEST.Medium.Fuel_MethanolReactor) annotation (Placement(
         transformation(extent={{-114,38},{-94,58}}), iconTransformation(extent=
             {{-122,-6},{-94,22}})));
-  ThermoPower.Water.FlangeB outflWater(redeclare package Medium =
-        ThermoPower.Water.StandardWater) annotation (Placement(transformation(
+  Modelica.Fluid.Interfaces.FluidPort_b outflWater(redeclare package Medium =
+        Modelica.Media.Water.StandardWater) annotation (Placement(transformation(
           extent={{-66,-102},{-46,-82}}),iconTransformation(extent={{-74,-110},
             {-46,-82}})));
   OpenTEMPEST.Interfaces.GasFlangeB outflPurge(redeclare package Medium =

@@ -30,8 +30,8 @@ model LiquidSeparator
   OpenTEMPEST.Interfaces.GasFlangeB outflGas(redeclare package Medium = GasMix) "Outlet port connector of gas mixture stream leaving separator"  annotation (Placement(transformation(
           extent={{60,10},{100,50}}), iconTransformation(extent={{60,10},{
             100,50}})));
-  ThermoPower.Water.FlangeB outflLiquid(redeclare package Medium =
-        ThermoPower.Water.StandardWater)                                                            "Outlet port connector of single component gas stream leaving separator"  annotation (Placement(transformation(extent={{60,-50},{100,-10}}),
+  Modelica.Fluid.Interfaces.FluidPort_b outflLiquid(redeclare package Medium =
+        Modelica.Media.Water.StandardWater)                                                            "Outlet port connector of single component gas stream leaving separator"  annotation (Placement(transformation(extent={{60,-50},{100,-10}}),
         iconTransformation(extent={{60,-50},{100,-10}})));
 
     OpenTEMPEST.Interfaces.HT hT annotation (Placement(transformation(extent={{-16,60},

@@ -52,7 +52,7 @@ model SimplifiedStackTest
   OpenTEMPEST.Flow.SinkPressure sinkFuel(redeclare package Medium =
         OpenTEMPEST.Medium.Fuel_CH4,                                                            p0=pStart)
     annotation (Placement(transformation(extent={{88,32},{108,52}}, rotation=0)));
-  ThermoPower.Electrical.Grid grid(Pgrid=55555555555) annotation (Placement(transformation(extent={{-82,-36},{-62,-16}})));
+  OpenTEMPEST.Electrical.Grid grid(Pgrid=55555555555) annotation (Placement(transformation(extent={{-82,-36},{-62,-16}})));
 equation
   // Flanges connections
 

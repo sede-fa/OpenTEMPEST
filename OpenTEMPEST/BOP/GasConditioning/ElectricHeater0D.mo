@@ -48,7 +48,7 @@ protected
     TOutput=true,
     rhoOutput=false)
     annotation (Placement(transformation(extent={{62,34},{82,54}})));
-  ThermoPower.Electrical.Load load(Pnom=5000, usePowerInput=true)
+  OpenTEMPEST.Electrical.Load load(Pnom=5000, usePowerInput=true)
     annotation (Placement(transformation(extent={{34,84},{14,104}})));
 public
   Modelica.Blocks.Interfaces.RealInput in_TSet(unit="K")
@@ -61,7 +61,7 @@ public
   OpenTEMPEST.Interfaces.GasFlangeA fl_inlet(redeclare package Medium = Medium)
     annotation (Placement(transformation(rotation=0, extent={{-100,0},{-80,20}}),
         iconTransformation(extent={{-120,-20},{-80,20}})));
-  ThermoPower.Electrical.PowerConnection powerConnection annotation (Placement(
+  OpenTEMPEST.Interfaces.PowerConnection powerConnection annotation (Placement(
         transformation(rotation=0, extent={{0,60},{20,80}}), iconTransformation(
           extent={{-20,40},{20,80}})));
   OpenTEMPEST.Interfaces.GasFlangeB fl_outlet(redeclare package Medium =

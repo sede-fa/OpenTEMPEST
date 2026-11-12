@@ -12,7 +12,7 @@ model SimpleGasHeaterVol
   OpenTEMPEST.Interfaces.HT ht annotation (Placement(transformation(extent={{-10,54},
             {10,74}}), iconTransformation(extent={{-20,20},{20,60}})));
 
-  ThermoPower.Gas.Plenum plenum(
+  OpenTEMPEST.Flow.Plenum plenum(
     redeclare package Medium = medium,
     V=ACS*l,
     pstart=pStart,

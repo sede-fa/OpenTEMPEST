@@ -44,10 +44,10 @@ model FanSimple
         origin={-40,76},
         extent={{-10,-10},{10,10}},
         rotation=270)));
-  ThermoPower.Electrical.PowerConnection powerConnection annotation (Placement(
+  OpenTEMPEST.Interfaces.PowerConnection powerConnection annotation (Placement(
         transformation(extent={{-10,80},{10,100}}), iconTransformation(extent={{
             -10,80},{10,100}})));
-  ThermoPower.Electrical.Load load(Pnom=1, usePowerInput=true)
+  OpenTEMPEST.Electrical.Load load(Pnom=1, usePowerInput=true)
     annotation (Placement(transformation(extent={{-10,46},{10,66}})));
   Modelica.Blocks.Sources.RealExpression realExpression(y=P)
     annotation (Placement(transformation(extent={{-28,46},{-8,66}})));

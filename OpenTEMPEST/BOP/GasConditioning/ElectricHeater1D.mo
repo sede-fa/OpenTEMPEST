@@ -48,7 +48,7 @@ model ElectricHeater1D
     LUDS=LUDS,
     internalHT=false)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
-  ThermoPower.Electrical.Load load(Pnom(displayUnit="kW") = 5000, usePowerInput=
+  OpenTEMPEST.Electrical.Load load(Pnom(displayUnit="kW") = 5000, usePowerInput=
        true) annotation (Placement(transformation(extent={{56,58},{76,38}})));
 public
   OpenTEMPEST.Heat.HeatSource1DFV heatSource1DFV(final Nw=N)
@@ -66,7 +66,7 @@ public
         extent={{-10,10},{10,-10}},
         rotation=-90,
         origin={0,38})));
-  ThermoPower.Electrical.PowerConnection port annotation (Placement(
+  OpenTEMPEST.Interfaces.PowerConnection port annotation (Placement(
         transformation(rotation=0, extent={{40,-50},{60,-30}})));
   OpenTEMPEST.Interfaces.DHTVolumes heatloss(final N=N) annotation (Placement(
         transformation(extent={{-4,-40},{6,-30}}), iconTransformation(

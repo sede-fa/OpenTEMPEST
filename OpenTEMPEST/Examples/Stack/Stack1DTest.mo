@@ -44,7 +44,7 @@ model Stack1DTest "Simple example model using the model Stack1D, adiabatic"
     use_in_p0=false) annotation (Placement(transformation(extent={{88,-58},{108,-38}},rotation=0)));
   OpenTEMPEST.Flow.SinkPressure sinkFuel(redeclare package Medium = OpenTEMPEST.Medium.Fuel_CH4, p0=pStart)
     annotation (Placement(transformation(extent={{88,32},{108,52}}, rotation=0)));
-  ThermoPower.Electrical.Grid grid(Pgrid=55555555555) annotation (Placement(transformation(extent={{-82,-36},{-62,-16}})));
+  OpenTEMPEST.Electrical.Grid grid(Pgrid=55555555555) annotation (Placement(transformation(extent={{-82,-36},{-62,-16}})));
   Blocks.Sources.MultiRamp currentRamp(
     n=3,
     height=fill(-15, currentRamp.n),

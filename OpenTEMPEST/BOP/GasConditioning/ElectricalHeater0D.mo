@@ -34,7 +34,7 @@ model ElectricalHeater0D
     pipe=true,
     nParallel=nHeatingElements)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
-  ThermoPower.Electrical.PowerConnection powerConnection
+  OpenTEMPEST.Interfaces.PowerConnection powerConnection
     annotation (Placement(transformation(extent={{40,60},{60,80}}),
         iconTransformation(extent={{20,40},{60,80}})));
   Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow
@@ -42,7 +42,7 @@ model ElectricalHeater0D
         extent={{-10,-10},{10,10}},
         rotation=-90,
         origin={0,30})));
-  ThermoPower.Electrical.Load load(Pnom=Pnom,
+  OpenTEMPEST.Electrical.Load load(Pnom=Pnom,
                                    usePowerInput=true)
     annotation (Placement(transformation(extent={{16,40},{36,60}})));
   Modelica.Blocks.Interfaces.RealInput power
