@@ -127,10 +127,10 @@ equation
   end if;
 
   if in_I_internal >= 0 then
-    out_z = sum(zFC * Y);
+    out_z = zFC * Y;
     IForDosing = if in_I_internal < minCurrentForDosing and not doseFGUnderIMin then minCurrentForDosing else in_I_internal;
   else
-    out_z = sum(zEC * Y);
+    out_z = zEC * Y;
     IForDosing = if abs(in_I_internal) < minCurrentForDosing and not doseFGUnderIMin then -minCurrentForDosing else in_I_internal;
   end if;
 

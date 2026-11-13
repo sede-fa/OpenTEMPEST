@@ -40,8 +40,8 @@ model FuelFlowControl
   Medium.MassFraction X[Medium.nX];
   Medium.MassFraction XFG[Medium.nX];
   Medium.MassFlowRate wFG "FG mass flow rate";
-  Medium.MolarMass MM = sum(Y*Medium.MMX);
-  Medium.MolarMass MMFG = sum(YFG*Medium.MMX);
+  Medium.MolarMass MM = Y*Medium.MMX;
+  Medium.MolarMass MMFG = YFG*Medium.MMX;
 
   parameter Real zFC[Medium.nX] = {2,8,0,2,0,0};
   parameter Real zEC[Medium.nX] = {0,-4,2,0,2,0};
@@ -100,10 +100,10 @@ protected
 equation
 
   if in_I_internal >= 0 then
-    out_z = sum(zFC * Y);
+    out_z = zFC * Y;
     IForDosing = if in_I_internal < minCurrentForDosing and not doseFGUnderIMin then minCurrentForDosing else in_I_internal;
   else
-    out_z = sum(zEC * Y);
+    out_z = zEC * Y;
     IForDosing = if abs(in_I_internal) < minCurrentForDosing and not doseFGUnderIMin then -minCurrentForDosing else in_I_internal;
   end if;
 

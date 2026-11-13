@@ -232,7 +232,7 @@ equation
                    sum(dhtInlet.Q) + sum(htPlatesInlet.Q_flow) + sum(dhtOutlet.Q) + sum(htPlatesOutlet.Q_flow);
 
   // Electrochemical reaction gas side
-  z = if I >= 0 then sum(zFC * sensFuelIn.y) else sum(zEC * sensFuelIn.y);
+  z = if I >= 0 then zFC * sensFuelIn.y else zEC * sensFuelIn.y;
   RC = if z>eps then abs(I)*nCells*nParallel/z/Modelica.Constants.F / (sensFuelIn.mf/sensFuelIn.M + 1e-19) else 0;
   YOutGuess[1] = if I>=0 then sensFuelIn.y[1]*(1-RC) else sensFuelIn.y[1]+sensFuelIn.y[5]*RC;
   YOutGuess[2] = if I>=0 then sensFuelIn.y[2]*(1-RC) else 0;

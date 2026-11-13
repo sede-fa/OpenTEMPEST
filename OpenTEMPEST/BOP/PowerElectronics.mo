@@ -21,7 +21,7 @@ public
       Modelica.Electrical.Analog.Sources.SignalCurrent signalCurrent[nChannels] if not
     useVoltageInput                                                  annotation (
         Placement(transformation(extent={{-10,-10},{10,10}},  rotation=0,    origin={0,0})));
-      Modelica.Blocks.Interfaces.RealInput currentInput[nChannels](unit="A")
+      Modelica.Blocks.Interfaces.RealInput currentInput[nChannels](each unit="A")
                                                                    if not
     useVoltageInput
     "The set current"                                              annotation (Placement(

@@ -12,7 +12,7 @@ block AddX "Output the sum of the X inputs"
     annotation (Placement(transformation(extent={{100,-10},{120,10}})));
 
 equation
-  y = sum(k*u);
+  y = k*u;
   annotation (
     Documentation(info="<html>
 <p>

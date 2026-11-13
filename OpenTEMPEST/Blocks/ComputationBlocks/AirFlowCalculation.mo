@@ -63,10 +63,10 @@ protected
 
 equation
 
-  out_mfAirOU = max(mfMin,sum(Medium.MMX*YAir)*in_I_internal*nCells/4/Modelica.Constants.F/in_OU_internal/
+  out_mfAirOU = max(mfMin,(Medium.MMX*YAir)*in_I_internal*nCells/4/Modelica.Constants.F/in_OU_internal/
     YAir[1]); //
-  out_mfAirOutletO2 = max(mfMin,sum(Medium.MMX*YAir)*in_I_internal*nCells/4/Modelica.Constants.F * (in_yO2Out_internal-1)/(in_yO2Out_internal-YAir[1]));
-  out_mfAirLambdaSF = max(mfMin,sum(Medium.MMX*YAir)*abs(in_I_internal)*nCells/in_zFuel_internal/Modelica.Constants.F * in_lambdaSF_internal);
+  out_mfAirOutletO2 = max(mfMin,(Medium.MMX*YAir)*in_I_internal*nCells/4/Modelica.Constants.F * (in_yO2Out_internal-1)/(in_yO2Out_internal-YAir[1]));
+  out_mfAirLambdaSF = max(mfMin,(Medium.MMX*YAir)*abs(in_I_internal)*nCells/in_zFuel_internal/Modelica.Constants.F * in_lambdaSF_internal);
 
   if not use_in_I then
     in_I_internal = I0 "Current set by parameter";

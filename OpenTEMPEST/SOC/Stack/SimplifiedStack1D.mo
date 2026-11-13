@@ -360,8 +360,8 @@ equation
       massSum = fuelIn.m_flow + fuelOut.m_flow + airIn.m_flow + airOut.m_flow;
 
   // simplification voltage and temperature
-  flowInterpolator.TOutAirSimp = sum(sum(simplifiedCellBlock[j].simpFlowInfoPortOut[N].TAir.*nCellVertMult[j,N] for j in 1:nSimpMult))/Ncell+sum(detailedCells.airChannel.Gas[N].T)/Ncell;
-  flowInterpolator.TOutFuelSimp = sum(sum(simplifiedCellBlock[j].simpFlowInfoPortOut[N].TFuel.*nCellVertMult[j,N] for j in 1:nSimpMult))/Ncell+sum(detailedCells.fuelChannel.hTNi_xN.T)/Ncell;
+  flowInterpolator.TOutAirSimp = sum(simplifiedCellBlock[j].simpFlowInfoPortOut[N].TAir*nCellVertMult[j,N] for j in 1:nSimpMult)/Ncell+sum(detailedCells.airChannel.Gas[N].T)/Ncell;
+  flowInterpolator.TOutFuelSimp = sum(simplifiedCellBlock[j].simpFlowInfoPortOut[N].TFuel*nCellVertMult[j,N] for j in 1:nSimpMult)/Ncell+sum(detailedCells.fuelChannel.hTNi_xN.T)/Ncell;
 
   // pass information to activeBlocks
   for j in 1:nSimpMult loop
