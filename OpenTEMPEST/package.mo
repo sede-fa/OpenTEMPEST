@@ -166,8 +166,8 @@ describes the models you used.</p>
 <li>J. Hollmann et al. 2026. Improving low-load efficiency of marine SOFC powertrains by means of efficient
     module hot standby operation. <em>J. Electrochem. Soc.</em> 173, 124503.
     <a href=\"https://doi.org/10.1149/1945-7111/ae7479\">doi:10.1149/1945-7111/ae7479</a></li>
-<li>Control concept for solid oxide electrolysis reactors to promote highly transient operation in modular
-    plants. 2025. <em>Energy Convers. Manag. X</em>.
+<li>R. Lorenz et al. 2025. Control concept for solid oxide electrolysis reactors to promote highly transient
+    operation in modular plants. <em>Energy Convers. Manag. X</em> 28, 101236.
     <a href=\"https://doi.org/10.1016/j.ecmx.2025.101236\">doi:10.1016/j.ecmx.2025.101236</a></li>
 <li>F. Sedeqi et al. 2024. Solid oxide cell reactor model for transient and stationary electrochemical H2O and
     CO2 conversion process studies. <em>J. Electrochem. Soc.</em> 171, 074507.
@@ -181,8 +181,8 @@ describes the models you used.</p>
 <li>M. Tomberg et al. 2022. Operation of a solid oxide fuel cell reactor with multiple stacks in a pressured system
     with fuel gas recirculation. <em>Energy Technol.</em> 10.
     <a href=\"https://doi.org/10.1002/ente.202101075\">doi:10.1002/ente.202101075</a></li>
-<li>Transient reversible solid oxide cell reactor operation: experimentally validated modeling and analysis. 2018.
-    <em>Appl. Energy</em>. <a href=\"https://doi.org/10.1016/j.apenergy.2018.09.186\">doi:10.1016/j.apenergy.2018.09.186</a></li>
+<li>S. Srikanth et al. 2018. Transient reversible solid oxide cell reactor operation: experimentally validated
+    modeling and analysis. <em>Appl. Energy</em> 232, 473-488. <a href=\"https://doi.org/10.1016/j.apenergy.2018.09.186\">doi:10.1016/j.apenergy.2018.09.186</a></li>
 </ul>
 </html>"));
     end References;

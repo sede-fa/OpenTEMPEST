@@ -191,12 +191,12 @@ First public release of OpenTEMPEST, based on the Modelica Standard Library 3.2.
 If you use OpenTEMPEST in your work, please cite the software ([doi:10.5281/zenodo.21771899](https://doi.org/10.5281/zenodo.21771899)) and the publication that describes the models you used.
 
 - J. Hollmann et al. 2026. Improving low-load efficiency of marine SOFC powertrains by means of efficient module hot standby operation. *J. Electrochem. Soc.* 173, 124503. [doi:10.1149/1945-7111/ae7479](https://doi.org/10.1149/1945-7111/ae7479)
-- Control concept for solid oxide electrolysis reactors to promote highly transient operation in modular plants. 2025. *Energy Convers. Manag. X*. [doi:10.1016/j.ecmx.2025.101236](https://doi.org/10.1016/j.ecmx.2025.101236)
+- R. Lorenz et al. 2025. Control concept for solid oxide electrolysis reactors to promote highly transient operation in modular plants. *Energy Convers. Manag. X* 28, 101236. [doi:10.1016/j.ecmx.2025.101236](https://doi.org/10.1016/j.ecmx.2025.101236)
 - F. Sedeqi et al. 2024. Solid oxide cell reactor model for transient and stationary electrochemical H2O and CO2 conversion process studies. *J. Electrochem. Soc.* 171, 074507. [doi:10.1149/1945-7111/ad5e01](https://doi.org/10.1149/1945-7111/ad5e01)
 - M. Tomberg et al. 2023. Operation strategies for a flexible megawatt scale electrolysis system for synthesis gas and hydrogen production with direct air capture of carbon dioxide. *Sustainable Energy Fuels* 7(2), 471-484. [doi:10.1039/d2se01473d](https://doi.org/10.1039/d2se01473d)
 - M. Tomberg et al. 2022. A new approach to modeling solid oxide cell reactors with multiple stacks for process system simulation. *J. Electrochem. Soc.* 169, 054530. [doi:10.1149/1945-7111/ac7009](https://doi.org/10.1149/1945-7111/ac7009)
 - M. Tomberg et al. 2022. Operation of a solid oxide fuel cell reactor with multiple stacks in a pressured system with fuel gas recirculation. *Energy Technol.* 10. [doi:10.1002/ente.202101075](https://doi.org/10.1002/ente.202101075)
-- Transient reversible solid oxide cell reactor operation: experimentally validated modeling and analysis. 2018. *Appl. Energy*. [doi:10.1016/j.apenergy.2018.09.186](https://doi.org/10.1016/j.apenergy.2018.09.186)
+- S. Srikanth et al. 2018. Transient reversible solid oxide cell reactor operation: experimentally validated modeling and analysis. *Appl. Energy* 232, 473-488. [doi:10.1016/j.apenergy.2018.09.186](https://doi.org/10.1016/j.apenergy.2018.09.186)
 
 [Back to top](#opentempestusersguide)
 
