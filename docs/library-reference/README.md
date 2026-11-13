@@ -9,6 +9,7 @@ The pages are generated from the Modelica source and the Dymola documentation ex
 [Back to the documentation index](../../README.md#documentation-index)
 
 - [**OpenTEMPEST**](OpenTEMPEST.md) — Transient Electrochemical Model for Process and Energy SysTems
+  - [**UsersGuide**](OpenTEMPEST_UsersGuide.md) — User's Guide
   - [**Examples**](OpenTEMPEST_Examples.md) — Example models showing how to use the library
     - [**Cell**](OpenTEMPEST_Examples_Cell.md) — Cell level examples (to be added)
     - [**Stack**](OpenTEMPEST_Examples_Stack.md) — Stack level examples
@@ -27,9 +28,9 @@ The pages are generated from the Modelica source and the Dymola documentation ex
   - [**Solid**](OpenTEMPEST_Solid.md) — Temperature dependent thermophysical properties of solid materials
     - [**SolidMatBase**](OpenTEMPEST_Solid_SolidMatBase.md) — Base package for solid materials with temperature dependent rho, k and cp
     - [**Material**](OpenTEMPEST_Solid_Material.md) — Solid materials ready to use as SolidMat in solid models
+      - [**Steel**](OpenTEMPEST_Solid_Material_Steel.md) — Steel
       - [**Crofer22APU**](OpenTEMPEST_Solid_Material_Crofer22APU.md) — Crofer 22 APU ferritic interconnect steel
       - [**Custom**](OpenTEMPEST_Solid_Material_Custom.md) — Custom material with user defined constant properties
-      - [**Steel**](OpenTEMPEST_Solid_Material_Steel.md) — Steel
     - [**SolidMaterialsData**](OpenTEMPEST_Solid_SolidMaterialsData.md) — Coefficient records for the temperature dependent properties of solid materials
   - [**Flow**](OpenTEMPEST_Flow.md) — Gas flow components: 1D flow models, splitters, joiners, manifolds, sources and sensors
     - [**FluxInterpolators**](OpenTEMPEST_Flow_FluxInterpolators.md) — Differencing schemes for interpolating fluxes at control volume faces

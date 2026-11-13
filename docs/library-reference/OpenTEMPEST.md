@@ -6,8 +6,43 @@
 
 *Transient Electrochemical Model for Process and Energy SysTems*
 
+**OpenTEMPEST** (**T**ransient **E**lectrochemical **M**odel for **P**rocess and **E**nergy **S**ys**T**ems) is an open source Modelica library for the dynamic simulation of electrochemical energy systems, from a single cell to a complete plant. It covers high temperature solid oxide cells in fuel cell and electrolysis mode (SOFC/SOEC), and alkaline electrolysis (AEL) is in preparation.
+
+The library is built for steady-state and transient studies at process system level: part load and hot standby operation, start-up and shutdown, control concepts for fluctuating power, and the coupling of electrolysers or fuel cells to upstream and downstream processes. Validated simplifications at every modelling level let you scale from the cell to stacks and multi-stack modules without losing the thermal behaviour that limits real operation.
+
+### Highlights
+
+- Finite volume cell models in 1D (co-flow) and 2D (cross-flow) with PEN, gas channels and interconnects, including internal reforming and water gas shift in the fuel channel.
+- Replaceable electrochemistry: lumped ASR models or detailed Butler-Volmer models with ohmic and diffusion losses for steam, CO2 and co-electrolysis.
+- Stack models from a lumped 0D stack to stacks of 2D cells, and simplified stacks that resolve a few cells in detail and lump the rest.
+- Balance of plant components with off-design behaviour: heat exchangers, electric heaters, blowers, compressors, pre-reformers, afterburners, methanol synthesis and power electronics.
+
+### Package structure
+
+<table border="1" cellspacing="0" cellpadding="4">
+<tr><th>Package</th><th>Contents</th></tr>
+<tr><td><a href="OpenTEMPEST_UsersGuide.md">UsersGuide</a></td><td>Overview, getting started, conventions, release notes, publications, contact and license</td></tr>
+<tr><td><a href="OpenTEMPEST_Examples.md">Examples</a></td><td>Ready to run example models</td></tr>
+<tr><td><a href="OpenTEMPEST_SOC.md">SOC</a></td><td>Solid oxide cell models: electrochemistry, cells and stacks</td></tr>
+<tr><td><a href="OpenTEMPEST_BOP.md">BOP</a></td><td>Balance of plant components</td></tr>
+<tr><td><a href="OpenTEMPEST_Flow.md">Flow</a></td><td>Gas flow components: sources, splitters, manifolds and sensors</td></tr>
+<tr><td><a href="OpenTEMPEST_Heat.md">Heat</a></td><td>Solids and heat transfer</td></tr>
+<tr><td><a href="OpenTEMPEST_Blocks.md">Blocks</a></td><td>Signal sources, controllers and helper functions</td></tr>
+<tr><td><a href="OpenTEMPEST_Medium.md">Medium</a></td><td>Gas mixture media</td></tr>
+<tr><td><a href="OpenTEMPEST_Solid.md">Solid</a></td><td>Solid material properties</td></tr>
+<tr><td><a href="OpenTEMPEST_AEL.md">AEL</a></td><td>Alkaline electrolysis (in preparation)</td></tr>
+<tr><td><a href="OpenTEMPEST_Units.md">Units</a>, <a href="OpenTEMPEST_Enumerations.md">Enumerations</a></td><td>Types used across the library</td></tr>
+</table>
+
+### Where to start
+
+Read the [overview](OpenTEMPEST_UsersGuide.md#overview) of the modelling levels, then follow [getting started](OpenTEMPEST_UsersGuide.md#gettingstarted) to run [Stack1DTest](OpenTEMPEST_Examples_Stack.md#stack1dtest).
+
+Copyright © 2025, DLR-TT. Released under the BSD 3-Clause License, see [Contact and license](OpenTEMPEST_UsersGuide.md#contact).
+
 | | Class | Kind | Description |
 |---|---|---|---|
+|  | [UsersGuide](OpenTEMPEST_UsersGuide.md) | package | User's Guide |
 | ![](OpenTEMPEST.ExamplesS.png) | [Examples](OpenTEMPEST_Examples.md) | package | Example models showing how to use the library |
 |  | [Blocks](OpenTEMPEST_Blocks.md) | package | Signal blocks, sources and helper functions for control and post-processing |
 |  | [Medium](OpenTEMPEST_Medium.md) | package | Ideal gas mixture media used in OpenTEMPEST |

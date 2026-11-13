@@ -341,12 +341,12 @@ class Html2Md(HTMLParser):
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
         if self.table is not None:
-            self.table.append(self.get_starttag_text())
+            self.table.append(self.table_tag(tag, attrs))
             if tag == "table":
                 self.skip += 1
             return
         if tag == "table":
-            self.table = [self.get_starttag_text()]
+            self.table = [self.table_tag(tag, attrs)]
             self.skip = 1
         elif tag in ("html", "body", "head", "span", "font", "c"):
             pass
@@ -389,6 +389,14 @@ class Html2Md(HTMLParser):
             src = a.get("src", "")
             if not src.startswith("modelica://"):
                 self.w("![%s](%s)" % (a.get("alt", ""), src))
+
+    def table_tag(self, tag, attrs):
+        """Start tag inside a raw HTML table, with modelica:// links turned into page links."""
+        if tag == "a":
+            href = dict(attrs).get("href", "")
+            target = self.link_fn(href) if href else None
+            return '<a href="%s">' % html.escape(target, quote=True) if target else "<a>"
+        return self.get_starttag_text()
 
     def handle_endtag(self, tag):
         if self.table is not None:
@@ -683,7 +691,11 @@ def children(full, site):
     pref = full + "."
     kids = [k for k in site.src if k.startswith(pref) and "." not in k[len(pref):]]
     order = package_order(full, site)
-    kids.sort(key=lambda k: (order.index(k.rsplit(".", 1)[1]) if k.rsplit(".", 1)[1] in order else 999, k.lower()))
+    if order:
+        kids.sort(key=lambda k: (order.index(k.rsplit(".", 1)[1]) if k.rsplit(".", 1)[1] in order else 999, k.lower()))
+    else:
+        # nested classes: keep the order of the source file
+        kids.sort(key=lambda k: (site.src[k]["file"], site.src[k]["_start"]))
     return kids
 
 
@@ -692,7 +704,9 @@ def package_order(full, site):
     if not c:
         return []
     po = os.path.join(SRC, os.path.dirname(c["file"]), "package.order")
-    if c["file"].endswith("package.mo") and os.path.exists(po):
+    d = os.path.dirname(c["file"])
+    owns_dir = full == LIB if d == "" else full.endswith("." + os.path.basename(d))
+    if c["file"].endswith("package.mo") and owns_dir and os.path.exists(po):
         return [l.strip() for l in read_text(po).splitlines() if l.strip()]
     return []
 

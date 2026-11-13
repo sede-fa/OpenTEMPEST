@@ -8,6 +8,6 @@
 
 | | Class | Kind | Description |
 |---|---|---|---|
+|  | [Steel](OpenTEMPEST_Solid_Material_Steel.md) | package | Steel |
 |  | [Crofer22APU](OpenTEMPEST_Solid_Material_Crofer22APU.md) | package | Crofer 22 APU ferritic interconnect steel |
 |  | [Custom](OpenTEMPEST_Solid_Material_Custom.md) | package | Custom material with user defined constant properties |
-|  | [Steel](OpenTEMPEST_Solid_Material_Steel.md) | package | Steel |
