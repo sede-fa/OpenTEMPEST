@@ -1,7 +1,6 @@
 within OpenTEMPEST.BOP.GasConditioning;
 model CoolingCycle "Heat exchanger with integrated water cycle."
   import SI = Modelica.Units.SI;
-  import Medi = Modelica.Media.Interfaces.PartialMedium;
 
   replaceable package MediumHeating = Modelica.Media.Interfaces.PartialMedium
     annotation(choicesAllMatching = true);
@@ -17,8 +16,8 @@ model CoolingCycle "Heat exchanger with integrated water cycle."
   parameter SI.Distance DHeat = 0.05 "Heat tube diameter";
   parameter SI.Length omegaHeat = 0.157
     "Perimeter of heat transfer surface (single heat tube)";
-  parameter Medi.MassFlowRate wnomHeat = 0.1 "Heat Nominal mass flowrate (total)";
-  parameter Medi.MassFlowRate wnomCooling = 1 "Cooling Nominal mass flowrate (total)";
+  parameter SI.MassFlowRate wnomHeat = 0.1 "Heat Nominal mass flowrate (total)";
+  parameter SI.MassFlowRate wnomCooling = 1 "Cooling Nominal mass flowrate (total)";
 
   replaceable function flowCharacteristicPump =
       Modelica.Fluid.Machines.BaseClasses.PumpCharacteristics.baseFlow
