@@ -7,9 +7,9 @@
 
 
 Thank you for visiting. We're still working on the documentation!
-For now feel free to try out the models in your modelica enviornment (We have tested it with dymola so far)
+For now feel free to try out the models in your Modelica environment (We have tested it with dymola so far)
 
-**openTEMPEST** (**T**ransient **E**lectrochemical **M**odel for **P**rocess and **E**nergy **S**ys**T**ems) is an open-source Modelica/Dymola simulation framework for modeling and analyzing electrochemical systems at multiple scales from single cells to full integrated systems. The framwork enables the detailed investigation of steady-state and transient performance and allows a reliable extrapolation of cell to stack and multi-stack behavior. As of now, openTEMPEST covers high temperature solid oxide cell fuel cell and electrolysis (SOFC/SOEC) as well as alkaline electrolysis (AEL) systems. 
+**openTEMPEST** (**T**ransient **E**lectrochemical **M**odel for **P**rocess and **E**nergy **S**ys**T**ems) is an open-source Modelica/Dymola simulation framework for modeling and analyzing electrochemical systems at multiple scales from single cells to full integrated systems. The framework enables the detailed investigation of steady-state and transient performance and allows a reliable extrapolation of cell to stack and multi-stack behavior. As of now, openTEMPEST covers high temperature solid oxide cell fuel cell and electrolysis (SOFC/SOEC) as well as alkaline electrolysis (AEL) systems. 
 
 <!---
 **STILL MISSING:**
@@ -37,7 +37,9 @@ Click a topic below to dive deeper:
 
 - [Framework Structure & Modeling Levels](docs/FrameworkStructure.md)
 - [Package Installation and First Steps](docs/Installation.md)
-- [Common Workflows & Examples](docs/UserWorkflows.md)
+- [Common Workflows & Examples](docs/UserWorkflows.md): running examples, building cell, stack and system models, swapping the electrochemistry, extending the library
+- [Library Reference](docs/library-reference/README.md): every package, model and function with its parameters and connectors
+- [Writing Documentation](docs/DocumentationStyle.md): how to document models and regenerate the library reference
 
 
 ## List of Publications
