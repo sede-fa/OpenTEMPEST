@@ -30,11 +30,11 @@ protected
         origin={40,-30})));
 equation
   connect(hTs_DHT.DHT_port, DHTSingle) annotation (Line(points={{8.88178e-16,41},
-          {0,41},{0,70}}, color={255,127,0}));
+          {0,41},{0,70}}, color={191,0,0}));
   connect(hTs_DHT1.DHT_port, DHT1) annotation (Line(points={{-40,-41},{-56,-41},
-          {-56,-70},{-70,-70}}, color={255,127,0}));
+          {-56,-70},{-70,-70}}, color={191,0,0}));
   connect(hTs_DHT2.DHT_port, DHT2) annotation (Line(points={{40,-41},{60,-41},{60,
-          -50},{70,-50}}, color={255,127,0}));
+          -50},{70,-50}}, color={191,0,0}));
   connect(hTs_DHT.HT_ports[1:DHT1.N], hTs_DHT1.HT_ports[:]) annotation (Line(points={{-0.2,
           18},{-20,18},{-20,-18},{-40.2,-18}}, color={191,0,0}));
   connect(hTs_DHT.HT_ports[DHT1.N+1:n], hTs_DHT2.HT_ports[:]) annotation (Line(points={{-0.2,
@@ -42,11 +42,11 @@ equation
   annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={
         Line(
           points={{-30,40},{-50,-40}},
-          color={255,127,0},
+          color={191,0,0},
           thickness=1),
         Line(
           points={{30,40},{50,-40}},
-          color={255,127,0},
+          color={191,0,0},
           thickness=1),
         Text(
           textString="",

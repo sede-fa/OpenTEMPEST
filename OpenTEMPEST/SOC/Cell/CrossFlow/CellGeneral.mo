@@ -247,9 +247,9 @@ equation
           {-14,50.36},{-14,34.4},{0,34.4}}, color={0,0,0}));
     // Manifolds - Channels
     connect(manifoldFuel.ports_b, fuelChannel2D.infl) annotation (Line(points={{-68,58},{-31.78,58.46}}, color={0,127,255}));
-    connect(fuelChannel2D.outfl, manifoldFuel_out.ports_a) annotation (Line(points={{37.78,59},{50,59},{50,56},{61.4,56}}, color={159,159,223}));
+    connect(fuelChannel2D.outfl, manifoldFuel_out.ports_a) annotation (Line(points={{37.78,59},{50,59},{50,56},{61.4,56}}, color={28,108,200}));
     connect(manifoldAir.ports_b, airChannel2D.infl) annotation (Line(points={{-64,-58},{-35.54,-57.32}}, color={0,127,255}));
-    connect(airChannel2D.outfl, manifoldAir_out.ports_a) annotation (Line(points={{41.54,-58},{41.54,-60},{59.4,-60}}, color={159,159,223}));
+    connect(airChannel2D.outfl, manifoldAir_out.ports_a) annotation (Line(points={{41.54,-58},{41.54,-60},{59.4,-60}}, color={28,108,200}));
     // Manifolds - Flanges
     connect(manifoldFuel.port_a, fuelIn) annotation (Line(points={{-76,58},{-88,58},{-88,60},{-102,60}}, color={0,127,255}));
     connect(manifoldFuel_out.port_b, fuelOut) annotation (Line(points={{69,56},
@@ -297,9 +297,9 @@ equation
 
   // x-direction
   connect(dHT_x0, pen.dhT_x0) annotation (Line(points={{-100,-28},{-54,-28},{-54,
-          12},{-37.4,12}}, color={255,127,0}));
+          12},{-37.4,12}}, color={191,0,0}));
   connect(dHT_xN, pen.dhT_xN) annotation (Line(points={{100,6},{48,6},{48,12},{37.4,
-          12}}, color={255,127,0}));
+          12}}, color={191,0,0}));
 
   // y-direction
   connect(dHT_y0, pen.dhT_y0);

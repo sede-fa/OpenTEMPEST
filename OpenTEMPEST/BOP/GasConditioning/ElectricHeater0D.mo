@@ -82,7 +82,7 @@ equation
   connect(heater.ht[1], prescribedHeatFlow.port)
     annotation (Line(points={{30,44},{30,58}}, color={191,0,0}));
   connect(heater.outlet, sensOut.inlet)
-    annotation (Line(points={{38,40},{66,40}}, color={159,159,223}));
+    annotation (Line(points={{38,40},{66,40}}, color={28,108,200}));
   connect(sensOut.T, PID.u_m) annotation (Line(points={{81,50},{86,50},{86,74},{
           71,74},{71,75}}, color={0,0,127}));
   connect(PID.y, load.referencePower)
@@ -90,11 +90,11 @@ equation
   connect(in_TSet, PID.u_s)
     annotation (Line(points={{110,104},{110,81},{77,81}}, color={0,0,127}));
   connect(fl_inlet, heater.inlet) annotation (Line(points={{-90,10},{-34,10},{-34,
-          40},{22,40}}, color={159,159,223}));
+          40},{22,40}}, color={28,108,200}));
   connect(powerConnection, load.port)
     annotation (Line(points={{10,70},{10,102.6},{24,102.6}}, color={0,0,255}));
   connect(fl_outlet, sensOut.outlet) annotation (Line(points={{90,-10},{84,-10},
-          {84,40},{78,40}}, color={159,159,223}));
+          {84,40},{78,40}}, color={28,108,200}));
   connect(prescribedHeatFlow.Q_flow, load.referencePower) annotation (Line(
         points={{30,70},{30,95},{27.3,95},{27.3,94}}, color={0,0,127}));
   connect(out_TAct, PID.u_m) annotation (Line(points={{116,60},{102,60},{102,66},

@@ -61,11 +61,11 @@ equation
       thickness=0.5));
 
   connect(fuelSource.flange, stack.fuelIn)
-    annotation (Line(points={{-92,42},{-42,42},{-42,17.2},{-31.92,17.2}}, color={159,159,223}));
-  connect(airSource.flange, stack.airIn) annotation (Line(points={{-92,-54},{-31.92,-54},{-31.92,-21.14}}, color={159,159,223}));
+    annotation (Line(points={{-92,42},{-42,42},{-42,17.2},{-31.92,17.2}}, color={28,108,200}));
+  connect(airSource.flange, stack.airIn) annotation (Line(points={{-92,-54},{-31.92,-54},{-31.92,-21.14}}, color={28,108,200}));
   connect(stack.airOut, sinkAir.flange)
-    annotation (Line(points={{33.6,-15.74},{78,-15.74},{78,-48},{88,-48}}, color={159,159,223}));
-  connect(stack.fuelOut, sinkFuel.flange) annotation (Line(points={{30.8,17.2},{78,17.2},{78,42},{88,42}}, color={159,159,223}));
+    annotation (Line(points={{33.6,-15.74},{78,-15.74},{78,-48},{88,-48}}, color={28,108,200}));
+  connect(stack.fuelOut, sinkFuel.flange) annotation (Line(points={{30.8,17.2},{78,17.2},{78,42},{88,42}}, color={28,108,200}));
   connect(powerElectronics.pinN[1], stack.pin_p)
     annotation (Line(points={{-93.1,-10.8},{-93.1,-40},{-44,-40},{-44,-11.96},{-34.16,-11.96}}, color={0,0,255}));
   connect(powerElectronics.pinP[1], stack.pin_n) annotation (Line(points={{-100.9,-10.8},{-100.9,-16},{-84,-16},{-84,-14},{-78,-14},

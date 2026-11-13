@@ -88,18 +88,18 @@ equation
   end for;
 
   heatSource1DNonUniformFV.power=nCellVertMult*dH[:];
-  connect(heatSource1DNonUniformFV.wall, solid1D.dhT_int) annotation (Line(points={{-76,-35},{-76,-42},{0,-42},{0,1.6}}, color={255,127,0}));
+  connect(heatSource1DNonUniformFV.wall, solid1D.dhT_int) annotation (Line(points={{-76,-35},{-76,-42},{0,-42},{0,1.6}}, color={191,0,0}));
 
   connect(solid1D.dhT_z1, dHTactive_z1) annotation (Line(points={{-11.2,11.5},{-11.2,
-          57},{-56,57}}, color={255,127,0}));
+          57},{-56,57}}, color={191,0,0}));
 
   connect(solid1D.dhT_y0, dHTactive_y0) annotation (Line(points={{11.2,-9.5},{11.2,
-          -14},{38,-14},{38,64},{2,64},{2,95}}, color={255,127,0}));
+          -14},{38,-14},{38,64},{2,64},{2,95}}, color={191,0,0}));
   connect(solid1D.dhT_y1, dHTactive_y1) annotation (Line(points={{11.2,11.5},{
           11.2,20},{-36,20},{-36,-64},{4,-64},{4,-99}},
-                                                   color={255,127,0}));
+                                                   color={191,0,0}));
   connect(solid1D.dhT_z0, dHTactive_z0) annotation (Line(points={{-11.2,-9.5},{-11.2,
-          -57},{56,-57}}, color={255,127,0}));
+          -57},{56,-57}}, color={191,0,0}));
 
   connect(thermalCollector1.port_b, solid1D.hT_x0) annotation (Line(points={{-48,0},
           {-32,0},{-32,1},{-17.6,1}},                                                                               color={191,0,0}));

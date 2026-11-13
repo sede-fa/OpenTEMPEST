@@ -611,18 +611,18 @@ equation
   end for;
 
   // Gas flow connections
-  connect(fuelIn, sensCpFuel.inlet) annotation (Line(points={{-120,48},{-96,48},{-96,40},{-88,40}},color={159,159,223}));
-  connect(airIn, sensCpAir.inlet) annotation (Line(points={{-120,-76},{-120,-78},{-96,-78}},color={159,159,223}));
-  connect(sensCpFuel.outlet, Fuel_Manifold.port_a) annotation (Line(points={{-76,40},{-68,40},{-68,30},{-70,30},{-70,17},{-66,17}},color={159,159,223}));
+  connect(fuelIn, sensCpFuel.inlet) annotation (Line(points={{-120,48},{-96,48},{-96,40},{-88,40}},color={28,108,200}));
+  connect(airIn, sensCpAir.inlet) annotation (Line(points={{-120,-76},{-120,-78},{-96,-78}},color={28,108,200}));
+  connect(sensCpFuel.outlet, Fuel_Manifold.port_a) annotation (Line(points={{-76,40},{-68,40},{-68,30},{-70,30},{-70,17},{-66,17}},color={28,108,200}));
   connect(sensCpAir.outlet, Air_Manifold.port_a) annotation (Line(points={{-84,-78},
-          {-84,-81},{-68,-81}},                                                                           color={159,159,223}));
+          {-84,-81},{-68,-81}},                                                                           color={28,108,200}));
   connect(Fuel_Manifold.ports_b[1:NdetailedCell], detailedCells.fuelIn) annotation (Line(points={{-56,17},
           {-42,17},{-42,-26.4},{-20.4,-26.4}},                                                                                                    color={0,127,255}));
   connect(Air_Manifold.ports_b[1:NdetailedCell], detailedCells.airIn) annotation (Line(points={{-56,-81},
           {-56,-82},{-30,-82},{-30,-62},{-20,-62}},                                                                                                 color={0,127,255}));
   connect(detailedCells.fuelOut, manifold_outFuel.ports_a[1:NdetailedCell]) annotation(Line(points={{20,-30},
-          {20,36},{44.36,36}},                                                                                                    color={159,159,223}));
-  connect(detailedCells.airout, manifold_outAir.ports_a[1:NdetailedCell]) annotation (Line(points={{20,-54},{30,-54},{30,-32},{28,-32},{28,-23},{44.36,-23}},color={159,159,223}));
+          {20,36},{44.36,36}},                                                                                                    color={28,108,200}));
+  connect(detailedCells.airout, manifold_outAir.ports_a[1:NdetailedCell]) annotation (Line(points={{20,-54},{30,-54},{30,-32},{28,-32},{28,-23},{44.36,-23}},color={28,108,200}));
 
   // x-direction
   // External x-direction connections
@@ -638,35 +638,35 @@ equation
     if not isSimpl[j] then
       // Connect detailed cell inlet and outlet port in flow direction
       connect(detailedCells[j_detl[j]].dHT_x0, dHT_DHT2_x0.DHT_port[j]) annotation (Line(points={{-18.8,
-              -50},{-52,-50},{-52,-40},{-61.2,-40}},    color={255,127,0}));
+              -50},{-52,-50},{-52,-40},{-61.2,-40}},    color={191,0,0}));
       connect(detailedCells[j_detl[j]].dHT_xN, dHT_DHT2_xN.DHT_port[j]) annotation (Line(points={{18.6,
-              -42},{44.6,-42},{44.6,-40},{69.2,-40}},                                                                                    color={255,127,0}));
+              -42},{44.6,-42},{44.6,-40},{69.2,-40}},                                                                                    color={191,0,0}));
       connect(flowInterpolator1D.dHT[j], TdetailedToFVI1D[j_detl[j]].port);
     elseif isSimpl[j] then
       // Connect simplified cell ports. Blocks with simplified cells get connected to all corresponding ports (simplified cells lumped)
       connect(simplifiedBlock[j_verticalBlock[j]].dHT_x0[simpleCellHeatPortIndex[j]], dHT_DHT2_x0.DHT_port[j]) annotation (Line(points={{-10.2,8},
-              {-50,8},{-50,-40},{-61.2,-40}}, color={255,127,0}));
+              {-50,8},{-50,-40},{-61.2,-40}}, color={191,0,0}));
       connect(simplifiedBlock[j_verticalBlock[j]].dHT_xN[simpleCellHeatPortIndex[j]], dHT_DHT2_xN.DHT_port[j]) annotation (Line(points={{10.2,8},
-              {28,8},{28,-40},{69.2,-40}},                   color={255,127,0}));
+              {28,8},{28,-40},{69.2,-40}},                   color={191,0,0}));
       connect(simplifiedBlock[j_verticalBlock[j]].dHT_xN[simpleCellHeatPortIndex[j]], flowInterpolator1D.dHT[j]);
     end if;
   end for;
 
   // Plates x-direction
   connect(plates.dhT_x0, dHT_DHT2Plates_x0.DHT_port) annotation (Line(points={{-11,62},
-          {-49.2,62}},                       color={255,127,0}));
+          {-49.2,62}},                       color={191,0,0}));
   connect(dHT_DHT2Plates_x0.DHT2D_port, dHT2Plates_x0) annotation (Line(points={{-58.4,
           62},{-108,62},{-108,71},{-119,71}},        color={0,0,0}));
   connect(dHT_DHT2Plates_xN.DHT2D_port, dHT2Plates_xN) annotation (Line(points={{40.4,62},
           {110,62},{110,71},{121,71}},           color={0,0,0}));
   connect(plates.dhT_xN, dHT_DHT2Plates_xN.DHT_port)
-    annotation (Line(points={{11,62},{31.2,62}}, color={255,127,0}));
+    annotation (Line(points={{11,62},{31.2,62}}, color={191,0,0}));
 
   // Plates y - direction
   connect(plates.dhT_y0, dHT_DHT2Plates_y0.DHT_port) annotation (Line(points={{7,55},{
-          7,50.9},{18,50.9},{18,46.8}},    color={255,127,0}));
+          7,50.9},{18,50.9},{18,46.8}},    color={191,0,0}));
   connect(plates.dhT_yN, dHT_DHT2Plates_yN.DHT_port)
-    annotation (Line(points={{7,69},{18,69},{18,75.2}}, color={255,127,0}));
+    annotation (Line(points={{7,69},{18,69},{18,75.2}}, color={191,0,0}));
   connect(dHT_DHT2Plates_y0.DHT2D_port, dHT2Plates_y0) annotation (Line(points={{18,37.6},
           {18,22},{22,22},{22,10},{30,10},{30,-42},{28,-42},{28,-132},{33,-132},
           {33,-139}},                               color={0,0,0}));
@@ -694,9 +694,9 @@ equation
 
   // Flow interpolator connections
   connect(flowInterpolator1D.fuelExit, fuelOut) annotation (Line(points={{95.6,10.8},
-          {120,10.8},{120,48}}, color={159,159,223}));
+          {120,10.8},{120,48}}, color={28,108,200}));
   connect(flowInterpolator1D.airExit, airOut) annotation (Line(points={{95.6,1.2},
-          {96,1.2},{96,-76},{118,-76}}, color={159,159,223}));
+          {96,1.2},{96,-76},{118,-76}}, color={28,108,200}));
   connect(manifold_outFuel.port_b, flowInterpolator1D.fuelInlet) annotation (
       Line(points={{55,36},{54,36},{54,10.8},{74,10.8}}, color={0,127,255}));
   connect(manifold_outAir.port_b, flowInterpolator1D.airInlet) annotation (Line(

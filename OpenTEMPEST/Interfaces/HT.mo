@@ -4,8 +4,8 @@ connector HT "Lumped thermal port (temperature T, heat flow Q_flow positive ente
   annotation (
     Icon(graphics={Rectangle(
           extent={{-100,100},{100,-100}},
-          lineColor={255,127,0},
-          fillColor={255,127,0},
+          lineColor={191,0,0},
+          fillColor={191,0,0},
           fillPattern=FillPattern.Solid)}),
     Documentation(info="<html>
 <p>Lumped thermal port. Plug-compatible with <code>Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a/b</code>

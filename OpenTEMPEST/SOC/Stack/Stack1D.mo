@@ -255,17 +255,17 @@ equation
           {-38,-3.92},{-19.28,-3.92}},                                                                         color={0,0,255}));
   //Z-direction Heat ports
   // z-direction HT cell<->endplates
-  connect(cell[1].dHT_z0, plates[1].dhT_z1) annotation (Line(points={{-11,-8.6},{-11,-22},{-36,-22},{-36,62},{27,62},{27,53}}, color={255,127,0}));
-  connect(cell[end].dHT_z1, plates[end].dhT_z0) annotation (Line(points={{-11.36,17.32},{-11.36,26},{27,26},{27,39}}, color={255,127,0}));
+  connect(cell[1].dHT_z0, plates[1].dhT_z1) annotation (Line(points={{-11,-8.6},{-11,-22},{-36,-22},{-36,62},{27,62},{27,53}}, color={191,0,0}));
+  connect(cell[end].dHT_z1, plates[end].dhT_z0) annotation (Line(points={{-11.36,17.32},{-11.36,26},{27,26},{27,39}}, color={191,0,0}));
   //Z-direction HT external<->endplates
-  connect(plates[end].dhT_z1, dHT_top) annotation (Line(points={{27,53},{27,58},{-6,58},{-6,78}}, color={255,127,0}));
-  connect(plates[1].dhT_z0, dHT_bottom) annotation (Line(points={{27,39},{27,-38},{-8,-38},{-8,-66},{-6,-66}}, color={255,127,0}));
+  connect(plates[end].dhT_z1, dHT_top) annotation (Line(points={{27,53},{27,58},{-6,58},{-6,78}}, color={191,0,0}));
+  connect(plates[1].dhT_z0, dHT_bottom) annotation (Line(points={{27,39},{27,-38},{-8,-38},{-8,-66},{-6,-66}}, color={191,0,0}));
   //Inter cell connections
   for i in 1:Ncell - 1 loop
     if mod(i, 10) == 0 and i > 10 then
       //z-direction heat transfer intermediate plate<->cell
-      connect(cell[i + 1].dHT_z0, plates[integer(i/10)].dhT_z1) annotation (Line(points={{-11,-8.6},{-11,-22},{-36,-22},{-36,62},{27,62},{27,53}}, color={255,127,0}));
-      connect(cell[i].dHT_z1, plates[integer(i/10)].dhT_z0) annotation (Line(points={{-11.36,17.32},{-11.36,26},{27,26},{27,39}}, color={255,127,0}));
+      connect(cell[i + 1].dHT_z0, plates[integer(i/10)].dhT_z1) annotation (Line(points={{-11,-8.6},{-11,-22},{-36,-22},{-36,62},{27,62},{27,53}}, color={191,0,0}));
+      connect(cell[i].dHT_z1, plates[integer(i/10)].dhT_z0) annotation (Line(points={{-11.36,17.32},{-11.36,26},{27,26},{27,39}}, color={191,0,0}));
     else
       // z-direction HT cell<->cell
       connect(cell[i].dHT_z1, cell[i + 1].dHT_z0);
@@ -277,11 +277,11 @@ equation
   // Gas flow connections
   //Fuel In
   connect(fuelIn, Fuel_Manifold.port_a) annotation (Line(points={{-114,60},{-87,
-          60},{-87,72},{-82,72}},                                                                       color={159,159,223}));
+          60},{-87,72},{-82,72}},                                                                       color={28,108,200}));
   connect(Fuel_Manifold.ports_b[1:Ncell], cell.fuelFlangeIn) annotation (Line(points={{-70,72},{-32,72},{-32,13.72},{-20,13.72}}, color={0,127,255}));
   //AirIn
   connect(airIn, Air_Manifold.port_a) annotation (Line(points={{-114,-82},{-92,-82},
-          {-92,-54},{-90,-54}},                                                                           color={159,159,223}));
+          {-92,-54},{-90,-54}},                                                                           color={28,108,200}));
   connect(Air_Manifold.ports_b, cell.airFlangeIn) annotation (Line(points={{-78,-54},{-60,-54},{-60,-58},{-32,-58},{-32,-7.88},{-20,-7.88}}, color={0,127,255}));
   //Fuel out
   connect(manifold_outFuel.ports_a, cell.fuelFlangeOut) annotation (Line(points={{77.4,44},{66,44},{66,13.72},{16,13.72}}, color={0,127,255}));
@@ -294,8 +294,8 @@ equation
 
   // x-direction Heat ports
   // x-direction dHT<>hTs_DHT<>cells
-  connect(hTs_DHT_x0.DHT_port, dHT_x0) annotation (Line(points={{-72.6,16},{-126,16},{-126,18}}, color={255,127,0}));
-  connect(hTs_DHT_xN.DHT_port, dHT_xN) annotation (Line(points={{86.6,8},{98,8},{98,12},{120,12}}, color={255,127,0}));
+  connect(hTs_DHT_x0.DHT_port, dHT_x0) annotation (Line(points={{-72.6,16},{-126,16},{-126,18}}, color={191,0,0}));
+  connect(hTs_DHT_xN.DHT_port, dHT_xN) annotation (Line(points={{86.6,8},{98,8},{98,12},{120,12}}, color={191,0,0}));
   connect(hTs_DHT_x0.HT_ports, cell.hT_x0) annotation (Line(points={{-58.8,16.12},{-44,16.12},{-44,4},{-19.28,4}}, color={191,0,0}));
   connect(cell.hT_xN, hTs_DHT_xN.HT_ports) annotation (Line(points={{15.64,4},{60,4},{60,8.12},{72.8,8.12}}, color={191,0,0}));
 
@@ -309,8 +309,8 @@ equation
   // y-direction ports
   //Y-direction cells to external
    for i in 1:Ncell loop
-     connect(cell[i].dHT_y0, dHT_y0) annotation (Line(points={{4.12,19.84},{4.12,30},{16,30},{16,92},{-3,92},{-3,105}}, color={255,127,0}));
-     connect(cell[i].dHT_y1, dHT_y1) annotation (Line(points={{2.68,-12.2},{2.68,-20},{24,-20},{24,-90},{0,-90},{0,-105},{-1,-105}}, color={255,127,0}));
+     connect(cell[i].dHT_y0, dHT_y0) annotation (Line(points={{4.12,19.84},{4.12,30},{16,30},{16,92},{-3,92},{-3,105}}, color={191,0,0}));
+     connect(cell[i].dHT_y1, dHT_y1) annotation (Line(points={{2.68,-12.2},{2.68,-20},{24,-20},{24,-90},{0,-90},{0,-105},{-1,-105}}, color={191,0,0}));
    end for;
 
   //Y-direction intermediate and end plates to external

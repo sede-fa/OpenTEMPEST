@@ -191,28 +191,28 @@ equation
                                                                                                       color={0,0,255}));
   connect(pen.PEN_in, fuelChannel.PEN_in) annotation (Line(points={{-3,13.1},{-3,28},{-5.2,28},{-5.2,34.8}}, color={0,0,0}));
   connect(airChannel.PEN_in, pen.PEN_ina) annotation (Line(points={{-3.2,-38.8},{-3.2,-34},{-3,-34},{-3,-19.1}}, color={0,0,0}));
-  connect(airChannel.Q_IC, ICAir.dhT_z0) annotation (Line(points={{2,-46},{2,-50},{11,-50},{11,-53}}, color={255,127,0}));
-  connect(ICAir.dhT_z1, dHT_z1) annotation (Line(points={{11,-67},{11,-70},{-50,-70}}, color={255,127,0}));
-  connect(dHT_z0, ICFuel.dhT_z0) annotation (Line(points={{-50,82},{-21,82},{-21,75}}, color={255,127,0}));
-  connect(fuelChannel.Q_IC, ICFuel.dhT_z1) annotation (Line(points={{0,42},{2,42},{2,52},{-21,52},{-21,61}}, color={255,127,0}));
+  connect(airChannel.Q_IC, ICAir.dhT_z0) annotation (Line(points={{2,-46},{2,-50},{11,-50},{11,-53}}, color={191,0,0}));
+  connect(ICAir.dhT_z1, dHT_z1) annotation (Line(points={{11,-67},{11,-70},{-50,-70}}, color={191,0,0}));
+  connect(dHT_z0, ICFuel.dhT_z0) annotation (Line(points={{-50,82},{-21,82},{-21,75}}, color={191,0,0}));
+  connect(fuelChannel.Q_IC, ICFuel.dhT_z1) annotation (Line(points={{0,42},{2,42},{2,52},{-21,52},{-21,61}}, color={191,0,0}));
   connect(convHTFV.side2, ICAir.dhT_z0) annotation (Line(points={{-42,-35.1},{
-          -42,-54},{11,-54},{11,-53}},                                                                                     color={255,127,0}));
-  connect(airChannel.outfl, pressDropLin3.inlet) annotation (Line(points={{11.4,-42},{36,-42},{36,-48},{58,-48}}, color={159,159,223}));
-  connect(pressDropLin3.outlet, airFlangeOut) annotation (Line(points={{78,-48},{100,-48}}, color={159,159,223}));
-  connect(fuelChannel.outfl, pressDropLin1.inlet) annotation (Line(points={{9.4,38},{40,38}}, color={159,159,223}));
-  connect(pressDropLin1.outlet, fuelFlangeOut) annotation (Line(points={{60,38},{66,38},{66,54},{100,54}}, color={159,159,223}));
-  connect(fuelFlangeIn, fuelChannel.infl) annotation (Line(points={{-100,54},{-80,54},{-80,44},{-46,44},{-46,37.8},{-9.4,37.8}}, color={159,159,223}));
-  connect(airFlangeIn, airChannel.infl) annotation (Line(points={{-100,-66},{-84,-66},{-84,-50},{-22,-50},{-22,-41.8},{-7.4,-41.8}}, color={159,159,223}));
-  connect(pen.dhT_z1, fuelChannel.Q_PEN) annotation (Line(points={{-20.5,13.1},{-20.5,26},{-14,26},{-14,24},{-0.1,24},{-0.1,34.6}}, color={255,127,0}));
-  connect(pen.dhT_z0, airChannel.Q_PEN) annotation (Line(points={{-20.5,-19.1},{-20.5,-38.6},{1.9,-38.6}}, color={255,127,0}));
-  connect(pen.dhT_y1, dHT_y1) annotation (Line(points={{14.5,13.1},{116,13.1},{116,-70},{82,-70}}, color={255,127,0}));
-  connect(pen.dhT_y0, dHT_y0) annotation (Line(points={{14.5,-19.1},{34,-19.1},{34,82}}, color={255,127,0}));
-  connect(radHTFV.side1, pen.Qrad_AI) annotation (Line(points={{24,-29.6},{22,-29.6},{22,-7.6},{11,-7.6}}, color={255,127,0}));
-  connect(ICAir.dhT_int, radHTFV.side2) annotation (Line(points={{18,-60.4},{18,-34.4},{24,-34.4}}, color={255,127,0}));
+          -42,-54},{11,-54},{11,-53}},                                                                                     color={191,0,0}));
+  connect(airChannel.outfl, pressDropLin3.inlet) annotation (Line(points={{11.4,-42},{36,-42},{36,-48},{58,-48}}, color={28,108,200}));
+  connect(pressDropLin3.outlet, airFlangeOut) annotation (Line(points={{78,-48},{100,-48}}, color={28,108,200}));
+  connect(fuelChannel.outfl, pressDropLin1.inlet) annotation (Line(points={{9.4,38},{40,38}}, color={28,108,200}));
+  connect(pressDropLin1.outlet, fuelFlangeOut) annotation (Line(points={{60,38},{66,38},{66,54},{100,54}}, color={28,108,200}));
+  connect(fuelFlangeIn, fuelChannel.infl) annotation (Line(points={{-100,54},{-80,54},{-80,44},{-46,44},{-46,37.8},{-9.4,37.8}}, color={28,108,200}));
+  connect(airFlangeIn, airChannel.infl) annotation (Line(points={{-100,-66},{-84,-66},{-84,-50},{-22,-50},{-22,-41.8},{-7.4,-41.8}}, color={28,108,200}));
+  connect(pen.dhT_z1, fuelChannel.Q_PEN) annotation (Line(points={{-20.5,13.1},{-20.5,26},{-14,26},{-14,24},{-0.1,24},{-0.1,34.6}}, color={191,0,0}));
+  connect(pen.dhT_z0, airChannel.Q_PEN) annotation (Line(points={{-20.5,-19.1},{-20.5,-38.6},{1.9,-38.6}}, color={191,0,0}));
+  connect(pen.dhT_y1, dHT_y1) annotation (Line(points={{14.5,13.1},{116,13.1},{116,-70},{82,-70}}, color={191,0,0}));
+  connect(pen.dhT_y0, dHT_y0) annotation (Line(points={{14.5,-19.1},{34,-19.1},{34,82}}, color={191,0,0}));
+  connect(radHTFV.side1, pen.Qrad_AI) annotation (Line(points={{24,-29.6},{22,-29.6},{22,-7.6},{11,-7.6}}, color={191,0,0}));
+  connect(ICAir.dhT_int, radHTFV.side2) annotation (Line(points={{18,-60.4},{18,-34.4},{24,-34.4}}, color={191,0,0}));
   connect(pen.hT_xN, hT_xN) annotation (Line(points={{24.5,-3},{84,-3},{84,0},{98,0}}, color={191,0,0}));
   connect(hT_x0, pen.hT_x0) annotation (Line(points={{-96,0},{-36,0},{-36,-3},{-30.5,-3}}, color={191,0,0}));
   connect(convHTFV.side1, pen.dhT_z0) annotation (Line(points={{-42,-29},{-42,
-          -19.1},{-20.5,-19.1}}, color={255,127,0}));
+          -19.1},{-20.5,-19.1}}, color={191,0,0}));
   annotation (
     Icon(coordinateSystem(preserveAspectRatio=false), graphics={Rectangle(
           extent={{-100,86},{100,-92}},

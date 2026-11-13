@@ -44,7 +44,7 @@ equation
   annotation (
     Icon(graphics={
         Polygon(points={{-100,40},{-100,-40},{0,-40},{100,-40},{100,40},{0,40},{-100,40}},
-          lineColor={159,159,223}, fillColor={159,159,223}, fillPattern=FillPattern.Solid),
+          lineColor={28,108,200}, fillColor={28,108,200}, fillPattern=FillPattern.Solid),
         Text(extent={{-100,-50},{100,-80}}, textString="%name", lineColor={0,0,0})}),
     Documentation(info="<html>
 <p>Ideal junction with one inlet and two outlets: mass balance, equal pressure at all ports, and ideal

@@ -98,19 +98,19 @@ equation
   end if;
 
   connect(infl, sensXTM.inlet) annotation (Line(points={{-114,0},{-104,0},{-104,
-          0.2},{-93.2,0.2}}, color={159,159,223}));
+          0.2},{-93.2,0.2}}, color={28,108,200}));
 
   connect(sourceMFPurge.flange, outflPurge) annotation (Line(points={{60,0},{82,0},{82,1.77636e-15},{
-          102,1.77636e-15}}, color={159,159,223}));
+          102,1.77636e-15}}, color={28,108,200}));
   connect(sensXTM.x, sourceMFPurge.in_X) annotation (Line(points={{-84.1,5.1},{-80,
           5.1},{-80,20},{56,20},{56,5}}, color={0,0,127}));
 
-  connect(sourceMFUse.flange, outflUse) annotation (Line(points={{0,-46},{0,-76}}, color={159,159,223}));
+  connect(sourceMFUse.flange, outflUse) annotation (Line(points={{0,-46},{0,-76}}, color={28,108,200}));
 
-  connect(sourceMFPurge.flange, sensPPurge.flange) annotation (Line(points={{60,0},{76,0},{76,0.8}}, color={159,159,223}));
+  connect(sourceMFPurge.flange, sensPPurge.flange) annotation (Line(points={{60,0},{76,0},{76,0.8}}, color={28,108,200}));
   connect(sourceMFUse.flange, sensPUse.flange)
     annotation (Line(points={{0,-46},{0,-51},{-10.8,-51},{-10.8,-50}},
-                                                                   color={159,159,223}));
+                                                                   color={28,108,200}));
   connect(sensPUse.p, sinkPressure.in_p0)
     annotation (Line(points={{-18.8,-44.4},{-18.8,10},{-40.45,10},{-40.45,5.95}}, color={0,0,127}));
   connect(sensXTM.T, sourceMFPurge.in_T) annotation (Line(points={{-82.7,7.2},{-74,
@@ -118,7 +118,7 @@ equation
   connect(sensXTM.mf, sourceMFUse.in_w0) annotation (Line(points={{-84.1,10.7},{
           12,10.7},{12,-30},{5,-30}}, color={0,0,127}));
   connect(sensXTM.outlet, sinkPressure.flange) annotation (Line(points={{-84.8,0.2},
-          {-65.4,0.2},{-65.4,0},{-44,0}}, color={159,159,223}));
+          {-65.4,0.2},{-65.4,0},{-44,0}}, color={28,108,200}));
   annotation (                    Icon(graphics={
         Line(
           points={{0,30},{0,0}},

@@ -189,27 +189,27 @@ equation
 
   // Flanges connections
   connect(fuelChannel.infl, fuelIn) annotation (Line(points={{-34,93.44},{-78,
-          93.44},{-78,110},{-138,110}}, color={159,159,223}));
+          93.44},{-78,110},{-138,110}}, color={28,108,200}));
   connect(fuelChannel.outfl, fuelOut) annotation (Line(points={{34,93.44},{62,
-          93.44},{62,90},{138,90},{138,84}}, color={159,159,223}));
+          93.44},{62,90},{138,90},{138,84}}, color={28,108,200}));
   connect(airIn, airChannel.infl) annotation (Line(points={{-140,-108},{-106,-108},
-          {-106,-76},{-36,-76},{-36,-73.44}}, color={159,159,223}));
+          {-106,-76},{-36,-76},{-36,-73.44}}, color={28,108,200}));
   connect(airChannel.outfl, airout) annotation (Line(points={{34,-73.44},{140,-73.44},
-          {140,-76}}, color={159,159,223}));
+          {140,-76}}, color={28,108,200}));
 
   // x-direction connections
   connect(dHT_x0, pen.dhT_x0) annotation (Line(points={{-131,-40},{-48,-40},{-48,
           19},{-39,19}},
-                     color={255,127,0}));
+                     color={191,0,0}));
   connect(dHT_xN, pen.dhT_xN) annotation (Line(points={{135,4},{38,4},{38,19},{27,
-          19}},    color={255,127,0}));
+          19}},    color={191,0,0}));
 
   // y-direction connections
   connect(pen.dhT_y0, dHT_y0)
     annotation (Line(points={{15,1.5},{15,-6},{68,-6},{68,-18},{132,-18},{132,-26},
-          {140,-26}},                                      color={255,127,0}));
+          {140,-26}},                                      color={191,0,0}));
   connect(dHT_yN, pen.dhT_yN) annotation (Line(points={{140,26},{36,26},{36,
-          36.5},{15,36.5}}, color={255,127,0}));
+          36.5},{15,36.5}}, color={191,0,0}));
 
   // z-direction connections
   connect(iCFuel.dhT2_z1, dHT2_z1) annotation (Line(points={{-11.2,151.2},{-11.2,

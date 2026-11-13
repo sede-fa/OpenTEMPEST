@@ -40,14 +40,14 @@ equation
   end for;
   connect(multiSplitter.outlet[nOutlets],outlet[nOutlets]);
 
-  connect(sensW.inlet, inlet) annotation (Line(points={{-30,0},{-50,0}}, color={159,159,223}));
+  connect(sensW.inlet, inlet) annotation (Line(points={{-30,0},{-50,0}}, color={28,108,200}));
   connect(const.y, product.u1)
     annotation (Line(points={{-79,42},{-44,42}}, color={0,0,127}));
   connect(product.u2, sensW.w) annotation (Line(points={{-44,30},{-50,30},{-50,
           20},{-10,20},{-10,10},{-17,10}},
                      color={0,0,127}));
   connect(multiSplitter.inlet, sensW.outlet) annotation (Line(points={{-5,0},{
-          -18,0}},                                                                      color={159,159,223}));
+          -18,0}},                                                                      color={28,108,200}));
   connect(productVar.y, throughMassFlow.in_w0)
     annotation (Line(points={{11,42},{16,42},{16,5}},        color={0,0,127}));
 

@@ -23,8 +23,8 @@ model TestGasFlowPath "Mass flow source, linear pressure drop and pressure sink"
     startTime=1) annotation (Placement(transformation(extent={{-100,20},{-80,40}})));
 equation
   connect(massFlow.y, source.in_w0) annotation (Line(points={{-79,30},{-66,30},{-66,5}}, color={0,0,127}));
-  connect(source.flange, pressDrop.inlet) annotation (Line(points={{-50,0},{-10,0}}, color={159,159,223}));
-  connect(pressDrop.outlet, sink.flange) annotation (Line(points={{10,0},{50,0}}, color={159,159,223}));
+  connect(source.flange, pressDrop.inlet) annotation (Line(points={{-50,0},{-10,0}}, color={28,108,200}));
+  connect(pressDrop.outlet, sink.flange) annotation (Line(points={{10,0},{50,0}}, color={28,108,200}));
   annotation (
     experiment(StopTime=20),
     Documentation(info="<html>

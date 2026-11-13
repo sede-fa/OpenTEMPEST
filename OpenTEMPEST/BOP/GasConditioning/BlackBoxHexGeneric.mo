@@ -175,21 +175,21 @@ equation
   0.5*C*der(TBOut) = sensBIn.Hf - sensBIn.mf*MediumB.h_TX(TBOut, sensBIn.x) + Qf + htAmbB.Q_flow;
 
   connect(sensBOut.outlet, outletB)
-    annotation (Line(points={{68,-30},{90,-30}}, color={159,159,223}));
+    annotation (Line(points={{68,-30},{90,-30}}, color={28,108,200}));
   connect(inletB, sensBIn.inlet)
-    annotation (Line(points={{-70,-30},{-48,-30}}, color={159,159,223}));
+    annotation (Line(points={{-70,-30},{-48,-30}}, color={28,108,200}));
   connect(inletA, sensAIn.inlet)
-    annotation (Line(points={{-70,50},{-52,50}}, color={159,159,223}));
+    annotation (Line(points={{-70,50},{-52,50}}, color={28,108,200}));
   connect(sensAOut.outlet, outletA)
-    annotation (Line(points={{62,50},{90,50}}, color={159,159,223}));
+    annotation (Line(points={{62,50},{90,50}}, color={28,108,200}));
   connect(sensAIn.outlet, sinkPressureA.flange)
-    annotation (Line(points={{-40,50},{-26,50}}, color={159,159,223}));
+    annotation (Line(points={{-40,50},{-26,50}}, color={28,108,200}));
   connect(sensAOut.inlet, sourceMassFlowA.flange)
-    annotation (Line(points={{50,50},{38,50}}, color={159,159,223}));
+    annotation (Line(points={{50,50},{38,50}}, color={28,108,200}));
   connect(sensBIn.outlet, sinkPressureB.flange)
-    annotation (Line(points={{-36,-30},{-16,-30}}, color={159,159,223}));
+    annotation (Line(points={{-36,-30},{-16,-30}}, color={28,108,200}));
   connect(sensBOut.inlet, sourceMassFlowB.flange)
-    annotation (Line(points={{56,-30},{40,-30}}, color={159,159,223}));
+    annotation (Line(points={{56,-30},{40,-30}}, color={28,108,200}));
 
   connect(sensBIn.x, sourceMassFlowB.in_X) annotation (Line(points={{-35,-23},{-25.5,
           -23},{-25.5,-25},{36,-25}}, color={0,0,127}));

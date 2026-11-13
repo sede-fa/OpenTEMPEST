@@ -53,10 +53,10 @@ model ElectricalHeater0D "0D electrical gas heater with nominal power and heatin
         origin={-40,60})));
 equation
   connect(simpleGasHeater.inlet, inlet)
-    annotation (Line(points={{-8,0},{-90,0}}, color={159,159,223}));
+    annotation (Line(points={{-8,0},{-90,0}}, color={28,108,200}));
   connect(simpleGasHeater.outlet, outlet)
     annotation (Line(points={{8,0},{50,0},{50,10},{90,10}},
-                                            color={159,159,223}));
+                                            color={28,108,200}));
   connect(prescribedHeatFlow.port, simpleGasHeater.ht[1]) annotation (Line(
         points={{-1.77636e-15,20},{0,20},{0,4}}, color={191,0,0}));
   connect(powerConnection, load.port) annotation (Line(

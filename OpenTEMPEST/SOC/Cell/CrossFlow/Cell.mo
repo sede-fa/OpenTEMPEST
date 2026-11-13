@@ -244,11 +244,11 @@ equation
   connect(manifold.ports_b, fuelChannel.infl)
     annotation (Line(points={{-68,58},{-31.78,58.46}}, color={0,127,255}));
   connect(fuelChannel.outfl, manifold_out.ports_a) annotation (Line(points={{
-          37.78,59},{50,59},{50,56},{61.4,56}}, color={159,159,223}));
+          37.78,59},{50,59},{50,56},{61.4,56}}, color={28,108,200}));
   connect(manifold1.ports_b, airChannel.infl)
     annotation (Line(points={{-64,-58},{-35.54,-57.32}}, color={0,127,255}));
   connect(airChannel.outfl, manifold_out1.ports_a) annotation (Line(points={{
-          41.54,-58},{41.54,-60},{59.4,-60}}, color={159,159,223}));
+          41.54,-58},{41.54,-60},{59.4,-60}}, color={28,108,200}));
 
   // Crossflow topology connections
   connect(crossFlowTopology.dHTT_side1, pen.dhT2_z0) annotation (Line(points={{1,-27},

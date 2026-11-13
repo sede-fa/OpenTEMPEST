@@ -143,15 +143,15 @@ equation
   TempDistriFactor = (TDetailedAvg - sum(dHT[:].T)/N/nCell)/(sum(dHT[:].T)/N/nCell);
 
   connect(airExit, airExit)
-    annotation (Line(points={{100,-50},{100,-50}}, color={159,159,223}));
+    annotation (Line(points={{100,-50},{100,-50}}, color={28,108,200}));
   connect(sourceMassFlowAir.flange, airExit) annotation (Line(points={{48,-50},
-          {100,-50}},                  color={159,159,223}));
+          {100,-50}},                  color={28,108,200}));
   connect(sourceMassFlowFuel.flange, fuelExit) annotation (Line(points={{40,50},
-          {100,50}},                 color={159,159,223}));
+          {100,50}},                 color={28,108,200}));
   connect(sourceMassFlowFuel.flange, sensP.flange)
-    annotation (Line(points={{40,50},{60,50}}, color={159,159,223}));
+    annotation (Line(points={{40,50},{60,50}}, color={28,108,200}));
   connect(sourceMassFlowAir.flange, sensP1.flange)
-    annotation (Line(points={{48,-50},{60,-50}}, color={159,159,223}));
+    annotation (Line(points={{48,-50},{60,-50}}, color={28,108,200}));
   connect(sensP1.p, sinkPressure1.in_p0) annotation (Line(points={{67,-40},{70,
           -40},{70,-10},{-40,-10},{-40,-44.05},{-36.45,-44.05}},
                                               color={0,0,127}));
@@ -159,7 +159,7 @@ equation
           {80,86},{-40,86},{-40,55.95},{-36.45,55.95}},
                                        color={0,0,127}));
   connect(sinkPressure1.flange, sensW1.outlet)
-    annotation (Line(points={{-40,-50},{-48,-50}}, color={159,159,223}));
+    annotation (Line(points={{-40,-50},{-48,-50}}, color={28,108,200}));
   connect(product.y, sourceMassFlowFuel.in_w0) annotation (Line(points={{0.5,57},
           {23.25,57},{23.25,55},{24,55}}, color={0,0,127}));
   connect(sensW1.w, product1.u2)
@@ -171,17 +171,17 @@ equation
   connect(product1.u1, product.u2) annotation (Line(points={{-11,-34},{-20,-34},
           {-20,54},{-11,54}}, color={0,0,127}));
   connect(sensTFuel.inlet, fuelInlet)
-    annotation (Line(points={{-76,50},{-90,50}},  color={159,159,223}));
+    annotation (Line(points={{-76,50},{-90,50}},  color={28,108,200}));
   connect(sensW1.inlet, sensTAir.outlet)
-    annotation (Line(points={{-60,-50},{-68,-50}}, color={159,159,223}));
+    annotation (Line(points={{-60,-50},{-68,-50}}, color={28,108,200}));
   connect(sensTAir.inlet, airInlet)
-    annotation (Line(points={{-80,-50},{-100,-50}}, color={159,159,223}));
+    annotation (Line(points={{-80,-50},{-100,-50}}, color={28,108,200}));
   connect(RealExp2.y, sourceMassFlowAir.in_T)
     annotation (Line(points={{-47.4,-26},{38,-26},{38,-45}}, color={0,0,127}));
   connect(RealExp3.y, sourceMassFlowFuel.in_T)
     annotation (Line(points={{-59,82},{30,82},{30,55}}, color={0,0,127}));
   connect(sensTFuel.outlet, sinkPressure.flange) annotation (Line(points={{-64,50},
-          {-54,50},{-54,50},{-40,50}}, color={159,159,223}));
+          {-54,50},{-54,50},{-40,50}}, color={28,108,200}));
   connect(sensTFuel.mf, product.u1)
     annotation (Line(points={{-63,65},{-11,65},{-11,60}}, color={0,0,127}));
   connect(sensTFuel.x, sourceMassFlowFuel.in_X) annotation (Line(points={{-63,

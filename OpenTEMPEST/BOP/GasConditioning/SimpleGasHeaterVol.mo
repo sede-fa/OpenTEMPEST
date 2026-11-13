@@ -63,15 +63,15 @@ equation
   connect(firstOrder.y, convection.Gc)
     annotation (Line(points={{29,30},{10,30}}, color={0,0,127}));
   connect(plenum.ports[1], inlet)
-    annotation (Line(points={{-10,0},{-90,0}}, color={159,159,223}));
+    annotation (Line(points={{-10,0},{-90,0}}, color={28,108,200}));
    connect(plenum.ports[2], pressDropLin.inlet)
-    annotation (Line(points={{10,0},{22,0}}, color={159,159,223}));
+    annotation (Line(points={{10,0},{22,0}}, color={28,108,200}));
   connect(pressDropLin.outlet, outlet) annotation (Line(points={{42,0},{54,0},{54,
-          10},{90,10}}, color={159,159,223}));
+          10},{90,10}}, color={28,108,200}));
   connect(sensW.inlet, plenum.ports[2]) annotation (Line(points={{26,-24},{16,-24},
-          {16,0},{10,0}}, color={159,159,223}));
+          {16,0},{10,0}}, color={28,108,200}));
   connect(sensW.outlet, outlet) annotation (Line(points={{38,-24},{64,-24},{64,
-          10},{90,10}}, color={159,159,223}));
+          10},{90,10}}, color={28,108,200}));
 
   annotation (Icon(graphics={Rectangle(
           extent={{-60,20},{60,-20}},

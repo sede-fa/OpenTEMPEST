@@ -37,12 +37,12 @@ equation
                                                                        color={191,
           0,0}));
   connect(hTs_DHT.DHT_port, side1) annotation (Line(points={{-50,53},{-50,69.5},
-          {-10,69.5},{-10,44}},       color={255,127,0}));
+          {-10,69.5},{-10,44}},       color={191,0,0}));
   connect(radiativeHeatTransferGenericEnumerate.side2, hTs_DHT1.HT_ports)
     annotation (Line(points={{-50,13.2},{-50,6},{-49.8,6}},        color={191,0,
           0}));
   connect(hTs_DHT1.DHT_port, side2) annotation (Line(points={{-50,-17},{-50,
-          -34.5},{-10,-34.5},{-10,-4}}, color={255,127,0}));
+          -34.5},{-10,-34.5},{-10,-4}}, color={191,0,0}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={
           Rectangle(
           extent={{-100,40},{100,0}},

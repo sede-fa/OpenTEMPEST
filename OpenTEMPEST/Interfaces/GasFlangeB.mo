@@ -5,11 +5,11 @@ connector GasFlangeB "Gas flange (design flow direction: leaving the component)"
     defaultComponentName="outlet",
     Icon(graphics={Ellipse(
           extent={{-100,100},{100,-100}},
-          lineColor={159,159,223},
-          fillColor={159,159,223},
+          lineColor={28,108,200},
+          fillColor={28,108,200},
           fillPattern=FillPattern.Solid), Ellipse(
           extent={{-60,60},{60,-60}},
-          lineColor={159,159,223},
+          lineColor={28,108,200},
           fillColor={255,255,255},
           fillPattern=FillPattern.Solid)}),
     Documentation(info="<html>

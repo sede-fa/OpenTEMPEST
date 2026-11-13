@@ -84,9 +84,9 @@ equation
     Icon(graphics={
         Ellipse(
           extent={{-80,80},{80,-80}},
-          lineColor={128,128,128},
-          fillColor={159,159,223},
-          fillPattern=FillPattern.Solid),
+          lineColor={28,108,200},
+          fillColor={28,108,200},
+          fillPattern=FillPattern.HorizontalCylinder),
         Text(
           extent={{-20,34},{28,-26}},
           lineColor={255,255,255},

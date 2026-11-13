@@ -84,17 +84,17 @@ equation
   connect(simpleGasHeaterA2.ht[1], ht[1]) annotation (Line(points={{-54,4},{-26,
           4},{-26,33.3333},{0,33.3333}}, color={191,0,0}));
   connect(simpleGasHeaterA2.inlet, inlet) annotation (Line(points={{-62,0},{-76,
-          0},{-76,1.77636e-15},{-100,1.77636e-15}}, color={159,159,223}));
+          0},{-76,1.77636e-15},{-100,1.77636e-15}}, color={28,108,200}));
   connect(simpleGasHeaterA2.outlet, flowSplit.inlet)
-    annotation (Line(points={{-46,0},{-10,0}}, color={159,159,223}));
+    annotation (Line(points={{-46,0},{-10,0}}, color={28,108,200}));
   connect(flowSplit.outlet1, simpleGasHeaterA.inlet) annotation (Line(points={{2,
-          4},{12,4},{12,24},{20,24}}, color={159,159,223}));
+          4},{12,4},{12,24},{20,24}}, color={28,108,200}));
   connect(simpleGasHeaterA.outlet, outletA) annotation (Line(points={{36,24},{50,
-          24},{50,46},{66,46}}, color={159,159,223}));
+          24},{50,46},{66,46}}, color={28,108,200}));
   connect(flowSplit.outlet2, simpleGasHeaterB.inlet) annotation (Line(points={{2,
-          -4},{2,-18},{28,-18},{28,-32}}, color={159,159,223}));
+          -4},{2,-18},{28,-18},{28,-32}}, color={28,108,200}));
   connect(simpleGasHeaterB.outlet, outletB) annotation (Line(points={{44,-32},{56,
-          -32},{56,-34},{66,-34}}, color={159,159,223}));
+          -32},{56,-34},{66,-34}}, color={28,108,200}));
   connect(simpleGasHeaterA.ht[1], ht[2]) annotation (Line(points={{28,28},{10,28},
           {10,40},{0,40}}, color={191,0,0}));
   connect(simpleGasHeaterB.ht[1], ht[3]) annotation (Line(points={{36,-28},{18,

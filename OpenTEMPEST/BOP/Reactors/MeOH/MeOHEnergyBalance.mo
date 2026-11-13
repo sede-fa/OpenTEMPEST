@@ -163,13 +163,13 @@ equation
   connect(realTPurge.y, sourceMFPurge.in_T) annotation (Line(points={{44.7,58},{50,58},{50,45}}, color={0,0,127}));
   connect(realWProduct.y, outMfProduct) annotation (Line(points={{66.6,0},{100,0}}, color={0,0,127}));
   connect(sourceMFPurge.flange, outflPurge) annotation (Line(points={{60,40},
-          {88,40},{88,14},{114,14}},                                                    color={159,159,223}));
+          {88,40},{88,14},{114,14}},                                                    color={28,108,200}));
 
   connect(infl, sinkPressure.flange) annotation (Line(points={{-114,-26},{-92,
           -26},{-92,0},{-72,0}},                           color={159,159,
           223}));
   connect(sourceMFPurge.flange, sensP.flange)
-    annotation (Line(points={{60,40},{80,40}}, color={159,159,223}));
+    annotation (Line(points={{60,40},{80,40}}, color={28,108,200}));
   connect(sensP.p, sinkPressure.in_p0) annotation (Line(points={{87,50},{90,
           50},{90,96},{-68.45,96},{-68.45,5.95}}, color={0,0,127}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,

@@ -63,13 +63,13 @@ equation
       thickness=0.5));
 
   connect(fuelSource.flange, stack.fuelIn) annotation (Line(points={{-92,42},{-46,
-          42},{-46,18.82},{-35.84,18.82}}, color={159,159,223}));
+          42},{-46,18.82},{-35.84,18.82}}, color={28,108,200}));
   connect(airSource.flange, stack.airIn) annotation (Line(points={{-92,-54},{-46,
-          -54},{-46,-17.9},{-36.4,-17.9}}, color={159,159,223}));
+          -54},{-46,-17.9},{-36.4,-17.9}}, color={28,108,200}));
   connect(stack.fuelOut, sinkFuel.flange) annotation (Line(points={{33.6,18.82},
-          {78,18.82},{78,42},{88,42}}, color={159,159,223}));
+          {78,18.82},{78,42},{88,42}}, color={28,108,200}));
   connect(stack.airOut, sinkAir.flange) annotation (Line(points={{33.6,-15.74},{
-          78,-15.74},{78,-48},{88,-48}}, color={159,159,223}));
+          78,-15.74},{78,-48},{88,-48}}, color={28,108,200}));
   connect(currentDensitySOFC.y, powerElectronics.currentInput[1]) annotation (
       Line(points={{-195,42},{-118,42},{-118,18},{-100.9,18},{-100.9,10.8}},
         color={0,0,127}));

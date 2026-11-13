@@ -67,11 +67,11 @@ model Stack0DTest "Example of the lumped stack model Stack0D, adiabatic"
 equation
   // Flanges connections
   connect(airSource.flange, stack.airInlet)
-    annotation (Line(points={{-92,-54},{-32,-54},{-32,-9.8},{-22.4,-9.8}}, color={159,159,223}));
+    annotation (Line(points={{-92,-54},{-32,-54},{-32,-9.8},{-22.4,-9.8}}, color={28,108,200}));
   connect(stack.fuelOutlet, sinkFuel.flange)
-    annotation (Line(points={{22.4,11.8},{78,11.8},{78,42},{88,42}}, color={159,159,223}));
+    annotation (Line(points={{22.4,11.8},{78,11.8},{78,42},{88,42}}, color={28,108,200}));
   connect(stack.airOutlet, sinkAir.flange)
-    annotation (Line(points={{22.4,-9.8},{78,-9.8},{78,-48},{88,-48}}, color={159,159,223}));
+    annotation (Line(points={{22.4,-9.8},{78,-9.8},{78,-48},{88,-48}}, color={28,108,200}));
 
   // Electrical connections
   connect(powerElectronics.pinN[1], stack.pinP)
@@ -85,7 +85,7 @@ equation
       thickness=0.5));
 
   connect(fuelSource.flange, stack.fuelInlet)
-    annotation (Line(points={{-120,52},{-80,52},{-80,14},{-36,14},{-36,11.8},{-22.4,11.8}}, color={159,159,223}));
+    annotation (Line(points={{-120,52},{-80,52},{-80,14},{-36,14},{-36,11.8},{-22.4,11.8}}, color={28,108,200}));
   connect(currentRamp.y, fuelSource.in_I) annotation (Line(points={{-191,6},{-144,6},{-144,57},{-136,57}}, color={0,0,127}));
   connect(currentRamp.y, powerElectronics.currentInput[1])
     annotation (Line(points={{-191,6},{-144,6},{-144,20},{-100.9,20},{-100.9,10.8}}, color={0,0,127}));

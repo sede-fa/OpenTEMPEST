@@ -241,7 +241,7 @@ equation
                                                               color={159,159,
           223}));
   connect(sensGasHighP.outlet, sensPHigh.flange) annotation (Line(points={{47.2,
-          22.2},{56,22.2},{56,34.2},{59,34.2}}, color={159,159,223}));
+          22.2},{56,22.2},{56,34.2},{59,34.2}}, color={28,108,200}));
   connect(sensPHigh.p,gain. u) annotation (Line(points={{54.1,41.2},{54.1,40},{36.8,
           40}},     color={0,0,127}));
   connect(gain.y,compressor2. Pi)
@@ -257,18 +257,18 @@ equation
   connect(gain1.y,compressor1. Pi) annotation (Line(points={{-18.4,-4},{-28,-4},
           {-28,-14}},   color={0,0,127}));
   connect(sensTInter.outlet,sensPInter. flange)
-    annotation (Line(points={{-4.8,-21.8},{9,-21.8}},color={159,159,223}));
+    annotation (Line(points={{-4.8,-21.8},{9,-21.8}},color={28,108,200}));
   connect(sensPInter.p,gain1. u) annotation (Line(points={{4.1,-14.8},{4.1,-4},{
           -9.2,-4}},                    color={0,0,127}));
   connect(compressor1.outlet,sensTInter. inlet) annotation (Line(points={{-19,-22},
-          {-16,-22},{-16,-21.8},{-13.2,-21.8}},  color={159,159,223}));
+          {-16,-22},{-16,-21.8},{-13.2,-21.8}},  color={28,108,200}));
   connect(sensPInter.flange,simpleGasInterCooler. inlet) annotation (Line(
-        points={{9,-21.8},{-2.4,-21.8},{-2.4,14}},   color={159,159,223}));
+        points={{9,-21.8},{-2.4,-21.8},{-2.4,14}},   color={28,108,200}));
   connect(compressor2.outlet, sensGasHighP.inlet) annotation (Line(points={{35,
-          22},{38,22},{38,22.2},{38.8,22.2}}, color={159,159,223}));
+          22},{38,22},{38,22.2},{38.8,22.2}}, color={28,108,200}));
   connect(simpleGasInterCooler.outlet,compressor2. inlet) annotation (Line(
         points={{10.4,14},{14,14},{14,22},{17,22}},
-                                            color={159,159,223}));
+                                            color={28,108,200}));
   connect(liquidSeparator1.outflGas,compressor1. inlet) annotation (Line(
         points={{-54,-33},{-42,-33},{-42,-22},{-37,-22}},           color={
           159,159,223}));
@@ -276,9 +276,9 @@ equation
           20.2222},{90,20.2222},{90,-30},{104,-30}},
                                                  color={0,0,127}));
   connect(simpleGasCooler.outlet, sensTSeperator.inlet) annotation (Line(points=
-         {{-76,7.6},{-76,2.4},{-76.2,2.4},{-76.2,-6.8}}, color={159,159,223}));
+         {{-76,7.6},{-76,2.4},{-76.2,2.4},{-76.2,-6.8}}, color={28,108,200}));
   connect(sensTSeperator.outlet, liquidSeparator1.infl) annotation (Line(points=
-         {{-76.2,-15.2},{-76.2,-36},{-70,-36}}, color={159,159,223}));
+         {{-76.2,-15.2},{-76.2,-36},{-70,-36}}, color={28,108,200}));
   connect(const1.y, PID.u_s)
     annotation (Line(points={{-104.6,-14},{-106.8,-14}}, color={0,0,127}));
   connect(metalWall.ht2, simpleGasCooler.ht[1]) annotation (Line(points={{-83.75,
@@ -318,12 +318,12 @@ equation
           -26},{-114,-26},{-114,-21.2}}, color={0,0,127}));
   connect(outflPurge, outflPurge) annotation (Line(points={{112,12},{112,12},
           {112,12}},
-                color={159,159,223}));
+                color={28,108,200}));
   connect(meOHEnergyBalance_noSep.outflPurge, outflPurge) annotation (Line(
         points={{83.4,24.6667},{94,24.6667},{94,12},{112,12}},
-                                                     color={159,159,223}));
+                                                     color={28,108,200}));
   connect(simpleGasCooler.inlet, infl) annotation (Line(points={{-76,20.4},{-78,
-          20.4},{-78,48},{-104,48}}, color={159,159,223}));
+          20.4},{-78,48},{-104,48}}, color={28,108,200}));
   connect(liquidSeparator1.outflLiquid, outflWater)
     annotation (Line(points={{-54,-39},{-56,-39},{-56,-92}}, color={0,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,

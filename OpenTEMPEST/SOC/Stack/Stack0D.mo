@@ -261,17 +261,17 @@ equation
   TMEACenterOut = TASR;
 
   connect(sensAirOut.outlet, airOutlet)
-    annotation (Line(points={{68,-30},{90,-30}}, color={159,159,223}));
+    annotation (Line(points={{68,-30},{90,-30}}, color={28,108,200}));
   connect(airInlet, sensAirIn.inlet)
-    annotation (Line(points={{-70,-30},{-48,-30}}, color={159,159,223}));
+    annotation (Line(points={{-70,-30},{-48,-30}}, color={28,108,200}));
   connect(fuelInlet, sensFuelIn.inlet)
-    annotation (Line(points={{-70,50},{-52,50}}, color={159,159,223}));
+    annotation (Line(points={{-70,50},{-52,50}}, color={28,108,200}));
   connect(sensFuelOut.outlet, fuelOutlet)
-    annotation (Line(points={{62,50},{90,50}}, color={159,159,223}));
+    annotation (Line(points={{62,50},{90,50}}, color={28,108,200}));
   connect(sensFuelIn.outlet, sinkPressure.flange)
-    annotation (Line(points={{-40,50},{-26,50}}, color={159,159,223}));
+    annotation (Line(points={{-40,50},{-26,50}}, color={28,108,200}));
   connect(sensFuelOut.inlet, sourceMassFlowFuel.flange)
-    annotation (Line(points={{50,50},{38,50}}, color={159,159,223}));
+    annotation (Line(points={{50,50},{38,50}}, color={28,108,200}));
   if calcPressureDrop then
     connect(pfuel_in.y, sinkPressure.in_p0);
   else
@@ -286,9 +286,9 @@ equation
   connect(sourceMassFlowFuel.in_X, rexXOut.y) annotation (Line(points={{34,55},{
           34,76},{45,76},{45,84}}, color={0,0,127}));
   connect(sensAirIn.outlet, sinkPressure1.flange)
-    annotation (Line(points={{-36,-30},{-16,-30}}, color={159,159,223}));
+    annotation (Line(points={{-36,-30},{-16,-30}}, color={28,108,200}));
   connect(sensAirOut.inlet, sourceMassFlowAir.flange)
-    annotation (Line(points={{56,-30},{40,-30}}, color={159,159,223}));
+    annotation (Line(points={{56,-30},{40,-30}}, color={28,108,200}));
   connect(sensAirIn.mf, add1.u2) annotation (Line(points={{-35,-15},{-35,-14.8},
           {-2.6,-14.8}}, color={0,0,127}));
   connect(rexMfO2cr.y, add1.u1) annotation (Line(points={{-39,26},{-22,26},{-22,
