@@ -53,6 +53,10 @@ partial model Channel1DBase
   SI.MassFlowRate mfv[N+1] "Mass flow rate CV Vertices/Nodes";
   SI.SpecificEnthalpy hv[N+1] "Enthalpy at Vertices";
   SI.MassFraction xiv[N+1, nSpecies] "Mass fractions at Vertices";
+  protected
+  SI.MassFlowRate mfvInterp[N] "Interpolated mass flow rate at downstream vertices";
+  SI.SpecificEnthalpy hvInterp[N] "Interpolated enthalpy at downstream vertices";
+  public
 
   // Kinetics
   SI.MassFlowRate R[N, nSpecies]
@@ -131,8 +135,10 @@ equation
   xiv[1, :] = inStream(infl.Xi_outflow[:]);
 
     // Interior and x=L
-  mfv[2:N+1] = fluxInterp(N, mf, mfv[1]);
-  hv[2:N+1] = fluxInterp(N, Gas.h, hv[1]);
+  mfvInterp = fluxInterp(N, mf, mfv[1]);
+  hvInterp = fluxInterp(N, Gas.h, hv[1]);
+  mfv[2:N+1] = mfvInterp;
+  hv[2:N+1] = hvInterp;
   for i in 1:nSpecies loop
     xiv[2:N+1, i] = fluxInterp(N, Gas.Xi[i], xiv[1, i]);
   end for;
