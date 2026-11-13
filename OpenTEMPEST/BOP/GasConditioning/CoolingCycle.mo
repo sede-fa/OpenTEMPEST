@@ -62,7 +62,7 @@ model CoolingCycle "Heat exchanger with integrated water cycle."
     use_HeatTransfer=true,
     redeclare model HeatTransfer = Modelica.Fluid.Pipes.BaseClasses.HeatTransfer.IdealFlowHeatTransfer,
     redeclare model FlowModel = Modelica.Fluid.Pipes.BaseClasses.FlowModels.NominalLaminarFlow(dp_nominal=1000, m_flow_nominal=1)) annotation (Placement(transformation(extent={{-4,-24},{16,-44}})));
-  Modelica.Fluid.Sensors.TemperatureTwoPort SensT_A_in(redeclare package Medium = MediumLoop, tau=0) annotation (Placement(transformation(
+  Modelica.Fluid.Sensors.TemperatureTwoPort SensT_A_in(redeclare package Medium = MediumLoop) annotation (Placement(transformation(
         extent={{10,-10},{-10,10}},
         rotation=90,
         origin={-48,12})));

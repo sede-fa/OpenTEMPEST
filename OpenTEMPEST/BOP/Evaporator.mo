@@ -45,7 +45,7 @@ model Evaporator
     redeclare package Medium = WaterMedium,
     dp_nominal=100000,
     m_flow_nominal=Kv*100000) annotation (Placement(transformation(extent={{-54,-10},{-34,10}})));
-  Modelica.Fluid.Sensors.TemperatureTwoPort sensT(redeclare package Medium = WaterMedium, tau=0)
+  Modelica.Fluid.Sensors.TemperatureTwoPort sensT(redeclare package Medium = WaterMedium)
     annotation (Placement(transformation(extent={{-12,6},{8,-14}})));
   Modelica.Fluid.Sensors.MassFlowRate sensW(redeclare package Medium = WaterMedium)
     annotation (Placement(transformation(extent={{-32,6},{-12,-14}})));

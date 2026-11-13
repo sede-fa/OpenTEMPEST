@@ -22,6 +22,7 @@ model Vaporizer
 protected
   parameter SI.MassFlowRate mfDesign = 8/1000;
   parameter Real powerDesign = mfDesign*(4.18*(100-20) + 2.26e3)*1e3*1.3;
+public
 
   Modelica.Fluid.Sources.Boundary_pT sinkPressure(
     redeclare package Medium = MediumInput,
@@ -55,7 +56,7 @@ protected
     use_in_T=true)
     annotation (Placement(transformation(extent={{42,18},{62,-2}})));
 
-  Modelica.Fluid.Sensors.TemperatureTwoPort sensT(redeclare package Medium = MediumInput, tau=0) annotation (Placement(transformation(extent={{-18,14},{2,-6}})));
+  Modelica.Fluid.Sensors.TemperatureTwoPort sensT(redeclare package Medium = MediumInput) annotation (Placement(transformation(extent={{-18,14},{2,-6}})));
 
   OpenTEMPEST.Heat.Wall1D metalWallFV(
     N=5,
@@ -65,7 +66,7 @@ protected
     rhoCustom=mfNom/mfDesign*10/(1*1*0.01),
     cpCustom=450,
     kCustom_trans=mfNom/mfDesign*1500*0.5*0.01/(1*1),
-    Tstartbar=1.1*(45.668*ln(pStart) - 426.44) + 273.15)
+    Tstartbar=1.1*(45.668*log(pStart) - 426.44) + 273.15)
                  annotation (Placement(transformation(
         extent={{-10,-10},{10,10}},
         rotation=90,
