@@ -1,5 +1,5 @@
 within ;
-package OpenTEMPEST
+package OpenTEMPEST "Transient Electrochemical Model for Process and Energy SysTems"
 
   annotation (uses(
       Modelica(version="3.2.3"),
