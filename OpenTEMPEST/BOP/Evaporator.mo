@@ -1,6 +1,6 @@
 within OpenTEMPEST.BOP;
 model Evaporator
-  "Drum evaporator: water in, steam leaves through a control valve and is converted to a gas stream"
+  "Drum evaporator producing steam for a gas phase medium (under construction)"
   extends Modelica.Icons.UnderConstruction; // check media
 
   replaceable package gasPhaseMedium =

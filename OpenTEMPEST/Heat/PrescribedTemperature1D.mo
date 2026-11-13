@@ -1,6 +1,5 @@
 within OpenTEMPEST.Heat;
-model PrescribedTemperature1D
-  "Variable temperature boundary condition in Kelvin"
+model PrescribedTemperature1D "Prescribed temperature boundary condition for a distributed heat port"
   extends OpenTEMPEST.Icons.HeatFlow;
   parameter Integer N "Number of control volumes";
   OpenTEMPEST.Interfaces.DHTVolumes port(N=N) annotation (Placement(transformation(

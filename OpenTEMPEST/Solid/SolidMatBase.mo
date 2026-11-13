@@ -1,10 +1,9 @@
 ﻿within OpenTEMPEST.Solid;
-partial package SolidMatBase
-  "determines properties of solid material as function of temperature"
+partial package SolidMatBase "Base package for solid materials with temperature dependent rho, k and cp"
 
   constant OpenTEMPEST.Solid.solidMaterialsRecord data;
 
-  model BaseProperties "model that calls function for T-dependent k,cp,rho with coefficients in 'data' stored in 'SolidMaterialsData'"
+  model BaseProperties "Temperature dependent k, cp and rho calculated from the coefficients in data"
 
   Modelica.Units.SI.Density rho "density, kg/m³";
     Modelica.Units.SI.SpecificHeatCapacity cp "heat capacity, J/kg/K";

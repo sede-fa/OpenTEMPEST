@@ -1,5 +1,5 @@
 within OpenTEMPEST.Blocks.ComputationBlocks;
-model TemperatureControllerV1
+model TemperatureControllerV1 "Split-range temperature controller for fuel and air inlet temperatures and air flow"
 
   parameter Modelica.Units.SI.Temperature TFuelMax = 900;
   parameter Modelica.Units.SI.Temperature TFuelMin = 650;

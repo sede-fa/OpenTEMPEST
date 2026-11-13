@@ -1,6 +1,5 @@
 within OpenTEMPEST.Blocks.ComputationBlocks;
-model HeatTransferCoefficientCalculator
-  "Laminar flat-plate Nusselt number and heat transfer coefficient from the gas properties at a given state"
+model HeatTransferCoefficientCalculator "Heat transfer coefficient of a gas flow in a pipe or between parallel plates"
 
   import SI = Modelica.Units.SI;
 

@@ -1,10 +1,9 @@
 within OpenTEMPEST.Flow;
-model PressDropLin "Linear pressure drop for gas flows"
+model PressDropLin "Linear pressure drop with pressure difference output"
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
     annotation (choicesAllMatching=true);
   parameter OpenTEMPEST.Units.HydraulicResistance R "Hydraulic resistance";
   parameter Boolean allowFlowReversal=system.allowFlowReversal
-    "= true to allow flow reversal, false restricts to design direction"
     annotation (Evaluate=true);
   outer OpenTEMPEST.System system "System wide properties";
 

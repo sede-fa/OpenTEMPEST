@@ -1,5 +1,5 @@
 within OpenTEMPEST.SOC.Electrochem.Interfaces;
-connector SimpFlowInfoPort
+connector SimpFlowInfoPort "Connector carrying flow information for simplified cell blocks"
 
   Modelica.Units.SI.Temperature TAir;
   Modelica.Units.SI.Temperature TFuel;

@@ -1,5 +1,5 @@
 within OpenTEMPEST.SOC.Electrochem.Interfaces;
-connector ReactionHeatInfoPort
+connector ReactionHeatInfoPort "Connector carrying reaction heat, voltages, current and PEN temperature"
   Modelica.Units.SI.EnthalpyFlowRate H_r;
   Modelica.Units.SI.Voltage Vop;
   Modelica.Units.SI.Voltage Vid;

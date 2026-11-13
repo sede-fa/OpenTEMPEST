@@ -1,5 +1,5 @@
 within OpenTEMPEST.Blocks.ComputationBlocks;
-model Vf2Mf "Converts a volume flow into a mass flow"
+model Vf2Mf "Convert a volume flow into a mass flow"
   import SI = Modelica.Units.SI;
 
   parameter SI.Temperature TRef = 273.15;

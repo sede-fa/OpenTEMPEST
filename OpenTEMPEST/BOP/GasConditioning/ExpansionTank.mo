@@ -1,5 +1,5 @@
 within OpenTEMPEST.BOP.GasConditioning;
-model ExpansionTank "Header with metal walls for water/steam flows"
+model ExpansionTank "Expansion tank for water/steam flows with metal walls"
   extends OpenTEMPEST.Icons.WaterHeader;
   replaceable package Medium = Modelica.Media.Water.StandardWater constrainedby Modelica.Media.Interfaces.PartialMedium
                                             "Medium model"

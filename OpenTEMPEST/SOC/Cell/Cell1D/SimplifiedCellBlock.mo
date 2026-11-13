@@ -116,8 +116,6 @@ equation
           fillPattern=FillPattern.Solid)}), Diagram(coordinateSystem(preserveAspectRatio=false)),
     Documentation(revisions="<html>
 </html>", info="<html>
-<h2>Simplified 1D Cell Block</h2>
-
 <p>
 This model represents a simplified 1D block of cells and associated thermal volumes. It discretizes 
 the block of cells into N control volumes along the x-direction and optionally represents 

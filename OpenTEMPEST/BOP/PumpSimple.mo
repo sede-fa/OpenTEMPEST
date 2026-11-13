@@ -1,5 +1,5 @@
 within OpenTEMPEST.BOP;
-model PumpSimple "simple pump model for incompressible fluids"
+model PumpSimple "Simple pump model for incompressible fluids"
     extends OpenTEMPEST.Icons.WaterPump;
     import SI = Modelica.Units.SI;
 
