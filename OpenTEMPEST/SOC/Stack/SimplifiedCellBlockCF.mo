@@ -172,9 +172,9 @@ equation
 
   // y-direction
   connect(dHT_y0, cellBlock.dhT_y0) annotation (Line(points={{40,-96},{40,-78},
-          {12.3,-78},{12.3,-12.6}},color={191,0,0}));
+          {12.3,-78},{12.3,-12.6}},color={255,127,0}));
   connect(dHT_yN, cellBlock.dhT_yN) annotation (Line(points={{40,98},{34,98},{34,
-          54},{12.3,54},{12.3,12.6}}, color={191,0,0}));
+          54},{12.3,54},{12.3,12.6}}, color={255,127,0}));
 
   // z-direction
   connect(cellBlock.dhT2_z0,dHT2_z0)  annotation (Line(points={{-14.3,-12.6},{-26,
@@ -194,12 +194,12 @@ equation
         ={{19.9,0},{24.95,0},{24.95,1.88738e-15},{30,1.88738e-15}}, color={255,127,
           0}));
   connect(thermalCollector1D_xN.dHT0, tC1_xN.dHT0) annotation (Line(points={{50,
-          -1.88738e-15},{57.2,-1.88738e-15},{57.2,0},{64.4,0}}, color={191,0,0}));
-  connect(tC1_xN.dHT1, dHT_xN)  annotation (Line(points={{83.6,0},{102,0}}, color={191,0,0}));
+          -1.88738e-15},{57.2,-1.88738e-15},{57.2,0},{64.4,0}}, color={255,127,0}));
+  connect(tC1_xN.dHT1, dHT_xN)  annotation (Line(points={{83.6,0},{102,0}}, color={255,127,0}));
   connect(tC1_x0.dHT1, thermalCollector1D_x0.dHT0) annotation (Line(points={{-62.4,
-          0},{-56.2,0},{-56.2,1.88738e-15},{-50,1.88738e-15}}, color={191,0,0}));
+          0},{-56.2,0},{-56.2,1.88738e-15},{-50,1.88738e-15}}, color={255,127,0}));
   connect(dHT_x0, tC1_x0.dHT0)
-    annotation (Line(points={{-102,0},{-81.6,0}}, color={191,0,0}));
+    annotation (Line(points={{-102,0},{-81.6,0}}, color={255,127,0}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={Rectangle(
           extent={{-100,100},{100,-100}},
           lineColor={28,108,200},

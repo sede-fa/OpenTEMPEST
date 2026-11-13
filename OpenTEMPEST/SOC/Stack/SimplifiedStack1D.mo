@@ -438,8 +438,8 @@ equation
   end for;
 
   // connect z-direction HT ports
-  connect(plates[1].dhT_z0, dHT_bottom) annotation (Line(points={{51,39},{51,-72},{-22,-72},{-22,-86}}, color={191,0,0}));
-  connect(plates[nIMPs + 2].dhT_z1, dHT_top) annotation (Line(points={{51,53},{51,78.5},{-12,78.5},{-12,88}}, color={191,0,0}));
+  connect(plates[1].dhT_z0, dHT_bottom) annotation (Line(points={{51,39},{51,-72},{-22,-72},{-22,-86}}, color={255,127,0}));
+  connect(plates[nIMPs + 2].dhT_z1, dHT_top) annotation (Line(points={{51,53},{51,78.5},{-12,78.5},{-12,88}}, color={255,127,0}));
 
   //connect endplates
   //topplate
@@ -449,7 +449,7 @@ equation
   else
     // connect detailed cell to top plate
     connect(plates[nIMPs + 2].dhT_z0, detailedCells[j_detl[Ncell]].dHT_z1) annotation (Line(points={{51,39},
-            {51,36},{-18,36},{-18,6},{-12.88,6},{-12.88,-2.68}},                                                                                                 color={191,0,0}));
+            {51,36},{-18,36},{-18,6},{-12.88,6},{-12.88,-2.68}},                                                                                                 color={255,127,0}));
   end if;
   //bottomplate
   if isSimpl[1] then
@@ -458,7 +458,7 @@ equation
   else
     // connect detailed cell to bottom plate below
     connect(plates[1].dhT_z1, detailedCells[1].dHT_z0) annotation (Line(points={{51,53},
-            {51,60},{30,60},{30,-46},{-10,-46},{-10,-28.6},{-12.5,-28.6}},                                         color={191,0,0}));
+            {51,60},{30,60},{30,-46},{-10,-46},{-10,-28.6},{-12.5,-28.6}},                                         color={255,127,0}));
   end if;
 
   // consider possible cases: detl[j] to simp[j+1], simp[j] to detl[j+1], simp[1] to bottom plate, etc.
@@ -569,20 +569,20 @@ equation
 
   // Top plate
   connect(plates[nIMPs + 2].dhT_y0, dHT_y0) annotation (Line(points={{65,39},{65,
-          32},{12,32},{12,105},{35,105}},                                                                        color={191,0,0}));
-  connect(plates[nIMPs + 2].dhT_y1, dHT_y1) annotation (Line(points={{65,53},{65,70},{41,70},{41,-105}}, color={191,0,0}));
+          32},{12,32},{12,105},{35,105}},                                                                        color={255,127,0}));
+  connect(plates[nIMPs + 2].dhT_y1, dHT_y1) annotation (Line(points={{65,53},{65,70},{41,70},{41,-105}}, color={255,127,0}));
 
   // Bottom plate
   connect(plates[1].dhT_y0, dHT_y0) annotation (Line(points={{65,39},{52,39},{52,
-          34},{26,34},{26,66},{35,66},{35,105}},                                         color={191,0,0}));
+          34},{26,34},{26,66},{35,66},{35,105}},                                         color={255,127,0}));
   connect(plates[1].dhT_y1, dHT_y1) annotation (Line(points={{65,53},{65,64},{92,
-          64},{92,24},{38,24},{38,-34},{41,-34},{41,-105}},                                                         color={191,0,0}));
+          64},{92,24},{38,24},{38,-34},{41,-34},{41,-105}},                                                         color={255,127,0}));
 
   //intermediate plates to external
   //y-direction
   for i in 1:nIMPs loop
-    connect(plates[i+1].dhT_y0, dHT_y0) annotation (Line(points={{65,39},{65,30},{86,30},{86,82},{35,82},{35,105}}, color={191,0,0}));
-    connect(plates[i+1].dhT_y1, dHT_y1) annotation (Line(points={{65,53},{65,68},{41,68},{41,-105}}, color={191,0,0}));
+    connect(plates[i+1].dhT_y0, dHT_y0) annotation (Line(points={{65,39},{65,30},{86,30},{86,82},{35,82},{35,105}}, color={255,127,0}));
+    connect(plates[i+1].dhT_y1, dHT_y1) annotation (Line(points={{65,53},{65,68},{41,68},{41,-105}}, color={255,127,0}));
   end for;
   //x-direction
   for i in 1:(nIMPs+2) loop
@@ -592,12 +592,12 @@ equation
  // Cells
   for j in 1:Ncell loop
     if not isSimpl[j] then // connect detailed cell ports
-      connect(detailedCells[j_detl[j]].dHT_y1, dHT_y1) annotation (Line(points={{1.94,-32.2},{1.94,-40},{41,-40},{41,-105}}, color={191,0,0}));
-      connect(detailedCells[j_detl[j]].dHT_y0, dHT_y0) annotation (Line(points={{3.46,-0.16},{3.46,10},{26,10},{26,80},{35,80},{35,105}}, color={191,0,0}));
+      connect(detailedCells[j_detl[j]].dHT_y1, dHT_y1) annotation (Line(points={{1.94,-32.2},{1.94,-40},{41,-40},{41,-105}}, color={255,127,0}));
+      connect(detailedCells[j_detl[j]].dHT_y0, dHT_y0) annotation (Line(points={{3.46,-0.16},{3.46,10},{26,10},{26,80},{35,80},{35,105}}, color={255,127,0}));
     elseif isSimpl[j] then // connect simplified cell ports
       connect(simplifiedCellBlock[j_verticalBlock[j]].dHTactive_y1, dHT_y1) annotation (Line(points={{-1.5,
-              14.4},{-1.5,6},{22,6},{22,-90},{42,-90},{42,-105},{41,-105}},                                                                              color={191,0,0}));
-      connect(simplifiedCellBlock[j_verticalBlock[j]].dHTactive_y0, dHT_y0) annotation (Line(points={{-1.7,33.8},{-1.7,40},{35,40},{35,105}}, color={191,0,0}));
+              14.4},{-1.5,6},{22,6},{22,-90},{42,-90},{42,-105},{41,-105}},                                                                              color={255,127,0}));
+      connect(simplifiedCellBlock[j_verticalBlock[j]].dHTactive_y0, dHT_y0) annotation (Line(points={{-1.7,33.8},{-1.7,40},{35,40},{35,105}}, color={255,127,0}));
     end if;
   end for;
 

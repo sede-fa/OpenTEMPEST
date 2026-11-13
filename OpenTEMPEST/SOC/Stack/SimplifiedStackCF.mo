@@ -638,35 +638,35 @@ equation
     if not isSimpl[j] then
       // Connect detailed cell inlet and outlet port in flow direction
       connect(detailedCells[j_detl[j]].dHT_x0, dHT_DHT2_x0.DHT_port[j]) annotation (Line(points={{-18.8,
-              -50},{-52,-50},{-52,-40},{-61.2,-40}},    color={191,0,0}));
+              -50},{-52,-50},{-52,-40},{-61.2,-40}},    color={255,127,0}));
       connect(detailedCells[j_detl[j]].dHT_xN, dHT_DHT2_xN.DHT_port[j]) annotation (Line(points={{18.6,
-              -42},{44.6,-42},{44.6,-40},{69.2,-40}},                                                                                    color={191,0,0}));
+              -42},{44.6,-42},{44.6,-40},{69.2,-40}},                                                                                    color={255,127,0}));
       connect(flowInterpolator1D.dHT[j], TdetailedToFVI1D[j_detl[j]].port);
     elseif isSimpl[j] then
       // Connect simplified cell ports. Blocks with simplified cells get connected to all corresponding ports (simplified cells lumped)
       connect(simplifiedBlock[j_verticalBlock[j]].dHT_x0[simpleCellHeatPortIndex[j]], dHT_DHT2_x0.DHT_port[j]) annotation (Line(points={{-10.2,8},
-              {-50,8},{-50,-40},{-61.2,-40}}, color={191,0,0}));
+              {-50,8},{-50,-40},{-61.2,-40}}, color={255,127,0}));
       connect(simplifiedBlock[j_verticalBlock[j]].dHT_xN[simpleCellHeatPortIndex[j]], dHT_DHT2_xN.DHT_port[j]) annotation (Line(points={{10.2,8},
-              {28,8},{28,-40},{69.2,-40}},                   color={191,0,0}));
+              {28,8},{28,-40},{69.2,-40}},                   color={255,127,0}));
       connect(simplifiedBlock[j_verticalBlock[j]].dHT_xN[simpleCellHeatPortIndex[j]], flowInterpolator1D.dHT[j]);
     end if;
   end for;
 
   // Plates x-direction
   connect(plates.dhT_x0, dHT_DHT2Plates_x0.DHT_port) annotation (Line(points={{-11,62},
-          {-49.2,62}},                       color={191,0,0}));
+          {-49.2,62}},                       color={255,127,0}));
   connect(dHT_DHT2Plates_x0.DHT2D_port, dHT2Plates_x0) annotation (Line(points={{-58.4,
           62},{-108,62},{-108,71},{-119,71}},        color={0,0,0}));
   connect(dHT_DHT2Plates_xN.DHT2D_port, dHT2Plates_xN) annotation (Line(points={{40.4,62},
           {110,62},{110,71},{121,71}},           color={0,0,0}));
   connect(plates.dhT_xN, dHT_DHT2Plates_xN.DHT_port)
-    annotation (Line(points={{11,62},{31.2,62}}, color={191,0,0}));
+    annotation (Line(points={{11,62},{31.2,62}}, color={255,127,0}));
 
   // Plates y - direction
   connect(plates.dhT_y0, dHT_DHT2Plates_y0.DHT_port) annotation (Line(points={{7,55},{
-          7,50.9},{18,50.9},{18,46.8}},    color={191,0,0}));
+          7,50.9},{18,50.9},{18,46.8}},    color={255,127,0}));
   connect(plates.dhT_yN, dHT_DHT2Plates_yN.DHT_port)
-    annotation (Line(points={{7,69},{18,69},{18,75.2}}, color={191,0,0}));
+    annotation (Line(points={{7,69},{18,69},{18,75.2}}, color={255,127,0}));
   connect(dHT_DHT2Plates_y0.DHT2D_port, dHT2Plates_y0) annotation (Line(points={{18,37.6},
           {18,22},{22,22},{22,10},{30,10},{30,-42},{28,-42},{28,-132},{33,-132},
           {33,-139}},                               color={0,0,0}));

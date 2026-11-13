@@ -18,7 +18,7 @@ equation
         Rectangle(
           extent={{-80,20},{80,-20}},
           lineColor={0,0,0},
-          fillColor={191,0,0},
+          fillColor={255,127,0},
           fillPattern=FillPattern.Forward),
         Text(
           extent={{-100,-46},{100,-70}},

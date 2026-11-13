@@ -200,16 +200,16 @@ equation
   // x-direction connections
   connect(dHT_x0, pen.dhT_x0) annotation (Line(points={{-131,-40},{-48,-40},{-48,
           19},{-39,19}},
-                     color={191,0,0}));
+                     color={255,127,0}));
   connect(dHT_xN, pen.dhT_xN) annotation (Line(points={{135,4},{38,4},{38,19},{27,
-          19}},    color={191,0,0}));
+          19}},    color={255,127,0}));
 
   // y-direction connections
   connect(pen.dhT_y0, dHT_y0)
     annotation (Line(points={{15,1.5},{15,-6},{68,-6},{68,-18},{132,-18},{132,-26},
-          {140,-26}},                                      color={191,0,0}));
+          {140,-26}},                                      color={255,127,0}));
   connect(dHT_yN, pen.dhT_yN) annotation (Line(points={{140,26},{36,26},{36,
-          36.5},{15,36.5}}, color={191,0,0}));
+          36.5},{15,36.5}}, color={255,127,0}));
 
   // z-direction connections
   connect(iCFuel.dhT2_z1, dHT2_z1) annotation (Line(points={{-11.2,151.2},{-11.2,

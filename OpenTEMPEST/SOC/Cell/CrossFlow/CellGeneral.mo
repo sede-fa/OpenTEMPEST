@@ -297,9 +297,9 @@ equation
 
   // x-direction
   connect(dHT_x0, pen.dhT_x0) annotation (Line(points={{-100,-28},{-54,-28},{-54,
-          12},{-37.4,12}}, color={191,0,0}));
+          12},{-37.4,12}}, color={255,127,0}));
   connect(dHT_xN, pen.dhT_xN) annotation (Line(points={{100,6},{48,6},{48,12},{37.4,
-          12}}, color={191,0,0}));
+          12}}, color={255,127,0}));
 
   // y-direction
   connect(dHT_y0, pen.dhT_y0);

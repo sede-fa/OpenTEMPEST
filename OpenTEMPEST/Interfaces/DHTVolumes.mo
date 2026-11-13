@@ -12,12 +12,12 @@ connector DHTVolumes "Distributed heat port: one temperature and one heat flow p
   annotation (
     Icon(graphics={Rectangle(
           extent={{-100,100},{100,-100}},
-          lineColor={191,0,0},
+          lineColor={255,127,0},
           fillColor={255,255,255},
           fillPattern=FillPattern.Solid), Rectangle(
           extent={{-100,40},{100,-40}},
-          lineColor={191,0,0},
-          fillColor={191,0,0},
+          lineColor={255,127,0},
+          fillColor={255,127,0},
           fillPattern=FillPattern.Solid)}),
     Documentation(info="<html>
 <p>Distributed heat port for finite-volume models. Same variables as

@@ -77,11 +77,11 @@ equation
   connect(heatSource1DFV.power,efficiency. y) annotation (Line(points={{0,
           22},{0,27.6},{-8.88178e-16,27.6}}, color={0,0,127}));
   connect(heatSource1DFV.wall, flow1D2w.wall)
-    annotation (Line(points={{0,15},{0,4.2}}, color={191,0,0}));
+    annotation (Line(points={{0,15},{0,4.2}}, color={255,127,0}));
   connect(efficiency.u, load.referencePower) annotation (Line(points={{0,36.8},{
           32,36.8},{32,48},{62.7,48}}, color={0,0,127}));
   connect(flow1D2w.wall2, heatloss) annotation (Line(points={{0,-4.1},{0,-20},{0,
-          -35},{1,-35}}, color={191,0,0}));
+          -35},{1,-35}}, color={255,127,0}));
   connect(flow1D2w.outfl, flangeB)
     annotation (Line(points={{9.4,0},{100,0}}, color={28,108,200}));
   connect(flow1D2w.infl, flangeA) annotation (Line(points={{-9.4,-0.2},{-51.7,-0.2},
