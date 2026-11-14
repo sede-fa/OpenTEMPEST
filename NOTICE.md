@@ -20,7 +20,7 @@ Those files remain subject to the Modelica License 2 terms in addition to the re
 | `Interfaces/HT.mo`, `DHTVolumes.mo` | `ThermoPower.Thermal.HT`, `DHTVolumes` |
 | `Interfaces/PowerConnection.mo` | `ThermoPower.Electrical.PowerConnection` |
 | `Flow/FlowJoin.mo`, `FlowSplit.mo`, `PressDropLin.mo`, `SensP.mo`, `SensT.mo`, `SensW.mo`, `SinkPressure.mo`, `SourceMassFlow.mo`, `ThroughMassFlow.mo` | `ThermoPower.Gas.*` of the same name |
-| `Heat/ConvHTFV.mo`, `HeatSource1DFV.mo`, `HeatSource1DNonUniformFV.mo`, `HT_DHTVolumes.mo` | `ThermoPower.Thermal.*` of the same name |
+| `Heat/ConvHTFV.mo`, `HeatSource1DFV.mo`, `HeatSource1DNonUniformFV.mo`, `TempSource1DFV.mo`, `HT_DHTVolumes.mo` | `ThermoPower.Thermal.*` of the same name |
 | `Heat/Wall1D.mo` | `ThermoPower.Thermal.MetalWallFV` |
 | `Heat/ForcedConvection.mo` | heat transfer plug-in for `ThermoPower.Gas.Flow1DFV` |
 | `Electrical/Grid.mo`, `Load.mo` | `ThermoPower.Electrical.Grid`, `Load` |

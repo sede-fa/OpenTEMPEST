@@ -30,6 +30,7 @@ convertClass("ThermoPower.Gas.ThroughMassFlow", "OpenTEMPEST.Flow.ThroughMassFlo
 convertClass("ThermoPower.Thermal.ConvHTFV", "OpenTEMPEST.Heat.ConvHTFV");
 convertClass("ThermoPower.Thermal.HeatSource1DFV", "OpenTEMPEST.Heat.HeatSource1DFV");
 convertClass("ThermoPower.Thermal.HeatSource1DNonUniformFV", "OpenTEMPEST.Heat.HeatSource1DNonUniformFV");
+convertClass("ThermoPower.Thermal.TempSource1DFV", "OpenTEMPEST.Heat.TempSource1DFV");
 convertClass("ThermoPower.Thermal.HT_DHTVolumes", "OpenTEMPEST.Heat.HT_DHTVolumes");
 
 // Electrical
