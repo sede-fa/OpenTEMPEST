@@ -1,8 +1,10 @@
 within OpenTEMPEST.SOC.Stack;
 model SimplifiedStack1D "1D stack with a few detailed cells and simplified cell blocks in between"
-  import SI = Modelica.Units.SI;
-  parameter Integer N(min=3)=3 annotation (Dialog(tab = "Number of control volumes along the flow direction"));
-  parameter Integer Ncell(min=2)=30 annotation (Dialog(tab = "Number of cells in the stack"));
+  import      Modelica.Units.SI;
+  parameter Integer N(min=3)=3 "Number of control volumes along the flow direction"
+                                                                                   annotation (Dialog(tab = "General"));
+  parameter Integer Ncell(min=2)=30 "Number of cells in the stack"
+                                                                  annotation (Dialog(tab = "General"));
   parameter Integer[:] verticalBlockSize={3, 3, 2, 2, 2, 1, 1, 1, 1, 2, 2, 3, 3} "Vertical size of the simplified blocks (e. g. 3 represents three cells merged in one simplfied block). Sum needs to be Ncell-NdetailedCell" annotation (Dialog(tab = "General"));
   parameter Integer NdetailedCell(min=1, max=Ncell) = 4 "number of cells that are calculated in detail" annotation (Dialog(tab = "General"));
   replaceable function fluxInterp =
@@ -149,10 +151,12 @@ public
     redeclare package Medium = Medium.Air_Medium,
     final nPorts_b=Ncell,
     nDummyPorts_b=Ncell - NdetailedCell) annotation (Placement(transformation(extent={{-76,-80},{-64,-48}})));
-  OpenTEMPEST.Interfaces.GasFlangeB fuelOut(redeclare package Medium = Medium.Fuel_CH4)
+  OpenTEMPEST.Interfaces.GasFlangeB fuelOut(redeclare package Medium =
+        Medium.Fuel_CH4)
     annotation (Placement(transformation(extent={{110,56},{130,76}}),
         iconTransformation(extent={{110,56},{130,76}})));
-  OpenTEMPEST.Interfaces.GasFlangeB airOut(redeclare package Medium = Medium.Air_Medium)
+  OpenTEMPEST.Interfaces.GasFlangeB airOut(redeclare package Medium =
+        Medium.Air_Medium)
     annotation (Placement(transformation(extent={{110,-72},{130,-52}}),
         iconTransformation(extent={{110,-72},{130,-52}})));
   Flow.Manifold_out manifold_outFuel(redeclare package Medium = Medium.Fuel_CH4,
@@ -161,10 +165,12 @@ public
   Flow.Manifold_out manifold_outAir(redeclare package Medium =
         Medium.Air_Medium, nPorts_a=NdetailedCell)
     annotation (Placement(transformation(extent={{36,-18},{56,2}})));
-  OpenTEMPEST.Interfaces.GasFlangeA fuelIn(redeclare package Medium = Medium.Fuel_CH4)
+  OpenTEMPEST.Interfaces.GasFlangeA fuelIn(redeclare package Medium =
+        Medium.Fuel_CH4)
     annotation (Placement(transformation(extent={{-138,56},{-118,76}}),
         iconTransformation(extent={{-138,56},{-118,76}})));
-  OpenTEMPEST.Interfaces.GasFlangeA airIn(redeclare package Medium = Medium.Air_Medium)
+  OpenTEMPEST.Interfaces.GasFlangeA airIn(redeclare package Medium =
+        Medium.Air_Medium)
     annotation (Placement(transformation(extent={{-140,-80},{-120,-60}}),
         iconTransformation(extent={{-140,-80},{-120,-60}})));
 

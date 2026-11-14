@@ -15,7 +15,7 @@ connector DHTVolumes "Distributed heat port: one temperature and one heat flow p
           lineColor={255,127,0},
           fillColor={255,255,255},
           fillPattern=FillPattern.Solid), Rectangle(
-          extent={{-100,40},{100,-40}},
+          extent={{-100,100},{100,-100}},
           lineColor={255,127,0},
           fillColor={255,127,0},
           fillPattern=FillPattern.Solid)}),

@@ -17,8 +17,8 @@ model FlowSplit "Ideal 1-to-2 gas junction (mass and momentum balance, ideal mix
   OpenTEMPEST.Interfaces.GasFlangeB outlet2(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{80,-80},{120,-40}})));
 
-protected
   // Inflow weights (flow entering the junction through each port); regularised to avoid 0/0
+protected
   Real w_in[3] = {max(inlet.m_flow, 1e-10), max(outlet1.m_flow, 1e-10), max(outlet2.m_flow, 1e-10)};
   Medium.SpecificEnthalpy h_in[3] = {inStream(inlet.h_outflow), inStream(outlet1.h_outflow), inStream(outlet2.h_outflow)};
   Medium.MassFraction Xi_in[3, Medium.nXi] = {inStream(inlet.Xi_outflow), inStream(outlet1.Xi_outflow), inStream(outlet2.Xi_outflow)};
@@ -44,7 +44,8 @@ equation
   annotation (
     Icon(graphics={
         Polygon(points={{-100,40},{-100,-40},{0,-40},{100,-40},{100,40},{0,40},{-100,40}},
-          lineColor={28,108,200}, fillColor={28,108,200}, fillPattern=FillPattern.Solid),
+          lineColor={28,108,200}, fillColor={28,108,200}, fillPattern=
+              FillPattern.Solid),
         Text(extent={{-100,-50},{100,-80}}, textString="%name", lineColor={0,0,0})}),
     Documentation(info="<html>
 <p>Ideal junction with one inlet and two outlets: mass balance, equal pressure at all ports, and ideal

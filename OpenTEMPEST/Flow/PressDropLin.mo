@@ -37,7 +37,7 @@ equation
         Rectangle(
           extent={{-100,40},{100,-40}},
           lineColor={128,128,128},
-          fillColor={159,159,223},
+          fillColor={28,108,200},
           fillPattern=FillPattern.Solid),
         Text(
           extent={{-100,-50},{100,-80}},
