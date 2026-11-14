@@ -26,6 +26,10 @@ python3 Misc/scripts/convert_from_0.1.0.py path/to/your/models             # con
 It also updates the `uses` versions. Tested on a small model using the old names (converted file passes
 `checkModel` in OpenModelica); review the result with a diff.
 
+**Tip:** run the Python converter first, even if you use Dymola afterwards. After converting it prints
+every line that still mentions ThermoPower or a removed class, so you get the full to-do list at once
+instead of one error per model check. The Dymola script only renames and prints no such list.
+
 ## Manual part
 
 | 0.1.x | 0.2.0 |
