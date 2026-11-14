@@ -1,4 +1,5 @@
 within OpenTEMPEST.Heat;
+// Derived in part from ThermoPower (Copyright 2002-2014 Politecnico di Milano, Modelica License 2). See NOTICE.md.
 model ConvHTFV "Constant thermal conductance between two distributed heat ports"
   parameter Integer Nv(min=1)=2 "Number of volumes";
   parameter Real G(quantity="ThermalConductance", unit="W/K")

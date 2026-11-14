@@ -1,4 +1,5 @@
 within OpenTEMPEST.Interfaces;
+// Derived in part from ThermoPower (Copyright 2002-2014 Politecnico di Milano, Modelica License 2). See NOTICE.md.
 connector DHTVolumes "Distributed heat port: one temperature and one heat flow per finite volume"
   parameter Integer N(min=1) "Number of volumes";
   Real T[N](

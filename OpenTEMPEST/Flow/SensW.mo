@@ -1,4 +1,5 @@
 within OpenTEMPEST.Flow;
+// Derived in part from ThermoPower (Copyright 2002-2014 Politecnico di Milano, Modelica License 2). See NOTICE.md.
 model SensW "Mass flow rate sensor for gas flows (in the flow path)"
   extends OpenTEMPEST.Flow.BaseClasses.PartialGasTwoPort;
   extends OpenTEMPEST.Icons.GasSensor;

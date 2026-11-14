@@ -1,4 +1,5 @@
 within OpenTEMPEST.Electrical;
+// Derived in part from ThermoPower (Copyright 2002-2014 Politecnico di Milano, Modelica License 2). See NOTICE.md.
 model Grid "Ideal grid with finite droop"
   parameter Modelica.Units.SI.Power Pgrid "Total nominal power installed on the grid";
   final parameter Modelica.Units.SI.Power Poff(fixed=false)

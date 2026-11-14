@@ -1,4 +1,5 @@
 within OpenTEMPEST.Interfaces;
+// Derived in part from ThermoPower (Copyright 2002-2014 Politecnico di Milano, Modelica License 2). See NOTICE.md.
 connector PowerConnection "Electrical power connector (active power and voltage angle)"
   flow Modelica.Units.SI.Power P "Active power flow into the port";
   Modelica.Units.SI.Angle theta "Voltage angle in a frame rotating at nominal frequency";

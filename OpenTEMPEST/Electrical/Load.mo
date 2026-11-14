@@ -1,4 +1,5 @@
 within OpenTEMPEST.Electrical;
+// Derived in part from ThermoPower (Copyright 2002-2014 Politecnico di Milano, Modelica License 2). See NOTICE.md.
 model Load "Electrical load drawing a reference active power from the grid"
   parameter Modelica.Units.SI.Power Pnom "Nominal active power consumption";
   parameter Boolean usePowerInput=false "Use input connector for the power reference";

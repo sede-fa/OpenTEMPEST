@@ -49,6 +49,7 @@ We are actively developing OpenTEMPEST, the work has been going on for several y
 - No built-in mechanical stress models for cell degradation (yet)
 - No detailed microkinetic models - we don't plan to go in this direction because of computational burden
 - Based on MSL 4.1 with its own gas and heat interfaces (ThermoPower is no longer used). The migration is recent and still being validated against the previous results
+- Some files were derived from ThermoPower (Modelica License 2); see [NOTICE.md](NOTICE.md).
 
 ## Feedback or Questions?
 

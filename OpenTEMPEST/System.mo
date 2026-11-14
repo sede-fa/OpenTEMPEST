@@ -1,4 +1,5 @@
 within OpenTEMPEST;
+// Derived in part from ThermoPower (Copyright 2002-2014 Politecnico di Milano, Modelica License 2). See NOTICE.md.
 model System "System-wide properties (add one at the top level of every simulation model)"
   extends Modelica.Fluid.System;
   parameter Modelica.Units.SI.Frequency fnom=50 "Nominal grid frequency (Electrical package)";

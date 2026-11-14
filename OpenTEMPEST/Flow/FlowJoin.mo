@@ -1,4 +1,5 @@
 within OpenTEMPEST.Flow;
+// Derived in part from ThermoPower (Copyright 2002-2014 Politecnico di Milano, Modelica License 2). See NOTICE.md.
 model FlowJoin "Ideal 2-to-1 gas junction (mass and momentum balance, ideal mixing of streams)"
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
     annotation (choicesAllMatching=true);

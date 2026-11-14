@@ -1,4 +1,5 @@
 within OpenTEMPEST.Heat;
+// Derived in part from ThermoPower (Copyright 2002-2014 Politecnico di Milano, Modelica License 2). See NOTICE.md.
 model ForcedConvection
   "Heat transfer correlation for forced convection (plug-in for Modelica.Fluid pipes, HeatTransfer model of DynamicPipe)"
   extends Modelica.Fluid.Pipes.BaseClasses.HeatTransfer.PartialPipeFlowHeatTransfer;

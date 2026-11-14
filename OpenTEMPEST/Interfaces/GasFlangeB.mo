@@ -1,4 +1,5 @@
 within OpenTEMPEST.Interfaces;
+// Derived in part from ThermoPower (Copyright 2002-2014 Politecnico di Milano, Modelica License 2). See NOTICE.md.
 connector GasFlangeB "Gas flange (design flow direction: leaving the component)"
   extends Modelica.Fluid.Interfaces.FluidPort;
   annotation (

@@ -1,4 +1,5 @@
 within OpenTEMPEST.Interfaces;
+// Derived in part from ThermoPower (Copyright 2002-2014 Politecnico di Milano, Modelica License 2). See NOTICE.md.
 connector HT "Lumped thermal port (temperature T, heat flow Q_flow positive entering the component)"
   extends Modelica.Thermal.HeatTransfer.Interfaces.HeatPort;
   annotation (

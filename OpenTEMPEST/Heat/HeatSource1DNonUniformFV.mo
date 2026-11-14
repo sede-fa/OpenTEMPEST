@@ -1,4 +1,5 @@
 within OpenTEMPEST.Heat;
+// Derived in part from ThermoPower (Copyright 2002-2014 Politecnico di Milano, Modelica License 2). See NOTICE.md.
 model HeatSource1DNonUniformFV "Distributed heat source with a separate heat flow for each volume"
   parameter Integer Nw(min=1)=1 "Number of volumes";
 

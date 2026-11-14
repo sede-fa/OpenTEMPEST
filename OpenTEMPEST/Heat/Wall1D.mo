@@ -1,4 +1,5 @@
 within OpenTEMPEST.Heat;
+// Derived in part from ThermoPower (Copyright 2002-2014 Politecnico di Milano, Modelica License 2). See NOTICE.md.
 model Wall1D "One-dimensional wall discretised into N control volumes along x, with an inner and an outer distributed heat port"
   extends OpenTEMPEST.Icons.HeatFlow;
 

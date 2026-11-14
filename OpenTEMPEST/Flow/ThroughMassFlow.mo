@@ -1,4 +1,5 @@
 within OpenTEMPEST.Flow;
+// Derived in part from ThermoPower (Copyright 2002-2014 Politecnico di Milano, Modelica License 2). See NOTICE.md.
 model ThroughMassFlow "Prescribed mass flow rate through a gas flow path"
   extends OpenTEMPEST.Flow.BaseClasses.PartialGasTwoPort;
   extends OpenTEMPEST.Icons.GasSource;

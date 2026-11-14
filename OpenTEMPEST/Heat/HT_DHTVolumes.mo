@@ -1,4 +1,5 @@
 within OpenTEMPEST.Heat;
+// Derived in part from ThermoPower (Copyright 2002-2014 Politecnico di Milano, Modelica License 2). See NOTICE.md.
 model HT_DHTVolumes "Adaptor between a lumped heat port and a distributed heat port with uniform temperature"
   extends OpenTEMPEST.Icons.HeatFlow;
   parameter Integer N=1 "Number of volumes on the distributed port";
