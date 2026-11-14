@@ -1,7 +1,7 @@
 within OpenTEMPEST.Flow.BaseClasses;
 partial model Flow1DBaseClass "Base class for 1D finite volume flow models, used for plug flow and catalytic reactors"
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
     annotation(choicesAllMatching = true);
   parameter Integer N(min=3) = 5;
@@ -36,10 +36,10 @@ partial model Flow1DBaseClass "Base class for 1D finite volume flow models, used
   // Centre cell values
   SI.MassFlowRate mf[N] "Mass flow rate in and leaving CV";
 
-  ThermoPower.Gas.FlangeA infl(redeclare package Medium = Medium)
+  OpenTEMPEST.Interfaces.GasFlangeA infl(redeclare package Medium = Medium)
       annotation (Placement(transformation(extent={{-100,-8},{-80,12}}),
         iconTransformation(extent={{-108,-16},{-80,12}})));
-  ThermoPower.Gas.FlangeB outfl(redeclare package Medium = Medium)
+  OpenTEMPEST.Interfaces.GasFlangeB outfl(redeclare package Medium = Medium)
       annotation (Placement(transformation(extent={{80,-10},{100,10}}),
         iconTransformation(extent={{80,-14},{108,14}})));
 

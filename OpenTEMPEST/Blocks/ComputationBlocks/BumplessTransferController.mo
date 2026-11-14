@@ -2,8 +2,8 @@ within OpenTEMPEST.Blocks.ComputationBlocks;
 model BumplessTransferController "Bumpless switching between automatic and manual set point tracking"
 
 //   parameter Boolean use_in_setPoint2 = false "Select to activate manual tracking for controller"  annotation(Dialog(group="External inputs"), choices(checkBox=true));
-  parameter Modelica.SIunits.Time rampCompensatorDuration = 180 "Ramp Compensator duration";
-  parameter Modelica.SIunits.Time rampStartTime = 64800 "Ramp Compensator start time";
+  parameter Modelica.Units.SI.Time rampCompensatorDuration = 180 "Ramp Compensator duration";
+  parameter Modelica.Units.SI.Time rampStartTime = 64800 "Ramp Compensator start time";
 
   Modelica.Blocks.Interfaces.RealOutput out_setPointVariable
     annotation (Placement(transformation(extent={{100,-10},{120,10}})));

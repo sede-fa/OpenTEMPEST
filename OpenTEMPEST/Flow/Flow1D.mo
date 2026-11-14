@@ -2,7 +2,7 @@ within OpenTEMPEST.Flow;
 model Flow1D "1D finite volume gas flow model with a distributed heat port"
   extends Modelica.Icons.UnderConstruction; // use flux interpolator and remove comments
   extends OpenTEMPEST.Flow.BaseClasses.Flow1DBaseClass;
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   parameter Real dpdxNom = 100 "Pressure drop in pipe Pa/m";
   parameter Boolean LUDS=false "Set true for linear upwind differencing";
@@ -26,7 +26,7 @@ model Flow1D "1D finite volume gas flow model with a distributed heat port"
 //   SI.DynamicViscosity eta[N];
 //   SI.PrandtlNumber Pr[N];
 
-  ThermoPower.Thermal.DHTVolumes wall(N=N)
+  OpenTEMPEST.Interfaces.DHTVolumes wall(N=N)
                                        "HT through cylindrical wall" annotation (Placement(
         transformation(extent={{-80,30},{80,50}}),iconTransformation(extent={{-80,34},
             {80,50}})));

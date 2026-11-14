@@ -6,9 +6,9 @@ model Reformer1D_C3 "1D plug flow pre-reformer for fuels containing C3 hydrocarb
     rhoCat=7130,
     por=0.75,
     redeclare package Medium = OpenTEMPEST.Medium.Fuel_C3);
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
-  ThermoPower.Thermal.DHTVolumes wall(N=N)
+  OpenTEMPEST.Interfaces.DHTVolumes wall(N=N)
                                        "HT through cylindrical wall" annotation (Placement(
         transformation(extent={{-80,30},{80,50}}),iconTransformation(extent={{-80,34},
             {80,50}})));

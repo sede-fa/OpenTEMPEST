@@ -1,7 +1,7 @@
 within OpenTEMPEST.Heat;
 model Solid0DvarArea "Lumped solid with area varying along x (truncated pyramid)"
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   replaceable package SolidMat = OpenTEMPEST.Solid.SolidMatBase annotation(choicesAllMatching = true);
 
   SolidMat.BaseProperties solid(T=T, kCustom_trans=kCustom, kCustom_long=kCustom, rhoCustom=rhoCustom, cpCustom=cpCustom);
@@ -31,10 +31,10 @@ model Solid0DvarArea "Lumped solid with area varying along x (truncated pyramid)
   parameter SI.SpecificHeatCapacity cpCustom = 1 annotation(Dialog(group="Custom Material Only"));
 
   // Thermal ports
-  ThermoPower.Thermal.HT hT_x0 annotation (Placement(transformation(extent={{-120,
+  OpenTEMPEST.Interfaces.HT hT_x0 annotation (Placement(transformation(extent={{-120,
             -10},{-100,10}}),
                          iconTransformation(extent={{-120,-10},{-100,10}})));
-  ThermoPower.Thermal.HT hT_x1 annotation (Placement(transformation(extent={{100,-10},
+  OpenTEMPEST.Interfaces.HT hT_x1 annotation (Placement(transformation(extent={{100,-10},
             {120,10}}), iconTransformation(extent={{100,-10},{120,10}})));
 
 initial equation

@@ -56,14 +56,12 @@ down with <code>redeclare model Electrochem = Electrochem</code>. Gas media (<co
 <h4>Requirements</h4>
 <ul>
 <li>Dymola (tested). OpenModelica works for many models but is not tested systematically yet.</li>
-<li>Modelica Standard Library 3.2.3.</li>
-<li><a href=\"https://github.com/casella/ThermoPower\">ThermoPower</a> 3.1.</li>
+<li>Modelica Standard Library 4.1.0 (ThermoPower is no longer needed).</li>
 </ul>
-<p>The migration to MSL 4.x without ThermoPower is in progress. See the
-<a href=\"modelica://OpenTEMPEST.UsersGuide.ReleaseNotes\">release notes</a>.</p>
+<p>See the <a href=\"modelica://OpenTEMPEST.UsersGuide.ReleaseNotes\">release notes</a> for what changed.</p>
 <h4>First simulation</h4>
 <ol>
-<li>Load the Modelica Standard Library, ThermoPower and OpenTEMPEST (open their <code>package.mo</code> files).</li>
+<li>Load the Modelica Standard Library and OpenTEMPEST (open their <code>package.mo</code> files).</li>
 <li>Open <a href=\"modelica://OpenTEMPEST.Examples.Stack.Stack1DTest\">Examples.Stack.Stack1DTest</a>.
     It connects a stack of 1D co-flow cells to gas sources and sinks and to a current controlled power supply,
     and runs steam electrolysis with a stepwise current ramp.</li>
@@ -140,8 +138,11 @@ in the info text, with sections as <code>&lt;h4&gt;</code> headings. The rules a
 <ul>
 <li>Uniform description strings for all classes and info texts following one style.</li>
 <li>User's guide in the library, user workflows and a Markdown library reference in the repository.</li>
-<li>Planned: migration to the Modelica Standard Library 4.x and own gas and heat interfaces, so that
-    ThermoPower is no longer needed.</li>
+<li>Migrated to the Modelica Standard Library 4.1.0. ThermoPower is no longer needed: the library has its own
+    gas flanges, heat ports and flow components built on <code>Modelica.Fluid</code>. Models that use
+    <code>OpenTEMPEST.System</code> need an <code>inner OpenTEMPEST.System system</code> at the top level.</li>
+<li><code>Heat.Wall1D</code> replaces <code>Heat.MetalWallFV</code>; the water-side balance of plant models are rebuilt
+    on <code>Modelica.Fluid</code>.</li>
 </ul>
 <h4>Version 0.1.0</h4>
 <p>First public release of OpenTEMPEST, based on the Modelica Standard Library 3.2.3 and ThermoPower 3.1.</p>
@@ -222,10 +223,11 @@ library follows.</p>
   annotation (
     preferredView="info",
     uses(
-      Modelica(version="3.2.3"),
-      ThermoPower(version="3.1"),
-      ModelicaServices(version="3.2.3")),
-    version="0.1.0",
+      Modelica(version="4.1.0"),
+      ModelicaServices(version="4.1.0")),
+    version="0.2.0",
+    conversion(from(version="0.1.0",
+      script="modelica://OpenTEMPEST/Resources/Scripts/Dymola/ConvertOpenTEMPEST_from_0.1.0.mos")),
     Documentation(info="<html>
 <p><strong>OpenTEMPEST</strong> (<strong>T</strong>ransient <strong>E</strong>lectrochemical <strong>M</strong>odel
 for <strong>P</strong>rocess and <strong>E</strong>nergy <strong>S</strong>ys<strong>T</strong>ems) is an open source

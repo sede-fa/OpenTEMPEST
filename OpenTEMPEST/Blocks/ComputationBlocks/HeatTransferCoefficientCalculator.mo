@@ -1,14 +1,13 @@
-﻿within OpenTEMPEST.Blocks.ComputationBlocks;
+within OpenTEMPEST.Blocks.ComputationBlocks;
 model HeatTransferCoefficientCalculator "Heat transfer coefficient of a gas flow in a pipe or between parallel plates"
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
-    annotation(choicesAllMatching = true);
-  parameter Medium.AbsolutePressure p=101325 "Sink pressure";
-  parameter Medium.Temperature T=300 "Source temperature";
-  parameter Medium.MassFraction X[Medium.nX]=Medium.reference_X
-    "Gas composition";
+    annotation (choicesAllMatching=true);
+  parameter Medium.AbsolutePressure p=101325 "Pressure";
+  parameter Medium.Temperature T=300 "Temperature";
+  parameter Medium.MassFraction X[Medium.nX]=Medium.reference_X "Gas composition";
   parameter Medium.MassFlowRate mf=0 "Mass flowrate";
 
   parameter SI.Distance L "Flow channel length";
@@ -22,42 +21,20 @@ model HeatTransferCoefficientCalculator "Heat transfer coefficient of a gas flow
   Real Nu;
   Real alpha;
 
-  ThermoPower.Gas.Flow1DFV flow1DFV(redeclare package Medium = Medium, N=10,
-    L=L,
-    A=if pipe then Modelica.Constants.pi*D^2/4 else W*H,
-    omega=if pipe then L*Modelica.Constants.pi*D else 2*L*(W + H),
-    Dhyd=if pipe then D else H,
-    wnom=mf,
-    FFtype=ThermoPower.Choices.Flow1D.FFtypes.NoFriction,
-    pstart=p,
-    Tstartbar=T,
-    Xstart=X,
-    noInitialPressure=true,
-    redeclare model HeatTransfer =
-        ThermoPower.Thermal.HeatTransferFV.DittusBoelter)
-    annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
-  ThermoPower.Gas.SourceMassFlow sourceMassFlow(redeclare package Medium =
-        Medium,
-    p0=p,
-    T=T,
-    Xnom=X,
-    w0=mf)
-    annotation (Placement(transformation(extent={{-100,-10},{-80,10}})));
-  ThermoPower.Gas.SinkPressure sinkPressure(
-    redeclare package Medium = Medium,
-    p0=p,
-    T=T,
-    Xnom=X) annotation (Placement(transformation(extent={{80,-10},{100,10}})));
+protected
+  parameter SI.Area A=if pipe then Modelica.Constants.pi*D^2/4 else W*H "Flow cross section";
+  parameter SI.Length Dhyd=if pipe then D else H "Hydraulic diameter";
+  Medium.ThermodynamicState state=Medium.setState_pTX(p, T, X) "Gas state";
+  Medium.DynamicViscosity mu=Medium.dynamicViscosity(state);
+  Medium.ThermalConductivity k=Medium.thermalConductivity(state);
+  Medium.SpecificHeatCapacity cp=Medium.heatCapacity_cp(state);
+  Real Re=abs(mf*Dhyd/(A*mu)) "Reynolds number";
+  Real Pr=cp*mu/k "Prandtl number";
+
 equation
-
-  // Ebene Platte – laminare Grenzschicht, isotherme Oberfläche
-  Nu = 0.664 * flow1DFV.heatTransfer.Re[4]^0.5 * (flow1DFV.heatTransfer.Pr[5])^(1/3);
-  alpha = Nu*flow1DFV.heatTransfer.mu[4]/flow1DFV.Dhyd;
-
-  connect(sourceMassFlow.flange, flow1DFV.infl)
-    annotation (Line(points={{-80,0},{-10,0}}, color={159,159,223}));
-  connect(sinkPressure.flange, flow1DFV.outfl)
-    annotation (Line(points={{80,0},{10,0}}, color={159,159,223}));
+  // Flat plate - laminar boundary layer, isothermal surface
+  Nu = 0.664*Re^0.5*Pr^(1/3);
+  alpha = Nu*k/Dhyd;
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)));
 end HeatTransferCoefficientCalculator;

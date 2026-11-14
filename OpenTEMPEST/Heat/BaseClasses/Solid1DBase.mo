@@ -1,7 +1,7 @@
 within OpenTEMPEST.Heat.BaseClasses;
 partial model Solid1DBase "Base model for a 1D finite volume solid with energy balance"
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   replaceable package SolidMat = OpenTEMPEST.Solid.SolidMatBase annotation(choicesAllMatching = true);
 
   parameter Integer N(min=3) = 5 "Number of CVs in the solid";
@@ -45,19 +45,19 @@ partial model Solid1DBase "Base model for a 1D finite volume solid with energy b
   SI.HeatFlowRate Qext[N];
 
   // Thermal ports
-  ThermoPower.Thermal.HT hT_x0 annotation (Placement(transformation(extent={{-120,-10},{-100,10}}),
+  OpenTEMPEST.Interfaces.HT hT_x0 annotation (Placement(transformation(extent={{-120,-10},{-100,10}}),
                          iconTransformation(extent={{-120,-10},{-100,10}})));
-  ThermoPower.Thermal.HT hT_xN annotation (Placement(transformation(extent={{100,-10},
+  OpenTEMPEST.Interfaces.HT hT_xN annotation (Placement(transformation(extent={{100,-10},
             {120,10}}), iconTransformation(extent={{100,-10},{120,10}})));
-  ThermoPower.Thermal.DHTVolumes dhT_z1(N=N) annotation (Placement(transformation(extent={{-80,60},
+  OpenTEMPEST.Interfaces.DHTVolumes dhT_z1(N=N) annotation (Placement(transformation(extent={{-80,60},
             {-60,80}}), iconTransformation(extent={{-80,60},{-60,80}})));
-  ThermoPower.Thermal.DHTVolumes dhT_z0(N=N) annotation (Placement(transformation(extent={{-80,-80},
+  OpenTEMPEST.Interfaces.DHTVolumes dhT_z0(N=N) annotation (Placement(transformation(extent={{-80,-80},
             {-60,-60}}), iconTransformation(extent={{-80,-80},{-60,-60}})));
-  ThermoPower.Thermal.DHTVolumes dhT_y0(N=N) annotation (Placement(transformation(extent={{60,-80},
+  OpenTEMPEST.Interfaces.DHTVolumes dhT_y0(N=N) annotation (Placement(transformation(extent={{60,-80},
             {80,-60}}),iconTransformation(extent={{60,-80},{80,-60}})));
-  ThermoPower.Thermal.DHTVolumes dhT_y1(N=N) annotation (Placement(transformation(extent={{60,60},
+  OpenTEMPEST.Interfaces.DHTVolumes dhT_y1(N=N) annotation (Placement(transformation(extent={{60,60},
             {80,80}}),  iconTransformation(extent={{60,60},{80,80}})));
-  ThermoPower.Thermal.DHTVolumes dhT_int(N=N)   annotation (Placement(transformation(extent={{-10,-6},
+  OpenTEMPEST.Interfaces.DHTVolumes dhT_int(N=N)   annotation (Placement(transformation(extent={{-10,-6},
             {10,14}}), iconTransformation(extent={{-10,-6},{10,14}})));
 
 initial equation

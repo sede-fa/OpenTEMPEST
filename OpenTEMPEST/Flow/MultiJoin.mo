@@ -5,13 +5,13 @@ model MultiJoin "Join n gas flows into one outlet"
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
     annotation(choicesAllMatching = true);
 
-  ThermoPower.Gas.FlangeB outlet(redeclare package Medium = Medium)
+  OpenTEMPEST.Interfaces.GasFlangeB outlet(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{40,-10},{60,10}}),
         iconTransformation(extent={{40,-20},{80,20}})));
-  ThermoPower.Gas.FlangeA inlet[nInlets](redeclare package Medium = Medium)
+  OpenTEMPEST.Interfaces.GasFlangeA inlet[nInlets](redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{-60,0},{-40,20}}),
         iconTransformation(extent={{-80,-20},{-40,20}})));
-  ThermoPower.Gas.FlowJoin flowJoin[nInlets-1](redeclare package Medium = Medium,
+  OpenTEMPEST.Flow.FlowJoin flowJoin[nInlets-1](redeclare package Medium = Medium,
     allowFlowReversal=true,
     checkFlowDirection=true);
 //     rev_inlet=true,

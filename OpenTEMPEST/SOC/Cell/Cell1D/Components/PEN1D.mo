@@ -2,7 +2,7 @@
 model PEN1D "1D PEN (positive electrode, electrolyte, negative electrode) with replaceable electrochemistry"
   extends Heat.BaseClasses.Solid1DBase;
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   parameter SI.CurrentDensity Jstart = 0;
 
@@ -41,9 +41,9 @@ model PEN1D "1D PEN (positive electrode, electrolyte, negative electrode) with r
   Modelica.Electrical.Analog.Interfaces.PositivePin pin_p annotation (
     Placement(transformation(extent={{-116,-56},{-96,-36}}),      iconTransformation(extent={{-106,-46},{-96,-36}})));
 
-  ThermoPower.Thermal.DHTVolumes Qrad_FI(N=N)
+  OpenTEMPEST.Interfaces.DHTVolumes Qrad_FI(N=N)
     annotation (Placement(transformation(extent={{44,10},{64,30}}), iconTransformation(extent={{44,10},{64,30}})));
-  ThermoPower.Thermal.DHTVolumes Qrad_AI(N=N)
+  OpenTEMPEST.Interfaces.DHTVolumes Qrad_AI(N=N)
     annotation (Placement(transformation(extent={{46,-30},{66,-10}}), iconTransformation(extent={{46,-30},{66,-10}})));
 
 equation

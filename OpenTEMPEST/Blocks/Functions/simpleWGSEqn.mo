@@ -2,7 +2,7 @@ within OpenTEMPEST.Blocks.Functions;
 function simpleWGSEqn "Water gas shift equilibrium composition (CH4 is consumed)"
 
   extends Modelica.Icons.Function;
-  import SI=Modelica.SIunits;
+  import SI=Modelica.Units.SI;
 
   input Real T "Temperature";
   input SI.MassFraction xIn[Medium.nX] "Mass composition";

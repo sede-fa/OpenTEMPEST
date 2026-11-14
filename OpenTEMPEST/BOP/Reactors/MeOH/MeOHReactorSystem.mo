@@ -2,7 +2,7 @@ within OpenTEMPEST.BOP.Reactors.MeOH;
 model MeOHReactorSystem "Methanol synthesis process with reactor, separation, compression and heat transfer"
   extends Modelica.Icons.UnderConstruction;
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
    parameter Real conversion = 0.9 "ratio C/H>=0.25; const conversion rate nMeOH/(nCO+nCO2)in"
    annotation (Dialog(tab="MeOH Reactor"));
   parameter SI.Temperature TReactor=260 + 273.15
@@ -33,20 +33,20 @@ model MeOHReactorSystem "Methanol synthesis process with reactor, separation, co
   Compressor compressor2(redeclare package Medium =
         OpenTEMPEST.Medium.Fuel_MethanolReactor)
     annotation (Placement(transformation(extent={{16,32},{36,12}})));
-  ThermoPower.Electrical.Grid grid(Pgrid=999999999) annotation (Placement(
+  OpenTEMPEST.Electrical.Grid grid(Pgrid=999999999) annotation (Placement(
         transformation(
         extent={{7,-7},{-7,7}},
         rotation=90,
         origin={19,-1})));
-  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature fixedTemperature(T=system.T_amb)
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature fixedTemperature(T=system.T_ambient)
                       annotation (Placement(transformation(
         extent={{-6,6},{6,-6}},
         rotation=90,
         origin={34,-2})));
-  ThermoPower.Gas.SensT sensTInter(redeclare package Medium =
+  OpenTEMPEST.Flow.SensT sensTInter(redeclare package Medium =
         OpenTEMPEST.Medium.Fuel_MethanolReactor)
     annotation (Placement(transformation(extent={{-16,-26},{-2,-12}})));
-  ThermoPower.Gas.SensP sensPInter(redeclare package Medium =
+  OpenTEMPEST.Flow.SensP sensPInter(redeclare package Medium =
         OpenTEMPEST.Medium.Fuel_MethanolReactor)
     annotation (Placement(transformation(extent={{16,-26},{2,-12}})));
   OpenTEMPEST.Flow.SensGasProperty sensGasHighP(
@@ -58,7 +58,7 @@ model MeOHReactorSystem "Methanol synthesis process with reactor, separation, co
     etaOutput=false,
     rhoOutput=false)
     annotation (Placement(transformation(extent={{36,18},{50,32}})));
-  ThermoPower.Gas.SensP sensPHigh(redeclare package Medium =
+  OpenTEMPEST.Flow.SensP sensPHigh(redeclare package Medium =
         OpenTEMPEST.Medium.Fuel_MethanolReactor)
     annotation (Placement(transformation(extent={{66,30},{52,44}})));
   Modelica.Blocks.Math.Gain gain(k=1/25e5)
@@ -67,13 +67,13 @@ model MeOHReactorSystem "Methanol synthesis process with reactor, separation, co
   Compressor compressor1(eta=0.9, redeclare package Medium =
         OpenTEMPEST.Medium.Fuel_MethanolReactor)
     annotation (Placement(transformation(extent={{-38,-12},{-18,-32}})));
-  ThermoPower.Electrical.Grid grid1(Pgrid=999999999)
+  OpenTEMPEST.Electrical.Grid grid1(Pgrid=999999999)
                                                     annotation (Placement(
         transformation(
         extent={{7,-7},{-7,7}},
         rotation=90,
         origin={-37,-43})));
-  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature fixedTemperature1(T=system.T_amb)
+  Modelica.Thermal.HeatTransfer.Sources.FixedTemperature fixedTemperature1(T=system.T_ambient)
                       annotation (Placement(transformation(
         extent={{-6,6},{6,-6}},
         rotation=90,
@@ -107,12 +107,12 @@ model MeOHReactorSystem "Methanol synthesis process with reactor, separation, co
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={-62,-36})));
-  inner ThermoPower.System system
+  inner OpenTEMPEST.System system
     annotation (Placement(transformation(extent={{-100,80},{-80,100}})));
   Modelica.Blocks.Interfaces.RealOutput mfMeOH annotation (Placement(
         transformation(extent={{94,-40},{114,-20}}), iconTransformation(extent={{94,-62},
             {120,-36}})));
-  ThermoPower.Gas.SensT sensTSeperator(redeclare package Medium =
+  OpenTEMPEST.Flow.SensT sensTSeperator(redeclare package Medium =
         OpenTEMPEST.Medium.Fuel_MethanolReactor) annotation (Placement(
         transformation(
         extent={{-7,7},{7,-7}},
@@ -197,7 +197,7 @@ model MeOHReactorSystem "Methanol synthesis process with reactor, separation, co
         origin={28,62})));
   Modelica.Blocks.Sources.Constant const2(k=225 + 273.15)
     annotation (Placement(transformation(extent={{56,56},{44,68}})));
-  ThermoPower.Thermal.HT hT annotation (Placement(transformation(extent={{-12,
+  OpenTEMPEST.Interfaces.HT hT annotation (Placement(transformation(extent={{-12,
             94},{12,118}}), iconTransformation(extent={{-10,38},{10,58}})));
   Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow
     annotation (Placement(transformation(extent={{-22,76},{-2,96}})));
@@ -217,15 +217,15 @@ model MeOHReactorSystem "Methanol synthesis process with reactor, separation, co
     annotation (Placement(transformation(extent={{6,8},{-6,-8}},
         rotation=90,
         origin={-60,6})));
-  ThermoPower.Gas.FlangeA infl(redeclare package Medium =
+  OpenTEMPEST.Interfaces.GasFlangeA infl(redeclare package Medium =
         OpenTEMPEST.Medium.Fuel_MethanolReactor) annotation (Placement(
         transformation(extent={{-114,38},{-94,58}}), iconTransformation(extent=
             {{-122,-6},{-94,22}})));
-  ThermoPower.Water.FlangeB outflWater(redeclare package Medium =
-        ThermoPower.Water.StandardWater) annotation (Placement(transformation(
+  Modelica.Fluid.Interfaces.FluidPort_b outflWater(redeclare package Medium =
+        Modelica.Media.Water.StandardWater) annotation (Placement(transformation(
           extent={{-66,-102},{-46,-82}}),iconTransformation(extent={{-74,-110},
             {-46,-82}})));
-  ThermoPower.Gas.FlangeB outflPurge(redeclare package Medium =
+  OpenTEMPEST.Interfaces.GasFlangeB outflPurge(redeclare package Medium =
         OpenTEMPEST.Medium.Fuel_MethanolReactor) annotation (Placement(
         transformation(extent={{102,2},{122,22}}), iconTransformation(extent={{
             94,-6},{122,22}})));
@@ -241,7 +241,7 @@ equation
                                                               color={159,159,
           223}));
   connect(sensGasHighP.outlet, sensPHigh.flange) annotation (Line(points={{47.2,
-          22.2},{56,22.2},{56,34.2},{59,34.2}}, color={159,159,223}));
+          22.2},{56,22.2},{56,34.2},{59,34.2}}, color={28,108,200}));
   connect(sensPHigh.p,gain. u) annotation (Line(points={{54.1,41.2},{54.1,40},{36.8,
           40}},     color={0,0,127}));
   connect(gain.y,compressor2. Pi)
@@ -257,18 +257,18 @@ equation
   connect(gain1.y,compressor1. Pi) annotation (Line(points={{-18.4,-4},{-28,-4},
           {-28,-14}},   color={0,0,127}));
   connect(sensTInter.outlet,sensPInter. flange)
-    annotation (Line(points={{-4.8,-21.8},{9,-21.8}},color={159,159,223}));
+    annotation (Line(points={{-4.8,-21.8},{9,-21.8}},color={28,108,200}));
   connect(sensPInter.p,gain1. u) annotation (Line(points={{4.1,-14.8},{4.1,-4},{
           -9.2,-4}},                    color={0,0,127}));
   connect(compressor1.outlet,sensTInter. inlet) annotation (Line(points={{-19,-22},
-          {-16,-22},{-16,-21.8},{-13.2,-21.8}},  color={159,159,223}));
+          {-16,-22},{-16,-21.8},{-13.2,-21.8}},  color={28,108,200}));
   connect(sensPInter.flange,simpleGasInterCooler. inlet) annotation (Line(
-        points={{9,-21.8},{-2.4,-21.8},{-2.4,14}},   color={159,159,223}));
+        points={{9,-21.8},{-2.4,-21.8},{-2.4,14}},   color={28,108,200}));
   connect(compressor2.outlet, sensGasHighP.inlet) annotation (Line(points={{35,
-          22},{38,22},{38,22.2},{38.8,22.2}}, color={159,159,223}));
+          22},{38,22},{38,22.2},{38.8,22.2}}, color={28,108,200}));
   connect(simpleGasInterCooler.outlet,compressor2. inlet) annotation (Line(
         points={{10.4,14},{14,14},{14,22},{17,22}},
-                                            color={159,159,223}));
+                                            color={28,108,200}));
   connect(liquidSeparator1.outflGas,compressor1. inlet) annotation (Line(
         points={{-54,-33},{-42,-33},{-42,-22},{-37,-22}},           color={
           159,159,223}));
@@ -276,9 +276,9 @@ equation
           20.2222},{90,20.2222},{90,-30},{104,-30}},
                                                  color={0,0,127}));
   connect(simpleGasCooler.outlet, sensTSeperator.inlet) annotation (Line(points=
-         {{-76,7.6},{-76,2.4},{-76.2,2.4},{-76.2,-6.8}}, color={159,159,223}));
+         {{-76,7.6},{-76,2.4},{-76.2,2.4},{-76.2,-6.8}}, color={28,108,200}));
   connect(sensTSeperator.outlet, liquidSeparator1.infl) annotation (Line(points=
-         {{-76.2,-15.2},{-76.2,-36},{-70,-36}}, color={159,159,223}));
+         {{-76.2,-15.2},{-76.2,-36},{-70,-36}}, color={28,108,200}));
   connect(const1.y, PID.u_s)
     annotation (Line(points={{-104.6,-14},{-106.8,-14}}, color={0,0,127}));
   connect(metalWall.ht2, simpleGasCooler.ht[1]) annotation (Line(points={{-83.75,
@@ -318,12 +318,12 @@ equation
           -26},{-114,-26},{-114,-21.2}}, color={0,0,127}));
   connect(outflPurge, outflPurge) annotation (Line(points={{112,12},{112,12},
           {112,12}},
-                color={159,159,223}));
+                color={28,108,200}));
   connect(meOHEnergyBalance_noSep.outflPurge, outflPurge) annotation (Line(
         points={{83.4,24.6667},{94,24.6667},{94,12},{112,12}},
-                                                     color={159,159,223}));
+                                                     color={28,108,200}));
   connect(simpleGasCooler.inlet, infl) annotation (Line(points={{-76,20.4},{-78,
-          20.4},{-78,48},{-104,48}}, color={159,159,223}));
+          20.4},{-78,48},{-104,48}}, color={28,108,200}));
   connect(liquidSeparator1.outflLiquid, outflWater)
     annotation (Line(points={{-54,-39},{-56,-39},{-56,-92}}, color={0,0,255}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-100,

@@ -1,7 +1,7 @@
 within OpenTEMPEST.Flow;
 model GasHeatedSplitter "Flow splitter with convective heat transfer in the inlet and outlet ducts"
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   replaceable package medium =
       Modelica.Media.Interfaces.PartialMedium                          annotation(choicesAllMatching = true);
@@ -22,20 +22,20 @@ model GasHeatedSplitter "Flow splitter with convective heat transfer in the inle
   parameter SI.Length[3] d={0.02,0.02,0.02} "diameter of flow channel in a pipe";
   parameter SI.MassFlowRate maximalFlow = -1 "maximal mass flow rate";
 
-  ThermoPower.Gas.FlangeA inlet(redeclare package Medium = medium)
+  OpenTEMPEST.Interfaces.GasFlangeA inlet(redeclare package Medium = medium)
                                                                  annotation (
       Placement(transformation(extent={{-114,-14},{-86,14}}),iconTransformation(
           extent={{-80,-20},{-40,20}})));
-  ThermoPower.Gas.FlangeB outletA(redeclare package Medium = medium)
+  OpenTEMPEST.Interfaces.GasFlangeB outletA(redeclare package Medium = medium)
     annotation (Placement(transformation(extent={{52,32},{80,60}}),
         iconTransformation(extent={{40,20},{80,60}})));
-  ThermoPower.Gas.FlangeB outletB(redeclare package Medium = medium)
+  OpenTEMPEST.Interfaces.GasFlangeB outletB(redeclare package Medium = medium)
     annotation (Placement(transformation(extent={{52,-48},{80,-20}}),
         iconTransformation(extent={{40,-60},{80,-20}})));
-  ThermoPower.Thermal.HT ht[3] annotation (Placement(transformation(extent={{-10,30},
+  OpenTEMPEST.Interfaces.HT ht[3] annotation (Placement(transformation(extent={{-10,30},
             {10,50}}),     iconTransformation(extent={{-18,-20},{22,20}})));
 
-  ThermoPower.Gas.FlowSplit flowSplit(redeclare package Medium = medium)
+  OpenTEMPEST.Flow.FlowSplit flowSplit(redeclare package Medium = medium)
     annotation (Placement(transformation(extent={{-14,-10},{6,10}})));
   OpenTEMPEST.BOP.GasConditioning.SimpleGasHeater simpleGasHeaterA(
     redeclare package medium = medium,
@@ -84,17 +84,17 @@ equation
   connect(simpleGasHeaterA2.ht[1], ht[1]) annotation (Line(points={{-54,4},{-26,
           4},{-26,33.3333},{0,33.3333}}, color={191,0,0}));
   connect(simpleGasHeaterA2.inlet, inlet) annotation (Line(points={{-62,0},{-76,
-          0},{-76,1.77636e-15},{-100,1.77636e-15}}, color={159,159,223}));
+          0},{-76,1.77636e-15},{-100,1.77636e-15}}, color={28,108,200}));
   connect(simpleGasHeaterA2.outlet, flowSplit.inlet)
-    annotation (Line(points={{-46,0},{-10,0}}, color={159,159,223}));
+    annotation (Line(points={{-46,0},{-10,0}}, color={28,108,200}));
   connect(flowSplit.outlet1, simpleGasHeaterA.inlet) annotation (Line(points={{2,
-          4},{12,4},{12,24},{20,24}}, color={159,159,223}));
+          4},{12,4},{12,24},{20,24}}, color={28,108,200}));
   connect(simpleGasHeaterA.outlet, outletA) annotation (Line(points={{36,24},{50,
-          24},{50,46},{66,46}}, color={159,159,223}));
+          24},{50,46},{66,46}}, color={28,108,200}));
   connect(flowSplit.outlet2, simpleGasHeaterB.inlet) annotation (Line(points={{2,
-          -4},{2,-18},{28,-18},{28,-32}}, color={159,159,223}));
+          -4},{2,-18},{28,-18},{28,-32}}, color={28,108,200}));
   connect(simpleGasHeaterB.outlet, outletB) annotation (Line(points={{44,-32},{56,
-          -32},{56,-34},{66,-34}}, color={159,159,223}));
+          -32},{56,-34},{66,-34}}, color={28,108,200}));
   connect(simpleGasHeaterA.ht[1], ht[2]) annotation (Line(points={{28,28},{10,28},
           {10,40},{0,40}}, color={191,0,0}));
   connect(simpleGasHeaterB.ht[1], ht[3]) annotation (Line(points={{36,-28},{18,

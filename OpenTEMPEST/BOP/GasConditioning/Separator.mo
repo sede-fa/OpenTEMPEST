@@ -1,6 +1,6 @@
 within OpenTEMPEST.BOP.GasConditioning;
 model Separator "Separator with metal walls for gas flows"
-  extends ThermoPower.Icons.Gas.Mixer;
+  extends OpenTEMPEST.Icons.Mixer;
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
     annotation(choicesAllMatching = true);
   Medium.BaseProperties gas(
@@ -15,16 +15,16 @@ model Separator "Separator with metal walls for gas flows"
     p(start=pstart, stateSelect=StateSelect.prefer),
     T(start=Tstart, stateSelect=StateSelect.prefer),
     Xi(start=Xstart[1:Medium.nXi], each stateSelect=StateSelect.prefer));
-  parameter Modelica.SIunits.Volume V "Inner volume";
-  parameter Modelica.SIunits.Area S=0 "Inner surface";
-  parameter Modelica.SIunits.CoefficientOfHeatTransfer gamma=0
+  parameter Modelica.Units.SI.Volume V "Inner volume";
+  parameter Modelica.Units.SI.Area S=0 "Inner surface";
+  parameter Modelica.Units.SI.CoefficientOfHeatTransfer gamma=0
     "Heat Transfer Coefficient" annotation (Evaluate=true);
-  parameter Modelica.SIunits.HeatCapacity Cm=0 "Metal heat capacity"
+  parameter Modelica.Units.SI.HeatCapacity Cm=0 "Metal heat capacity"
     annotation (Evaluate=true);
   parameter Boolean allowFlowReversal=system.allowFlowReversal
     "= true to allow flow reversal, false restricts to design direction"
     annotation(Evaluate=true);
-  outer ThermoPower.System system "System wide properties";
+  outer OpenTEMPEST.System system "System wide properties";
   parameter Medium.AbsolutePressure pstart=1e5 "Pressure start value"
     annotation (Dialog(tab="Initialisation"));
   parameter Medium.Temperature Tstart=300 "Temperature start value"
@@ -33,7 +33,7 @@ model Separator "Separator with metal walls for gas flows"
     "Start gas composition" annotation (Dialog(tab="Initialisation"));
   parameter Medium.Temperature Tmstart=Tstart "Metal wall start temperature"
     annotation (Dialog(tab="Initialisation"));
-  parameter ThermoPower.Choices.Init.Options initOpt=system.initOpt
+  parameter OpenTEMPEST.Enumerations.InitOptions initOpt=system.initOpt
     "Initialisation option"
     annotation (Dialog(tab="Initialisation"));
   parameter Boolean noInitialPressure=false
@@ -44,29 +44,29 @@ model Separator "Separator with metal walls for gas flows"
     annotation (Dialog(tab="Initialisation"),choices(checkBox=true));
   parameter Real seperationFactor[Medium.nXi] "Seperated fraction per species";
 
-  Modelica.SIunits.Mass M "Gas total mass";
-  Modelica.SIunits.InternalEnergy E "Gas total energy";
-  Modelica.SIunits.Temperature Tm(start=Tmstart) "Wall temperature";
+  Modelica.Units.SI.Mass M "Gas total mass";
+  Modelica.Units.SI.InternalEnergy E "Gas total energy";
+  Modelica.Units.SI.Temperature Tm(start=Tmstart) "Wall temperature";
   Medium.SpecificEnthalpy hi "Inlet specific enthalpy";
   Medium.SpecificEnthalpy hoM "Outlet main specific enthalpy";
   Medium.SpecificEnthalpy hoS "Outlet seperated specific enthalpy";
   Medium.MassFraction Xi[Medium.nXi] "Inlet composition";
   Medium.MassFraction XoM[Medium.nXi] "Outlet main composition";
   Medium.MassFraction XoS[Medium.nXi] "Outlet seperated composition";
-  Modelica.SIunits.Time Tr "Residence time";
+  Modelica.Units.SI.Time Tr "Residence time";
 
-  ThermoPower.Gas.FlangeA inlet(redeclare package Medium = Medium, m_flow(min=
+  OpenTEMPEST.Interfaces.GasFlangeA inlet(redeclare package Medium = Medium, m_flow(min=
           if allowFlowReversal then -Modelica.Constants.inf else 0))
     annotation (Placement(transformation(extent={{-120,-20},{-80,20}}, rotation=
            0)));
-  ThermoPower.Gas.FlangeB outletMain(redeclare package Medium = Medium, m_flow(
+  OpenTEMPEST.Interfaces.GasFlangeB outletMain(redeclare package Medium = Medium, m_flow(
         max=if allowFlowReversal then +Modelica.Constants.inf else 0))
     annotation (Placement(transformation(extent={{60,40},{100,80}}, rotation=0)));
-  ThermoPower.Gas.FlangeB outletSeperated(redeclare package Medium = Medium,
+  OpenTEMPEST.Interfaces.GasFlangeB outletSeperated(redeclare package Medium = Medium,
       m_flow(min=if allowFlowReversal then -Modelica.Constants.inf else 0))
     annotation (Placement(transformation(extent={{60,-80},{100,-40}}, rotation=0)));
 
-  replaceable ThermoPower.Thermal.HT thermalPort annotation (Placement(transformation(
+  replaceable OpenTEMPEST.Interfaces.HT thermalPort annotation (Placement(transformation(
           extent={{-38,60},{42,80}}, rotation=0)));
 equation
   M = gas.d*V "Gas mass";
@@ -125,9 +125,9 @@ equation
     "Residence time";
 initial equation
   // Initial conditions
-  if initOpt == ThermoPower.Choices.Init.Options.noInit then
+  if initOpt == OpenTEMPEST.Enumerations.InitOptions.noInit then
     // do nothing
-  elseif initOpt == ThermoPower.Choices.Init.Options.fixedState then
+  elseif initOpt == OpenTEMPEST.Enumerations.InitOptions.fixedState then
     if not noInitialPressure then
       gas.p = pstart;
     end if;
@@ -138,7 +138,7 @@ initial equation
     if (Cm > 0 and gamma > 0) then
       Tm  = Tmstart;
     end if;
-  elseif initOpt == ThermoPower.Choices.Init.Options.steadyState then
+  elseif initOpt == OpenTEMPEST.Enumerations.InitOptions.steadyState then
     if not noInitialPressure then
       der(gas.p) = 0;
     end if;
@@ -149,7 +149,7 @@ initial equation
     if (Cm > 0 and gamma > 0) then
       der(Tm) = 0;
     end if;
-  elseif initOpt == ThermoPower.Choices.Init.Options.steadyStateNoP then
+  elseif initOpt == OpenTEMPEST.Enumerations.InitOptions.steadyStateNoP then
     if not noInitialTemperature then
       der(gas.T) = 0;
     end if;

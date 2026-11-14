@@ -1,7 +1,7 @@
 within OpenTEMPEST.BOP;
 model PumpSimple "Simple pump model for incompressible fluids"
-    extends ThermoPower.Icons.Water.Pump;
-    import SI = Modelica.SIunits;
+    extends OpenTEMPEST.Icons.WaterPump;
+    import SI = Modelica.Units.SI;
 
     replaceable package Medium = Modelica.Media.Water.StandardWater
     constrainedby Modelica.Media.Interfaces.PartialMedium "Medium model"  annotation(choicesAllMatching = true);
@@ -19,13 +19,13 @@ model PumpSimple "Simple pump model for incompressible fluids"
     parameter Medium.SpecificEnthalpy hStart=1e5  "Fluid Specific Enthalpy Start Value"  annotation (Dialog(tab="Initialisation"));
     parameter Boolean allowFlowReversal=system.allowFlowReversal
       "= true to allow flow reversal, false restricts to design direction"  annotation(Evaluate=true);
-    outer ThermoPower.System system "System wide properties";
+    outer OpenTEMPEST.System system "System wide properties";
 
-    ThermoPower.Water.FlangeA fl_inlet(redeclare package Medium = Medium,
+    Modelica.Fluid.Interfaces.FluidPort_a fl_inlet(redeclare package Medium = Medium,
       h_outflow(start=hStart),
       m_flow(min=if allowFlowReversal then -Modelica.Constants.inf else 0))
       annotation (Placement(transformation(extent={{-100,2},{-60,42}}, rotation=0)));
-    ThermoPower.Water.FlangeB fl_outlet(redeclare package Medium = Medium,
+    Modelica.Fluid.Interfaces.FluidPort_b fl_outlet(redeclare package Medium = Medium,
       h_outflow(start=hStart),
       m_flow(max=if allowFlowReversal then +Modelica.Constants.inf else 0))
       annotation (Placement(transformation(extent={{40,52},{80,92}}, rotation=0)));
@@ -35,10 +35,10 @@ model PumpSimple "Simple pump model for incompressible fluids"
           origin={-40,76},
           extent={{-10,-10},{10,10}},
           rotation=270)));
-    ThermoPower.Electrical.PowerConnection powerConnection annotation (Placement(
+    OpenTEMPEST.Interfaces.PowerConnection powerConnection annotation (Placement(
           transformation(extent={{-10,80},{10,100}}), iconTransformation(extent={{
               -10,80},{10,100}})));
-    ThermoPower.Electrical.Load load(Pnom=1, usePowerInput=true)
+    OpenTEMPEST.Electrical.Load load(Pnom=1, usePowerInput=true)
       annotation (Placement(transformation(extent={{-10,46},{10,66}})));
     Modelica.Blocks.Sources.RealExpression realExpression(y=P_el)
       annotation (Placement(transformation(extent={{-28,46},{-8,66}})));

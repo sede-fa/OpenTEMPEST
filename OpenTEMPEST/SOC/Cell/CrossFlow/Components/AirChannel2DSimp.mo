@@ -1,13 +1,17 @@
 within OpenTEMPEST.SOC.Cell.CrossFlow.Components;
 model AirChannel2DSimp "Air channel discretised in 1D with 2D interfaces"
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   extends Channel2DBaseSimp(
     redeclare package Medium = OpenTEMPEST.Medium.Air_Medium);
 
-  // Pressure Drop
-  SI.PressureDifference dp[nX]=Blocks.Functions.pressureDropDarcy(mfv[1:nX], eta, Gas.d, dx, lZ*lY, 3e-9) "pressure loss";
+  // Pressure Drop (Darcy-Forchheimer: viscous plus inertial loss)
+  parameter SI.Area kPerm = 3e-9 "Permeability of the air channel" annotation(Dialog(tab="Pressure drop"));
+  parameter Real betaForch(unit="1/m") = 0
+    "Forchheimer (inertial) coefficient; 0 gives Darcy's law. For foams and packed beds see the documentation of pressureDropForchheimer"
+    annotation(Dialog(tab="Pressure drop"));
+  SI.PressureDifference dp[nX]=Blocks.Functions.pressureDropForchheimer(mfv[1:nX], eta, Gas.d, dx, lZ*lY, kPerm, betaForch) "pressure loss";
   parameter Real pDrop(max=0.99) "pressure drop as a factor of inlet pressure (between 0 and 0.99)";
   SI.DynamicViscosity eta[nX]=Medium.dynamicViscosity(Gas.state);
 

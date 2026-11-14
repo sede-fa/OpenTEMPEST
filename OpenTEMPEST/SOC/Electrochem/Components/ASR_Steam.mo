@@ -4,7 +4,7 @@ model ASR_Steam "Lumped ASR electrochemistry for the H2/H2O reaction"
                         ASRobj = OpenTEMPEST.SOC.Electrochem.ASR.ASR_log (A=
             6000, B=7));
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   SI.MolarEnthalpy H_h2o, H_o2, H_h2;
 
   SI.SpecificGibbsFreeEnergy go_T "Gibbs energy change with temperature";

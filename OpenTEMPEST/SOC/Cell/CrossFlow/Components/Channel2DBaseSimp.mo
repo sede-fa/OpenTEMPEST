@@ -1,7 +1,7 @@
-﻿within OpenTEMPEST.SOC.Cell.CrossFlow.Components;
+within OpenTEMPEST.SOC.Cell.CrossFlow.Components;
 partial model Channel2DBaseSimp "Base model for channels discretised in 1D with 2D interfaces (pressure drop set at top level)"
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   replaceable package Medium = Modelica.Media.IdealGases.Common.MixtureGasNasa
     annotation(choicesAllMatching = true);
   parameter Integer nX(min=3) = 5 "Number of control volumes in first direction";
@@ -30,9 +30,9 @@ partial model Channel2DBaseSimp "Base model for channels discretised in 1D with 
   parameter Real Nu_IC "Nusselt number for convective heat transfer at IC interface";
 
   // Ribs thermophysical parameters - CFY (94.9% Cr, 5% Fe, 0.1% Y)
-  parameter Modelica.SIunits.ThermalConductivity kRibs=40 "Thermal conductivity of CFY ribs in W/mK (35-45 W/mK for 20-900 °C)"  annotation(Dialog(tab="Ribs"));
-  parameter Modelica.SIunits.SpecificHeatCapacity cpRibs = 451.8 "Specific heat capacity of ribs material"  annotation(Dialog(tab="Ribs"));
-  parameter Modelica.SIunits.Density rhoRibs = 7233 "Calculated CFY ribs density in kg/m3"  annotation(Dialog(tab="Ribs"));
+  parameter Modelica.Units.SI.ThermalConductivity kRibs=40 "Thermal conductivity of CFY ribs in W/mK (35-45 W/mK for 20-900 °C)"  annotation(Dialog(tab="Ribs"));
+  parameter Modelica.Units.SI.SpecificHeatCapacity cpRibs = 451.8 "Specific heat capacity of ribs material"  annotation(Dialog(tab="Ribs"));
+  parameter Modelica.Units.SI.Density rhoRibs = 7233 "Calculated CFY ribs density in kg/m3"  annotation(Dialog(tab="Ribs"));
 
   // Control Volume sizing
   SI.Volume dV = dx*lY*lZ "Control volume size";
@@ -57,6 +57,10 @@ partial model Channel2DBaseSimp "Base model for channels discretised in 1D with 
   SI.MassFlowRate mfv[nX+1] "Mass flow rate CV Vertices/Nodes";
   SI.SpecificEnthalpy hv[nX+1] "Enthalpy at Vertices";
   SI.MassFraction xiv[nX+1, nSpecies] "Mass fractions at Vertices";
+  protected
+  SI.MassFlowRate mfvInterp[nX] "Interpolated mass flow rate at downstream vertices";
+  SI.SpecificEnthalpy hvInterp[nX] "Interpolated enthalpy at downstream vertices";
+  public
 
   // Kinetics
   SI.MassFlowRate R[nX, nSpecies]
@@ -66,10 +70,10 @@ partial model Channel2DBaseSimp "Base model for channels discretised in 1D with 
   SI.MassFlowRate massTransfer[nX] "Mass source term due to electrochemical ion transport";
 
   // Inlet and outlet flanges
-  ThermoPower.Gas.FlangeA infl(redeclare package Medium = Medium)  annotation (Placement(transformation(extent={{-106,0},
+  OpenTEMPEST.Interfaces.GasFlangeA infl(redeclare package Medium = Medium)  annotation (Placement(transformation(extent={{-106,0},
             {-86,20}}),
         iconTransformation(extent={{-114,-8},{-86,20}})));
-  ThermoPower.Gas.FlangeB outfl(redeclare package Medium = Medium)  annotation (Placement(transformation(extent={{80,-10},{100,10}}),
+  OpenTEMPEST.Interfaces.GasFlangeB outfl(redeclare package Medium = Medium)  annotation (Placement(transformation(extent={{80,-10},{100,10}}),
         iconTransformation(extent={{86,-8},{114,20}})));
 
   // Heat ports PEN and IC
@@ -133,8 +137,10 @@ equation
   xiv[1, :] = inStream(infl.Xi_outflow[:]);
 
   // Interior and x=L
-  mfv[2:nX+1] = fluxInterp(nX, mf[1:nX], mfv[1]);
-  hv[2:nX+1] = fluxInterp(nX, Gas[1:nX].h, hv[1]);
+  mfvInterp = fluxInterp(nX, mf[1:nX], mfv[1]);
+  hvInterp = fluxInterp(nX, Gas[1:nX].h, hv[1]);
+  mfv[2:nX+1] = mfvInterp;
+  hv[2:nX+1] = hvInterp;
   for i in 1:nSpecies loop
     xiv[2:nX+1, i] = fluxInterp(nX, Gas[1:nX].Xi[i], xiv[1, i]);
   end for;

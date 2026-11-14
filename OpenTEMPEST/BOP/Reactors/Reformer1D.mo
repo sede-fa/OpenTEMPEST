@@ -2,7 +2,7 @@ within OpenTEMPEST.BOP.Reactors;
 model Reformer1D "1D plug flow pre-reformer for methane (steam reforming and water gas shift)"
   extends Flow.BaseClasses.PFRBaseClass(redeclare package Medium =
         OpenTEMPEST.Medium.Fuel_CH4);
-import SI = Modelica.SIunits;
+import SI = Modelica.Units.SI;
 
   parameter Real Fac_ref = 1;
   parameter Real Fac_wgs = 0.75;
@@ -32,7 +32,7 @@ import SI = Modelica.SIunits;
   parameter Real dpdx=100 " Constant pressure gradient Pa/m";
   parameter SI.CoefficientOfHeatTransfer Uconv=100 "Overall HTC /W/m2/K";
 
-  ThermoPower.Thermal.DHTVolumes wall(N=N)
+  OpenTEMPEST.Interfaces.DHTVolumes wall(N=N)
                                        "HT through cylindrical wall" annotation (Placement(
         transformation(extent={{-80,30},{80,50}}),iconTransformation(extent={{-80,34},
             {80,50}})));

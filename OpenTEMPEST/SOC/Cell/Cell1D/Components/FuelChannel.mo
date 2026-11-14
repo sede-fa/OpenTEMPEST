@@ -3,11 +3,15 @@ model FuelChannel "1D fuel channel with electrochemical reactions and steam refo
   extends OpenTEMPEST.SOC.Cell.Cell1D.Components.Channel1DBase(
     redeclare package Medium = OpenTEMPEST.Medium.Fuel_CH4);
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   // Thermal
   SI.Temperature T[N](start = TStart) "Average Temperature in CV";
 
   // Ni Foam Thermophysical parameters
+  parameter SI.Area kPerm = 3e-9 "Permeability of the nickel foam" annotation(Dialog(tab="Pressure drop"));
+  parameter Real betaForch(unit="1/m") = 0
+    "Forchheimer (inertial) coefficient; 0 gives Darcy's law. For foams and packed beds see the documentation of pressureDropForchheimer"
+    annotation(Dialog(tab="Pressure drop"));
   parameter SI.ThermalConductivity k_eff_Ni  "Nickel foam effective thermal conductivity";
   parameter SI.SpecificHeatCapacity cp_Ni  "Nickel heat capacity";
   parameter SI.Density rho_Ni  "Nickel density";
@@ -33,9 +37,9 @@ model FuelChannel "1D fuel channel with electrochemical reactions and steam refo
   SI.EnergyFlowRate Qcond[N];
   SI.EnergyFlowRate q_electrochem[N] =  rHEL.*(H_h2 .- H_h2o) .+ rCEL.*(H_co .- H_co2);
 
-  ThermoPower.Thermal.HT hTNi_x0 "conductive HT through Ni at x=0" annotation (Placement(transformation(extent={{-104,
+  OpenTEMPEST.Interfaces.HT hTNi_x0 "conductive HT through Ni at x=0" annotation (Placement(transformation(extent={{-104,
             18},{-84,38}}), iconTransformation(extent={{-104,18},{-84,38}})));
-  ThermoPower.Thermal.HT hTNi_xN "conductive HT through Ni at x=L" annotation (Placement(transformation(extent={{82,
+  OpenTEMPEST.Interfaces.HT hTNi_xN "conductive HT through Ni at x=L" annotation (Placement(transformation(extent={{82,
             20},{102,40}}), iconTransformation(extent={{82,20},{102,40}})));
 
 protected
@@ -105,15 +109,16 @@ equation
     hAbsetzen=0;
   end if;
 
-  // Pressure Drop
+  // Pressure Drop (Darcy-Forchheimer through the nickel foam)
   for i in 1:N loop
-    dp[i] =OpenTEMPEST.Blocks.Functions.pressureDropDarcy(
+    dp[i] =OpenTEMPEST.Blocks.Functions.pressureDropForchheimer(
       mfv[i],
       eta[i],
       Gas[i].d,
       dx,
       (lZ - hAbsetzen)*lY,
-      3e-9);
+      kPerm,
+      betaForch);
   end for;
 
 

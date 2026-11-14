@@ -1,6 +1,6 @@
 within OpenTEMPEST.SOC.Cell.Cell1D;
-model Cell "1D co-flow cell repeating unit with PEN, fuel and air channels and interconnects"
-  import SI = Modelica.SIunits;
+model Cell
+  import SI = Modelica.Units.SI;
   replaceable package FCMedium = OpenTEMPEST.Medium.Fuel_CH4
                                                          annotation (Dialog(tab="Fuel Channel"));
   replaceable package ACMedium = OpenTEMPEST.Medium.Air_Medium
@@ -50,10 +50,10 @@ model Cell "1D co-flow cell repeating unit with PEN, fuel and air channels and i
   parameter Real porFC=0.9 "Porosity of the fuel channel (open fraction of the width)" annotation (Dialog(tab="Fuel Channel"));
   parameter Real Nu_PENfc=12 "Nusselt number fuel channel on PEN side" annotation (Dialog(tab="Fuel Channel"));
   parameter Real Nu_ICfc=10 "Nusselt Number fuel channel on IC side" annotation (Dialog(tab="Fuel Channel"));
-  parameter SI.ThermalConductivity kFoam=4 "Thermal conductivity of the nickel foam in the fuel channel" annotation (Dialog(tab="Fuel Channel"));
-  parameter SI.SpecificHeatCapacity cpFoam=400 "Specific heat capacity of the nickel foam" annotation (Dialog(tab="Fuel Channel"));
-  parameter SI.Density rhoFoam=9000 "Density of the nickel foam" annotation (Dialog(tab="Fuel Channel"));
-  parameter ThermoPower.Units.HydraulicResistance HyR_Fuel=50000000 "Hydraulic resistance of fuel channel of each single cell in stack"
+  parameter SI.ThermalConductivity kFoam=4 annotation (Dialog(tab="Thermal conductivity of the nickel foam in the fuel channel"));
+  parameter SI.SpecificHeatCapacity cpFoam=400 annotation (Dialog(tab="Specific heat capacity of the nickel foam"));
+  parameter SI.Density rhoFoam=9000 annotation (Dialog(tab="Density of the nickel foam"));
+  parameter OpenTEMPEST.Units.HydraulicResistance HyR_Fuel=50000000 "Hydraulic resistance of fuel channel of each single cell in stack"
     annotation (Dialog(tab="Fuel Channel"));
 
   // AC parameters
@@ -64,7 +64,7 @@ model Cell "1D co-flow cell repeating unit with PEN, fuel and air channels and i
   parameter Real pDropAC=0.04 "Pressure drop in the air channel as a fraction of the inlet pressure" annotation (Dialog(tab="Air Channel"));
   parameter Real Nu_PENac=8 "Nusselt number air channel on PEN side" annotation (Dialog(tab="Air Channel"));
   parameter Real Nu_ICac=8 "Nusselt Number air channel on IC side" annotation (Dialog(tab="Air Channel"));
-  parameter ThermoPower.Units.HydraulicResistance HyR_Air=6000000 "Hydraulic resistance of air channel of each single cell in stack" annotation (Dialog(tab="Air Channel"));
+  parameter OpenTEMPEST.Units.HydraulicResistance HyR_Air=6000000 "Hydraulic resistance of air channel of each single cell in stack" annotation (Dialog(tab="Air Channel"));
 
   //IC parameters
   parameter SI.SpectralEmissivity epsilon_ic=0.1 "emissivity of surface of IC" annotation (Dialog(tab="Interconnect"));
@@ -73,24 +73,24 @@ model Cell "1D co-flow cell repeating unit with PEN, fuel and air channels and i
   parameter SI.SpecificHeatCapacity cpIC=500 "specific heat capcity of IC" annotation (Dialog(tab="Interconnect"));
   parameter SI.ThermalConductivity LambdaIC=25 "thermal conductivity of IC" annotation (Dialog(tab="Interconnect"));
 
-  ThermoPower.Gas.FlangeA fuelFlangeIn(redeclare package Medium = FCMedium)
+  OpenTEMPEST.Interfaces.GasFlangeA fuelFlangeIn(redeclare package Medium = FCMedium)
     annotation (Placement(transformation(extent={{-110,44},{-90,64}}), iconTransformation(extent={{-110,44},{-90,64}})));
-  ThermoPower.Gas.FlangeB fuelFlangeOut(redeclare package Medium = FCMedium)
+  OpenTEMPEST.Interfaces.GasFlangeB fuelFlangeOut(redeclare package Medium = FCMedium)
     annotation (Placement(transformation(extent={{90,44},{110,64}}), iconTransformation(extent={{90,44},{110,64}})));
-  ThermoPower.Gas.FlangeA airFlangeIn(redeclare package Medium = ACMedium)
+  OpenTEMPEST.Interfaces.GasFlangeA airFlangeIn(redeclare package Medium = ACMedium)
     annotation (Placement(transformation(extent={{-110,-76},{-90,-56}}), iconTransformation(extent={{-110,-76},{-90,-56}})));
-  ThermoPower.Gas.FlangeB airFlangeOut(redeclare package Medium = ACMedium)
+  OpenTEMPEST.Interfaces.GasFlangeB airFlangeOut(redeclare package Medium = ACMedium)
     annotation (Placement(transformation(extent={{90,-58},{110,-38}}), iconTransformation(extent={{90,-58},{110,-38}})));
   Modelica.Electrical.Analog.Interfaces.PositivePin pin_p
     annotation (Placement(transformation(extent={{-106,-54},{-86,-34}}), iconTransformation(extent={{-106,-54},{-86,-34}})));
   Modelica.Electrical.Analog.Interfaces.NegativePin pin_n
     annotation (Placement(transformation(extent={{-106,-32},{-86,-12}}), iconTransformation(extent={{-106,-32},{-86,-12}})));
-  ThermoPower.Thermal.DHTVolumes dHT_z1(N=N) annotation (Placement(transformation(extent={{-60,-80},{-40,-60}}), iconTransformation(extent={{-62,64},{-42,84}})));
-  ThermoPower.Thermal.DHTVolumes dHT_z0(N=N) annotation (Placement(transformation(extent={{-60,72},{-40,92}}), iconTransformation(extent={{-60,-80},{-40,-60}})));
-  ThermoPower.Thermal.DHTVolumes dHT_y0(N=N) annotation (Placement(transformation(extent={{24,72},{44,92}}), iconTransformation(extent={{24,84},{44,92}})));
-  ThermoPower.Thermal.DHTVolumes dHT_y1(N=N) annotation (Placement(transformation(extent={{72,-80},{92,-60}}), iconTransformation(extent={{16,-94},{36,-86}})));
-  ThermoPower.Thermal.HT hT_x0 annotation (Placement(transformation(extent={{-106,-10},{-86,10}}), iconTransformation(extent={{-106,-10},{-86,10}})));
-  ThermoPower.Thermal.HT hT_xN annotation (Placement(transformation(extent={{88,-10},{108,10}}), iconTransformation(extent={{88,-10},{108,10}})));
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_z1(N=N) annotation (Placement(transformation(extent={{-60,-80},{-40,-60}}), iconTransformation(extent={{-62,64},{-42,84}})));
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_z0(N=N) annotation (Placement(transformation(extent={{-60,72},{-40,92}}), iconTransformation(extent={{-60,-80},{-40,-60}})));
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_y0(N=N) annotation (Placement(transformation(extent={{24,72},{44,92}}), iconTransformation(extent={{24,84},{44,92}})));
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_y1(N=N) annotation (Placement(transformation(extent={{72,-80},{92,-60}}), iconTransformation(extent={{16,-94},{36,-86}})));
+  OpenTEMPEST.Interfaces.HT hT_x0 annotation (Placement(transformation(extent={{-106,-10},{-86,10}}), iconTransformation(extent={{-106,-10},{-86,10}})));
+  OpenTEMPEST.Interfaces.HT hT_xN annotation (Placement(transformation(extent={{88,-10},{108,10}}), iconTransformation(extent={{88,-10},{108,10}})));
 
   OpenTEMPEST.SOC.Cell.Cell1D.Components.AirChannel airChannel(
     N=N,
@@ -149,7 +149,7 @@ model Cell "1D co-flow cell repeating unit with PEN, fuel and air channels and i
     A2=lX*lYac)
     annotation (Placement(transformation(extent={{14,-44},{34,-24}})));
 
-  ThermoPower.Thermal.ConvHTFV convHTFV(Nv=N, G=LambdaIC/lZac*(lY - lYac)*lX) "why is this here?"
+  OpenTEMPEST.Heat.ConvHTFV convHTFV(Nv=N, G=LambdaIC/lZac*(lY - lYac)*lX) "why is this here?"
                                                                               annotation (Placement(transformation(extent={{-52,-42},
             {-32,-22}})));
 
@@ -177,11 +177,11 @@ model Cell "1D co-flow cell repeating unit with PEN, fuel and air channels and i
     cpCustom=cpIC)
     annotation (Placement(transformation(extent={{-24,78},{-4,58}})));
 
-  ThermoPower.Gas.PressDropLin pressDropLin1(
+  OpenTEMPEST.Flow.PressDropLin pressDropLin1(
     redeclare package Medium = FCMedium,
     final R=HyR_Fuel,
     final allowFlowReversal=false) annotation (Placement(transformation(extent={{40,28},{60,48}})));
-  ThermoPower.Gas.PressDropLin pressDropLin3(
+  OpenTEMPEST.Flow.PressDropLin pressDropLin3(
     redeclare package Medium = ACMedium,
     final R=HyR_Air,
     final allowFlowReversal=false) annotation (Placement(transformation(extent={{58,-58},{78,-38}})));
@@ -197,12 +197,12 @@ equation
   connect(fuelChannel.Q_IC, ICFuel.dhT_z1) annotation (Line(points={{0,42},{2,42},{2,52},{-21,52},{-21,61}}, color={255,127,0}));
   connect(convHTFV.side2, ICAir.dhT_z0) annotation (Line(points={{-42,-35.1},{
           -42,-54},{11,-54},{11,-53}},                                                                                     color={255,127,0}));
-  connect(airChannel.outfl, pressDropLin3.inlet) annotation (Line(points={{11.4,-42},{36,-42},{36,-48},{58,-48}}, color={159,159,223}));
-  connect(pressDropLin3.outlet, airFlangeOut) annotation (Line(points={{78,-48},{100,-48}}, color={159,159,223}));
-  connect(fuelChannel.outfl, pressDropLin1.inlet) annotation (Line(points={{9.4,38},{40,38}}, color={159,159,223}));
-  connect(pressDropLin1.outlet, fuelFlangeOut) annotation (Line(points={{60,38},{66,38},{66,54},{100,54}}, color={159,159,223}));
-  connect(fuelFlangeIn, fuelChannel.infl) annotation (Line(points={{-100,54},{-80,54},{-80,44},{-46,44},{-46,37.8},{-9.4,37.8}}, color={159,159,223}));
-  connect(airFlangeIn, airChannel.infl) annotation (Line(points={{-100,-66},{-84,-66},{-84,-50},{-22,-50},{-22,-41.8},{-7.4,-41.8}}, color={159,159,223}));
+  connect(airChannel.outfl, pressDropLin3.inlet) annotation (Line(points={{11.4,-42},{36,-42},{36,-48},{58,-48}}, color={28,108,200}));
+  connect(pressDropLin3.outlet, airFlangeOut) annotation (Line(points={{78,-48},{100,-48}}, color={28,108,200}));
+  connect(fuelChannel.outfl, pressDropLin1.inlet) annotation (Line(points={{9.4,38},{40,38}}, color={28,108,200}));
+  connect(pressDropLin1.outlet, fuelFlangeOut) annotation (Line(points={{60,38},{66,38},{66,54},{100,54}}, color={28,108,200}));
+  connect(fuelFlangeIn, fuelChannel.infl) annotation (Line(points={{-100,54},{-80,54},{-80,44},{-46,44},{-46,37.8},{-9.4,37.8}}, color={28,108,200}));
+  connect(airFlangeIn, airChannel.infl) annotation (Line(points={{-100,-66},{-84,-66},{-84,-50},{-22,-50},{-22,-41.8},{-7.4,-41.8}}, color={28,108,200}));
   connect(pen.dhT_z1, fuelChannel.Q_PEN) annotation (Line(points={{-20.5,13.1},{-20.5,26},{-14,26},{-14,24},{-0.1,24},{-0.1,34.6}}, color={255,127,0}));
   connect(pen.dhT_z0, airChannel.Q_PEN) annotation (Line(points={{-20.5,-19.1},{-20.5,-38.6},{1.9,-38.6}}, color={255,127,0}));
   connect(pen.dhT_y1, dHT_y1) annotation (Line(points={{14.5,13.1},{116,13.1},{116,-70},{82,-70}}, color={255,127,0}));

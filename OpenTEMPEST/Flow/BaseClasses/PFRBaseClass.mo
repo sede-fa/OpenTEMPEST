@@ -1,7 +1,7 @@
 within OpenTEMPEST.Flow.BaseClasses;
 partial model PFRBaseClass "Base class for a single phase plug flow reactor without external mass transfer"
   extends Flow1DBaseClass;
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   // Vertex Values
   SI.MassFlowRate mfv[N+1] "Mass flow rate in and leaving CV";

@@ -3,14 +3,14 @@ partial model Element1D
   "Partial heat transfer element with two 1D thermal ports that does not store energy"
 
   parameter Integer N "Number of control volumes";
-  Modelica.SIunits.HeatFlowRate Q[N]
+  Modelica.Units.SI.HeatFlowRate Q[N]
     "Heat flow rate from dHT0 -> dHT1";
-  Modelica.SIunits.TemperatureDifference dT[N] "dHT0.T - dHT1.T";
+  Modelica.Units.SI.TemperatureDifference dT[N] "dHT0.T - dHT1.T";
 public
-  ThermoPower.Thermal.DHTVolumes dHT0(N=N) annotation (Placement(
+  OpenTEMPEST.Interfaces.DHTVolumes dHT0(N=N) annotation (Placement(
         transformation(extent={{-102,-6},{-90,6}}), iconTransformation(extent={{-102,-6},
             {-90,6}})));
-  ThermoPower.Thermal.DHTVolumes dHT1(N=N) annotation (Placement(
+  OpenTEMPEST.Interfaces.DHTVolumes dHT1(N=N) annotation (Placement(
         transformation(extent={{90,-6},{102,6}}), iconTransformation(extent={{90,-6},
             {102,6}})));
 equation

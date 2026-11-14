@@ -2,3 +2,5 @@ CurrentDensity
 AreaSpecificResistance
 MolarFlux
 MassFlux
+HydraulicResistance
+HydraulicConductance

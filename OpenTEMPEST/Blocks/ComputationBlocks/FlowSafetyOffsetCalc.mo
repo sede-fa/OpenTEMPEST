@@ -3,8 +3,8 @@ model FlowSafetyOffsetCalc "Increase or decrease a mass flow depending on the tr
 
   extends Modelica.Blocks.Interfaces.SISO;
 
-  parameter Modelica.SIunits.Time tPrediction = 30 "Time the offset is calcualted for";
-  parameter Modelica.SIunits.Time tPt1 = 5 "Time constant of the PT1 block for smoothing";
+  parameter Modelica.Units.SI.Time tPrediction = 30 "Time the offset is calcualted for";
+  parameter Modelica.Units.SI.Time tPt1 = 5 "Time constant of the PT1 block for smoothing";
 
   parameter Real yStart=0 "Start value of the output";
 

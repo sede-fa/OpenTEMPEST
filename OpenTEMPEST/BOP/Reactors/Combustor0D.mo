@@ -1,7 +1,7 @@
 within OpenTEMPEST.BOP.Reactors;
 model Combustor0D "0D combustor assuming complete combustion of the fuel (requires lambda >= 1)"
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   package Air = Medium.Air_Medium;
   package Fuel = Medium.Fuel_CH4;
   package Exhaust = Medium.SimpleExhaust;
@@ -31,12 +31,12 @@ model Combustor0D "0D combustor assuming complete combustion of the fuel (requir
   SI.PerUnit lambda    "Stoichiometric ratio (>1 if air flow is greater than stoichiometric)";
 
   SI.Time Tr "Residence time";
-  ThermoPower.Gas.FlangeA ina(redeclare package Medium = Air) "inlet air"
+  OpenTEMPEST.Interfaces.GasFlangeA ina(redeclare package Medium = Air) "inlet air"
     annotation (Placement(transformation(extent={{-120,-20},{-80,20}}, rotation=
            0)));
-  ThermoPower.Gas.FlangeA inf(redeclare package Medium = Fuel) "inlet fuel"
+  OpenTEMPEST.Interfaces.GasFlangeA inf(redeclare package Medium = Fuel) "inlet fuel"
     annotation (Placement(transformation(extent={{-20,80},{20,120}}, rotation=0)));
-  ThermoPower.Gas.FlangeB out(redeclare package Medium = Exhaust) "flue gas"
+  OpenTEMPEST.Interfaces.GasFlangeB out(redeclare package Medium = Exhaust) "flue gas"
     annotation (Placement(transformation(extent={{80,-20},{120,20}}, rotation=0)));
 
   constant Real[3, Exhaust.nXi] a_i= {

@@ -1,7 +1,7 @@
 ﻿within OpenTEMPEST.SOC.Cell.CrossFlow;
 model CellCFSimp "Simplified cross-flow cell with 1D fuel and air channels and 2D solids"
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   // General parameters
   parameter Integer nX=3 "Number of control volumes in first direction";
@@ -123,27 +123,27 @@ model CellCFSimp "Simplified cross-flow cell with 1D fuel and air channels and 2
             {-126,40}}),       iconTransformation(extent={{-148,18},{-126,40}})));
   Modelica.Electrical.Analog.Interfaces.NegativePin pin_n annotation (Placement(transformation(extent={{-148,58},
             {-126,80}}), iconTransformation(extent={{-148,58},{-126,80}})));
-  ThermoPower.Gas.FlangeA fuelIn(redeclare package Medium = Medium.Fuel_CH4)
+  OpenTEMPEST.Interfaces.GasFlangeA fuelIn(redeclare package Medium = Medium.Fuel_CH4)
     annotation (Placement(transformation(extent={{-148,100},{-128,120}}),
         iconTransformation(extent={{-148,100},{-128,120}})));
-  ThermoPower.Gas.FlangeA airIn(redeclare package Medium = Medium.Air_Medium)
+  OpenTEMPEST.Interfaces.GasFlangeA airIn(redeclare package Medium = Medium.Air_Medium)
     annotation (Placement(transformation(extent={{-150,-118},{-130,-98}}),
         iconTransformation(extent={{-150,-118},{-130,-98}})));
-  ThermoPower.Gas.FlangeB fuelOut(redeclare package Medium = Medium.Fuel_CH4)
+  OpenTEMPEST.Interfaces.GasFlangeB fuelOut(redeclare package Medium = Medium.Fuel_CH4)
     annotation (Placement(transformation(extent={{128,74},{148,94}})));
-  ThermoPower.Gas.FlangeB airout(redeclare package Medium = Medium.Air_Medium)
+  OpenTEMPEST.Interfaces.GasFlangeB airout(redeclare package Medium = Medium.Air_Medium)
     annotation (Placement(transformation(extent={{130,-86},{150,-66}}),
         iconTransformation(extent={{130,-86},{150,-66}})));
-  ThermoPower.Thermal.DHTVolumes dHT_x0(N=nY)
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_x0(N=nY)
     annotation (Placement(transformation(extent={{-140,-60},{-122,-20}}),
         iconTransformation(extent={{-140,-60},{-122,-20}})));
-  ThermoPower.Thermal.DHTVolumes dHT_y0(N=nX)
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_y0(N=nX)
     annotation (Placement(transformation(extent={{-6,-6},{6,6}}, origin={140,-26}),
         iconTransformation(extent={{-70,-140},{72,-120}})));
-  ThermoPower.Thermal.DHTVolumes dHT_yN(N=nX)
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_yN(N=nX)
     annotation (Placement(transformation(extent={{-6,-6},{6,6}}, origin={140,26}),
         iconTransformation(extent={{-70,122},{72,140}})));
-  ThermoPower.Thermal.DHTVolumes dHT_xN(N=nY)
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_xN(N=nY)
     annotation (Placement(transformation(extent={{-5,-16},{5,16}},
                                                                  origin={135,4}),
         iconTransformation(extent={{122,-20},{140,20}})));
@@ -189,13 +189,13 @@ equation
 
   // Flanges connections
   connect(fuelChannel.infl, fuelIn) annotation (Line(points={{-34,93.44},{-78,
-          93.44},{-78,110},{-138,110}}, color={159,159,223}));
+          93.44},{-78,110},{-138,110}}, color={28,108,200}));
   connect(fuelChannel.outfl, fuelOut) annotation (Line(points={{34,93.44},{62,
-          93.44},{62,90},{138,90},{138,84}}, color={159,159,223}));
+          93.44},{62,90},{138,90},{138,84}}, color={28,108,200}));
   connect(airIn, airChannel.infl) annotation (Line(points={{-140,-108},{-106,-108},
-          {-106,-76},{-36,-76},{-36,-73.44}}, color={159,159,223}));
+          {-106,-76},{-36,-76},{-36,-73.44}}, color={28,108,200}));
   connect(airChannel.outfl, airout) annotation (Line(points={{34,-73.44},{140,-73.44},
-          {140,-76}}, color={159,159,223}));
+          {140,-76}}, color={28,108,200}));
 
   // x-direction connections
   connect(dHT_x0, pen.dhT_x0) annotation (Line(points={{-131,-40},{-48,-40},{-48,

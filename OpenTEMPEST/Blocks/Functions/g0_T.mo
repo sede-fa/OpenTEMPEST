@@ -1,7 +1,7 @@
 within OpenTEMPEST.Blocks.Functions;
 function g0_T "Gibbs energy of a gas at temperature T and standard pressure"
   extends Modelica.Icons.Function;
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   input Modelica.Media.IdealGases.Common.DataRecord data "Ideal gas data";
   input SI.Temperature T "Temperature";
   output SI.SpecificGibbsFreeEnergy g;

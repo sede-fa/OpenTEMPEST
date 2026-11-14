@@ -1,12 +1,12 @@
 within OpenTEMPEST.Heat;
 model HTs_HT "Adaptor from several HT ports to one HT port"
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   parameter Integer N(min=1) "Number of HTs (= number of nodes on DHT side)";
 
-  ThermoPower.Thermal.HT
+  OpenTEMPEST.Interfaces.HT
      HT_ports[N] annotation (Placement(transformation(extent={{-140,-20},{-100,20}},
           rotation=0), iconTransformation(extent={{-140,-20},{-100,20}})));
-  ThermoPower.Thermal.HT HT_port annotation (Placement(transformation(extent={{100,
+  OpenTEMPEST.Interfaces.HT HT_port annotation (Placement(transformation(extent={{100,
             -20},{140,20}}, rotation=0), iconTransformation(extent={{100,-22},{140,
             18}})));
 equation

@@ -1,7 +1,7 @@
 within OpenTEMPEST.Heat;
 model conductiveHTVarLambda "Conductive heat transfer through an insulation layer with temperature dependent conductivity"
-  extends ThermoPower.Icons.HeatFlow;
-  import SI = Modelica.SIunits;
+  extends OpenTEMPEST.Icons.HeatFlow;
+  import SI = Modelica.Units.SI;
   SI.ThermalConductivity lambda "thermalConductivity";
   SI.Temperature T;
   parameter SI.Length L "length";
@@ -12,12 +12,12 @@ model conductiveHTVarLambda "Conductive heat transfer through an insulation laye
   parameter Boolean matConst = false "c and lambda = f(TStart) = const.";
   parameter Real Fac=1 "Correction factor for thermal conductivity";
 
-  ThermoPower.Thermal.HT side1 annotation (Placement(transformation(extent={{-40,
+  OpenTEMPEST.Interfaces.HT side1 annotation (Placement(transformation(extent={{-40,
             20},{40,40}}, rotation=0)));
-  ThermoPower.Thermal.HT side2 annotation (Placement(transformation(extent={{-40,
+  OpenTEMPEST.Interfaces.HT side2 annotation (Placement(transformation(extent={{-40,
             -20},{40,-42}}, rotation=0)));
 
- // parameter Modelica.SIunits.ThermalConductivity lambda=
+ // parameter Modelica.Units.SI.ThermalConductivity lambda=
  //   if matOpt == InsulationOptions.Ultra then Fac*(2.9352e-8*T^2 - 1.175e-5*T + 0.01881) else 5;
 
 equation

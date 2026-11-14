@@ -1,7 +1,7 @@
-﻿within OpenTEMPEST.SOC.Cell.CrossFlow.Components;
+within OpenTEMPEST.SOC.Cell.CrossFlow.Components;
 partial model Channel2DBase "Base model for 2D gas channels with mass, momentum and energy balances"
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   replaceable package Medium = Modelica.Media.IdealGases.Common.MixtureGasNasa
     annotation(choicesAllMatching = true);
@@ -59,6 +59,10 @@ partial model Channel2DBase "Base model for 2D gas channels with mass, momentum 
   SI.MassFlowRate mfv[nX + 1,nY] "Mass flow rate CV Vertices/Nodes";
   SI.SpecificEnthalpy hv[nX + 1,nY] "Enthalpy at Vertices";
   SI.MassFraction xiv[nX + 1,nY,nSpecies] "Mass fractions at Vertices";
+  protected
+  SI.MassFlowRate mfvInterp[nX,nY] "Interpolated mass flow rate at downstream vertices";
+  SI.SpecificEnthalpy hvInterp[nX,nY] "Interpolated enthalpy at downstream vertices";
+  public
 
   // Kinetics
   SI.MassFlowRate R[nX,nY,nSpecies] "Net rate of production and consumption of products and reactants in the reactor - from thermochemical AND electrochemical reactions";
@@ -66,9 +70,9 @@ partial model Channel2DBase "Base model for 2D gas channels with mass, momentum 
   SI.Energy Emg[nX, nY] "Energy density in control volume";
   SI.MassFlowRate massTransfer[nX, nY] "Ion transfer rate";
 
-  ThermoPower.Gas.FlangeA infl[nY](redeclare package Medium = Medium)  annotation (Placement(transformation(extent={{-100,-8},{-80,12}}),
+  OpenTEMPEST.Interfaces.GasFlangeA infl[nY](redeclare package Medium = Medium)  annotation (Placement(transformation(extent={{-100,-8},{-80,12}}),
         iconTransformation(extent={{-108,-16},{-80,12}})));
-  ThermoPower.Gas.FlangeB outfl[nY](redeclare package Medium = Medium)  annotation (Placement(transformation(extent={{80,-10},{100,10}}),
+  OpenTEMPEST.Interfaces.GasFlangeB outfl[nY](redeclare package Medium = Medium)  annotation (Placement(transformation(extent={{80,-10},{100,10}}),
         iconTransformation(extent={{80,-14},{108,14}})));
   Heat.DHTVolumes2D Q_IC(i=nX, j=nY) "HT Between Channel and IC" annotation (
       Placement(transformation(extent={{-62,34},{-40,52}}), iconTransformation(
@@ -134,8 +138,10 @@ equation
 
     // Interior and x=L
   for j in 1:nY loop
-    mfv[2:nX+1, j] = fluxInterp(nX, mf[:,j], mfv[1, j]);
-    hv[2:nX+1, j] = fluxInterp(nX, Gas[:,j].h, hv[1, j]);
+    mfvInterp[:, j] = fluxInterp(nX, mf[:,j], mfv[1, j]);
+    hvInterp[:, j] = fluxInterp(nX, Gas[:,j].h, hv[1, j]);
+    mfv[2:nX+1, j] = mfvInterp[:, j];
+    hv[2:nX+1, j] = hvInterp[:, j];
     for i in 1:nSpecies loop
       xiv[2:nX+1, j, i] = fluxInterp(nX, Gas[:,j].Xi[i], xiv[1, j, i]);
     end for;

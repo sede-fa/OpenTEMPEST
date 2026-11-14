@@ -1,7 +1,7 @@
 within OpenTEMPEST.BOP.GasConditioning;
 model ElectricalHeater0D "0D electrical gas heater with nominal power and heating elements"
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   replaceable package Medium = OpenTEMPEST.Medium.Fuel_CH4
                                                         constrainedby Modelica.Media.Interfaces.PartialMedium
@@ -18,10 +18,10 @@ model ElectricalHeater0D "0D electrical gas heater with nominal power and heatin
 
 //  parameter
 
-  ThermoPower.Gas.FlangeA inlet(redeclare package Medium = Medium)
+  OpenTEMPEST.Interfaces.GasFlangeA inlet(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{-100,-10},{-80,10}}),
         iconTransformation(extent={{-100,-20},{-60,20}})));
-  ThermoPower.Gas.FlangeB outlet(redeclare package Medium = Medium)
+  OpenTEMPEST.Interfaces.GasFlangeB outlet(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{80,0},{100,20}}),
         iconTransformation(extent={{60,-20},{100,20}})));
   SimpleGasHeater simpleGasHeater(
@@ -34,7 +34,7 @@ model ElectricalHeater0D "0D electrical gas heater with nominal power and heatin
     pipe=true,
     nParallel=nHeatingElements)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
-  ThermoPower.Electrical.PowerConnection powerConnection
+  OpenTEMPEST.Interfaces.PowerConnection powerConnection
     annotation (Placement(transformation(extent={{40,60},{60,80}}),
         iconTransformation(extent={{20,40},{60,80}})));
   Modelica.Thermal.HeatTransfer.Sources.PrescribedHeatFlow prescribedHeatFlow
@@ -42,7 +42,7 @@ model ElectricalHeater0D "0D electrical gas heater with nominal power and heatin
         extent={{-10,-10},{10,10}},
         rotation=-90,
         origin={0,30})));
-  ThermoPower.Electrical.Load load(Pnom=Pnom,
+  OpenTEMPEST.Electrical.Load load(Pnom=Pnom,
                                    usePowerInput=true)
     annotation (Placement(transformation(extent={{16,40},{36,60}})));
   Modelica.Blocks.Interfaces.RealInput power
@@ -53,10 +53,10 @@ model ElectricalHeater0D "0D electrical gas heater with nominal power and heatin
         origin={-40,60})));
 equation
   connect(simpleGasHeater.inlet, inlet)
-    annotation (Line(points={{-8,0},{-90,0}}, color={159,159,223}));
+    annotation (Line(points={{-8,0},{-90,0}}, color={28,108,200}));
   connect(simpleGasHeater.outlet, outlet)
     annotation (Line(points={{8,0},{50,0},{50,10},{90,10}},
-                                            color={159,159,223}));
+                                            color={28,108,200}));
   connect(prescribedHeatFlow.port, simpleGasHeater.ht[1]) annotation (Line(
         points={{-1.77636e-15,20},{0,20},{0,4}}, color={191,0,0}));
   connect(powerConnection, load.port) annotation (Line(

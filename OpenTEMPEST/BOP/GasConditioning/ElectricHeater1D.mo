@@ -1,14 +1,14 @@
 within OpenTEMPEST.BOP.GasConditioning;
 model ElectricHeater1D "1D discretised electric tube heater for gas flows"
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
     annotation(choicesAllMatching = true);
   parameter Integer N(min=3) = 5;
   parameter Integer Ntubes = 1 "number of individual tubes";
   parameter Boolean LUDS = true "Set LU discretisation";
 
-  parameter Modelica.SIunits.Length L "length of the heater tube";
+  parameter Modelica.Units.SI.Length L "length of the heater tube";
   parameter SI.Length Dhyd "hydraulic diameter of the heater tube";
   parameter SI.Area A "cross sectional area of the heater ";
 
@@ -16,22 +16,22 @@ model ElectricHeater1D "1D discretised electric tube heater for gas flows"
   parameter Real  dpdx "nominal pressure drop";
 
   // intialisation options
-  parameter Modelica.SIunits.Temperature TStartIn
+  parameter Modelica.Units.SI.Temperature TStartIn
     "Inlet temperature to the heater starting value";
-  parameter Modelica.SIunits.Temperature TStartOut
+  parameter Modelica.Units.SI.Temperature TStartOut
     "starting outlet temperature";
-  parameter Modelica.SIunits.Pressure pStart
+  parameter Modelica.Units.SI.Pressure pStart
     "start pressure for initialization";
-  parameter Modelica.SIunits.MassFraction xStart[Medium.nX]=Medium.reference_X
+  parameter Modelica.Units.SI.MassFraction xStart[Medium.nX]=Medium.reference_X
     "starting composition for initilization";
 
   // performance parameters
   parameter Real Efficiency(max=1, min=0)
     "thermal efficiency of the heater";
 
-  ThermoPower.Gas.FlangeA flangeA(redeclare package Medium = Medium)
+  OpenTEMPEST.Interfaces.GasFlangeA flangeA(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{-110,-10},{-90,10}})));
-  ThermoPower.Gas.FlangeB flangeB(redeclare package Medium = Medium)
+  OpenTEMPEST.Interfaces.GasFlangeB flangeB(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{90,-10},{110,10}})));
   OpenTEMPEST.Flow.Flow1D2w flow1D2w(
     redeclare package Medium = Medium,
@@ -48,10 +48,10 @@ model ElectricHeater1D "1D discretised electric tube heater for gas flows"
     LUDS=LUDS,
     internalHT=false)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}})));
-  ThermoPower.Electrical.Load load(Pnom(displayUnit="kW") = 5000, usePowerInput=
+  OpenTEMPEST.Electrical.Load load(Pnom(displayUnit="kW") = 5000, usePowerInput=
        true) annotation (Placement(transformation(extent={{56,58},{76,38}})));
 public
-  ThermoPower.Thermal.HeatSource1DFV heatSource1DFV(final Nw=N)
+  OpenTEMPEST.Heat.HeatSource1DFV heatSource1DFV(final Nw=N)
     annotation (Placement(transformation(extent={{-10,8},{10,28}})));
   Modelica.Blocks.Math.Gain efficiency(k=Efficiency) annotation (Placement(
         transformation(
@@ -66,9 +66,9 @@ public
         extent={{-10,10},{10,-10}},
         rotation=-90,
         origin={0,38})));
-  ThermoPower.Electrical.PowerConnection port annotation (Placement(
+  OpenTEMPEST.Interfaces.PowerConnection port annotation (Placement(
         transformation(rotation=0, extent={{40,-50},{60,-30}})));
-  ThermoPower.Thermal.DHTVolumes heatloss(final N=N) annotation (Placement(
+  OpenTEMPEST.Interfaces.DHTVolumes heatloss(final N=N) annotation (Placement(
         transformation(extent={{-4,-40},{6,-30}}), iconTransformation(
           extent={{-8,-44},{6,-30}})));
 equation
@@ -83,9 +83,9 @@ equation
   connect(flow1D2w.wall2, heatloss) annotation (Line(points={{0,-4.1},{0,-20},{0,
           -35},{1,-35}}, color={255,127,0}));
   connect(flow1D2w.outfl, flangeB)
-    annotation (Line(points={{9.4,0},{100,0}}, color={159,159,223}));
+    annotation (Line(points={{9.4,0},{100,0}}, color={28,108,200}));
   connect(flow1D2w.infl, flangeA) annotation (Line(points={{-9.4,-0.2},{-51.7,-0.2},
-          {-51.7,0},{-100,0}}, color={159,159,223}));
+          {-51.7,0},{-100,0}}, color={28,108,200}));
   connect(load.port, port) annotation (Line(
       points={{66,39.4},{68,39.4},{68,-40},{50,-40}},
       color={0,0,255},

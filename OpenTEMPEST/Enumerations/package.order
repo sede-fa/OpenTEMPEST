@@ -2,3 +2,5 @@ SwitchingMethod
 RadiationSpecialCases
 InsulationOptions
 CellGeometries
+InitOptions
+FluidPhases

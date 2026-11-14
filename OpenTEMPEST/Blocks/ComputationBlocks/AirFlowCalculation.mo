@@ -7,12 +7,12 @@ block AirFlowCalculation
 
   parameter Integer nCells "Number of cells that are fed by this source";
 
-  parameter Modelica.SIunits.ElectricCurrent I0=0 "Nominal electrical current ";
+  parameter Modelica.Units.SI.ElectricCurrent I0=0 "Nominal electrical current ";
   parameter Real OU0=0.25 "Nominal oxygen utilization";
   parameter Real yO2Out0=0.40 "Nominal outlet oxygen molar compostion";
   parameter Real lambdaSF0=2 "Nominal air number (lambda, sunfire style) ";
   parameter Real zFuel0=1.8 "Nominal zFuel ";
-  parameter Modelica.SIunits.MassFlowRate mfMin = 0.005 "Minimum mass flow";
+  parameter Modelica.Units.SI.MassFlowRate mfMin = 0.005 "Minimum mass flow";
 
   Modelica.Blocks.Interfaces.RealInput in_I(unit="A")
                                             if use_in_I "Current input"
@@ -63,10 +63,10 @@ protected
 
 equation
 
-  out_mfAirOU = max(mfMin,sum(Medium.MMX*YAir)*in_I_internal*nCells/4/Modelica.Constants.F/in_OU_internal/
+  out_mfAirOU = max(mfMin,(Medium.MMX*YAir)*in_I_internal*nCells/4/Modelica.Constants.F/in_OU_internal/
     YAir[1]); //
-  out_mfAirOutletO2 = max(mfMin,sum(Medium.MMX*YAir)*in_I_internal*nCells/4/Modelica.Constants.F * (in_yO2Out_internal-1)/(in_yO2Out_internal-YAir[1]));
-  out_mfAirLambdaSF = max(mfMin,sum(Medium.MMX*YAir)*abs(in_I_internal)*nCells/in_zFuel_internal/Modelica.Constants.F * in_lambdaSF_internal);
+  out_mfAirOutletO2 = max(mfMin,(Medium.MMX*YAir)*in_I_internal*nCells/4/Modelica.Constants.F * (in_yO2Out_internal-1)/(in_yO2Out_internal-YAir[1]));
+  out_mfAirLambdaSF = max(mfMin,(Medium.MMX*YAir)*abs(in_I_internal)*nCells/in_zFuel_internal/Modelica.Constants.F * in_lambdaSF_internal);
 
   if not use_in_I then
     in_I_internal = I0 "Current set by parameter";

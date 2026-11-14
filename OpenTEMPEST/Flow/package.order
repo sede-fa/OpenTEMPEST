@@ -13,5 +13,13 @@ LambdaSensor
 Flow1D
 Flow1D2w
 PressDropLin
+SourceMassFlow
+SinkPressure
 SourceMassFlowEC
 ThreeWayValve
+SensP
+SensT
+SensW
+ThroughMassFlow
+FlowSplit
+FlowJoin

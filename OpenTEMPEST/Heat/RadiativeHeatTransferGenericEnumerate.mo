@@ -1,6 +1,7 @@
 within OpenTEMPEST.Heat;
-model RadiativeHeatTransferGenericEnumerate "0D radiative heat transfer between two surfaces (A2 >= A1, A1 convex or flat)"
-  import SI = Modelica.SIunits;
+model RadiativeHeatTransferGenericEnumerate
+  "0D radiative heat transfer between two surfaces (A2 >= A1, A1 convex or flat)"
+  import SI = Modelica.Units.SI;
   parameter SI.SpectralEmissivity epsilon1 "emissivity of surface 1";
   parameter SI.SpectralEmissivity epsilon2 "emissivity of surface 2";
   parameter SI.Area A1 "Area of surface 1, used for special case";
@@ -11,9 +12,9 @@ model RadiativeHeatTransferGenericEnumerate "0D radiative heat transfer between 
   replaceable parameter Enumerations.RadiationSpecialCases specialCase=
       Enumerations.RadiationSpecialCases.case3 "Radiation Special Case";
 
-  ThermoPower.Thermal.HT side1 annotation (
+  OpenTEMPEST.Interfaces.HT side1 annotation (
     Placement(transformation(extent = {{-26, 2}, {8, 36}}), iconTransformation(extent = {{-8, 20}, {8, 36}})));
-  ThermoPower.Thermal.HT side2 annotation (
+  OpenTEMPEST.Interfaces.HT side2 annotation (
     Placement(transformation(extent = {{-26, -2}, {8, -36}}), iconTransformation(extent = {{-8, -20}, {8, -36}})));
 equation
 

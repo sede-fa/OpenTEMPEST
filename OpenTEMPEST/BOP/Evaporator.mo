@@ -1,79 +1,73 @@
 within OpenTEMPEST.BOP;
-model Evaporator "Drum evaporator producing steam for a gas phase medium (under construction)"
- extends Modelica.Icons.UnderConstruction; // check media
+model Evaporator
+  "Drum evaporator producing steam for a gas phase medium (under construction)"
+  extends Modelica.Icons.UnderConstruction; // check media
 
   replaceable package gasPhaseMedium =
-      Modelica.Media.Interfaces.PartialMedium                          annotation(choicesAllMatching = true);
+      Modelica.Media.Interfaces.PartialMedium annotation (choicesAllMatching=true);
+  package WaterMedium = Modelica.Media.Water.StandardWater "Water/steam medium";
 
-  parameter Modelica.SIunits.Volume Vd "Drum internal volume";
-  parameter Modelica.SIunits.Mass Mm "Drum metal mass";
-  parameter Modelica.SIunits.SpecificHeatCapacity cm
-    "Specific heat capacity of the drum's metal";
+  parameter Modelica.Units.SI.Volume Vd "Drum internal volume";
+  parameter Modelica.Units.SI.Mass Mm "Drum metal mass";
+  parameter Modelica.Units.SI.SpecificHeatCapacity cm "Specific heat capacity of the drum's metal";
 
-  parameter ThermoPower.Units.HydraulicConductance Kv "Nominal hydraulic conductance of the control valve";
+  parameter OpenTEMPEST.Units.HydraulicConductance Kv "Nominal hydraulic conductance of the control valve";
 
-  parameter Modelica.SIunits.Pressure pStart "Pressure start value"
+  parameter Modelica.Units.SI.Pressure pStart "Pressure start value"
     annotation (Dialog(tab="Initialisation"));
-  parameter Modelica.SIunits.Volume VlStart "Start value of drum water volume"
+  parameter Modelica.Units.SI.Volume VlStart "Start value of drum water volume"
     annotation (Dialog(tab="Initialisation"));
 
-  ThermoPower.Water.DrumEquilibrium drumEquilibrium(
-    Vd=Vd,
-    Mm=Mm,
-    cm=cm,
-    pstart=pStart,
-    Vlstart=VlStart)
+  Modelica.Fluid.Examples.DrumBoiler.BaseClasses.EquilibriumDrumBoiler drumEquilibrium(
+    redeclare package Medium = WaterMedium,
+    m_D=Mm,
+    cp_D=cm,
+    V_t=Vd,
+    p_start=pStart,
+    V_l_start=VlStart)
     annotation (Placement(transformation(extent={{-76,-10},{-56,10}})));
-  ThermoPower.Water.FlangeA inlet
+  Modelica.Fluid.Interfaces.FluidPort_a inlet(redeclare package Medium = WaterMedium)
     annotation (Placement(transformation(extent={{-100,-10},{-80,10}})));
-  ThermoPower.Water.SinkPressure sinkPressure(use_in_p0=true)
-    annotation (Placement(transformation(extent={{10,-10},{30,10}})));
-  ThermoPower.Gas.SourceMassFlow sourceMassFlow(
+  Modelica.Fluid.Sources.Boundary_pT sinkPressure(
+    redeclare package Medium = WaterMedium,
+    use_p_in=true,
+    nPorts=1) annotation (Placement(transformation(extent={{30,-10},{10,10}})));
+  OpenTEMPEST.Flow.SourceMassFlow sourceMassFlow(
     redeclare package Medium = gasPhaseMedium,
-    Xnom={1e-5,1e-5,1e-5,1e-5,1,1e-5},          use_in_w0=true, use_in_T=true)
-    annotation (Placement(transformation(extent={{38,10},{58,-10}})));
-  ThermoPower.Gas.FlangeB outlet(redeclare package Medium = gasPhaseMedium)
+    Xnom={1e-5,1e-5,1e-5,1e-5,1,1e-5},
+    use_in_w0=true,
+    use_in_T=true) annotation (Placement(transformation(extent={{38,10},{58,-10}})));
+  OpenTEMPEST.Interfaces.GasFlangeB outlet(redeclare package Medium = gasPhaseMedium)
     annotation (Placement(transformation(extent={{80,-10},{100,10}})));
-  ThermoPower.Gas.SensP sensP(redeclare package Medium = gasPhaseMedium)
+  OpenTEMPEST.Flow.SensP sensP(redeclare package Medium = gasPhaseMedium)
     annotation (Placement(transformation(extent={{80,-6},{60,14}})));
-  ThermoPower.Water.ValveLin valveLin(Kv=Kv)
-    annotation (Placement(transformation(extent={{-54,-10},{-34,10}})));
-  ThermoPower.Water.SensT sensT
+  Modelica.Fluid.Valves.ValveLinear valveLin(
+    redeclare package Medium = WaterMedium,
+    dp_nominal=100000,
+    m_flow_nominal=Kv*100000) annotation (Placement(transformation(extent={{-54,-10},{-34,10}})));
+  Modelica.Fluid.Sensors.TemperatureTwoPort sensT(redeclare package Medium = WaterMedium)
     annotation (Placement(transformation(extent={{-12,6},{8,-14}})));
-  ThermoPower.Water.SensW sensW
+  Modelica.Fluid.Sensors.MassFlowRate sensW(redeclare package Medium = WaterMedium)
     annotation (Placement(transformation(extent={{-32,6},{-12,-14}})));
-  ThermoPower.Thermal.HT hT
+  OpenTEMPEST.Interfaces.HT hT
     annotation (Placement(transformation(extent={{-12,80},{8,100}}),
         iconTransformation(extent={{-10,40},{10,60}})));
   Modelica.Blocks.Interfaces.RealInput controlValvePosition
     annotation (Placement(transformation(extent={{20,20},{60,60}}),
         iconTransformation(extent={{40,40},{60,60}})));
 equation
-  connect(drumEquilibrium.feed, inlet) annotation (Line(points={{-75,-4.4},{-75.5,
-          -4.4},{-75.5,0},{-90,0}}, color={0,0,255}));
-  connect(sourceMassFlow.flange, outlet)
-    annotation (Line(points={{58,0},{90,0}}, color={159,159,223}));
-  connect(sourceMassFlow.flange, sensP.flange)
-    annotation (Line(points={{58,0},{70,0}}, color={159,159,223}));
-  connect(sensP.p, sinkPressure.in_p0)
-    annotation (Line(points={{63,10},{16,10},{16,8.4}}, color={0,0,127}));
-  connect(valveLin.inlet, drumEquilibrium.steam)
-    annotation (Line(points={{-54,0},{-54,7.2},{-59.2,7.2}}, color={0,0,255}));
-  connect(sensT.outlet, sinkPressure.flange)
-    annotation (Line(points={{4,0},{10,0}}, color={0,0,255}));
-  connect(sensT.T, sourceMassFlow.in_T)
-    annotation (Line(points={{6,-10},{48,-10},{48,-5}}, color={0,0,127}));
-  connect(valveLin.outlet, sensW.inlet)
-    annotation (Line(points={{-34,0},{-28,0}}, color={0,0,255}));
-  connect(sensW.outlet, sensT.inlet)
-    annotation (Line(points={{-16,0},{-8,0}}, color={0,0,255}));
-  connect(sensW.w, sourceMassFlow.in_w0) annotation (Line(points={{-14,-10},{-10,
-          -10},{-10,-16},{42,-16},{42,-5}}, color={0,0,127}));
-  connect(hT, drumEquilibrium.wall)
-    annotation (Line(points={{-2,90},{-2,22},{-66,22},{-66,-9}},
-                                                       color={191,0,0}));
-  connect(valveLin.cmd, controlValvePosition) annotation (Line(points={{-44,8},{
-          -46,8},{-46,40},{40,40}},  color={0,0,127}));
+  connect(drumEquilibrium.port_a, inlet);
+  connect(sourceMassFlow.flange, outlet);
+  connect(sourceMassFlow.flange, sensP.flange);
+  connect(sensP.p, sinkPressure.p_in);
+  connect(valveLin.port_a, drumEquilibrium.port_b);
+  connect(sensT.port_b, sinkPressure.ports[1]);
+  connect(sensT.T, sourceMassFlow.in_T);
+  connect(valveLin.port_b, sensW.port_a);
+  connect(sensW.port_b, sensT.port_a);
+  connect(sensW.m_flow, sourceMassFlow.in_w0);
+  connect(hT, drumEquilibrium.heatPort);
+  connect(valveLin.opening, controlValvePosition);
   annotation (                                                             Icon(
         graphics={Rectangle(
           extent={{-80,40},{80,-40}},

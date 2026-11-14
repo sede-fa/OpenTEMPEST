@@ -30,3 +30,8 @@ PrescribedTemperature1D
 TempSource2DUniform
 TempSource2DNonUniform
 HeatSource2DNonUniformFV
+ConvHTFV
+HeatSource1DNonUniformFV
+HeatSource1DFV
+HT_DHTVolumes
+Wall1D

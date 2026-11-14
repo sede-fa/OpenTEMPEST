@@ -3,7 +3,7 @@ model PlossConverter "Power loss of a converter in the power electronics"
   extends Modelica.Blocks.Interfaces.SISO;
   extends Modelica.Icons.UnderConstruction; // comparison on if statment needs to be chacked
 
-  parameter Modelica.SIunits.Power Pdesign=2377 "Design power in watts (only used in old modeltype)";
+  parameter Modelica.Units.SI.Power Pdesign=2377 "Design power in watts (only used in old modeltype)";
   parameter Boolean constACLoss=true
                                 "Rectifier/inverter loss constant if True, else pAC parameters used for 2nd order polynomial loss function. No loss for etaAC=1";
   parameter Real etaAC=0.95 "If constACLoss=true. Constant rectifier/inverter loss";
@@ -21,10 +21,10 @@ model PlossConverter "Power loss of a converter in the power electronics"
   parameter Real pMOS_neg[3] = pMOS_pos                      "If converterType==MOSFET. p[1]+x² + p[2]+x +p[3] for neg. power range";
 
   // Corrected scientific notation
-  Modelica.SIunits.Power P;
-  Modelica.SIunits.Power PDClossRel;
-  Modelica.SIunits.Power PACloss;
-  Modelica.SIunits.Power Ploss;
+  Modelica.Units.SI.Power P;
+  Modelica.Units.SI.Power PDClossRel;
+  Modelica.Units.SI.Power PACloss;
+  Modelica.Units.SI.Power Ploss;
 
   //old modeltype parameters
 //   parameter Real a=0.048212553240941;
