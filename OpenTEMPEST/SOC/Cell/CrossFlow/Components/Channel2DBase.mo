@@ -1,4 +1,4 @@
-﻿within OpenTEMPEST.SOC.Cell.CrossFlow.Components;
+within OpenTEMPEST.SOC.Cell.CrossFlow.Components;
 partial model Channel2DBase "Base model for 2D gas channels with mass, momentum and energy balances"
 
   import SI = Modelica.Units.SI;
@@ -59,6 +59,10 @@ partial model Channel2DBase "Base model for 2D gas channels with mass, momentum 
   SI.MassFlowRate mfv[nX + 1,nY] "Mass flow rate CV Vertices/Nodes";
   SI.SpecificEnthalpy hv[nX + 1,nY] "Enthalpy at Vertices";
   SI.MassFraction xiv[nX + 1,nY,nSpecies] "Mass fractions at Vertices";
+  protected
+  SI.MassFlowRate mfvInterp[nX,nY] "Interpolated mass flow rate at downstream vertices";
+  SI.SpecificEnthalpy hvInterp[nX,nY] "Interpolated enthalpy at downstream vertices";
+  public
 
   // Kinetics
   SI.MassFlowRate R[nX,nY,nSpecies] "Net rate of production and consumption of products and reactants in the reactor - from thermochemical AND electrochemical reactions";
@@ -134,8 +138,10 @@ equation
 
     // Interior and x=L
   for j in 1:nY loop
-    mfv[2:nX+1, j] = fluxInterp(nX, mf[:,j], mfv[1, j]);
-    hv[2:nX+1, j] = fluxInterp(nX, Gas[:,j].h, hv[1, j]);
+    mfvInterp[:, j] = fluxInterp(nX, mf[:,j], mfv[1, j]);
+    hvInterp[:, j] = fluxInterp(nX, Gas[:,j].h, hv[1, j]);
+    mfv[2:nX+1, j] = mfvInterp[:, j];
+    hv[2:nX+1, j] = hvInterp[:, j];
     for i in 1:nSpecies loop
       xiv[2:nX+1, j, i] = fluxInterp(nX, Gas[:,j].Xi[i], xiv[1, j, i]);
     end for;

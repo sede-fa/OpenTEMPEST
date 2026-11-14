@@ -1,4 +1,4 @@
-﻿within OpenTEMPEST.SOC.Cell.CrossFlow.Components;
+within OpenTEMPEST.SOC.Cell.CrossFlow.Components;
 partial model Channel2DBaseSimp "Base model for channels discretised in 1D with 2D interfaces (pressure drop set at top level)"
 
   import SI = Modelica.Units.SI;
@@ -57,6 +57,10 @@ partial model Channel2DBaseSimp "Base model for channels discretised in 1D with 
   SI.MassFlowRate mfv[nX+1] "Mass flow rate CV Vertices/Nodes";
   SI.SpecificEnthalpy hv[nX+1] "Enthalpy at Vertices";
   SI.MassFraction xiv[nX+1, nSpecies] "Mass fractions at Vertices";
+  protected
+  SI.MassFlowRate mfvInterp[nX] "Interpolated mass flow rate at downstream vertices";
+  SI.SpecificEnthalpy hvInterp[nX] "Interpolated enthalpy at downstream vertices";
+  public
 
   // Kinetics
   SI.MassFlowRate R[nX, nSpecies]
@@ -133,8 +137,10 @@ equation
   xiv[1, :] = inStream(infl.Xi_outflow[:]);
 
   // Interior and x=L
-  mfv[2:nX+1] = fluxInterp(nX, mf[1:nX], mfv[1]);
-  hv[2:nX+1] = fluxInterp(nX, Gas[1:nX].h, hv[1]);
+  mfvInterp = fluxInterp(nX, mf[1:nX], mfv[1]);
+  hvInterp = fluxInterp(nX, Gas[1:nX].h, hv[1]);
+  mfv[2:nX+1] = mfvInterp;
+  hv[2:nX+1] = hvInterp;
   for i in 1:nSpecies loop
     xiv[2:nX+1, i] = fluxInterp(nX, Gas[1:nX].Xi[i], xiv[1, i]);
   end for;
