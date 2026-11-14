@@ -15,7 +15,16 @@ RunScript("<path>/OpenTEMPEST/Resources/Scripts/Dymola/ConvertOpenTEMPEST_from_0
 ```
 
 Also update your own `uses` annotation to `OpenTEMPEST(version="0.2.0")`, `Modelica(version="4.1.0")`.
-The script has not been run on a real user model yet; check the result with a diff.
+The Dymola script itself is untested in Dymola. OpenModelica does not understand `convertClass`, so
+there is also a plain Python version that reads the same rename list from the `.mos` file:
+
+```bash
+python3 Misc/scripts/convert_from_0.1.0.py --dry-run path/to/your/models   # preview
+python3 Misc/scripts/convert_from_0.1.0.py path/to/your/models             # convert in place
+```
+
+It also updates the `uses` versions. Tested on a small model using the old names (converted file passes
+`checkModel` in OpenModelica); review the result with a diff.
 
 ## Manual part
 
