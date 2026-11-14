@@ -22,7 +22,7 @@ model SimplifiedStackTest "Example of the simplified 1D stack model SimplifiedSt
     xStartFC=fuelSource.Xnom,                 redeclare model Electrochem =
         OpenTEMPEST.SOC.Electrochem.Components.BV_Steam)
     annotation (Placement(transformation(extent={{-28,-26},{28,28}})));
-  BOP.PowerElectronics powerElectronics(nChannels=1, currentFactor=1)
+  OpenTEMPEST.BOP.PowerElectronics powerElectronics(nChannels=1, currentFactor=1)
                                         annotation (Placement(transformation(extent={{-110,-12},{-84,12}})));
   OpenTEMPEST.Flow.SourceMassFlow
                         fuelSource(

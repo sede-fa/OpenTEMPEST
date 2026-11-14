@@ -10,8 +10,10 @@ model TestGridLoad "Electrical load on a grid with droop"
     offset=1e4,
     startTime=5) annotation (Placement(transformation(extent={{0,30},{20,50}})));
 equation
-  connect(grid.port, load.port) annotation (Line(points={{-40,0},{40,0}}, color={0,0,255}));
-  connect(loadStep.y, load.referencePower) annotation (Line(points={{21,40},{46,40},{46,10}}, color={0,0,127}));
+  connect(grid.port, load.port) annotation (Line(points={{-58.6,0},{-4,0},{-4,
+          8.6},{50,8.6}},                                                 color={0,0,255}));
+  connect(loadStep.y, load.referencePower) annotation (Line(points={{21,40},{40,
+          40},{40,0}},                                                                        color={0,0,127}));
   annotation (
     experiment(StopTime=10),
     Documentation(info="<html>

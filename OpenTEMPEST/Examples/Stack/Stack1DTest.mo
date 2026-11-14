@@ -22,7 +22,7 @@ model Stack1DTest "Example of the 1D co-flow stack model Stack1D, adiabatic"
     redeclare model Electrochem =
         OpenTEMPEST.SOC.Electrochem.Components.ASR_Steam)
                         annotation (Placement(transformation(extent={{-28,-26},{28,28}})));
-  BOP.PowerElectronics powerElectronics(nChannels=1, currentFactor=1)
+  OpenTEMPEST.BOP.PowerElectronics powerElectronics(nChannels=1, currentFactor=1)
                                         annotation (Placement(transformation(extent={{-110,-12},{-84,12}})));
   Flow.SourceMassFlowEC fuelSource(
     p0=1.1*sinkFuel.p0,
