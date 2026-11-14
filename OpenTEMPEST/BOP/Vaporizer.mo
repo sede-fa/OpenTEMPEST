@@ -38,7 +38,7 @@ public
     p_start=pStart,
     V_l_start=0.005) annotation (Placement(transformation(extent={{-68,-8},{-48,12}})));
 
-  OpenTEMPEST.Heat.HeatSource1DFV heatSource1DFV(Nw=5) annotation (Placement(
+  OpenTEMPEST.Heat.HeatSource1DFV heatSource1DFV(N=5) annotation (Placement(
         transformation(
         extent={{-10,10},{10,-10}},
         rotation=90,

@@ -47,7 +47,7 @@ model SimplifiedCellBlock
   OpenTEMPEST.Interfaces.DHTVolumes dHTactive_z1(each N=N) annotation (Placement(
         transformation(extent={{-70,44},{-42,70}}),   iconTransformation(extent={{-66,52},
             {-42,70}})));
-   OpenTEMPEST.Heat.HeatSource1DNonUniformFV heatSource1DNonUniformFV(Nw=N)
+   OpenTEMPEST.Heat.HeatSource1DNonUniformFV heatSource1DNonUniformFV(N=N)
            annotation (Placement(transformation(extent={{-86,-42},{-66,-22}})));
   Electrochem.Interfaces.SimpFlowInfoPort simpFlowInfoPortIn[N] annotation (
       Placement(transformation(extent={{-62,-82},{-42,-62}}),

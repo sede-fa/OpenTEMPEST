@@ -37,5 +37,26 @@ convertClass("ThermoPower.Thermal.HT_DHTVolumes", "OpenTEMPEST.Heat.HT_DHTVolume
 convertClass("ThermoPower.Electrical.Grid", "OpenTEMPEST.Electrical.Grid");
 convertClass("ThermoPower.Electrical.Load", "OpenTEMPEST.Electrical.Load");
 
+// Icons
+convertClass("ThermoPower.Icons.Gas.SourceP", "OpenTEMPEST.Icons.GasSource");
+convertClass("ThermoPower.Icons.Gas.SourceW", "OpenTEMPEST.Icons.GasSource");
+convertClass("ThermoPower.Icons.Gas.SensP", "OpenTEMPEST.Icons.GasSensor");
+convertClass("ThermoPower.Icons.Gas.SensThrough", "OpenTEMPEST.Icons.GasSensor");
+convertClass("ThermoPower.Icons.Gas.Tube", "OpenTEMPEST.Icons.Tube");
+convertClass("ThermoPower.Icons.Water.Tube", "OpenTEMPEST.Icons.Tube");
+convertClass("ThermoPower.Icons.Gas.Mixer", "OpenTEMPEST.Icons.Mixer");
+convertClass("ThermoPower.Icons.Gas.FlowJoin", "OpenTEMPEST.Icons.Mixer");
+convertClass("ThermoPower.Icons.Gas.Fan", "OpenTEMPEST.Icons.Fan");
+convertClass("ThermoPower.Icons.Water.Pump", "OpenTEMPEST.Icons.WaterPump");
+convertClass("ThermoPower.Icons.Water.Header", "OpenTEMPEST.Icons.WaterHeader");
+convertClass("ThermoPower.Icons.Water.ExpansionTankIdeal", "OpenTEMPEST.Icons.WaterHeader");
+convertClass("ThermoPower.Icons.HeatFlow", "OpenTEMPEST.Icons.HeatFlow");
+
+// Parameter renames: OpenTEMPEST counts control volumes with N (ThermoPower: Nw, Nv)
+convertModifiers("OpenTEMPEST.Heat.HeatSource1DFV", {"Nw"}, {"N=%Nw%"}, true);
+convertModifiers("OpenTEMPEST.Heat.HeatSource1DNonUniformFV", {"Nw"}, {"N=%Nw%"}, true);
+convertModifiers("OpenTEMPEST.Heat.TempSource1DFV", {"Nw"}, {"N=%Nw%"}, true);
+convertModifiers("OpenTEMPEST.Heat.ConvHTFV", {"Nv"}, {"N=%Nv%"}, true);
+
 // MetalWallFV, Plenum and sqrtReg were removed in 0.2.0. Their replacements have different
 // parameters, so they are not converted automatically (see docs/Migration.md).

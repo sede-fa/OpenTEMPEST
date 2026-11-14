@@ -31,6 +31,8 @@ It also updates the `uses` versions. Tested on a small model using the old names
 | 0.1.x | 0.2.0 |
 |---|---|
 | `Heat.MetalWallFV` | `Heat.Wall1D` (material via `SolidMat`; for a lumped wall use `rhoCustom=M/(lX*lY*lZ)`, `cpCustom=cm`) |
+| `Heat.HeatSource1DFV(Nw=…)`, `HeatSource1DNonUniformFV(Nw=…)`, `TempSource1DFV(Nw=…)`, `ConvHTFV(Nv=…)` | parameter is now `N` (number of control volumes, as in `Flow1D`); converted automatically |
+| `ThermoPower.Icons.*` | matching `OpenTEMPEST.Icons.*` where one exists; converted automatically |
 | `Flow.Plenum` | `Modelica.Fluid.Vessels.ClosedVolume` |
 | `Blocks.Functions.sqrtReg` | `Modelica.Fluid.Utilities.regRoot` |
 | `ThermoPower.Gas.Flow1DFV` etc. | not part of OpenTEMPEST; use `Modelica.Fluid.Pipes.DynamicPipe` or the OpenTEMPEST channel models |

@@ -1,9 +1,9 @@
 within OpenTEMPEST.Heat;
 // Derived in part from ThermoPower (Copyright 2002-2014 Politecnico di Milano, Modelica License 2). See NOTICE.md.
 model HeatSource1DFV "Distributed heat source with total power spread uniformly over the volumes"
-  parameter Integer Nw(min=1)=1 "Number of volumes";
+  parameter Integer N(min=1)=1 "Number of volumes";
 
-  OpenTEMPEST.Interfaces.DHTVolumes wall(final N=Nw)
+  OpenTEMPEST.Interfaces.DHTVolumes wall(final N=N)
     annotation (Placement(transformation(extent={{-40,-40},{40,-20}})));
   Modelica.Blocks.Interfaces.RealInput power(unit="W") "Total heat flow delivered to the wall"
     annotation (Placement(transformation(
@@ -12,7 +12,7 @@ model HeatSource1DFV "Distributed heat source with total power spread uniformly 
         rotation=270)));
 
 equation
-  wall.Q = -power/Nw*ones(Nw);
+  wall.Q = -power/N*ones(N);
 
   annotation (
     Icon(graphics={
@@ -26,7 +26,7 @@ equation
           lineColor={0,0,0},
           textString="%name")}),
     Documentation(info="<html>
-<p>Prescribed total heat flow <code>power</code>, spread equally over the <code>Nw</code> volumes of the
+<p>Prescribed total heat flow <code>power</code>, spread equally over the <code>N</code> volumes of the
 connected distributed heat port. Replaces <code>ThermoPower.Thermal.HeatSource1DFV</code>.</p>
 </html>"));
 end HeatSource1DFV;

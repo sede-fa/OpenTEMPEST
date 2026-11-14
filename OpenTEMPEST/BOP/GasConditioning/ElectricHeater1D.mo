@@ -51,7 +51,7 @@ model ElectricHeater1D "1D discretised electric tube heater for gas flows"
   OpenTEMPEST.Electrical.Load load(Pnom(displayUnit="kW") = 5000, usePowerInput=
        true) annotation (Placement(transformation(extent={{56,58},{76,38}})));
 public
-  OpenTEMPEST.Heat.HeatSource1DFV heatSource1DFV(final Nw=N)
+  OpenTEMPEST.Heat.HeatSource1DFV heatSource1DFV(final N=N)
     annotation (Placement(transformation(extent={{-10,8},{10,28}})));
   Modelica.Blocks.Math.Gain efficiency(k=Efficiency) annotation (Placement(
         transformation(

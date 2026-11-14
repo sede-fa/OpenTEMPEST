@@ -149,7 +149,7 @@ model Cell
     A2=lX*lYac)
     annotation (Placement(transformation(extent={{14,-44},{34,-24}})));
 
-  OpenTEMPEST.Heat.ConvHTFV convHTFV(Nv=N, G=LambdaIC/lZac*(lY - lYac)*lX) "why is this here?"
+  OpenTEMPEST.Heat.ConvHTFV convHTFV(N=N, G=LambdaIC/lZac*(lY - lYac)*lX) "why is this here?"
                                                                               annotation (Placement(transformation(extent={{-52,-42},
             {-32,-22}})));
 
