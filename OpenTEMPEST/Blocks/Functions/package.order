@@ -1,5 +1,6 @@
 boolToInt
 pressureDropDarcy
+pressureDropForchheimer
 simpleWGSEqn
 g0_T
 polySolid
