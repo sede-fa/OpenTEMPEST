@@ -225,7 +225,9 @@ library follows.</p>
     uses(
       Modelica(version="4.1.0"),
       ModelicaServices(version="4.1.0")),
-    version="0.1.0",
+    version="0.2.0",
+    conversion(from(version="0.1.0",
+      script="modelica://OpenTEMPEST/Resources/Scripts/Dymola/ConvertOpenTEMPEST_from_0.1.0.mos")),
     Documentation(info="<html>
 <p><strong>OpenTEMPEST</strong> (<strong>T</strong>ransient <strong>E</strong>lectrochemical <strong>M</strong>odel
 for <strong>P</strong>rocess and <strong>E</strong>nergy <strong>S</strong>ys<strong>T</strong>ems) is an open source

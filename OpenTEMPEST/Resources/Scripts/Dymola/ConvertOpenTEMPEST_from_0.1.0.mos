@@ -1,0 +1,40 @@
+// Conversion script OpenTEMPEST 0.1.0 (MSL 3.2.3 + ThermoPower 3.1) -> 0.2.0 (MSL 4.1, no ThermoPower).
+// Run automatically by Dymola when a model that uses OpenTEMPEST 0.1.0 is loaded with 0.2.0
+// (see the `conversion` annotation in OpenTEMPEST/package.mo), or run manually on a model with
+//   RunScript("<path>/ConvertOpenTEMPEST_from_0.1.0.mos");
+//
+// Only class renames are converted. Check the list in docs/Migration.md for the manual steps
+// (MetalWallFV -> Heat.Wall1D parameters, ThermoPower components that have no OpenTEMPEST equivalent).
+
+// Connectors, system and initialisation options
+convertClass("ThermoPower.Gas.FlangeA", "OpenTEMPEST.Interfaces.GasFlangeA");
+convertClass("ThermoPower.Gas.FlangeB", "OpenTEMPEST.Interfaces.GasFlangeB");
+convertClass("ThermoPower.Thermal.HT", "OpenTEMPEST.Interfaces.HT");
+convertClass("ThermoPower.Thermal.DHTVolumes", "OpenTEMPEST.Interfaces.DHTVolumes");
+convertClass("ThermoPower.Electrical.PowerConnection", "OpenTEMPEST.Interfaces.PowerConnection");
+convertClass("ThermoPower.Choices.Init.Options", "OpenTEMPEST.Enumerations.InitOptions");
+convertClass("ThermoPower.System", "OpenTEMPEST.System");
+
+// Gas flow components
+convertClass("ThermoPower.Gas.FlowJoin", "OpenTEMPEST.Flow.FlowJoin");
+convertClass("ThermoPower.Gas.FlowSplit", "OpenTEMPEST.Flow.FlowSplit");
+convertClass("ThermoPower.Gas.PressDropLin", "OpenTEMPEST.Flow.PressDropLin");
+convertClass("ThermoPower.Gas.SensP", "OpenTEMPEST.Flow.SensP");
+convertClass("ThermoPower.Gas.SensT", "OpenTEMPEST.Flow.SensT");
+convertClass("ThermoPower.Gas.SensW", "OpenTEMPEST.Flow.SensW");
+convertClass("ThermoPower.Gas.SinkPressure", "OpenTEMPEST.Flow.SinkPressure");
+convertClass("ThermoPower.Gas.SourceMassFlow", "OpenTEMPEST.Flow.SourceMassFlow");
+convertClass("ThermoPower.Gas.ThroughMassFlow", "OpenTEMPEST.Flow.ThroughMassFlow");
+
+// Thermal components
+convertClass("ThermoPower.Thermal.ConvHTFV", "OpenTEMPEST.Heat.ConvHTFV");
+convertClass("ThermoPower.Thermal.HeatSource1DFV", "OpenTEMPEST.Heat.HeatSource1DFV");
+convertClass("ThermoPower.Thermal.HeatSource1DNonUniformFV", "OpenTEMPEST.Heat.HeatSource1DNonUniformFV");
+convertClass("ThermoPower.Thermal.HT_DHTVolumes", "OpenTEMPEST.Heat.HT_DHTVolumes");
+
+// Electrical
+convertClass("ThermoPower.Electrical.Grid", "OpenTEMPEST.Electrical.Grid");
+convertClass("ThermoPower.Electrical.Load", "OpenTEMPEST.Electrical.Load");
+
+// MetalWallFV, Plenum and sqrtReg were removed in 0.2.0. Their replacements have different
+// parameters, so they are not converted automatically (see docs/Migration.md).
