@@ -21,7 +21,7 @@ model TestFlowSplitJoin "Gas flow split into two branches with different resista
   OpenTEMPEST.Flow.SinkPressure sink(redeclare package Medium = Medium, p0=1e5, T=300)
     annotation (Placement(transformation(extent={{70,-10},{90,10}})));
   OpenTEMPEST.Flow.SensW sensW1(redeclare package Medium = Medium)
-    annotation (Placement(transformation(extent={{-30,22},{-18,34}})));
+    annotation (Placement(transformation(extent={{-28,14},{-16,26}})));
   Modelica.Blocks.Sources.Ramp massFlow(
     height=0.02,
     duration=10,
@@ -30,11 +30,16 @@ model TestFlowSplitJoin "Gas flow split into two branches with different resista
 equation
   connect(massFlow.y, source.in_w0) annotation (Line(points={{-79,40},{-86,40},{-86,5}}, color={0,0,127}));
   connect(source.flange, split.inlet) annotation (Line(points={{-70,0},{-50,0}}, color={28,108,200}));
-  connect(split.outlet1, sensW1.inlet) annotation (Line(points={{-30,4},{-30,28}}, color={28,108,200}));
-  connect(sensW1.outlet, branch1.inlet) annotation (Line(points={{-18,28},{-10,28},{-10,30}}, color={28,108,200}));
-  connect(split.outlet2, branch2.inlet) annotation (Line(points={{-30,-4},{-20,-4},{-20,-30},{-10,-30}}, color={28,108,200}));
-  connect(branch1.outlet, join.inlet1) annotation (Line(points={{10,30},{30,30},{30,4}}, color={28,108,200}));
-  connect(branch2.outlet, join.inlet2) annotation (Line(points={{10,-30},{30,-30},{30,-4}}, color={28,108,200}));
+  connect(split.outlet1, sensW1.inlet) annotation (Line(points={{-30,6},{-30,20},
+          {-28,20}},                                                               color={28,108,200}));
+  connect(sensW1.outlet, branch1.inlet) annotation (Line(points={{-16,20},{-10,
+          20},{-10,30}},                                                                      color={28,108,200}));
+  connect(split.outlet2, branch2.inlet) annotation (Line(points={{-30,-6},{-20,
+          -6},{-20,-30},{-10,-30}},                                                                      color={28,108,200}));
+  connect(branch1.outlet, join.inlet1) annotation (Line(points={{10,30},{30,30},
+          {30,6}},                                                                       color={28,108,200}));
+  connect(branch2.outlet, join.inlet2) annotation (Line(points={{10,-30},{30,
+          -30},{30,-6}},                                                                    color={28,108,200}));
   connect(join.outlet, sink.flange) annotation (Line(points={{50,0},{70,0}}, color={28,108,200}));
   annotation (
     experiment(StopTime=20),

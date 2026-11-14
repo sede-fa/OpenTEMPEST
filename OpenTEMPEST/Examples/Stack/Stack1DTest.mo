@@ -2,7 +2,7 @@ within OpenTEMPEST.Examples.Stack;
 model Stack1DTest "Example of the 1D co-flow stack model Stack1D, adiabatic"
   extends Modelica.Icons.Example;
 
-  import SI = Modelica.Units.SI;
+  import      Modelica.Units.SI;
 
   // Initial conditions
   parameter SI.Pressure pStart=100000;
@@ -18,9 +18,11 @@ model Stack1DTest "Example of the 1D co-flow stack model Stack1D, adiabatic"
     Ncell=Ncell,
     TStart=TStart,
     pStartOutFC=pStart,
-    redeclare model Electrochem = OpenTEMPEST.SOC.Electrochem.Components.ASR_Steam)
+    xStartFC=fuelSource.compositionNom,
+    redeclare model Electrochem =
+        OpenTEMPEST.SOC.Electrochem.Components.ASR_Steam)
                         annotation (Placement(transformation(extent={{-28,-26},{28,28}})));
-  BOP.PowerElectronics powerElectronics(nChannels=1, currentFactor=1)
+  OpenTEMPEST.BOP.PowerElectronics powerElectronics(nChannels=1, currentFactor=1)
                                         annotation (Placement(transformation(extent={{-110,-12},{-84,12}})));
   Flow.SourceMassFlowEC fuelSource(
     p0=1.1*sinkFuel.p0,
@@ -42,7 +44,8 @@ model Stack1DTest "Example of the 1D co-flow stack model Stack1D, adiabatic"
     redeclare package Medium = OpenTEMPEST.Medium.Air_Medium,
     p0=pStart,
     use_in_p0=false) annotation (Placement(transformation(extent={{88,-58},{108,-38}},rotation=0)));
-  OpenTEMPEST.Flow.SinkPressure sinkFuel(redeclare package Medium = OpenTEMPEST.Medium.Fuel_CH4, p0=pStart)
+  OpenTEMPEST.Flow.SinkPressure sinkFuel(redeclare package Medium =
+        OpenTEMPEST.Medium.Fuel_CH4,                                                             p0=pStart)
     annotation (Placement(transformation(extent={{88,32},{108,52}}, rotation=0)));
   OpenTEMPEST.Electrical.Grid grid(Pgrid=55555555555) annotation (Placement(transformation(extent={{-82,-36},{-62,-16}})));
   Blocks.Sources.MultiRamp currentRamp(

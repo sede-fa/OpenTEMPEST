@@ -2,7 +2,7 @@ within OpenTEMPEST.Examples.Stack;
 model Stack0DTest "Example of the lumped stack model Stack0D, adiabatic"
   extends Modelica.Icons.Example;
 
-  import SI = Modelica.Units.SI;
+  import      Modelica.Units.SI;
 
   // Initial conditions
   parameter SI.Pressure pStart=100000;
@@ -28,12 +28,14 @@ model Stack0DTest "Example of the lumped stack model Stack0D, adiabatic"
     intermediatePlateDistance=intermediatePlateDistance,
     calcPressureDrop=calcPressureDrop,
     useDhtInletOutlet=useDhtInletOutlet,
-    redeclare model Electrochem = OpenTEMPEST.SOC.Electrochem.Components.ASR_Steam (redeclare model ASRobj =
+    redeclare model Electrochem =
+        OpenTEMPEST.SOC.Electrochem.Components.ASR_Steam (                          redeclare
+          model                                                                                     ASRobj =
             OpenTEMPEST.SOC.Electrochem.ASR.ASR_log (A=stack.alphaASR, B=stack.betaASR)),
     XStartGas=fuelSource.Xnom,
     XStartAir=airSource.Xnom,
     TASR(start=681.85)) annotation (Placement(transformation(extent={{-28,-26},{28,28}})));
-  BOP.PowerElectronics powerElectronics(nChannels=1, currentFactor=1)
+  OpenTEMPEST.BOP.PowerElectronics powerElectronics(nChannels=1, currentFactor=1)
                                         annotation (Placement(transformation(extent={{-110,-12},{-84,12}})));
   OpenTEMPEST.Flow.SourceMassFlow airSource(
     redeclare package Medium = OpenTEMPEST.Medium.Air_Medium,

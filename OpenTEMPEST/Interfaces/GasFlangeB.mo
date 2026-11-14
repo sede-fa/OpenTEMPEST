@@ -6,7 +6,7 @@ connector GasFlangeB "Gas flange (design flow direction: leaving the component)"
     Icon(graphics={Ellipse(
           extent={{-100,100},{100,-100}},
           lineColor={28,108,200},
-          fillColor={28,108,200},
+          fillColor={19,75,138},
           fillPattern=FillPattern.Solid), Ellipse(
           extent={{-60,60},{60,-60}},
           lineColor={28,108,200},

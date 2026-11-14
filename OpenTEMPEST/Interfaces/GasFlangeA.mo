@@ -6,7 +6,7 @@ connector GasFlangeA "Gas flange (design flow direction: entering the component)
     Icon(graphics={Ellipse(
           extent={{-100,100},{100,-100}},
           lineColor={28,108,200},
-          fillColor={28,108,200},
+          fillColor={19,75,138},
           fillPattern=FillPattern.Solid)}),
     Documentation(info="<html>
 <p>Gas flange for the design inflow side of a component. Same variables as

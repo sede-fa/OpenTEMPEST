@@ -2,7 +2,7 @@ within OpenTEMPEST.Examples.Stack;
 model SimplifiedStackTest "Example of the simplified 1D stack model SimplifiedStack1D, adiabatic"
   extends Modelica.Icons.Example;
 
-  import SI = Modelica.Units.SI;
+  import      Modelica.Units.SI;
 
   // Initial conditions
   parameter SI.Pressure pStart=100000;
@@ -18,10 +18,11 @@ model SimplifiedStackTest "Example of the simplified 1D stack model SimplifiedSt
     N=n,                        Ncell=nCells,
     verticalBlockSize={10,3,1,1,4,10},
     NdetailedCell=1,
-    TStart=TStart,                            redeclare model Electrochem =
+    TStart=TStart,
+    xStartFC=fuelSource.Xnom,                 redeclare model Electrochem =
         OpenTEMPEST.SOC.Electrochem.Components.BV_Steam)
     annotation (Placement(transformation(extent={{-28,-26},{28,28}})));
-  BOP.PowerElectronics powerElectronics(nChannels=1, currentFactor=1)
+  OpenTEMPEST.BOP.PowerElectronics powerElectronics(nChannels=1, currentFactor=1)
                                         annotation (Placement(transformation(extent={{-110,-12},{-84,12}})));
   OpenTEMPEST.Flow.SourceMassFlow
                         fuelSource(
