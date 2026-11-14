@@ -7,8 +7,8 @@ model AirChannel2D "2D air channel for the cross-flow cell"
 
   // Pressure Drop (Darcy-Forchheimer: viscous plus inertial loss)
   parameter SI.Area kPerm = 3e-9 "Permeability of the air channel" annotation(Dialog(tab="Pressure drop"));
-  parameter Real betaForch(unit="1/m") = 0.143/(sqrt(kPerm)*por^1.5)
-    "Forchheimer (inertial) coefficient, default from the Ergun correlation; 0 gives Darcy's law"
+  parameter Real betaForch(unit="1/m") = 0
+    "Forchheimer (inertial) coefficient; 0 gives Darcy's law. For foams and packed beds see the documentation of pressureDropForchheimer"
     annotation(Dialog(tab="Pressure drop"));
   SI.PressureDifference dp[nX,nY]=Blocks.Functions.pressureDropForchheimer(
       mfv[1:nX, :],

@@ -19,9 +19,13 @@ algorithm
 <p>Darcy-Forchheimer law with the superficial velocity <code>v = mf/(rho*A)</code>:</p>
 <pre>dp = (eta/k)*v*L + beta*rho*v*|v|*L</pre>
 <p>The first term is the viscous (Darcy) loss, linear in the mass flow; the second is the inertial loss, quadratic in the
-mass flow, that becomes important at higher velocities. With <code>beta = 0</code> the function is identical to
-<a href=\"modelica://OpenTEMPEST.Blocks.Functions.pressureDropDarcy\">pressureDropDarcy</a>.
-A common estimate for the coefficient is the Ergun correlation <code>beta = 0.143/(sqrt(k)*por^1.5)</code>
-(porosity <code>por</code>), which gives about 1e4 1/m for <code>k = 3e-9 m2</code> and <code>por = 0.4</code>.</p>
+mass flow, that becomes important at higher velocities (in a foam or bed: when the Reynolds number based on the pore or
+particle size approaches order one to ten). With <code>beta = 0</code> the function is identical to
+<a href=\"modelica://OpenTEMPEST.Blocks.Functions.pressureDropDarcy\">pressureDropDarcy</a>.</p>
+<p>The coefficients <code>k</code> and <code>beta</code> are properties of the porous structure and should come from
+measurements or from a correlation for that structure. For open-cell metal foams there are correlations in terms of the
+porosity and the pore diameter (for example by Bhattacharya, Calmidi and Mahajan, 2002); for packed beds of particles the
+Ergun correlation <code>beta = 0.143/(sqrt(k)*por^1.5)</code> is used. They can give very different values, so check them
+against measured pressure drops before relying on the inertial term.</p>
 </html>"));
 end pressureDropForchheimer;

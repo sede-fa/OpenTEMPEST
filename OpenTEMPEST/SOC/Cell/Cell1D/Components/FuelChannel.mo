@@ -8,6 +8,10 @@ model FuelChannel "1D fuel channel with electrochemical reactions and steam refo
   SI.Temperature T[N](start = TStart) "Average Temperature in CV";
 
   // Ni Foam Thermophysical parameters
+  parameter SI.Area kPerm = 3e-9 "Permeability of the nickel foam" annotation(Dialog(tab="Pressure drop"));
+  parameter Real betaForch(unit="1/m") = 0
+    "Forchheimer (inertial) coefficient; 0 gives Darcy's law. For foams and packed beds see the documentation of pressureDropForchheimer"
+    annotation(Dialog(tab="Pressure drop"));
   parameter SI.ThermalConductivity k_eff_Ni  "Nickel foam effective thermal conductivity";
   parameter SI.SpecificHeatCapacity cp_Ni  "Nickel heat capacity";
   parameter SI.Density rho_Ni  "Nickel density";
@@ -105,15 +109,16 @@ equation
     hAbsetzen=0;
   end if;
 
-  // Pressure Drop
+  // Pressure Drop (Darcy-Forchheimer through the nickel foam)
   for i in 1:N loop
-    dp[i] =OpenTEMPEST.Blocks.Functions.pressureDropDarcy(
+    dp[i] =OpenTEMPEST.Blocks.Functions.pressureDropForchheimer(
       mfv[i],
       eta[i],
       Gas[i].d,
       dx,
       (lZ - hAbsetzen)*lY,
-      3e-9);
+      kPerm,
+      betaForch);
   end for;
 
 

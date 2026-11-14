@@ -7,7 +7,11 @@ model AirChannel "1D air channel with oxygen consumption or production at the PE
   import SI = Modelica.Units.SI;
 
   // Pressure Drop
-  parameter Real pDrop(max=0.99) "pressure drop as a factor of inlet pressure (between 0 and 0.99)";
+  parameter Real pDrop(max=0.99) "Only used for the start value of the outlet pressure: assumed pressure drop as a factor of the inlet pressure (between 0 and 0.99)";
+  parameter SI.Area kPerm = 3e-9 "Permeability of the channel" annotation(Dialog(tab="Pressure drop"));
+  parameter Real betaForch(unit="1/m") = 0
+    "Forchheimer (inertial) coefficient; 0 gives Darcy's law. For foams and packed beds see the documentation of pressureDropForchheimer"
+    annotation(Dialog(tab="Pressure drop"));
 
   // Kinetics
   SI.MolarFlowRate rEl[N];
@@ -40,7 +44,14 @@ equation
   // Pressure Drop
   //dp~momentum Balance
   for i in 1:N loop
-    dp[i] = pDrop/N*infl.p;
+    dp[i] = OpenTEMPEST.Blocks.Functions.pressureDropForchheimer(
+      mfv[i],
+      eta[i],
+      Gas[i].d,
+      dx,
+      lZ*lY,
+      kPerm,
+      betaForch);
   end for;
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={
@@ -66,7 +77,7 @@ and axial pressure drop.
 <ul>
 <li>Oxygen electrochemical reaction via <code>PEN_in</code></li>
 <li>Electrochemical heat source term</li>
-<li>Darcy-based axial pressure drop</li>
+<li>Darcy-Forchheimer axial pressure drop (viscous plus inertial loss)</li>
 <li>Convective heat exchange with PEN and interconnect</li>
 </ul>
 </html>"));
