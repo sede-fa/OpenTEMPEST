@@ -52,6 +52,7 @@ def main():
                 files += [os.path.join(d, f) for f in fs if f.endswith(".mo")]
         else:
             files.append(p)
+    remaining = []
     for f in files:
         s = open(f, encoding="utf-8").read()
         t = convert(s, rs)
@@ -59,5 +60,12 @@ def main():
             print("converted" if not a.dry_run else "would convert", f)
             if not a.dry_run:
                 open(f, "w", encoding="utf-8").write(t)
+        # report what is still tied to ThermoPower (or removed OpenTEMPEST 0.1 classes) after conversion
+        for n, l in enumerate(t.split("\n"), 1):
+            if re.search(r"ThermoPower|OpenTEMPEST\.Heat\.MetalWallFV|OpenTEMPEST\.Flow\.Plenum|sqrtReg", l):
+                remaining.append(f"  {f}:{n}: {l.strip()[:120]}")
+    if remaining:
+        print("\nThese lines still need manual migration (see docs/Migration.md):")
+        print("\n".join(remaining))
 
 main()
