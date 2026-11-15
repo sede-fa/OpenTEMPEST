@@ -7,6 +7,9 @@ model Stack1D
   replaceable function fluxInterp =
       Flow.FluxInterpolators.UDSinterp              constrainedby Flow.FluxInterpolators.DifferencingSchemeInterpBase
                                                                                          annotation(choicesAllMatching = true);
+  parameter Boolean staggeredPressure = false
+    "= true: channel pressures at the CV centres with half a CV of pressure drop at each flange (see Channel1DBase)"
+    annotation (Evaluate=true, Dialog(tab="General"), choices(checkBox=true));
 
   // Initialisation
   parameter SI.PressureDifference dpNomFC=0.01 "nominal pressure loss for initialization" annotation (Dialog(tab="Initialization"));
@@ -163,6 +166,7 @@ model Stack1D
   Cell.Cell1D.Cell cell[Ncell](
     each N=N,
     redeclare function fluxInterp = fluxInterp,
+    each staggeredPressure=staggeredPressure,
     each TStart=TStart,
     each Jstart=JStart,
     each pStartInFC=pStartInFC,

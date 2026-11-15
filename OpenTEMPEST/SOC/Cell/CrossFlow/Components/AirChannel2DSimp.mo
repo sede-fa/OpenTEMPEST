@@ -11,7 +11,7 @@ model AirChannel2DSimp "Air channel discretised in 1D with 2D interfaces"
   parameter Real betaForch(unit="1/m") = 0
     "Forchheimer (inertial) coefficient; 0 gives Darcy's law. For foams and packed beds see the documentation of pressureDropForchheimer"
     annotation(Dialog(tab="Pressure drop"));
-  SI.PressureDifference dp[nX]=Blocks.Functions.pressureDropForchheimer(mfv[1:nX], eta, Gas.d, dx, lZ*lY, kPerm, betaForch) "pressure loss";
+  SI.PressureDifference dp[nX+1] "Pressure drop across each face (inlet to CV 1, between CVs, CV nX to outlet)";
   parameter Real pDrop(max=0.99) "pressure drop as a factor of inlet pressure (between 0 and 0.99)";
   SI.DynamicViscosity eta[nX]=Medium.dynamicViscosity(Gas.state);
 
@@ -30,6 +30,15 @@ protected
     data=Modelica.Media.IdealGases.Common.SingleGasesData.O2);
 
 equation
+  // Pressure drop (Darcy-Forchheimer)
+  for i in 1:nX loop
+    dp[i] = OpenTEMPEST.Blocks.Functions.pressureDropForchheimer(mfv[i], eta[i], Gas[i].d, lFace[i], lZ*lY, kPerm, betaForch);
+  end for;
+  if staggeredPressure then
+    dp[nX+1] = OpenTEMPEST.Blocks.Functions.pressureDropForchheimer(mfv[nX+1], eta[nX], Gas[nX].d, lFace[nX+1], lZ*lY, kPerm, betaForch);
+  else
+    dp[nX+1] = 0;
+  end if;
   // Energy Balance
   Emg[:] = Gas[:].d.*Gas[:].u.*por*dV;
 
@@ -59,7 +68,7 @@ equation
   //dp~momentum Balance
   Gas[1].p = infl.p - dp[1];
   Gas[2:nX].p = Gas[1:nX-1].p .- dp[2:nX];
-  outfl.p = Gas[nX].p; // Pressure is upwinded for the last control volume
+  outfl.p = Gas[nX].p - dp[nX+1]; // dp[nX+1] = 0 unless staggeredPressure
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={
                                                        Rectangle(

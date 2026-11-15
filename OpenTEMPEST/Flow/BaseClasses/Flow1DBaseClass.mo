@@ -11,11 +11,18 @@ partial model Flow1DBaseClass "Base class for 1D finite volume flow models, used
   parameter Real dpdxNom = 100 "Pressure drop per length for the constant pressure gradient option (Pa/m)"
     annotation (Dialog(tab="Pressure drop", enable=not useForchheimer));
   parameter Boolean useForchheimer = false "= true: Darcy-Forchheimer pressure drop (flow dependent) instead of the constant gradient dpdxNom"
-    annotation (Dialog(tab="Pressure drop"), choices(checkBox=true));
+    annotation (Evaluate=true, Dialog(tab="Pressure drop"), choices(checkBox=true));
   parameter SI.Area kPerm = 3e-9 "Permeability of the porous medium in the channel (Darcy-Forchheimer option)"
     annotation (Dialog(tab="Pressure drop", enable=useForchheimer));
   parameter Real betaForch(unit="1/m") = 0 "Forchheimer (inertial resistance) coefficient, 0 gives Darcy's law"
     annotation (Dialog(tab="Pressure drop", enable=useForchheimer));
+  parameter Boolean staggeredPressure = false
+    "= true: pressures at the CV centres with half a CV of pressure drop at each flange; false: full CV upstream, outlet pressure = last CV pressure"
+    annotation (Evaluate=true, Dialog(tab="Pressure drop"), choices(checkBox=true));
+  final parameter SI.Length lFace[N+1] = if staggeredPressure then
+      cat(1, {theta[1,1]*dx/2}, {(theta[i,1] + theta[i+1,1])*dx/2 for i in 1:N-1}, {theta[N,1]*dx/2})
+    else cat(1, fill(dx, N), {0})
+    "Flow length assigned to each face for the pressure drop (face 1 at the inlet, face N+1 at the outlet)";
 
   // Initial Values
   parameter SI.Temperature TStartIn=773.15   annotation (Dialog(tab="Initialisation"));
@@ -54,23 +61,31 @@ partial model Flow1DBaseClass "Base class for 1D finite volume flow models, used
       annotation (Placement(transformation(extent={{80,-10},{100,10}}),
         iconTransformation(extent={{80,-14},{108,14}})));
 
-  SI.PressureDifference dp[N] "Pressure drop over the length dx upstream of each centre value";
+  SI.PressureDifference dp[N+1] "Pressure drop across each face (inlet to CV 1, between CVs, CV N to outlet)";
 
 protected
   constant Integer nSpecies = Medium.nXi;
 
 equation
-  // Momentum balance: pressure drop between the inlet and CV 1 and between neighbouring CVs
+  // Momentum balance: pressure drop across each face, using the properties of the CV downstream of
+  // the face (CV N for the outlet face)
   if useForchheimer then
     for i in 1:N loop
       dp[i] = OpenTEMPEST.Blocks.Functions.pressureDropForchheimer(
-        mfv[i]/Ntubes, Medium.dynamicViscosity(Gas[i].state), Gas[i].d, dx, Acs, kPerm, betaForch);
+        mfv[i]/Ntubes, Medium.dynamicViscosity(Gas[i].state), Gas[i].d, lFace[i], Acs, kPerm, betaForch);
     end for;
   else
-    dp = fill(dpdxNom*dx, N);
+    dp[1:N] = dpdxNom*lFace[1:N];
   end if;
-  0 = (infl.p - Gas[1].p) - dp[1];
-  fill(0, N-1) = (Gas[1:N-1].p .- Gas[2:N].p) .- dp[2:N];
+  if staggeredPressure and useForchheimer then
+    dp[N+1] = OpenTEMPEST.Blocks.Functions.pressureDropForchheimer(
+      mfv[N+1]/Ntubes, Medium.dynamicViscosity(Gas[N].state), Gas[N].d, lFace[N+1], Acs, kPerm, betaForch);
+  else
+    dp[N+1] = dpdxNom*lFace[N+1] "zero when not staggered";
+  end if;
+  infl.p - Gas[1].p = dp[1];
+  Gas[1:N-1].p - Gas[2:N].p = dp[2:N];
+  Gas[N].p - outfl.p = dp[N+1];
 
 initial equation
   //Gas[:].T = TStart[:];

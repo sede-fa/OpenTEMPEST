@@ -14,6 +14,9 @@ model Cell
   replaceable function fluxInterp =
       OpenTEMPEST.Flow.FluxInterpolators.UDSinterp  constrainedby OpenTEMPEST.Flow.FluxInterpolators.DifferencingSchemeInterpBase
                                                                                          annotation(choicesAllMatching = true, Dialog(tab="General"));
+  parameter Boolean staggeredPressure = false
+    "= true: channel pressures at the CV centres with half a CV of pressure drop at each flange (see Channel1DBase)"
+    annotation (Evaluate=true, Dialog(tab="General"), choices(checkBox=true));
 
   //initialization
   parameter SI.Temperature TStart=1073.15 "Uniform start temperature" annotation (Dialog(tab="Initialization"));
@@ -95,6 +98,7 @@ model Cell
   OpenTEMPEST.SOC.Cell.Cell1D.Components.AirChannel airChannel(
     N=N,
     redeclare function fluxInterp = fluxInterp,
+    staggeredPressure=staggeredPressure,
     TStartIn=TStart_ACin,
     TStartOut=TStart_ACout,
     pStartIn=pStartAC,
@@ -110,6 +114,7 @@ model Cell
   OpenTEMPEST.SOC.Cell.Cell1D.Components.FuelChannel fuelChannel(
     N=N,
     redeclare function fluxInterp = fluxInterp,
+    staggeredPressure=staggeredPressure,
     TStartIn=TStart_FCin,
     TStartOut=TStart_FCout,
     pStartIn=pStartInFC,

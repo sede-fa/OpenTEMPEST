@@ -12,13 +12,11 @@ model FuelChannel2D "2D fuel channel for the cross-flow cell with reforming and 
   constant Real Ea_MSRf = 231266*0.875 annotation(Dialog(tab="Kinetics"));
 
   // Pressure Drop
-  SI.PressureDifference dp[nX,nY]=Blocks.Functions.pressureDropDarcy(
-      mfv[1:nX, :],
-      eta,
-      Gas.d,
-      dx,
-      (lZ - hAbsetzen)*dy,
-      3e-9) "pressure loss";
+  parameter SI.Area kPerm = 3e-9 "Permeability of the fuel channel (nickel foam)" annotation(Dialog(tab="Pressure drop"));
+  parameter Real betaForch(unit="1/m") = 0
+    "Forchheimer (inertial) coefficient; 0 gives Darcy's law. For foams and packed beds see the documentation of pressureDropForchheimer"
+    annotation(Dialog(tab="Pressure drop"));
+  SI.PressureDifference dp[nX+1,nY] "Pressure drop across each face (inlet to CV 1, between CVs, CV nX to outlet)";
   SI.Length hAbsetzen = 0;
 
   // Kinetics
@@ -55,6 +53,19 @@ protected
       data=Modelica.Media.IdealGases.Common.SingleGasesData.CO);
 
 equation
+  // Pressure drop (Darcy-Forchheimer)
+  for i in 1:nX loop
+    for j in 1:nY loop
+      dp[i,j] = OpenTEMPEST.Blocks.Functions.pressureDropForchheimer(mfv[i,j], eta[i,j], Gas[i,j].d, lFace[i], (lZ - hAbsetzen)*dy, kPerm, betaForch);
+    end for;
+  end for;
+  if staggeredPressure then
+    for j in 1:nY loop
+      dp[nX+1,j] = OpenTEMPEST.Blocks.Functions.pressureDropForchheimer(mfv[nX+1,j], eta[nX,j], Gas[nX,j].d, lFace[nX+1], (lZ - hAbsetzen)*dy, kPerm, betaForch);
+    end for;
+  else
+    dp[nX+1,:] = zeros(nY);
+  end if;
   // Energy balance
   Emg = por*dV * Gas.d .* Gas.u;
 
@@ -93,7 +104,7 @@ equation
   // Pressure drop
   Gas[1, :].p = infl[:].p .- dp[1, :];
   Gas[2:nX, :].p = Gas[1:nX-1, :].p .- dp[2:nX, :];
-  outfl[:].p = Gas[nX, :].p; // Pressure is upwinded for the last control volume
+  outfl[:].p = Gas[nX, :].p .- dp[nX+1, :]; // dp[nX+1,:] = 0 unless staggeredPressure
 
   annotation (Documentation(info="<html>
 <p>

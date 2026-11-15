@@ -36,8 +36,6 @@ import SI = Modelica.Units.SI;
                                        "HT through cylindrical wall" annotation (Placement(
         transformation(extent={{-80,30},{80,50}}),iconTransformation(extent={{-80,34},
             {80,50}})));
-initial equation
-  mfv[N+1]=mfv[1]; // otherwise mfv[N+1] might be 0 at start
 equation
 
 // Reaction kinetics

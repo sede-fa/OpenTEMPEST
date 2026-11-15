@@ -62,7 +62,12 @@ partial model Channel1DBase "Base model for 1D gas channels with mass, momentum 
   SI.MassFlowRate R[N, nSpecies]
     "net Rate of production and consumption of products and reactants in the reactor - from thermochemical AND electrochemical reactions";
 
-  SI.AbsolutePressure dp[N];
+  parameter Boolean staggeredPressure = false
+    "= true: pressures at the CV centres with half a CV of pressure drop at each flange; false: full CV upstream, outlet pressure = last CV pressure"
+    annotation (Evaluate=true, Dialog(tab="Pressure drop"), choices(checkBox=true));
+  SI.Length lFace[N+1] = if staggeredPressure then cat(1, {dx/2}, fill(dx, N-1), {dx/2}) else cat(1, fill(dx, N), {0})
+    "Flow length assigned to each face for the pressure drop (face 1 at the inlet, face N+1 at the outlet)";
+  SI.PressureDifference dp[N+1] "Pressure drop across each face (inlet to CV 1, between CVs, CV N to outlet)";
 
   SI.Energy Emg[N] "Energy density in control volume";
   SI.MassFlowRate massTransfer[N] "ion transfer rate";
@@ -152,7 +157,7 @@ equation
   // Pressure balance - need to define dp at level above
   Gas[1].p = infl.p - dp[1];
   Gas[2:N].p = Gas[1:N-1].p - dp[2:N];
-  outfl.p = Gas[N].p; // Pressure is upwinded for the last control volume
+  outfl.p = Gas[N].p - dp[N+1]; // dp[N+1] = 0 unless staggeredPressure
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={
           Rectangle(

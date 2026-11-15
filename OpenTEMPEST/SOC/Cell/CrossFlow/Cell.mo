@@ -5,6 +5,9 @@ model Cell "2D cross-flow cell repeating unit with PEN, fuel and air channels an
 
   parameter Integer nX=5 "Number of control volumes in the x-direction";
   parameter Integer nY=5 "Number of control volumes in the y-direction";
+  parameter Boolean staggeredPressure = false
+    "= true: channel pressures at the CV centres with half a CV of pressure drop at each flange"
+    annotation (Evaluate=true, choices(checkBox=true));
 
   // Dimensions from http://dx.doi.org/10.2139/ssrn.3987808
   parameter SI.Length lX = 0.1 "Length of solid" annotation(Dialog(tab="Dimensions"));
@@ -75,6 +78,7 @@ model Cell "2D cross-flow cell repeating unit with PEN, fuel and air channels an
     Jstart=Jstart,
     redeclare model Electrochem = Electrochem) annotation (Placement(transformation(extent={{-34,-20},{34,44}})));
   OpenTEMPEST.SOC.Cell.CrossFlow.Components.AirChannel2D airChannel(
+    staggeredPressure=staggeredPressure,
     nX=nY,
     nY=nX,
     TStart=TStart,
@@ -96,6 +100,7 @@ model Cell "2D cross-flow cell repeating unit with PEN, fuel and air channels an
     nSpecies=Medium.Air_Medium.nX,
     includeVarStream=true) annotation (Placement(transformation(extent={{-14,-42},{16,-22}})));
   OpenTEMPEST.SOC.Cell.CrossFlow.Components.FuelChannel2D fuelChannel(
+    staggeredPressure=staggeredPressure,
     nX=nX,
     nY=nY,
     TStart=TStart,

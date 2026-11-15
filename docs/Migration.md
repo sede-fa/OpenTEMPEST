@@ -39,6 +39,9 @@ instead of one error per model check. The Dymola script only renames and prints 
 | `ThermoPower.Icons.*` | matching `OpenTEMPEST.Icons.*` where one exists; converted automatically |
 | `Flow.Flow1D(LUDS=true)` | `redeclare function fluxInterp = OpenTEMPEST.Flow.FluxInterpolators.LUDSinterp`; the default is unchanged (first order upwind) |
 | `Flow.Flow1D` / `Reformer1D` `dpdx`/`dpdxNom` | still the default; flow dependent drop with `useForchheimer = true` |
+| `BOP.Reactors.Reformer1D` initial equation `mfv[N+1] = mfv[1]` | removed (it made the initialisation fail in OpenModelica); all CV states start from their start values |
+| `FuelChannel2D`, `FuelChannel2DSimp` fixed permeability 3e-9 | parameters `kPerm` (default 3e-9) and `betaForch` (default 0), same result by default |
+| outlet pressure = last CV pressure in 1D/2D channels | still the default; `staggeredPressure = true` puts half a CV of pressure drop at each flange |
 | `Flow.Plenum` | `Modelica.Fluid.Vessels.ClosedVolume` |
 | `Blocks.Functions.sqrtReg` | `Modelica.Fluid.Utilities.regRoot` |
 | `ThermoPower.Choices.Flow1D.FFtypes` | no equivalent yet (friction factor choices of `Flow1DFV`) |

@@ -37,6 +37,11 @@ partial model Channel2DBaseSimp "Base model for channels discretised in 1D with 
   // Control Volume sizing
   SI.Volume dV = dx*lY*lZ "Control volume size";
   SI.Length dx = lX/nX "Axial length of one control volume";
+  parameter Boolean staggeredPressure = false
+    "= true: pressures at the CV centres with half a CV of pressure drop at each flange; false: full CV upstream, outlet pressure = last CV pressure"
+    annotation (Evaluate=true, Dialog(tab="Pressure drop"), choices(checkBox=true));
+  SI.Length lFace[nX+1] = if staggeredPressure then cat(1, {dx/2}, fill(dx, nX-1), {dx/2}) else cat(1, fill(dx, nX), {0})
+    "Flow length assigned to each face for the pressure drop (face 1 at the inlet, face nX+1 at the outlet)";
 
   // Gas Object
   SI.Temperature T[nX](each start=TStart) "Average Temperature in CV";

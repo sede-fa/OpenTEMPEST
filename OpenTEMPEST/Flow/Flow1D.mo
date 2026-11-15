@@ -90,9 +90,6 @@ equation
   outfl.m_flow = -mfv[N+1];
   outfl.Xi_outflow[:] = xiv[N+1, :];
   outfl.h_outflow = hv[N+1];
-  outfl.p = Gas[N].p; // Pressure is upwinded for the last control volume, alternative options given below
-  //outfl.p = infl.p - dpdx*L ;
-  //outfl.p = (1-dpFac)*infl.p ;
 
   annotation (Documentation(info="<html>
 <p>1D finite volume model of a gas flow in <code>N</code> control volumes (the first and last one scaled by <code>theta0_1</code>)
@@ -102,7 +99,10 @@ with a distributed heat port.</p>
 <code>fluxInterp</code> (default first order upwind <code>UDSinterp</code>; <code>LUDSinterp</code> for linear upwind). The mass flow at the faces
 follows from the mass balance. This replaces the former <code>LUDS</code> flag.</li>
 <li><b>Pressure drop:</b> by default a constant gradient <code>dpdxNom</code>. With <code>useForchheimer = true</code> the Darcy-Forchheimer law
-(<a href=\"modelica://OpenTEMPEST.Blocks.Functions.pressureDropForchheimer\">pressureDropForchheimer</a>) is used with <code>kPerm</code> and <code>betaForch</code>.</li>
+(<a href=\"modelica://OpenTEMPEST.Blocks.Functions.pressureDropForchheimer\">pressureDropForchheimer</a>) is used with <code>kPerm</code> and <code>betaForch</code>.
+By default the drop of a whole CV lies upstream of each CV centre and the outlet pressure equals the last CV pressure.
+With <code>staggeredPressure = true</code> the pressures sit at the CV centres and each flange gets half a CV of pressure drop.
+Combined with the Darcy-Forchheimer option the CV pressures then become states, so they can be given initial values.</li>
 <li><b>Heat transfer:</b> the replaceable model <code>HeatTransferModel</code> gives the coefficient (default: constant <code>h_conv</code>, as before;
 other choice: <a href=\"modelica://OpenTEMPEST.Flow.HeatTransfer.ConstantNusselt\">ConstantNusselt</a>).</li>
 </ul>

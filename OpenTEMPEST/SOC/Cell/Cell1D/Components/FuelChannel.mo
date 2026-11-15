@@ -115,11 +115,17 @@ equation
       mfv[i],
       eta[i],
       Gas[i].d,
-      dx,
+      lFace[i],
       (lZ - hAbsetzen)*lY,
       kPerm,
       betaForch);
   end for;
+  if staggeredPressure then
+    dp[N+1] = OpenTEMPEST.Blocks.Functions.pressureDropForchheimer(
+      mfv[N+1], eta[N], Gas[N].d, lFace[N+1], (lZ - hAbsetzen)*lY, kPerm, betaForch);
+  else
+    dp[N+1] = 0;
+  end if;
 
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={
