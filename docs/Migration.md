@@ -39,6 +39,7 @@ instead of one error per model check. The Dymola script only renames and prints 
 | `ThermoPower.Icons.*` | matching `OpenTEMPEST.Icons.*` where one exists; converted automatically |
 | `Flow.Plenum` | `Modelica.Fluid.Vessels.ClosedVolume` |
 | `Blocks.Functions.sqrtReg` | `Modelica.Fluid.Utilities.regRoot` |
+| `ThermoPower.Choices.Flow1D.FFtypes` | no equivalent yet (friction factor choices of `Flow1DFV`) |
 | `ThermoPower.Gas.Flow1DFV` etc. | not part of OpenTEMPEST; use `Modelica.Fluid.Pipes.DynamicPipe` or the OpenTEMPEST channel models |
 | MSL 3.2.3 `Modelica.SIunits` | `Modelica.Units.SI` (Dymola converts this itself) |
 | Air channel `pDrop` (linear drop) | now only a start value; pressure drop comes from `kPerm` / `betaForch` (Darcy-Forchheimer) |

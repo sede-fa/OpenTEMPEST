@@ -37,6 +37,10 @@ convertClass("ThermoPower.Thermal.HT_DHTVolumes", "OpenTEMPEST.Heat.HT_DHTVolume
 convertClass("ThermoPower.Electrical.Grid", "OpenTEMPEST.Electrical.Grid");
 convertClass("ThermoPower.Electrical.Load", "OpenTEMPEST.Electrical.Load");
 
+// Units
+convertClass("ThermoPower.Units.HydraulicResistance", "OpenTEMPEST.Units.HydraulicResistance");
+convertClass("ThermoPower.Units.HydraulicConductance", "OpenTEMPEST.Units.HydraulicConductance");
+
 // Icons
 convertClass("ThermoPower.Icons.Gas.SourceP", "OpenTEMPEST.Icons.GasSource");
 convertClass("ThermoPower.Icons.Gas.SourceW", "OpenTEMPEST.Icons.GasSource");
