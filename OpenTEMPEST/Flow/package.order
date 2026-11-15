@@ -1,6 +1,7 @@
 Manifold_out
 Manifold
 FluxInterpolators
+HeatTransfer
 BaseClasses
 gasHeaterAndJoiner
 MultiSplitter

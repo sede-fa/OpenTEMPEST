@@ -1,17 +1,24 @@
 within OpenTEMPEST.Flow;
 model Flow1D "1D finite volume gas flow model with a distributed heat port"
-  extends Modelica.Icons.UnderConstruction; // use flux interpolator and remove comments
   extends OpenTEMPEST.Flow.BaseClasses.Flow1DBaseClass;
   import SI = Modelica.Units.SI;
 
-  parameter Real dpdxNom = 100 "Pressure drop in pipe Pa/m";
-  parameter Boolean LUDS=false "Set true for linear upwind differencing";
+  replaceable function fluxInterp =
+      OpenTEMPEST.Flow.FluxInterpolators.UDSinterp constrainedby OpenTEMPEST.Flow.FluxInterpolators.DifferencingSchemeInterpBase
+    "Differencing scheme for the fluxes at the CV faces (default: first order upwind; LUDSinterp: linear upwind)"
+    annotation (choicesAllMatching=true);
   parameter Boolean internalHT=true "set true if you want to model HT phenomena inside the channel, false for HT modelled outside";
 
   parameter SI.CoefficientOfHeatTransfer h_conv=1 "Heat Transfer Coefficient /W/m2/K" annotation(dialog(enable=internalHT));
 
+  replaceable model HeatTransferModel = OpenTEMPEST.Flow.HeatTransfer.ConstantHTC(alpha0=h_conv)
+    constrainedby OpenTEMPEST.Flow.HeatTransfer.PartialHTC
+    "Heat transfer coefficient model (used when internalHT = true; default: constant coefficient h_conv)"
+    annotation (choicesAllMatching=true, Dialog(enable=internalHT));
+  HeatTransferModel htc(final N=N, final Dh=2*Rh) "Heat transfer coefficient model";
+
   // Vertex Values
-  SI.MassFlowRate mfv[N+1] "Mass flow rate in and leaving CV";
+  SI.SpecificEnthalpy hvInterp[N] "Interpolated enthalpies at the downstream CV faces";
   SI.SpecificEnthalpy hv[N+1] "specific enthalpy at CV boundary";
   SI.MassFraction xiv[N+1, nSpecies] "Mass fractions in CV";
 
@@ -51,15 +58,16 @@ equation
   Ntubes*dV.*theta[:,1].*der(Gas[:].d.*Gas[:].u) = (mfv[1:N].*hv[1:N] .- mfv[2:N+1].*hv[2:N+1]) .+ wall.Q[:];
 
   if internalHT then
-    wall.Q[:] = h_conv.*Ntubes.*Aw.*(wall.T[:] - Gas[:].T);
+    for i in 1:N loop
+      htc.lambda[i] = Medium.thermalConductivity(Gas[i].state);
+      htc.Re[i] = (2*Rh*mf[i]/Ntubes)/(Acs*Medium.dynamicViscosity(Gas[i].state));
+      htc.Pr[i] = Medium.prandtlNumber(Gas[i].state);
+    end for;
+    wall.Q[:] = htc.alpha.*Ntubes.*Aw.*(wall.T[:] - Gas[:].T);
   else
     wall.T[:] = Gas[:].T;
   end if;
   Qtot = sum(wall.Q);
-
-  // Momentum Balance
-  0 = (infl.p - Gas[1].p) - dpdxNom*dx;
-  fill(0, N-1) = (Gas[1:N-1].p .- Gas[2:N].p) .- dpdxNom*dx;
 
   // Interface interpolation
     // At x=0
@@ -69,24 +77,14 @@ equation
   hv[1] = infl.h_outflow;
   hv[1] = inStream(infl.h_outflow);
 
-  if LUDS then
-    // 1st CV
-    mfv[2] = (3*mf[1] - mfv[1])/2;
-    hv[2] = (3*Gas[1].h - hv[1])/2;
-    // Remaining CVs
-    mfv[3:N+1] = (3*mf[2:N] - mf[1:N-1])/2; // Linear Upwind Differencing
-    hv[3:N+1] = (3*Gas[2:N].h - Gas[1:N-1].h)/2;
-    for i in 1:nSpecies loop
-      xiv[2, i] = (3*Gas[1].Xi[i] - xiv[1, i])/2;
-      xiv[3:N+1, i] = (3*Gas[2:N].Xi[i] - Gas[1:N-1].Xi[i])/2;
-    end for;
-  else
-    mfv[2:N+1] = mf[:]; // Upwind Differencing
-    hv[2:N+1] = Gas[:].h;
-    for i in 1:nSpecies loop
-      xiv[2:N+1, i] = Gas[1:N].Xi[i];
-    end for;
-  end if;
+  // The mass flow at the faces follows from the mass balance (conservative); the differencing
+  // scheme is applied to enthalpy and composition. mf[i] is the mass flow leaving CV i.
+  mf = mfv[2:N+1];
+  hvInterp = fluxInterp(N, Gas.h, hv[1]);
+  hv[2:N+1] = hvInterp;
+  for i in 1:nSpecies loop
+    xiv[2:N+1, i] = fluxInterp(N, Gas[:].Xi[i], xiv[1, i]);
+  end for;
 
   // Boundary conditions
   outfl.m_flow = -mfv[N+1];
@@ -96,7 +94,19 @@ equation
   //outfl.p = infl.p - dpdx*L ;
   //outfl.p = (1-dpFac)*infl.p ;
 
-  annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={
+  annotation (Documentation(info="<html>
+<p>1D finite volume model of a gas flow in <code>N</code> control volumes (the first and last one scaled by <code>theta0_1</code>)
+with a distributed heat port.</p>
+<ul>
+<li><b>Differencing:</b> enthalpy and composition at the control volume faces come from the replaceable function
+<code>fluxInterp</code> (default first order upwind <code>UDSinterp</code>; <code>LUDSinterp</code> for linear upwind). The mass flow at the faces
+follows from the mass balance. This replaces the former <code>LUDS</code> flag.</li>
+<li><b>Pressure drop:</b> by default a constant gradient <code>dpdxNom</code>. With <code>useForchheimer = true</code> the Darcy-Forchheimer law
+(<a href=\"modelica://OpenTEMPEST.Blocks.Functions.pressureDropForchheimer\">pressureDropForchheimer</a>) is used with <code>kPerm</code> and <code>betaForch</code>.</li>
+<li><b>Heat transfer:</b> the replaceable model <code>HeatTransferModel</code> gives the coefficient (default: constant <code>h_conv</code>, as before;
+other choice: <a href=\"modelica://OpenTEMPEST.Flow.HeatTransfer.ConstantNusselt\">ConstantNusselt</a>).</li>
+</ul>
+</html>"), Icon(coordinateSystem(preserveAspectRatio=false), graphics={
           Rectangle(
           extent={{-80,34},{80,-32}},
           lineColor={28,108,200},

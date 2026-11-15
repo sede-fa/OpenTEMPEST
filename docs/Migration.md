@@ -37,6 +37,8 @@ instead of one error per model check. The Dymola script only renames and prints 
 | `Heat.MetalWallFV` | `Heat.Wall1D` (material via `SolidMat`; for a lumped wall use `rhoCustom=M/(lX*lY*lZ)`, `cpCustom=cm`) |
 | `Heat.HeatSource1DFV(Nw=…)`, `HeatSource1DNonUniformFV(Nw=…)`, `TempSource1DFV(Nw=…)`, `ConvHTFV(Nv=…)` | parameter is now `N` (number of control volumes, as in `Flow1D`); converted automatically |
 | `ThermoPower.Icons.*` | matching `OpenTEMPEST.Icons.*` where one exists; converted automatically |
+| `Flow.Flow1D(LUDS=true)` | `redeclare function fluxInterp = OpenTEMPEST.Flow.FluxInterpolators.LUDSinterp`; the default is unchanged (first order upwind) |
+| `Flow.Flow1D` / `Reformer1D` `dpdx`/`dpdxNom` | still the default; flow dependent drop with `useForchheimer = true` |
 | `Flow.Plenum` | `Modelica.Fluid.Vessels.ClosedVolume` |
 | `Blocks.Functions.sqrtReg` | `Modelica.Fluid.Utilities.regRoot` |
 | `ThermoPower.Choices.Flow1D.FFtypes` | no equivalent yet (friction factor choices of `Flow1DFV`) |

@@ -15,7 +15,7 @@ import argparse, os, re, subprocess, sys, tempfile
 
 DEFAULT = [
     "Examples.BaseComponents.TestGasFlowPath", "Examples.BaseComponents.TestFlowSplitJoin",
-    "Examples.BaseComponents.TestGridLoad", "Examples.BaseComponents.TestWall1D",
+    "Examples.BaseComponents.TestGridLoad", "Examples.BaseComponents.TestWall1D", "Examples.BaseComponents.TestFlow1D",
     "Examples.BaseComponents.TestSolid1D", "Examples.BOP.TestFanSimple",
     "Examples.BOP.TestCompressor", "Examples.BOP.TestElectricHeater0D",
     "Examples.BOP.TestSimpleGasHeaterVol", "Examples.BOP.TestVaporizer",
