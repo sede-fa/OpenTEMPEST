@@ -37,10 +37,7 @@ partial model Channel2DBase "Base model for 2D gas channels with mass, momentum 
   // Control volume sizing
   SI.Volume dV=dx*dy*lZ;
   SI.Length dx=lX/nX;
-  parameter Boolean staggeredPressure = false
-    "= true: pressures at the CV centres with half a CV of pressure drop at each flange; false: full CV upstream, outlet pressure = last CV pressure"
-    annotation (Evaluate=true, Dialog(tab="Pressure drop"), choices(checkBox=true));
-  SI.Length lFace[nX+1] = if staggeredPressure then cat(1, {dx/2}, fill(dx, nX-1), {dx/2}) else cat(1, fill(dx, nX), {0})
+  SI.Length lFace[nX+1] = cat(1, {dx/2}, fill(dx, nX-1), {dx/2})
     "Flow length assigned to each face for the pressure drop (face 1 at the inlet, face nX+1 at the outlet)";
   SI.Length dy=lY/nY;
 

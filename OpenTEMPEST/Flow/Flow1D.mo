@@ -100,9 +100,9 @@ with a distributed heat port.</p>
 follows from the mass balance. This replaces the former <code>LUDS</code> flag.</li>
 <li><b>Pressure drop:</b> by default a constant gradient <code>dpdxNom</code>. With <code>useForchheimer = true</code> the Darcy-Forchheimer law
 (<a href=\"modelica://OpenTEMPEST.Blocks.Functions.pressureDropForchheimer\">pressureDropForchheimer</a>) is used with <code>kPerm</code> and <code>betaForch</code>.
-By default the drop of a whole CV lies upstream of each CV centre and the outlet pressure equals the last CV pressure.
-With <code>staggeredPressure = true</code> the pressures sit at the CV centres and each flange gets half a CV of pressure drop.
-Combined with the Darcy-Forchheimer option the CV pressures then become states, so they can be given initial values.</li>
+The pressure grid is staggered: the pressures sit at the CV centres, the flows at the faces, and each flange gets half a CV
+of pressure drop, which decouples the last CV from the outlet boundary. With the Darcy-Forchheimer option the CV pressures
+are states, so they can be given initial values.</li>
 <li><b>Heat transfer:</b> the replaceable model <code>HeatTransferModel</code> gives the coefficient (default: constant <code>h_conv</code>, as before;
 other choice: <a href=\"modelica://OpenTEMPEST.Flow.HeatTransfer.ConstantNusselt\">ConstantNusselt</a>).</li>
 </ul>

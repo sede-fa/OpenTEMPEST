@@ -16,12 +16,8 @@ partial model Flow1DBaseClass "Base class for 1D finite volume flow models, used
     annotation (Dialog(tab="Pressure drop", enable=useForchheimer));
   parameter Real betaForch(unit="1/m") = 0 "Forchheimer (inertial resistance) coefficient, 0 gives Darcy's law"
     annotation (Dialog(tab="Pressure drop", enable=useForchheimer));
-  parameter Boolean staggeredPressure = false
-    "= true: pressures at the CV centres with half a CV of pressure drop at each flange; false: full CV upstream, outlet pressure = last CV pressure"
-    annotation (Evaluate=true, Dialog(tab="Pressure drop"), choices(checkBox=true));
-  final parameter SI.Length lFace[N+1] = if staggeredPressure then
+  final parameter SI.Length lFace[N+1] =
       cat(1, {theta[1,1]*dx/2}, {(theta[i,1] + theta[i+1,1])*dx/2 for i in 1:N-1}, {theta[N,1]*dx/2})
-    else cat(1, fill(dx, N), {0})
     "Flow length assigned to each face for the pressure drop (face 1 at the inlet, face N+1 at the outlet)";
 
   // Initial Values
@@ -70,18 +66,12 @@ equation
   // Momentum balance: pressure drop across each face, using the properties of the CV downstream of
   // the face (CV N for the outlet face)
   if useForchheimer then
-    for i in 1:N loop
+    for i in 1:N+1 loop
       dp[i] = OpenTEMPEST.Blocks.Functions.pressureDropForchheimer(
-        mfv[i]/Ntubes, Medium.dynamicViscosity(Gas[i].state), Gas[i].d, lFace[i], Acs, kPerm, betaForch);
+        mfv[i]/Ntubes, Medium.dynamicViscosity(Gas[min(i, N)].state), Gas[min(i, N)].d, lFace[i], Acs, kPerm, betaForch);
     end for;
   else
-    dp[1:N] = dpdxNom*lFace[1:N];
-  end if;
-  if staggeredPressure and useForchheimer then
-    dp[N+1] = OpenTEMPEST.Blocks.Functions.pressureDropForchheimer(
-      mfv[N+1]/Ntubes, Medium.dynamicViscosity(Gas[N].state), Gas[N].d, lFace[N+1], Acs, kPerm, betaForch);
-  else
-    dp[N+1] = dpdxNom*lFace[N+1] "zero when not staggered";
+    dp = dpdxNom*lFace;
   end if;
   infl.p - Gas[1].p = dp[1];
   Gas[1:N-1].p - Gas[2:N].p = dp[2:N];

@@ -6,9 +6,6 @@ model CellCFSimp "Simplified cross-flow cell with 1D fuel and air channels and 2
   // General parameters
   parameter Integer nX=3 "Number of control volumes in first direction";
   parameter Integer nY=3 "Number of control volumes in second direction";
-  parameter Boolean staggeredPressure = false
-    "= true: channel pressures at the CV centres with half a CV of pressure drop at each flange"
-    annotation (Evaluate=true, choices(checkBox=true));
   parameter Boolean LUDS=false  "Set true if Linear upwind difference wanted (more accuracy), false for Upwind difference scheme (more speed and stability)";
   parameter Boolean heatTransferCorrelationFormDuct=true "true for Nusselt correlation duct geometry with characteristic length=2*lZ (default), false for plate geometry with characteristic length=lX";
 
@@ -71,7 +68,6 @@ model CellCFSimp "Simplified cross-flow cell with 1D fuel and air channels and 2
   parameter SI.SpectralEmissivity epsilonIC = 0.1 "Emissivity of interconnects" annotation(Dialog(tab="Interconnects"));
 
   OpenTEMPEST.SOC.Cell.CrossFlow.Components.FuelChannel2DSimp fuelChannel(
-    staggeredPressure=staggeredPressure,
     nX=nX,
     nY=nY,
     TStart=TStart,
@@ -88,7 +84,6 @@ model CellCFSimp "Simplified cross-flow cell with 1D fuel and air channels and 2
     annotation (Placement(transformation(extent={{-34,68},{34,116}})));
 
   OpenTEMPEST.SOC.Cell.CrossFlow.Components.AirChannel2DSimp airChannel(
-    staggeredPressure=staggeredPressure,
     nX=nY,
     nY=nX,
     TStart=TStart,

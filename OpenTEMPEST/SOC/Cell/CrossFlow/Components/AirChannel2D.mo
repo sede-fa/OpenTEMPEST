@@ -34,13 +34,9 @@ equation
       dp[i,j] = OpenTEMPEST.Blocks.Functions.pressureDropForchheimer(mfv[i,j], eta[i,j], Gas[i,j].d, lFace[i], lZ*dy, kPerm, betaForch);
     end for;
   end for;
-  if staggeredPressure then
-    for j in 1:nY loop
-      dp[nX+1,j] = OpenTEMPEST.Blocks.Functions.pressureDropForchheimer(mfv[nX+1,j], eta[nX,j], Gas[nX,j].d, lFace[nX+1], lZ*dy, kPerm, betaForch);
-    end for;
-  else
-    dp[nX+1,:] = zeros(nY);
-  end if;
+  for j in 1:nY loop
+    dp[nX+1,j] = OpenTEMPEST.Blocks.Functions.pressureDropForchheimer(mfv[nX+1,j], eta[nX,j], Gas[nX,j].d, lFace[nX+1], lZ*dy, kPerm, betaForch);
+  end for;
   // Energy balance
   Emg = por*dV * Gas.d .* Gas.u;
 
@@ -63,7 +59,7 @@ equation
   //dp~momentum Balance
   Gas[1,:].p = infl[:].p .- dp[1,:];
   Gas[2:nX,:].p = Gas[1:nX-1,:].p .- dp[2:nX,:];
-  outfl.p = Gas[nX,:].p .- dp[nX+1,:]; // dp[nX+1,:] = 0 unless staggeredPressure
+  outfl.p = Gas[nX,:].p .- dp[nX+1,:]; // half a CV of pressure drop between the last CV and the outlet
 
   annotation (Documentation(info="<html>
 <p>
