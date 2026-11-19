@@ -1,7 +1,7 @@
 within OpenTEMPEST.Flow;
 model gasHeaterAndJoiner "Flow joiner with convective heat transfer in the inlet and outlet ducts"
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   replaceable package medium =
       Modelica.Media.Interfaces.PartialMedium                          annotation(choicesAllMatching = true);
@@ -21,16 +21,16 @@ model gasHeaterAndJoiner "Flow joiner with convective heat transfer in the inlet
   parameter SI.Length[3] d={0.02,0.02,0.02} "diameter of flow channel in a pipe";
   parameter SI.MassFlowRate maximalFlow = -1 "maximal mass flow rate";
 
-  ThermoPower.Gas.FlangeA inletA(redeclare package Medium = medium) annotation (
+  OpenTEMPEST.Interfaces.GasFlangeA inletA(redeclare package Medium = medium) annotation (
       Placement(transformation(extent={{-100,32},{-72,60}}), iconTransformation(
           extent={{-80,20},{-40,60}})));
-  ThermoPower.Gas.FlangeB outlet(redeclare package Medium = medium) annotation (
+  OpenTEMPEST.Interfaces.GasFlangeB outlet(redeclare package Medium = medium) annotation (
       Placement(transformation(extent={{52,-8},{80,20}}), iconTransformation(
           extent={{40,-20},{80,20}})));
-  ThermoPower.Thermal.HT ht[3] annotation (Placement(transformation(extent={{-10,30},
+  OpenTEMPEST.Interfaces.HT ht[3] annotation (Placement(transformation(extent={{-10,30},
             {10,50}}),     iconTransformation(extent={{-18,-20},{22,20}})));
 
-  ThermoPower.Gas.FlangeA inletB(redeclare package Medium = medium) annotation (
+  OpenTEMPEST.Interfaces.GasFlangeA inletB(redeclare package Medium = medium) annotation (
       Placement(transformation(extent={{-100,-46},{-72,-18}}), iconTransformation(
           extent={{-80,-60},{-40,-20}})));
   OpenTEMPEST.BOP.GasConditioning.SimpleGasHeater simpleGasHeaterA(
@@ -47,7 +47,7 @@ model gasHeaterAndJoiner "Flow joiner with convective heat transfer in the inlet
     nParallel=nParallel[1],
     useAlphaIn=false,
     nHT=1) annotation (Placement(transformation(extent={{-54,18},{-34,38}})));
-  ThermoPower.Gas.FlowJoin flowJoin(redeclare package Medium = medium)
+  OpenTEMPEST.Flow.FlowJoin flowJoin(redeclare package Medium = medium)
     annotation (Placement(transformation(extent={{-20,-4},{0,16}})));
   OpenTEMPEST.BOP.GasConditioning.SimpleGasHeater simpleGasHeaterB(
     redeclare package medium = medium,
@@ -82,19 +82,19 @@ equation
   connect(simpleGasHeaterA.ht[1], ht[1]) annotation (Line(points={{-44,32},{-22,
           32},{-22,33.3333},{0,33.3333}}, color={191,0,0}));
   connect(simpleGasHeaterA.inlet, inletA) annotation (Line(points={{-52,28},{-64,
-          28},{-64,46},{-86,46}}, color={159,159,223}));
+          28},{-64,46},{-86,46}}, color={28,108,200}));
   connect(flowJoin.inlet1, simpleGasHeaterA.outlet) annotation (Line(points={{-16,
-          10},{-26,10},{-26,28},{-36,28}}, color={159,159,223}));
+          10},{-26,10},{-26,28},{-36,28}}, color={28,108,200}));
   connect(simpleGasHeaterB.inlet, inletB) annotation (Line(points={{-46,-30},{-62,
-          -30},{-62,-32},{-86,-32}}, color={159,159,223}));
+          -30},{-62,-32},{-86,-32}}, color={28,108,200}));
   connect(simpleGasHeaterB.outlet, flowJoin.inlet2) annotation (Line(points={{-30,
-          -30},{-30,-19},{-16,-19},{-16,2}}, color={159,159,223}));
+          -30},{-30,-19},{-16,-19},{-16,2}}, color={28,108,200}));
   connect(simpleGasHeaterB.ht[1], ht[2]) annotation (Line(points={{-38,-26},{-20,
           -26},{-20,40},{0,40}}, color={191,0,0}));
   connect(simpleGasHeaterOut.inlet, flowJoin.outlet) annotation (Line(points={{14,
-          10},{6,10},{6,6},{-4,6}}, color={159,159,223}));
+          10},{6,10},{6,6},{-4,6}}, color={28,108,200}));
   connect(simpleGasHeaterOut.outlet, outlet) annotation (Line(points={{30,10},{52,
-          10},{52,6},{66,6}}, color={159,159,223}));
+          10},{52,6},{66,6}}, color={28,108,200}));
   connect(simpleGasHeaterOut.ht[1], ht[3]) annotation (Line(points={{22,14},{12,
           14},{12,46.6667},{0,46.6667}}, color={191,0,0}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={

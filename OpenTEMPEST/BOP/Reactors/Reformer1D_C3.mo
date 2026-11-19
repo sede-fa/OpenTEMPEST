@@ -5,10 +5,11 @@ model Reformer1D_C3 "1D plug flow pre-reformer for fuels containing C3 hydrocarb
     cpCat=710,
     rhoCat=7130,
     por=0.75,
+    dpdxNom=1,
     redeclare package Medium = OpenTEMPEST.Medium.Fuel_C3);
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
-  ThermoPower.Thermal.DHTVolumes wall(N=N)
+  OpenTEMPEST.Interfaces.DHTVolumes wall(N=N)
                                        "HT through cylindrical wall" annotation (Placement(
         transformation(extent={{-80,30},{80,50}}),iconTransformation(extent={{-80,34},
             {80,50}})));
@@ -39,7 +40,6 @@ model Reformer1D_C3 "1D plug flow pre-reformer for fuels containing C3 hydrocarb
   Real Eq_MSR, Eq_WGS;
   Real Xtot[nSpecies];
 
-  parameter Real dpdxNom=1;
 
   SI.MoleFraction Yi[N, nSpecies];
   SI.MoleFraction Ydry[nSpecies];
@@ -86,10 +86,6 @@ equation
   dTcond[1] = (Gas[2].T .- Gas[1].T)/dx;
   dTcond[2:N-1] = (Gas[1:N-2].T .- 2*Gas[2:N-1].T + Gas[3:N].T)/dx;
   dTcond[N] = (Gas[N-1].T .- Gas[N].T)/dx;
-
-  // Momentum Balance
-  0 = (infl.p - Gas[1].p) - dpdxNom*dx;
-  fill(0, N-1) = (Gas[1:N-1].p .- Gas[2:N].p) .- dpdxNom*dx;
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false)), Diagram(
         coordinateSystem(preserveAspectRatio=false)));

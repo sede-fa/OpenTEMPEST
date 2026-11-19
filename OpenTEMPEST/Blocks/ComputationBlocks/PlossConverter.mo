@@ -1,9 +1,8 @@
 ﻿within OpenTEMPEST.Blocks.ComputationBlocks;
 model PlossConverter "Power loss of a converter in the power electronics"
   extends Modelica.Blocks.Interfaces.SISO;
-  extends Modelica.Icons.UnderConstruction; // comparison on if statment needs to be chacked
 
-  parameter Modelica.SIunits.Power Pdesign=2377 "Design power in watts (only used in old modeltype)";
+  parameter Modelica.Units.SI.Power Pdesign=2377 "Design power in watts (only used in old modeltype)";
   parameter Boolean constACLoss=true
                                 "Rectifier/inverter loss constant if True, else pAC parameters used for 2nd order polynomial loss function. No loss for etaAC=1";
   parameter Real etaAC=0.95 "If constACLoss=true. Constant rectifier/inverter loss";
@@ -21,10 +20,10 @@ model PlossConverter "Power loss of a converter in the power electronics"
   parameter Real pMOS_neg[3] = pMOS_pos                      "If converterType==MOSFET. p[1]+x² + p[2]+x +p[3] for neg. power range";
 
   // Corrected scientific notation
-  Modelica.SIunits.Power P;
-  Modelica.SIunits.Power PDClossRel;
-  Modelica.SIunits.Power PACloss;
-  Modelica.SIunits.Power Ploss;
+  Modelica.Units.SI.Power P;
+  Real PDClossRel(unit="1") "DC loss relative to Pdesign";
+  Modelica.Units.SI.Power PACloss;
+  Modelica.Units.SI.Power Ploss;
 
   //old modeltype parameters
 //   parameter Real a=0.048212553240941;
@@ -35,11 +34,8 @@ model PlossConverter "Power loss of a converter in the power electronics"
 
 equation
   u = P;
-  if P==0 then
-    y=0;
-  else
-    y = Ploss;
-  end if;
+  // No loss without power flow. Reals must not be compared with ==, so a tiny band around zero is used
+  y = if abs(P) < Modelica.Constants.small then 0.0 else Ploss;
 
   if constACLoss==true then
         PACloss = (1 - etaAC)*P;
@@ -52,13 +48,13 @@ equation
   if converterType == OpenTEMPEST.Enumerations.SwitchingMethod.old then
       PDClossRel = 0.04821255*x^2 + 0.00984646*x + 0.01151456;
   elseif converterType == OpenTEMPEST.Enumerations.SwitchingMethod.GaNFets then
-      if P >=0 then
+      if P >= 0.0 then
           PDClossRel = pGan_pos[1]*x^2 + pGan_pos[2]*x + pGan_pos[3];
       else
           PDClossRel = pGan_neg[1]*x^2 + pGan_neg[2]*x + pGan_neg[3];
       end if;
   else
-      if P >=0 then
+      if P >= 0.0 then
           PDClossRel = pMOS_pos[1]*x^2 + pMOS_pos[2]*x + pMOS_pos[3];
       else
           PDClossRel = pMOS_neg[1]*x^2 + pMOS_neg[2]*x + pMOS_neg[3];

@@ -1,5 +1,6 @@
 boolToInt
 pressureDropDarcy
+pressureDropForchheimer
 simpleWGSEqn
 g0_T
 polySolid
@@ -9,3 +10,5 @@ sawToothWave
 sinWaveForPulse
 pulseWave
 pulseFourierSeries
+one
+one_der

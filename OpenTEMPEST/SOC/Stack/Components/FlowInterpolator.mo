@@ -1,7 +1,7 @@
 within OpenTEMPEST.SOC.Stack.Components;
 model FlowInterpolator "Distributes flows between detailed and simplified cells of a cross-flow stack"
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   parameter Integer nCell(min = 3) "total number of single cells";
   parameter Integer nSimplified(min = 1) "number of simplified cells among nCell";
@@ -29,28 +29,28 @@ model FlowInterpolator "Distributes flows between detailed and simplified cells 
 
   Integer detailedIdx[nCell-nSimplified-nNonUnitOrSimpCells] = Modelica.Math.BooleanVectors.index(not isRedu);
 
-  ThermoPower.Gas.FlangeB fuelExit(redeclare package Medium = Fuel) annotation (
+  OpenTEMPEST.Interfaces.GasFlangeB fuelExit(redeclare package Medium = Fuel) annotation (
      Placement(transformation(extent={{90,40},{110,60}}), iconTransformation(
           extent={{60,20},{100,60}})));
-  ThermoPower.Gas.FlangeB airExit(redeclare package Medium = Air) annotation (
+  OpenTEMPEST.Interfaces.GasFlangeB airExit(redeclare package Medium = Air) annotation (
       Placement(transformation(extent={{90,-60},{110,-40}}), iconTransformation(
           extent={{60,-60},{100,-20}})));
-  ThermoPower.Gas.FlangeA fuelInlet(redeclare package Medium = Fuel)
+  OpenTEMPEST.Interfaces.GasFlangeA fuelInlet(redeclare package Medium = Fuel)
     annotation (Placement(transformation(extent={{-100,40},{-80,60}}), iconTransformation(extent={{-120,20},{-80,60}})));
-  ThermoPower.Gas.FlangeA airInlet(redeclare package Medium = Air)
+  OpenTEMPEST.Interfaces.GasFlangeA airInlet(redeclare package Medium = Air)
     annotation (Placement(transformation(extent={{-110,-60},{-90,-40}}), iconTransformation(extent={{-120,-60},{-80,-20}})));
-  ThermoPower.Gas.SinkPressure sinkPressure(redeclare package Medium = Fuel,
+  OpenTEMPEST.Flow.SinkPressure sinkPressure(redeclare package Medium = Fuel,
     p0=pStartFuel,
     T=TStart,
     Xnom=XFuelStart,
       use_in_p0=true)
     annotation (Placement(transformation(extent={{-40,40},{-20,60}})));
-  ThermoPower.Gas.SinkPressure sinkPressure1(redeclare package Medium = Air,
+  OpenTEMPEST.Flow.SinkPressure sinkPressure1(redeclare package Medium = Air,
     p0=pStartAir,
     T=TStart,
       use_in_p0=true)
     annotation (Placement(transformation(extent={{-40,-60},{-20,-40}})));
-  ThermoPower.Gas.SourceMassFlow sourceMassFlowFuel(
+  OpenTEMPEST.Flow.SourceMassFlow sourceMassFlowFuel(
     redeclare package Medium = Fuel,
     p0=pStartFuel,
     Xnom=XFuelStart,
@@ -59,7 +59,7 @@ model FlowInterpolator "Distributes flows between detailed and simplified cells 
     use_in_T=true,
     use_in_X=true)
     annotation (Placement(transformation(extent={{20,40},{40,60}})));
-  ThermoPower.Gas.SourceMassFlow sourceMassFlowAir(
+  OpenTEMPEST.Flow.SourceMassFlow sourceMassFlowAir(
     redeclare package Medium = Air,
     p0=pStartAir,
     w0=0.001,
@@ -68,17 +68,17 @@ model FlowInterpolator "Distributes flows between detailed and simplified cells 
     use_in_X=true)
     annotation (Placement(transformation(extent={{28,-60},{48,-40}})));
 protected
-  ThermoPower.Gas.SensP sensP(redeclare package Medium = Fuel)
+  OpenTEMPEST.Flow.SensP sensP(redeclare package Medium = Fuel)
     annotation (Placement(transformation(extent={{50,44},{70,64}})));
-  ThermoPower.Gas.SensP sensP1(redeclare package Medium = Air)
+  OpenTEMPEST.Flow.SensP sensP1(redeclare package Medium = Air)
     annotation (Placement(transformation(extent={{50,-56},{70,-36}})));
 
-  ThermoPower.Gas.SensW sensW1(redeclare package Medium = Air)
+  OpenTEMPEST.Flow.SensW sensW1(redeclare package Medium = Air)
     annotation (Placement(transformation(extent={{-64,-56},{-44,-36}})));
   Modelica.Blocks.Sources.Constant const(k=nCell/(nCell - nSimplified))
     annotation (Placement(transformation(extent={{-70,-6},{-58,6}})));
 public
-  ThermoPower.Thermal.HT hT[nCell]
+  OpenTEMPEST.Interfaces.HT hT[nCell]
     annotation (Placement(transformation(extent={{-100,-10},{-80,10}}), iconTransformation(extent={{-100,-10},{-80,10}})));
 protected
   OpenTEMPEST.Flow.SensGasProperty sensTFuel(
@@ -98,7 +98,7 @@ protected
     TOutput=true,
     rhoOutput=false)
     annotation (Placement(transformation(extent={{-80,44},{-60,64}})));
-  ThermoPower.Gas.SensT sensTAir(redeclare package Medium = Air,
+  OpenTEMPEST.Flow.SensT sensTAir(redeclare package Medium = Air,
       allowFlowReversal=false)
     annotation (Placement(transformation(extent={{-84,-56},{-64,-36}})));
 public
@@ -144,15 +144,15 @@ equation
   TempDistriFactor = (TDetailedAvg-sum(hT[:].T)/nCell)/(sum(hT[:].T)/nCell);
 
   connect(airExit, airExit)
-    annotation (Line(points={{100,-50},{100,-50}}, color={159,159,223}));
+    annotation (Line(points={{100,-50},{100,-50}}, color={28,108,200}));
   connect(sourceMassFlowAir.flange, airExit) annotation (Line(points={{48,-50},
-          {100,-50}},                  color={159,159,223}));
+          {100,-50}},                  color={28,108,200}));
   connect(sourceMassFlowFuel.flange, fuelExit) annotation (Line(points={{40,50},
-          {100,50}},                 color={159,159,223}));
+          {100,50}},                 color={28,108,200}));
   connect(sourceMassFlowFuel.flange, sensP.flange)
-    annotation (Line(points={{40,50},{60,50}}, color={159,159,223}));
+    annotation (Line(points={{40,50},{60,50}}, color={28,108,200}));
   connect(sourceMassFlowAir.flange, sensP1.flange)
-    annotation (Line(points={{48,-50},{60,-50}}, color={159,159,223}));
+    annotation (Line(points={{48,-50},{60,-50}}, color={28,108,200}));
   connect(sensP1.p, sinkPressure1.in_p0) annotation (Line(points={{67,-40},{70,
           -40},{70,-10},{-40,-10},{-40,-44.05},{-36.45,-44.05}},
                                               color={0,0,127}));
@@ -160,19 +160,19 @@ equation
           {80,86},{-40,86},{-40,55.95},{-36.45,55.95}},
                                        color={0,0,127}));
   connect(sinkPressure1.flange, sensW1.outlet)
-    annotation (Line(points={{-40,-50},{-48,-50}}, color={159,159,223}));
+    annotation (Line(points={{-40,-50},{-48,-50}}, color={28,108,200}));
   connect(sensTFuel.inlet, fuelInlet)
-    annotation (Line(points={{-76,50},{-90,50}},  color={159,159,223}));
+    annotation (Line(points={{-76,50},{-90,50}},  color={28,108,200}));
   connect(sensW1.inlet, sensTAir.outlet)
-    annotation (Line(points={{-60,-50},{-68,-50}}, color={159,159,223}));
+    annotation (Line(points={{-60,-50},{-68,-50}}, color={28,108,200}));
   connect(sensTAir.inlet, airInlet)
-    annotation (Line(points={{-80,-50},{-100,-50}}, color={159,159,223}));
+    annotation (Line(points={{-80,-50},{-100,-50}}, color={28,108,200}));
   connect(RealExp2.y, sourceMassFlowAir.in_T)
     annotation (Line(points={{-47.4,-26},{38,-26},{38,-45}}, color={0,0,127}));
   connect(RealExp3.y, sourceMassFlowFuel.in_T)
     annotation (Line(points={{-59,82},{30,82},{30,55}}, color={0,0,127}));
   connect(sensTFuel.outlet, sinkPressure.flange) annotation (Line(points={{-64,50},
-          {-54,50},{-54,50},{-40,50}}, color={159,159,223}));
+          {-54,50},{-54,50},{-40,50}}, color={28,108,200}));
   connect(sensTFuel.x, sourceMassFlowFuel.in_X) annotation (Line(points={{-63,
           57},{-48,57},{-48,74},{36,74},{36,55}}, color={0,0,127}));
   connect(TOutFuelSimp, to_degC.u) annotation (Line(points={{-136,56},{-130,56},{

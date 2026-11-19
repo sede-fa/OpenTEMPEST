@@ -1,6 +1,6 @@
 ﻿within OpenTEMPEST.SOC.Stack;
-model SimplifiedCellBlockCF "Simplified cross-flow block of cells represented by one thermal solid"
-  import SI = Modelica.SIunits;
+model SimplifiedCellBlockCF
+  import SI = Modelica.Units.SI;
   parameter Integer nX=5    "number of CVs in the x-direction";
   parameter Integer nY=5    "number of CVs in the y-direction";
   parameter Integer nCellVertMult=1 "Number of cells this object is representing in z direction";
@@ -108,15 +108,15 @@ model SimplifiedCellBlockCF "Simplified cross-flow block of cells represented by
 
   OpenTEMPEST.Heat.HeatSource2DNonUniformFV heatSource2DNonUniformFV(nX=nX, nY=
         nY) annotation (Placement(transformation(extent={{-72,-52},{-50,-30}})));
-  ThermoPower.Thermal.DHTVolumes dHT_x0[nCellVertMult](each N=nY) annotation (
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_x0[nCellVertMult](each N=nY) annotation (
       Placement(transformation(extent={{-112,-10},{-92,10}}),
         iconTransformation(extent={{-112,-10},{-92,10}})));
-  ThermoPower.Thermal.DHTVolumes dHT_xN[nCellVertMult](each N=nY) annotation (
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_xN[nCellVertMult](each N=nY) annotation (
       Placement(transformation(extent={{92,-10},{112,10}}), iconTransformation(
           extent={{92,-10},{112,10}})));
-  ThermoPower.Thermal.DHTVolumes dHT_y0(N=nX) annotation (Placement(transformation(extent={{30,-106},
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_y0(N=nX) annotation (Placement(transformation(extent={{30,-106},
             {50,-86}}), iconTransformation(extent={{30,-106},{50,-86}})));
-  ThermoPower.Thermal.DHTVolumes dHT_yN(N=nX) annotation (Placement(transformation(extent={{30,88},
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_yN(N=nX) annotation (Placement(transformation(extent={{30,88},
             {50,108}}), iconTransformation(extent={{30,88},{50,108}})));
   Heat.DHTVolumes2D dHT2_z1(i=nX, j=nY) annotation (Placement(transformation(
           extent={{-80,74},{-60,94}}), iconTransformation(extent={{-80,74},{-60,

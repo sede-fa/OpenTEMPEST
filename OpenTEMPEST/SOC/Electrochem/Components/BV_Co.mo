@@ -2,7 +2,7 @@ within OpenTEMPEST.SOC.Electrochem.Components;
 model BV_Co "Detailed electrochemistry for co-electrolysis (Butler-Volmer, ohmic ASR, diffusion)"
   extends OpenTEMPEST.SOC.Electrochem.Components.BV_ElectrochemBase;
 
-import SI = Modelica.SIunits;
+import SI = Modelica.Units.SI;
 
   replaceable Real E_fe = 95160 "Activation energy fuel electrode for H2/H2O";
   replaceable Real E_fe_C = 1.12*111700 "Activation energy fuel electrode for CO/CO2";

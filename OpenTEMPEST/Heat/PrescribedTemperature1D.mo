@@ -1,8 +1,8 @@
 within OpenTEMPEST.Heat;
 model PrescribedTemperature1D "Prescribed temperature boundary condition for a distributed heat port"
-  extends ThermoPower.Icons.HeatFlow;
+  extends OpenTEMPEST.Icons.HeatFlow;
   parameter Integer N "Number of control volumes";
-  ThermoPower.Thermal.DHTVolumes port(N=N) annotation (Placement(transformation(
+  OpenTEMPEST.Interfaces.DHTVolumes port(N=N) annotation (Placement(transformation(
           extent={{-40,-40},{40,-20}}),
                                       iconTransformation(extent={{-40,-40},{40,-20}})));
   Modelica.Blocks.Interfaces.RealInput T[N](unit="K") annotation (Placement(transformation(

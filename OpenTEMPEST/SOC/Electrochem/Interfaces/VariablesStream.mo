@@ -2,8 +2,8 @@ within OpenTEMPEST.SOC.Electrochem.Interfaces;
 connector VariablesStream "Connector between PEN and gas channels (pressure, composition, currents)"
   parameter Integer nspecies;
   Modelica.Media.Interfaces.Types.MoleFraction Y[nspecies];
-  Modelica.SIunits.AbsolutePressure P;
-  Modelica.SIunits.Current I, I_H, I_C;
+  Modelica.Units.SI.AbsolutePressure P;
+  Modelica.Units.SI.Current I, I_H, I_C;
 
   annotation (
     Diagram(coordinateSystem(extent = {{-100, -100}, {100, 100}}, preserveAspectRatio = true, initialScale = 0.1, grid = {2, 2})),

@@ -12,18 +12,18 @@ model FuelFlowControl "Fuel mass flow set point from cell current and reactant c
   parameter Medium.MoleFraction Ynom[Medium.nX]=if molarInputComposition then compositionNom else Medium.massToMoleFractions(Xnom,Medium.MMX)
     "Nominal gas composition" annotation (Dialog(tab="Calculated parameter"));
   parameter Boolean molarInputComposition = false "Input compostions are molar instead of mass" annotation(choices(checkBox=true));
-  parameter Modelica.SIunits.ElectricCurrent I0=0 "Nominal electrical current";
+  parameter Modelica.Units.SI.ElectricCurrent I0=0 "Nominal electrical current";
   parameter Real RC0 = 0.7 "Nominal reactant conversion";
   parameter Integer nCells "Number of cells that are fed by this source";
-  parameter Modelica.SIunits.Time tSmooth(start=1) "Base time constant for PT1 output smoothing";
-  parameter Modelica.SIunits.MassFlowRate mfStart "Initial value for the mass flow";
-  parameter Modelica.SIunits.ElectricCurrent IStart "Initial value for the current";
+  parameter Modelica.Units.SI.Time tSmooth(start=1) "Base time constant for PT1 output smoothing";
+  parameter Modelica.Units.SI.MassFlowRate mfStart "Initial value for the mass flow";
+  parameter Modelica.Units.SI.ElectricCurrent IStart "Initial value for the current";
 
-  parameter Modelica.SIunits.ElectricCurrent minCurrentForDosing = 15
+  parameter Modelica.Units.SI.ElectricCurrent minCurrentForDosing = 15
     "Minimal absolute current to calculate flows based on current" annotation(Dialog(group="Minimal flow"));
   parameter Boolean doseFGUnderIMin = false
     "Use forming gas (FormingGasComposition) instead of given compostion if flow is below minimal current" annotation(Dialog(group="Minimal flow"), choices(checkBox=true));
-  parameter Modelica.SIunits.MassFlowRate mfFGPerCell = 6/1000/1440
+  parameter Modelica.Units.SI.MassFlowRate mfFGPerCell = 6/1000/1440
     "Forming gas (FormingGasComposition) mass flow per cell at 0 A if activated" annotation(Dialog(group="Minimal flow"));
   parameter Boolean use_in_I = false
     "Use connector input for the electrical current" annotation(Dialog(group="External inputs"), choices(checkBox=true));
@@ -31,7 +31,7 @@ model FuelFlowControl "Fuel mass flow set point from cell current and reactant c
     "Use connector input for the reactant conversion" annotation(Dialog(group="External inputs"), choices(checkBox=true));
   parameter Boolean use_in_composition = false
     "Use connector input for the composition"                                  annotation(Dialog(group="External inputs"), choices(checkBox=true));
-  outer ThermoPower.System system "System wide properties";
+  outer OpenTEMPEST.System system "System wide properties";
 
   Medium.MassFlowRate w "Nominal mass flow rate";
   Medium.MoleFraction Y[Medium.nX];
@@ -39,8 +39,8 @@ model FuelFlowControl "Fuel mass flow set point from cell current and reactant c
   Medium.MassFraction X[Medium.nX];
   Medium.MassFraction XFG[Medium.nX];
   Medium.MassFlowRate wFG "FG mass flow rate";
-  Medium.MolarMass MM = sum(Y*Medium.MMX);
-  Medium.MolarMass MMFG = sum(YFG*Medium.MMX);
+  Medium.MolarMass MM = Y*Medium.MMX;
+  Medium.MolarMass MMFG = YFG*Medium.MMX;
 
   parameter Real zFC[Medium.nX] = {2,8,0,2,0,0};
   parameter Real zEC[Medium.nX] = {0,-4,2,0,2,0};
@@ -94,15 +94,15 @@ protected
   Modelica.Blocks.Interfaces.RealInput in_RC_internal;
   Modelica.Blocks.Interfaces.RealInput in_composition_internal[Medium.nX];
 
-  Modelica.SIunits.ElectricCurrent IForDosing;
+  Modelica.Units.SI.ElectricCurrent IForDosing;
 
 equation
 
   if in_I_internal >= 0 then
-    out_z = sum(zFC * Y);
+    out_z = zFC * Y;
     IForDosing = if in_I_internal < minCurrentForDosing and not doseFGUnderIMin then minCurrentForDosing else in_I_internal;
   else
-    out_z = sum(zEC * Y);
+    out_z = zEC * Y;
     IForDosing = if abs(in_I_internal) < minCurrentForDosing and not doseFGUnderIMin then -minCurrentForDosing else in_I_internal;
   end if;
 

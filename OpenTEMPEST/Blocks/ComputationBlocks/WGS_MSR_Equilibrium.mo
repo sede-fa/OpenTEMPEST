@@ -2,7 +2,7 @@
 model WGS_MSR_Equilibrium "Equilibrium composition for water gas shift and methane steam reforming (above 500 degC)"
 
 //   extends Modelica.Icons.Function;
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
 //   input Real T "Temperature";
 //   input SI.MassFraction xIn[Medium.nX] "Inlet composition, mass fractions";

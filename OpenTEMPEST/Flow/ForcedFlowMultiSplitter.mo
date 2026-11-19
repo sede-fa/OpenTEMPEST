@@ -7,16 +7,16 @@ model ForcedFlowMultiSplitter "Splitter forcing an equal mass flow into each of 
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
     annotation(choicesAllMatching = true);
 
-  ThermoPower.Gas.FlangeA inlet(redeclare package Medium = Medium)
+  OpenTEMPEST.Interfaces.GasFlangeA inlet(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{-60,-10},{-40,10}})));
-  ThermoPower.Gas.FlangeB outlet[nOutlets](redeclare package Medium = Medium)
+  OpenTEMPEST.Interfaces.GasFlangeB outlet[nOutlets](redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{40,-10},{60,10}})));
-  ThermoPower.Gas.ThroughMassFlow throughMassFlow[nOutlets-1](
+  OpenTEMPEST.Flow.ThroughMassFlow throughMassFlow[nOutlets-1](
     redeclare package Medium = Medium,
     each w0=0.00001,
     each use_in_w0=true)
     annotation (Placement(transformation(extent={{12,-10},{32,10}})));
-  ThermoPower.Gas.SensW sensW(redeclare package Medium = Medium)
+  OpenTEMPEST.Flow.SensW sensW(redeclare package Medium = Medium)
     annotation (Placement(transformation(extent={{-34,-6},{-14,14}})));
   Modelica.Blocks.Sources.Constant const(k=1/nOutlets)
     annotation (Placement(transformation(extent={{-100,32},{-80,52}})));
@@ -40,14 +40,14 @@ equation
   end for;
   connect(multiSplitter.outlet[nOutlets],outlet[nOutlets]);
 
-  connect(sensW.inlet, inlet) annotation (Line(points={{-30,0},{-50,0}}, color={159,159,223}));
+  connect(sensW.inlet, inlet) annotation (Line(points={{-30,0},{-50,0}}, color={28,108,200}));
   connect(const.y, product.u1)
     annotation (Line(points={{-79,42},{-44,42}}, color={0,0,127}));
   connect(product.u2, sensW.w) annotation (Line(points={{-44,30},{-50,30},{-50,
           20},{-10,20},{-10,10},{-17,10}},
                      color={0,0,127}));
   connect(multiSplitter.inlet, sensW.outlet) annotation (Line(points={{-5,0},{
-          -18,0}},                                                                      color={159,159,223}));
+          -18,0}},                                                                      color={28,108,200}));
   connect(productVar.y, throughMassFlow.in_w0)
     annotation (Line(points={{11,42},{16,42},{16,5}},        color={0,0,127}));
 

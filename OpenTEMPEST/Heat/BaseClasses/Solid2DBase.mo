@@ -1,7 +1,7 @@
 within OpenTEMPEST.Heat.BaseClasses;
 partial model Solid2DBase "Base model for a 2D finite volume solid with energy balance"
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   replaceable package SolidMat = OpenTEMPEST.Solid.SolidMatBase annotation(choicesAllMatching = true);
 
   parameter Integer nX(min=3) = 5 "Number of CVs in the solid in x-direction";
@@ -49,10 +49,10 @@ partial model Solid2DBase "Base model for a 2D finite volume solid with energy b
   parameter SI.SpecificHeatCapacity cpCustom = 1 "Custom specific heat capacity" annotation(Dialog(group="Custom Material Only"));
 
   // Thermal ports
-  ThermoPower.Thermal.DHTVolumes dhT_x0(N=nY) annotation (Placement(transformation(extent={{-120,
+  OpenTEMPEST.Interfaces.DHTVolumes dhT_x0(N=nY) annotation (Placement(transformation(extent={{-120,
             -10},{-100,10}}),
                        iconTransformation(extent={{-120,-10},{-100,10}})));
-  ThermoPower.Thermal.DHTVolumes dhT_xN(N=nY) annotation (Placement(transformation(extent={{90,-10},
+  OpenTEMPEST.Interfaces.DHTVolumes dhT_xN(N=nY) annotation (Placement(transformation(extent={{90,-10},
             {110,10}}), iconTransformation(extent={{100,-10},{120,10}})));
   OpenTEMPEST.Heat.DHTVolumes2D dhT2_z1(i=nX, j=nY) annotation (Placement(
         transformation(extent={{-80,60},{-60,80}}), iconTransformation(extent={
@@ -60,9 +60,9 @@ partial model Solid2DBase "Base model for a 2D finite volume solid with energy b
   OpenTEMPEST.Heat.DHTVolumes2D dhT2_z0(i=nX, j=nY) annotation (Placement(
         transformation(extent={{-80,-80},{-60,-60}}), iconTransformation(extent
           ={{-80,-80},{-60,-60}})));
-  ThermoPower.Thermal.DHTVolumes dhT_y0(N=nX) annotation (Placement(transformation(extent={{60,-80},
+  OpenTEMPEST.Interfaces.DHTVolumes dhT_y0(N=nX) annotation (Placement(transformation(extent={{60,-80},
             {80,-60}}),iconTransformation(extent={{60,-80},{80,-60}})));
-  ThermoPower.Thermal.DHTVolumes dhT_yN(N=nX) annotation (Placement(transformation(extent={{60,60},
+  OpenTEMPEST.Interfaces.DHTVolumes dhT_yN(N=nX) annotation (Placement(transformation(extent={{60,60},
             {80,80}}),  iconTransformation(extent={{60,60},{80,80}})));
   OpenTEMPEST.Heat.DHTVolumes2D dhT2_int(i=nX, j=nY) annotation (Placement(
         transformation(extent={{-10,-10},{10,10}}), iconTransformation(extent={

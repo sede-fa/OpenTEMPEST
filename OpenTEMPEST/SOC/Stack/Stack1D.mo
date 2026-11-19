@@ -1,6 +1,6 @@
 within OpenTEMPEST.SOC.Stack;
-model Stack1D "Stack of 1D co-flow cells with end plates and manifolds"
-  import SI = Modelica.SIunits;
+model Stack1D
+  import SI = Modelica.Units.SI;
 
   parameter Integer N(min=3)=3 "Number of control volumes along the flow direction";
   parameter Integer Ncell(min=2)=5 "Number of cells in the stack";
@@ -72,7 +72,7 @@ model Stack1D "Stack of 1D co-flow cells with end plates and manifolds"
   parameter SI.ThermalConductivity kFoam=3.576 "Thermal Conductivity of Ni Foam" annotation (Dialog(tab="Fuel Channel"));
   parameter SI.SpecificHeatCapacity cpFoam=440       "Specific heat capacity of Ni in FC" annotation (Dialog(tab="Fuel Channel"));
   parameter SI.Density rhoFoam(displayUnit="kg/m3")=8908 "Density of Ni in FC" annotation (Dialog(tab="Fuel Channel"));
-  parameter ThermoPower.Units.HydraulicResistance HyR_Fuel=50000000 "Hydraulic resistance of fuel channel of each single cell in stack"
+  parameter OpenTEMPEST.Units.HydraulicResistance HyR_Fuel=50000000 "Hydraulic resistance of fuel channel of each single cell in stack"
     annotation (Dialog(tab="Fuel Channel"));
 
   // AC parameters
@@ -81,7 +81,7 @@ model Stack1D "Stack of 1D co-flow cells with end plates and manifolds"
   parameter Real pDropAC=0 "Pressure drop factor, pOut=(1-pDropAC)*pIn" annotation (Dialog(tab="Air Channel"));
   parameter Real Nu_PENac=8 "Nusselt number air channel on PEN side" annotation (Dialog(tab="Air Channel"));
   parameter Real Nu_ICac=7.5 "Nusselt Number air channel on IC side" annotation (Dialog(tab="Air Channel"));
-  parameter ThermoPower.Units.HydraulicResistance HyR_Air=6000000 "Hydraulic resistance of air channel of each single cell in stack" annotation (Dialog(tab="Air Channel"));
+  parameter OpenTEMPEST.Units.HydraulicResistance HyR_Air=6000000 "Hydraulic resistance of air channel of each single cell in stack" annotation (Dialog(tab="Air Channel"));
 
   // Interconnect parameters
   parameter SI.ThermalConductivity k_solidCustom=0.2812 "Thermal Conductivity of solid parallel to windows" annotation (Dialog(tab="Interconnect"));
@@ -107,10 +107,10 @@ model Stack1D "Stack of 1D co-flow cells with end plates and manifolds"
   Flow.Manifold Air_Manifold(redeclare package Medium = Medium.Air_Medium,
       nPorts_b=Ncell)
     annotation (Placement(transformation(extent={{-90,-70},{-78,-38}})));
-  ThermoPower.Gas.FlangeB fuelOut(redeclare package Medium = Medium.Fuel_CH4)
+  OpenTEMPEST.Interfaces.GasFlangeB fuelOut(redeclare package Medium = Medium.Fuel_CH4)
     annotation (Placement(transformation(extent={{100,50},{120,70}}),
         iconTransformation(extent={{100,50},{120,70}})));
-  ThermoPower.Gas.FlangeB airOut(redeclare package Medium = Medium.Air_Medium)
+  OpenTEMPEST.Interfaces.GasFlangeB airOut(redeclare package Medium = Medium.Air_Medium)
     annotation (Placement(transformation(extent={{110,-72},{130,-52}}),
         iconTransformation(extent={{110,-72},{130,-52}})));
   Flow.Manifold_out manifold_outFuel(redeclare package Medium = Medium.Fuel_CH4,
@@ -119,10 +119,10 @@ model Stack1D "Stack of 1D co-flow cells with end plates and manifolds"
   Flow.Manifold_out manifold_outAir(redeclare package Medium =
         Medium.Air_Medium, final nPorts_a=Ncell)
     annotation (Placement(transformation(extent={{66,-20},{86,0}})));
-  ThermoPower.Gas.FlangeA fuelIn(redeclare package Medium = Medium.Fuel_CH4)
+  OpenTEMPEST.Interfaces.GasFlangeA fuelIn(redeclare package Medium = Medium.Fuel_CH4)
     annotation (Placement(transformation(extent={{-124,50},{-104,70}}),
         iconTransformation(extent={{-124,50},{-104,70}})));
-  ThermoPower.Gas.FlangeA airIn(redeclare package Medium = Medium.Air_Medium)
+  OpenTEMPEST.Interfaces.GasFlangeA airIn(redeclare package Medium = Medium.Air_Medium)
     annotation (Placement(transformation(extent={{-124,-92},{-104,-72}}),
         iconTransformation(extent={{-124,-92},{-104,-72}})));
 
@@ -133,30 +133,30 @@ model Stack1D "Stack of 1D co-flow cells with end plates and manifolds"
     annotation (Placement(transformation(extent={{-132,-32},{-112,-12}}),
         iconTransformation(extent={{-132,-32},{-112,-12}})));
 
-  ThermoPower.Thermal.DHTVolumes dHT_top(N=N)       annotation (Placement(
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_top(N=N)       annotation (Placement(
         transformation(extent={{-16,68},{4,88}}), iconTransformation(extent={{-50,
             30},{44,48}})));
-  ThermoPower.Thermal.DHTVolumes dHT_bottom(N=N)       annotation (Placement(
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_bottom(N=N)       annotation (Placement(
         transformation(extent={{-16,-76},{4,-56}}), iconTransformation(extent={{
             -50,-52},{44,-34}})));
 
-  ThermoPower.Thermal.DHTVolumes dHT_y0(N=N)       annotation (Placement(
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_y0(N=N)       annotation (Placement(
         transformation(extent={{-32,100},{26,110}}), iconTransformation(extent={{-60,90},
             {60,100}})));
 
-  ThermoPower.Thermal.DHTVolumes dHT_y1(N=N)       annotation (Placement(
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_y1(N=N)       annotation (Placement(
         transformation(extent={{-30,-110},{28,-100}}), iconTransformation(
           extent={{-60,-100},{60,-90}})));
-  ThermoPower.Thermal.DHTVolumes dHT_x0(N=Ncell)
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_x0(N=Ncell)
     annotation (Placement(transformation(extent={{-136,8},{-116,28}}),
         iconTransformation(extent={{-124,0},{-112,40}})));
-  ThermoPower.Thermal.DHTVolumes dHT_xN(N=Ncell)
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_xN(N=Ncell)
     annotation (Placement(transformation(extent={{110,2},{130,22}}),
         iconTransformation(extent={{108,0},{120,40}})));
-  ThermoPower.Thermal.HT hTPlates_x0[2 + nIMPs] annotation (Placement(transformation(extent={{-124,80},
+  OpenTEMPEST.Interfaces.HT hTPlates_x0[2 + nIMPs] annotation (Placement(transformation(extent={{-124,80},
             {-104,100}}),                                                                                           iconTransformation(extent={{-124,80},
             {-104,100}})));
-  ThermoPower.Thermal.HT hTPlates_xN[2 + nIMPs] annotation (Placement(transformation(extent={{108,24},{128,44}}), iconTransformation(extent={{100,80},
+  OpenTEMPEST.Interfaces.HT hTPlates_xN[2 + nIMPs] annotation (Placement(transformation(extent={{108,24},{128,44}}), iconTransformation(extent={{100,80},
             {120,100}})));
   SI.EnergyFlowRate EfSum "check energy balance through sum of energy flows";
   SI.MassFlowRate massSum "check mass balance through sum of mass flows";
@@ -277,11 +277,11 @@ equation
   // Gas flow connections
   //Fuel In
   connect(fuelIn, Fuel_Manifold.port_a) annotation (Line(points={{-114,60},{-87,
-          60},{-87,72},{-82,72}},                                                                       color={159,159,223}));
+          60},{-87,72},{-82,72}},                                                                       color={28,108,200}));
   connect(Fuel_Manifold.ports_b[1:Ncell], cell.fuelFlangeIn) annotation (Line(points={{-70,72},{-32,72},{-32,13.72},{-20,13.72}}, color={0,127,255}));
   //AirIn
   connect(airIn, Air_Manifold.port_a) annotation (Line(points={{-114,-82},{-92,-82},
-          {-92,-54},{-90,-54}},                                                                           color={159,159,223}));
+          {-92,-54},{-90,-54}},                                                                           color={28,108,200}));
   connect(Air_Manifold.ports_b, cell.airFlangeIn) annotation (Line(points={{-78,-54},{-60,-54},{-60,-58},{-32,-58},{-32,-7.88},{-20,-7.88}}, color={0,127,255}));
   //Fuel out
   connect(manifold_outFuel.ports_a, cell.fuelFlangeOut) annotation (Line(points={{77.4,44},{66,44},{66,13.72},{16,13.72}}, color={0,127,255}));
@@ -294,8 +294,8 @@ equation
 
   // x-direction Heat ports
   // x-direction dHT<>hTs_DHT<>cells
-  connect(hTs_DHT_x0.DHT_port, dHT_x0) annotation (Line(points={{-72.6,16},{-126,16},{-126,18}}, color={255,127,0}));
-  connect(hTs_DHT_xN.DHT_port, dHT_xN) annotation (Line(points={{86.6,8},{98,8},{98,12},{120,12}}, color={255,127,0}));
+  connect(hTs_DHT_x0.DHT_port, dHT_x0) annotation (Line(points={{-72.6,16},{-126,16},{-126,18}}, color={191,0,0}));
+  connect(hTs_DHT_xN.DHT_port, dHT_xN) annotation (Line(points={{86.6,8},{98,8},{98,12},{120,12}}, color={191,0,0}));
   connect(hTs_DHT_x0.HT_ports, cell.hT_x0) annotation (Line(points={{-58.8,16.12},{-44,16.12},{-44,4},{-19.28,4}}, color={191,0,0}));
   connect(cell.hT_xN, hTs_DHT_xN.HT_ports) annotation (Line(points={{15.64,4},{60,4},{60,8.12},{72.8,8.12}}, color={191,0,0}));
 

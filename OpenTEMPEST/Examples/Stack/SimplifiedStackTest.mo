@@ -2,7 +2,7 @@ within OpenTEMPEST.Examples.Stack;
 model SimplifiedStackTest "Example of the simplified 1D stack model SimplifiedStack1D, adiabatic"
   extends Modelica.Icons.Example;
 
-  import SI = Modelica.SIunits;
+  import      Modelica.Units.SI;
 
   // Initial conditions
   parameter SI.Pressure pStart=100000;
@@ -18,12 +18,13 @@ model SimplifiedStackTest "Example of the simplified 1D stack model SimplifiedSt
     N=n,                        Ncell=nCells,
     verticalBlockSize={10,3,1,1,4,10},
     NdetailedCell=1,
-    TStart=TStart,                            redeclare model Electrochem =
+    TStart=TStart,
+    xStartFC=fuelSource.Xnom,                 redeclare model Electrochem =
         OpenTEMPEST.SOC.Electrochem.Components.BV_Steam)
     annotation (Placement(transformation(extent={{-28,-26},{28,28}})));
-  BOP.PowerElectronics powerElectronics(nChannels=1, currentFactor=1)
+  OpenTEMPEST.BOP.PowerElectronics powerElectronics(nChannels=1, currentFactor=1)
                                         annotation (Placement(transformation(extent={{-110,-12},{-84,12}})));
-  ThermoPower.Gas.SourceMassFlow
+  OpenTEMPEST.Flow.SourceMassFlow
                         fuelSource(
     redeclare package Medium = OpenTEMPEST.Medium.Fuel_CH4,
     p0=pStart,
@@ -31,7 +32,7 @@ model SimplifiedStackTest "Example of the simplified 1D stack model SimplifiedSt
     Xnom={0.012281,1e-5,1e-5,1e-5,0.987703,1e-5},
     w0=0.0002025395)
                    annotation (Placement(transformation(extent={{-112,32},{-92,52}})));
-  ThermoPower.Gas.SourceMassFlow airSource(
+  OpenTEMPEST.Flow.SourceMassFlow airSource(
     redeclare package Medium = OpenTEMPEST.Medium.Air_Medium,
     w0=1e-4,
     p0=pStart,
@@ -44,14 +45,14 @@ model SimplifiedStackTest "Example of the simplified 1D stack model SimplifiedSt
     duration=200,
     startTime=1e3)                                           annotation (Placement(transformation(extent={{-216,32},{-196,52}})));
 
-  ThermoPower.Gas.SinkPressure sinkAir(
+  OpenTEMPEST.Flow.SinkPressure sinkAir(
     redeclare package Medium = OpenTEMPEST.Medium.Air_Medium,
     p0=pStart,
     use_in_p0=false) annotation (Placement(transformation(extent={{88,-58},{108,-38}},rotation=0)));
-  ThermoPower.Gas.SinkPressure sinkFuel(redeclare package Medium =
+  OpenTEMPEST.Flow.SinkPressure sinkFuel(redeclare package Medium =
         OpenTEMPEST.Medium.Fuel_CH4,                                                            p0=pStart)
     annotation (Placement(transformation(extent={{88,32},{108,52}}, rotation=0)));
-  ThermoPower.Electrical.Grid grid(Pgrid=55555555555) annotation (Placement(transformation(extent={{-82,-36},{-62,-16}})));
+  OpenTEMPEST.Electrical.Grid grid(Pgrid=55555555555) annotation (Placement(transformation(extent={{-82,-36},{-62,-16}})));
 equation
   // Flanges connections
 
@@ -63,13 +64,13 @@ equation
       thickness=0.5));
 
   connect(fuelSource.flange, stack.fuelIn) annotation (Line(points={{-92,42},{-46,
-          42},{-46,18.82},{-35.84,18.82}}, color={159,159,223}));
+          42},{-46,18.82},{-35.84,18.82}}, color={28,108,200}));
   connect(airSource.flange, stack.airIn) annotation (Line(points={{-92,-54},{-46,
-          -54},{-46,-17.9},{-36.4,-17.9}}, color={159,159,223}));
+          -54},{-46,-17.9},{-36.4,-17.9}}, color={28,108,200}));
   connect(stack.fuelOut, sinkFuel.flange) annotation (Line(points={{33.6,18.82},
-          {78,18.82},{78,42},{88,42}}, color={159,159,223}));
+          {78,18.82},{78,42},{88,42}}, color={28,108,200}));
   connect(stack.airOut, sinkAir.flange) annotation (Line(points={{33.6,-15.74},{
-          78,-15.74},{78,-48},{88,-48}}, color={159,159,223}));
+          78,-15.74},{78,-48},{88,-48}}, color={28,108,200}));
   connect(currentDensitySOFC.y, powerElectronics.currentInput[1]) annotation (
       Line(points={{-195,42},{-118,42},{-118,18},{-100.9,18},{-100.9,10.8}},
         color={0,0,127}));

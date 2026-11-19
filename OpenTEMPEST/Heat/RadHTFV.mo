@@ -21,10 +21,10 @@ model RadHTFV "Distributed radiative heat transfer between two 1D finite volume 
         extent={{10,-10},{-10,10}},
         rotation=-90,
         origin={-50,42})));
-  ThermoPower.Thermal.DHTVolumes side1(N=N) annotation (Placement(
+  OpenTEMPEST.Interfaces.DHTVolumes side1(N=N) annotation (Placement(
         transformation(extent={{-20,40},{0,48}}), iconTransformation(extent={
             {-20,40},{20,48}})));
-  ThermoPower.Thermal.DHTVolumes side2(N=N) annotation (Placement(
+  OpenTEMPEST.Interfaces.DHTVolumes side2(N=N) annotation (Placement(
         transformation(extent={{-20,-8},{0,0}}), iconTransformation(extent={{
             -20,-8},{20,0}})));
   OpenTEMPEST.Heat.HTs_DHT hTs_DHT1(N=N) annotation (Placement(transformation(
@@ -37,12 +37,12 @@ equation
                                                                        color={191,
           0,0}));
   connect(hTs_DHT.DHT_port, side1) annotation (Line(points={{-50,53},{-50,69.5},
-          {-10,69.5},{-10,44}},       color={255,127,0}));
+          {-10,69.5},{-10,44}},       color={191,0,0}));
   connect(radiativeHeatTransferGenericEnumerate.side2, hTs_DHT1.HT_ports)
     annotation (Line(points={{-50,13.2},{-50,6},{-49.8,6}},        color={191,0,
           0}));
   connect(hTs_DHT1.DHT_port, side2) annotation (Line(points={{-50,-17},{-50,
-          -34.5},{-10,-34.5},{-10,-4}}, color={255,127,0}));
+          -34.5},{-10,-34.5},{-10,-4}}, color={191,0,0}));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={
           Rectangle(
           extent={{-100,40},{100,0}},

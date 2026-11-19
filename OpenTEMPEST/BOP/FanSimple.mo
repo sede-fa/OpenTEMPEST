@@ -1,7 +1,7 @@
 within OpenTEMPEST.BOP;
 model FanSimple "Simple fan/blower with prescribed mass flow and polytropic efficiency"
-  extends ThermoPower.Icons.Gas.Fan;
-  import SI = Modelica.SIunits;
+  extends OpenTEMPEST.Icons.Fan;
+  import SI = Modelica.Units.SI;
 
   replaceable package Medium = Modelica.Media.Interfaces.PartialMedium
     "Medium model"
@@ -26,14 +26,14 @@ model FanSimple "Simple fan/blower with prescribed mass flow and polytropic effi
   parameter Boolean allowFlowReversal=system.allowFlowReversal
     "= true to allow flow reversal, false restricts to design direction"
   annotation(Evaluate=true);
-  outer ThermoPower.System system "System wide properties";
+  outer OpenTEMPEST.System system "System wide properties";
 
-  ThermoPower.Gas.FlangeA fl_inlet(
+  OpenTEMPEST.Interfaces.GasFlangeA fl_inlet(
     h_outflow(start=hStart),
     redeclare package Medium = Medium,
     m_flow(min=if allowFlowReversal then -Modelica.Constants.inf else 0))
     annotation (Placement(transformation(extent={{-100,2},{-60,42}}, rotation=0)));
-  ThermoPower.Gas.FlangeB fl_outlet(
+  OpenTEMPEST.Interfaces.GasFlangeB fl_outlet(
     h_outflow(start=hStart),
     redeclare package Medium = Medium,
     m_flow(max=if allowFlowReversal then +Modelica.Constants.inf else 0))
@@ -44,10 +44,10 @@ model FanSimple "Simple fan/blower with prescribed mass flow and polytropic effi
         origin={-40,76},
         extent={{-10,-10},{10,10}},
         rotation=270)));
-  ThermoPower.Electrical.PowerConnection powerConnection annotation (Placement(
+  OpenTEMPEST.Interfaces.PowerConnection powerConnection annotation (Placement(
         transformation(extent={{-10,80},{10,100}}), iconTransformation(extent={{
             -10,80},{10,100}})));
-  ThermoPower.Electrical.Load load(Pnom=1, usePowerInput=true)
+  OpenTEMPEST.Electrical.Load load(Pnom=1, usePowerInput=true)
     annotation (Placement(transformation(extent={{-10,46},{10,66}})));
   Modelica.Blocks.Sources.RealExpression realExpression(y=P)
     annotation (Placement(transformation(extent={{-28,46},{-8,66}})));

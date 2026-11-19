@@ -2,7 +2,7 @@ within OpenTEMPEST.SOC.Electrochem.Components;
 model BV_Steam "Detailed electrochemistry for steam electrolysis (Butler-Volmer, ohmic ASR, diffusion)"
   extends OpenTEMPEST.SOC.Electrochem.Components.BV_ElectrochemBase;
 
-import SI = Modelica.SIunits;
+import SI = Modelica.Units.SI;
 
   SI.MolarEnthalpy H_h2o, H_o2, H_h2;
   SI.CurrentDensity Jo_FE "Fuel electrode exchange current density";

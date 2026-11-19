@@ -1,8 +1,8 @@
 within OpenTEMPEST.BOP.Reactors;
 model Reformer1D "1D plug flow pre-reformer for methane (steam reforming and water gas shift)"
   extends Flow.BaseClasses.PFRBaseClass(redeclare package Medium =
-        OpenTEMPEST.Medium.Fuel_CH4);
-import SI = Modelica.SIunits;
+        OpenTEMPEST.Medium.Fuel_CH4, dpdxNom=dpdx);
+import SI = Modelica.Units.SI;
 
   parameter Real Fac_ref = 1;
   parameter Real Fac_wgs = 0.75;
@@ -32,12 +32,10 @@ import SI = Modelica.SIunits;
   parameter Real dpdx=100 " Constant pressure gradient Pa/m";
   parameter SI.CoefficientOfHeatTransfer Uconv=100 "Overall HTC /W/m2/K";
 
-  ThermoPower.Thermal.DHTVolumes wall(N=N)
+  OpenTEMPEST.Interfaces.DHTVolumes wall(N=N)
                                        "HT through cylindrical wall" annotation (Placement(
         transformation(extent={{-80,30},{80,50}}),iconTransformation(extent={{-80,34},
             {80,50}})));
-initial equation
-  mfv[N+1]=mfv[1]; // otherwise mfv[N+1] might be 0 at start
 equation
 
 // Reaction kinetics
@@ -61,10 +59,6 @@ equation
       R[i, j] =  Medium.MMX[j]*(dV*por*(a[j, 1]*r1[i] .+ a[j, 2]*r2[i]));
     end for;
   end for;
-
-// Momentum Balance
-  0 = (infl.p - Gas[1].p) - dpdx*dx;
-  fill(0, N-1) = (Gas[1:N-1].p .- Gas[2:N].p) .- dpdx*dx;
 
   Qext = wall.Q;
   wall.Q = -Uconv*Aw*(Gas[:].T .- wall.T[:]);

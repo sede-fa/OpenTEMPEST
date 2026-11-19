@@ -2,7 +2,7 @@ within OpenTEMPEST.SOC.Electrochem.Components;
 model BV_CO2 "Detailed electrochemistry for CO2 electrolysis (Butler-Volmer, ohmic ASR, diffusion)"
    extends OpenTEMPEST.SOC.Electrochem.Components.BV_ElectrochemBase;
 
-import SI = Modelica.SIunits;
+import SI = Modelica.Units.SI;
 
   replaceable Real E_fe_C = 1.12*111700 "Activation energy fuel electrode for CO/CO2";
   replaceable Real a_C = 0.04;

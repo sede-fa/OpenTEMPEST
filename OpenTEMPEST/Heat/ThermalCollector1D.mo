@@ -2,10 +2,10 @@ within OpenTEMPEST.Heat;
 model ThermalCollector1D "Collects m heat flows through 1D thermal ports"
   parameter Integer m(min=1)=3 "Number of collected heat flows";
   parameter Integer N "Number of control volumes";
-  ThermoPower.Thermal.DHTVolumes dHT0[m](each N=N)
+  OpenTEMPEST.Interfaces.DHTVolumes dHT0[m](each N=N)
                                            annotation (Placement(transformation(extent={{-6,106},{6,94}}),
         iconTransformation(extent={{-6,106},{6,94}})));
-  ThermoPower.Thermal.DHTVolumes dHT1(each N=N)
+  OpenTEMPEST.Interfaces.DHTVolumes dHT1(each N=N)
                                         annotation (Placement(transformation(extent={{-6,-106},{6,-94}}),
         iconTransformation(extent={{-6,-106},{6,-94}})));
 

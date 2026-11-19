@@ -2,7 +2,7 @@ within OpenTEMPEST.Heat;
 model HeatTransferNodeUA "Heat transfer between two distributed heat ports with UA scaled by mass flow"
   extends OpenTEMPEST.Heat.BaseClasses.HeatTransferNodeBase;
 
-    import SI = Modelica.SIunits;
+    import SI = Modelica.Units.SI;
     parameter Real UAnom=1;
     parameter SI.MassFlowRate mfNom=1;
 

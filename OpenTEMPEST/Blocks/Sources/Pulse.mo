@@ -3,8 +3,8 @@ model Pulse "Pulse train built from ramps (faster than the MSL pulse source)"
 
   parameter Integer nPulse=500 "Number of Pulses";
   parameter Real pulseHeight "Height of Pulse";
-  parameter Modelica.SIunits.Time startPulse = 1 "";
-  parameter Modelica.SIunits.Time pulseDuration = 1 "Time for one period (onTime + offtime)";
+  parameter Modelica.Units.SI.Time startPulse = 1 "";
+  parameter Modelica.Units.SI.Time pulseDuration = 1 "Time for one period (onTime + offtime)";
   parameter Real dutyCycle(min=0, max=1) = 0.5 "Width of Pulse (0 to 1)";
   parameter Real offset=0 "Offset of output signal";
 
@@ -25,10 +25,10 @@ protected
 
   parameter Integer n=2*nPulse "number of ramps";
   parameter Real height[n]=A "Height of ramps";
-  parameter Modelica.SIunits.Time duration[n](min=zeros(n), start=2*ones(n))=zeros(n)
+  parameter Modelica.Units.SI.Time duration[n](min=zeros(n), start=2*ones(n))=zeros(n)
     "Duration of ramp (= 0.0 gives a Step)";
 
-  parameter Modelica.SIunits.Time startTime[n]=pulseTime
+  parameter Modelica.Units.SI.Time startTime[n]=pulseTime
     "Output = offset for time < startTime";
   extends Modelica.Blocks.Interfaces.SO;
   Modelica.Blocks.Sources.Ramp ramp[n](

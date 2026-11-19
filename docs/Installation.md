@@ -1,8 +1,7 @@
 Prerequisites:
-- ModelicaStandardLibrary v3.2.3 (https://github.com/modelica/ModelicaStandardLibrary)
-- Thermopower v3.1 (https://github.com/casella/ThermoPower)
+- ModelicaStandardLibrary v4.1.0 (https://github.com/modelica/ModelicaStandardLibrary)
 
-clone these repositories above as well as this repository if you haven't already. Cloning the repositories will make it easier for you to get updates when available. We also recommend watching this repo so you can be informed of relevant updates such as new releases. 
+clone the repository above as well as this repository if you haven't already. Cloning the repositories will make it easier for you to get updates when available. We also recommend watching this repo so you can be informed of relevant updates such as new releases. 
 
 The startup script below can be used to simiplify loading of all the libraries
 
@@ -21,8 +20,7 @@ mdcscripts = mdchome + "Scripts/";
 openModelFile("Modelica", mdchome + "ModelicaStandardLibrary/Modelica/package.mo");
 openModelFile("Complex", mdchome + "ModelicaStandardLibrary/Complex.mo");
 openModelFile("ModelicaServices", mdchome + "ModelicaStandardLibrary/ModelicaServices/package.mo");
-  // Other Packages 
-openModelFile("ThermoPower", mdchome + "ThermoPower\ThermoPower\package.mo");
+  // OpenTEMPEST
 openModelFile("OpenTEMPEST", mdchome + "OpenTEMPEST/package.mo");
 
 // go to working directory

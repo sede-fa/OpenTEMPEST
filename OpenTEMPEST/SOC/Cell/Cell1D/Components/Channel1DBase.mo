@@ -1,7 +1,7 @@
 within OpenTEMPEST.SOC.Cell.Cell1D.Components;
 partial model Channel1DBase "Base model for 1D gas channels with mass, momentum and energy balances"
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
   replaceable package Medium = Modelica.Media.IdealGases.Common.MixtureGasNasa
     annotation(choicesAllMatching = true);
   parameter Integer N(min=3) = 5;
@@ -53,12 +53,18 @@ partial model Channel1DBase "Base model for 1D gas channels with mass, momentum 
   SI.MassFlowRate mfv[N+1] "Mass flow rate CV Vertices/Nodes";
   SI.SpecificEnthalpy hv[N+1] "Enthalpy at Vertices";
   SI.MassFraction xiv[N+1, nSpecies] "Mass fractions at Vertices";
+  protected
+  SI.MassFlowRate mfvInterp[N] "Interpolated mass flow rate at downstream vertices";
+  SI.SpecificEnthalpy hvInterp[N] "Interpolated enthalpy at downstream vertices";
+  public
 
   // Kinetics
   SI.MassFlowRate R[N, nSpecies]
     "net Rate of production and consumption of products and reactants in the reactor - from thermochemical AND electrochemical reactions";
 
-  SI.AbsolutePressure dp[N];
+  SI.Length lFace[N+1] = cat(1, {dx/2}, fill(dx, N-1), {dx/2})
+    "Flow length assigned to each face for the pressure drop (face 1 at the inlet, face N+1 at the outlet)";
+  SI.PressureDifference dp[N+1] "Pressure drop across each face (inlet to CV 1, between CVs, CV N to outlet)";
 
   SI.Energy Emg[N] "Energy density in control volume";
   SI.MassFlowRate massTransfer[N] "ion transfer rate";
@@ -74,13 +80,13 @@ partial model Channel1DBase "Base model for 1D gas channels with mass, momentum 
   SI.EnergyFlowRate deltaH = infl.m_flow*infl.h_outflow + outfl.m_flow*outfl.h_outflow;
   SI.EnergyFlowRate EB = deltaH + sum(QgasExt);
 
-  ThermoPower.Gas.FlangeA infl(redeclare package Medium = Medium)  annotation (Placement(transformation(extent={{-100,-8},{-80,12}}),
+  OpenTEMPEST.Interfaces.GasFlangeA infl(redeclare package Medium = Medium)  annotation (Placement(transformation(extent={{-100,-8},{-80,12}}),
         iconTransformation(extent={{-108,-16},{-80,12}})));
-  ThermoPower.Gas.FlangeB outfl(redeclare package Medium = Medium)  annotation (Placement(transformation(extent={{80,-10},{100,10}}),
+  OpenTEMPEST.Interfaces.GasFlangeB outfl(redeclare package Medium = Medium)  annotation (Placement(transformation(extent={{80,-10},{100,10}}),
         iconTransformation(extent={{80,-14},{108,14}})));
-  ThermoPower.Thermal.DHTVolumes Q_IC(N=N) "HT Between Channel and IC"  annotation (Placement(transformation(extent={{-62,34},{-40,52}}),
+  OpenTEMPEST.Interfaces.DHTVolumes Q_IC(N=N) "HT Between Channel and IC"  annotation (Placement(transformation(extent={{-62,34},{-40,52}}),
         iconTransformation(extent={{-26,34},{26,46}})));
-  ThermoPower.Thermal.DHTVolumes Q_PEN(N=N) "HT Between Channel and PEN"  annotation (Placement(transformation(extent={{-60,-32},{-38,-14}}),
+  OpenTEMPEST.Interfaces.DHTVolumes Q_PEN(N=N) "HT Between Channel and PEN"  annotation (Placement(transformation(extent={{-60,-32},{-38,-14}}),
         iconTransformation(extent={{-26,-40},{24,-28}})));
   Electrochem.Interfaces.VariablesStream PEN_in[N](each nspecies=nSpecies)
     annotation (Placement(transformation(
@@ -131,8 +137,10 @@ equation
   xiv[1, :] = inStream(infl.Xi_outflow[:]);
 
     // Interior and x=L
-  mfv[2:N+1] = fluxInterp(N, mf, mfv[1]);
-  hv[2:N+1] = fluxInterp(N, Gas.h, hv[1]);
+  mfvInterp = fluxInterp(N, mf, mfv[1]);
+  hvInterp = fluxInterp(N, Gas.h, hv[1]);
+  mfv[2:N+1] = mfvInterp;
+  hv[2:N+1] = hvInterp;
   for i in 1:nSpecies loop
     xiv[2:N+1, i] = fluxInterp(N, Gas.Xi[i], xiv[1, i]);
   end for;
@@ -146,7 +154,7 @@ equation
   // Pressure balance - need to define dp at level above
   Gas[1].p = infl.p - dp[1];
   Gas[2:N].p = Gas[1:N-1].p - dp[2:N];
-  outfl.p = Gas[N].p; // Pressure is upwinded for the last control volume
+  outfl.p = Gas[N].p - dp[N+1]; // half a CV of pressure drop between the last CV and the outlet
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={
           Rectangle(

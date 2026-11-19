@@ -1,17 +1,17 @@
 within OpenTEMPEST.SOC.Electrochem.Interfaces;
 connector SimpFlowInfoPort "Connector carrying flow information for simplified cell blocks"
 
-  Modelica.SIunits.Temperature TAir;
-  Modelica.SIunits.Temperature TFuel;
-  Modelica.SIunits.SpecificHeatCapacityAtConstantPressure cpAir;
-  Modelica.SIunits.SpecificHeatCapacityAtConstantPressure cpFuel;
-  Modelica.SIunits.MassFlowRate mfAir;
-  Modelica.SIunits.MassFlowRate mfFuel;
+  Modelica.Units.SI.Temperature TAir;
+  Modelica.Units.SI.Temperature TFuel;
+  Modelica.Units.SI.SpecificHeatCapacityAtConstantPressure cpAir;
+  Modelica.Units.SI.SpecificHeatCapacityAtConstantPressure cpFuel;
+  Modelica.Units.SI.MassFlowRate mfAir;
+  Modelica.Units.SI.MassFlowRate mfFuel;
 
-  Modelica.SIunits.Temperature TAirRef;
-  Modelica.SIunits.Temperature TFuelRef;
-  Modelica.SIunits.EnergyFlowRate HfAirRef;
-  Modelica.SIunits.EnergyFlowRate HfFuelRef;
+  Modelica.Units.SI.Temperature TAirRef;
+  Modelica.Units.SI.Temperature TFuelRef;
+  Modelica.Units.SI.EnergyFlowRate HfAirRef;
+  Modelica.Units.SI.EnergyFlowRate HfFuelRef;
 
   annotation (Icon(graphics={                                                                                                              Polygon(
           origin={9.74,0},

@@ -1,6 +1,7 @@
 within OpenTEMPEST.Heat;
-model ThermalR_HeatC_FV "Thermal resistance between a finite volume object and a lumped heat capacity"
-  import SI = Modelica.SIunits;
+model ThermalR_HeatC_FV
+  "Thermal resistance between a finite volume object and a lumped heat capacity"
+  import SI = Modelica.Units.SI;
   parameter Integer N(min=1) "Number of nodes of DHT";
   parameter SI.ThermalResistance R "Constant thermal resistance";
   parameter SI.HeatCapacity C "Heat capacity of element (= cp*m)";
@@ -8,9 +9,9 @@ model ThermalR_HeatC_FV "Thermal resistance between a finite volume object and a
     "Start value of the temperature of element";
   SI.Temperature T(start=Tstart, displayUnit="degC")
     "Temperature of element";
-  ThermoPower.Thermal.DHTVolumes dHT(final N = N) annotation (Placement(transformation(extent={{-10,
+  OpenTEMPEST.Interfaces.DHTVolumes dHT(final N = N) annotation (Placement(transformation(extent={{-10,
             -40},{10,-20}}), iconTransformation(extent={{-10,-38},{10,-18}})));
-  ThermoPower.Thermal.HT hT annotation (Placement(transformation(extent={{-10,20},
+  OpenTEMPEST.Interfaces.HT hT annotation (Placement(transformation(extent={{-10,20},
             {10,40}}), iconTransformation(extent={{-10,22},{10,42}})));
 equation
   T = hT.T;

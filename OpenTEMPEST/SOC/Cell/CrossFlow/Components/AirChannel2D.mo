@@ -1,18 +1,16 @@
-﻿within OpenTEMPEST.SOC.Cell.CrossFlow.Components;
+within OpenTEMPEST.SOC.Cell.CrossFlow.Components;
 model AirChannel2D "2D air channel for the cross-flow cell"
   extends Channel2DBase(
     redeclare package Medium = OpenTEMPEST.Medium.Air_Medium);
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
-  // Pressure Drop
-  SI.PressureDifference dp[nX,nY]=Blocks.Functions.pressureDropDarcy(
-      mfv[1:nX, :],
-      eta,
-      Gas.d,
-      dx,
-      lZ*dy,
-      3e-9) "pressure loss";
+  // Pressure Drop (Darcy-Forchheimer: viscous plus inertial loss)
+  parameter SI.Area kPerm = 3e-9 "Permeability of the air channel" annotation(Dialog(tab="Pressure drop"));
+  parameter Real betaForch(unit="1/m") = 0
+    "Forchheimer (inertial) coefficient; 0 gives Darcy's law. For foams and packed beds see the documentation of pressureDropForchheimer"
+    annotation(Dialog(tab="Pressure drop"));
+  SI.PressureDifference dp[nX+1,nY] "Pressure drop across each face (inlet to CV 1, between CVs, CV nX to outlet)";
   parameter Real pDrop(max=0.99) "pressure drop as a factor of inlet pressure (between 0 and 0.99)";
 
   // Kinetics
@@ -30,6 +28,15 @@ protected
       data=Modelica.Media.IdealGases.Common.SingleGasesData.O2);
 
 equation
+  // Pressure drop (Darcy-Forchheimer)
+  for i in 1:nX loop
+    for j in 1:nY loop
+      dp[i,j] = OpenTEMPEST.Blocks.Functions.pressureDropForchheimer(mfv[i,j], eta[i,j], Gas[i,j].d, lFace[i], lZ*dy, kPerm, betaForch);
+    end for;
+  end for;
+  for j in 1:nY loop
+    dp[nX+1,j] = OpenTEMPEST.Blocks.Functions.pressureDropForchheimer(mfv[nX+1,j], eta[nX,j], Gas[nX,j].d, lFace[nX+1], lZ*dy, kPerm, betaForch);
+  end for;
   // Energy balance
   Emg = por*dV * Gas.d .* Gas.u;
 
@@ -52,7 +59,7 @@ equation
   //dp~momentum Balance
   Gas[1,:].p = infl[:].p .- dp[1,:];
   Gas[2:nX,:].p = Gas[1:nX-1,:].p .- dp[2:nX,:];
-  outfl.p = Gas[nX,:].p; // Pressure is upwinded for the last control volume
+  outfl.p = Gas[nX,:].p .- dp[nX+1,:]; // half a CV of pressure drop between the last CV and the outlet
 
   annotation (Documentation(info="<html>
 <p>
@@ -75,7 +82,7 @@ electrochemical reaction and distributed pressure losses.
 <ul>
 <li>Oxygen electrochemical reaction coupled via <code>PEN_in</code></li>
 <li>Electrochemical heat source term</li>
-<li>Darcy-based pressure drop formulation</li>
+<li>Darcy-Forchheimer pressure drop (viscous plus inertial loss)</li>
 </ul>
 </html>"));
 end AirChannel2D;

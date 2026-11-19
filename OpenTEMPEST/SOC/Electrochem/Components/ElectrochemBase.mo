@@ -1,7 +1,7 @@
 within OpenTEMPEST.SOC.Electrochem.Components;
 partial model ElectrochemBase "Base model for all electrochemistry models"
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   replaceable package MediumF = Medium.Fuel_CH4         constrainedby Modelica.Media.IdealGases.Common.MixtureGasNasa
   annotation(choicesAllMatching=true);

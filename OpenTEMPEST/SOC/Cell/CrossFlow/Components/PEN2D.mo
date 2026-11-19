@@ -3,7 +3,7 @@ model PEN2D "2D PEN with replaceable electrochemistry for the cross-flow cell"
   extends Heat.BaseClasses.Solid2DBase(        redeclare package SolidMat =
         OpenTEMPEST.Solid.Material.Custom);
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   parameter SI.CurrentDensity Jstart=0;
 

@@ -12,7 +12,7 @@ block AddX "Weighted sum of n input signals"
     annotation (Placement(transformation(extent={{100,-10},{120,10}})));
 
 equation
-  y = sum(k*u);
+  y = k*u;
   annotation (
     Documentation(info="<html>
 <p>Computes the output <code>y</code> as the weighted sum of the <code>n</code> inputs:</p>

@@ -1,7 +1,7 @@
 within OpenTEMPEST.BOP.GasConditioning;
 model BlackBoxHexGeneric "Generic 0D gas-gas heat exchanger with replaceable effectiveness model"
 
-   import SI = Modelica.SIunits;
+   import SI = Modelica.Units.SI;
 
   replaceable package MediumA = Medium.Air_Medium         constrainedby
     Modelica.Media.Interfaces.PartialMedium
@@ -36,17 +36,17 @@ model BlackBoxHexGeneric "Generic 0D gas-gas heat exchanger with replaceable eff
   SI.HeatFlowRate Qf;
   SI.HeatFlowRate QmaxA, QmaxB;
 
-  ThermoPower.Gas.FlangeA inletB(redeclare package Medium = MediumB) annotation (
+  OpenTEMPEST.Interfaces.GasFlangeA inletB(redeclare package Medium = MediumB) annotation (
       Placement(transformation(rotation=0, extent={{-80,-40},{-60,-20}}),
         iconTransformation(extent={{-100,-60},{-60,-20}})));
-  ThermoPower.Gas.FlangeA inletA(redeclare package Medium = MediumA)
+  OpenTEMPEST.Interfaces.GasFlangeA inletA(redeclare package Medium = MediumA)
                                                                   annotation (
       Placement(transformation(rotation=0, extent={{-80,40},{-60,60}}),
         iconTransformation(extent={{60,20},{100,60}})));
-  ThermoPower.Gas.FlangeB outletA(redeclare package Medium = MediumA) annotation (
+  OpenTEMPEST.Interfaces.GasFlangeB outletA(redeclare package Medium = MediumA) annotation (
       Placement(transformation(rotation=0, extent={{80,40},{100,60}}),
         iconTransformation(extent={{-100,20},{-60,60}})));
-  ThermoPower.Gas.FlangeB outletB(redeclare package Medium = MediumB) annotation (
+  OpenTEMPEST.Interfaces.GasFlangeB outletB(redeclare package Medium = MediumB) annotation (
       Placement(transformation(rotation=0, extent={{80,-40},{100,-20}}),
         iconTransformation(extent={{60,-60},{100,-20}})));
   OpenTEMPEST.Flow.SensGasProperty sensBOut(
@@ -113,7 +113,7 @@ model BlackBoxHexGeneric "Generic 0D gas-gas heat exchanger with replaceable eff
     TOutput=true,
     rhoOutput=false)
     annotation (Placement(transformation(extent={{46,44},{66,64}})));
-  ThermoPower.Gas.SinkPressure sinkPressureA(
+  OpenTEMPEST.Flow.SinkPressure sinkPressureA(
     redeclare package Medium = MediumA,
     p0=100000,
     T=Tstart,
@@ -121,7 +121,7 @@ model BlackBoxHexGeneric "Generic 0D gas-gas heat exchanger with replaceable eff
     use_in_p0=true,
     use_in_T=false)
     annotation (Placement(transformation(extent={{-26,40},{-6,60}})));
-  ThermoPower.Gas.SourceMassFlow sourceMassFlowA(
+  OpenTEMPEST.Flow.SourceMassFlow sourceMassFlowA(
     redeclare package Medium = MediumA,
     p0=100000,
     T=Tstart,
@@ -130,7 +130,7 @@ model BlackBoxHexGeneric "Generic 0D gas-gas heat exchanger with replaceable eff
     use_in_T=true,
     use_in_X=true)
     annotation (Placement(transformation(extent={{18,40},{38,60}})));
-  ThermoPower.Gas.SinkPressure sinkPressureB(
+  OpenTEMPEST.Flow.SinkPressure sinkPressureB(
     redeclare package Medium = MediumB,
     p0=100000,
     T=Tstart,
@@ -138,7 +138,7 @@ model BlackBoxHexGeneric "Generic 0D gas-gas heat exchanger with replaceable eff
     use_in_p0=true,
     use_in_T=false)
     annotation (Placement(transformation(extent={{-16,-40},{4,-20}})));
-  ThermoPower.Gas.SourceMassFlow sourceMassFlowB(
+  OpenTEMPEST.Flow.SourceMassFlow sourceMassFlowB(
     redeclare package Medium = MediumB,
     p0=100000,
     T=Tstart,
@@ -147,7 +147,7 @@ model BlackBoxHexGeneric "Generic 0D gas-gas heat exchanger with replaceable eff
     use_in_T=true,
     use_in_X=true)
     annotation (Placement(transformation(extent={{20,-40},{40,-20}})));
-  ThermoPower.Thermal.HT htAmbA annotation (Placement(transformation(extent={{-10,84},{10,104}}), iconTransformation(extent={{-6,60},{6,72}})));
+  OpenTEMPEST.Interfaces.HT htAmbA annotation (Placement(transformation(extent={{-10,84},{10,104}}), iconTransformation(extent={{-6,60},{6,72}})));
   Modelica.Blocks.Sources.RealExpression rexTAOut(y=TAOut)
     annotation (Placement(transformation(extent={{4,18},{24,38}})));
   Modelica.Blocks.Sources.RealExpression rexTBOut(y=TBOut)
@@ -156,7 +156,7 @@ model BlackBoxHexGeneric "Generic 0D gas-gas heat exchanger with replaceable eff
                                                                          annotation (Placement(transformation(extent={{-16,70},{-4,82}})));
   Modelica.Blocks.Continuous.FirstOrder firstOrder1(T=1e-5, y_start=y_start_p0)
                                                                           annotation (Placement(transformation(extent={{50,-8},{38,4}})));
-  ThermoPower.Thermal.HT htAmbB annotation (Placement(transformation(extent={{-10,-104},{10,-84}}), iconTransformation(extent={{-6,-72},{6,-60}})));
+  OpenTEMPEST.Interfaces.HT htAmbB annotation (Placement(transformation(extent={{-10,-104},{10,-84}}), iconTransformation(extent={{-6,-72},{6,-60}})));
 equation
 
   htAmbA.Q_flow = 0.15*(htAmbA.T - TAOut);
@@ -175,21 +175,21 @@ equation
   0.5*C*der(TBOut) = sensBIn.Hf - sensBIn.mf*MediumB.h_TX(TBOut, sensBIn.x) + Qf + htAmbB.Q_flow;
 
   connect(sensBOut.outlet, outletB)
-    annotation (Line(points={{68,-30},{90,-30}}, color={159,159,223}));
+    annotation (Line(points={{68,-30},{90,-30}}, color={28,108,200}));
   connect(inletB, sensBIn.inlet)
-    annotation (Line(points={{-70,-30},{-48,-30}}, color={159,159,223}));
+    annotation (Line(points={{-70,-30},{-48,-30}}, color={28,108,200}));
   connect(inletA, sensAIn.inlet)
-    annotation (Line(points={{-70,50},{-52,50}}, color={159,159,223}));
+    annotation (Line(points={{-70,50},{-52,50}}, color={28,108,200}));
   connect(sensAOut.outlet, outletA)
-    annotation (Line(points={{62,50},{90,50}}, color={159,159,223}));
+    annotation (Line(points={{62,50},{90,50}}, color={28,108,200}));
   connect(sensAIn.outlet, sinkPressureA.flange)
-    annotation (Line(points={{-40,50},{-26,50}}, color={159,159,223}));
+    annotation (Line(points={{-40,50},{-26,50}}, color={28,108,200}));
   connect(sensAOut.inlet, sourceMassFlowA.flange)
-    annotation (Line(points={{50,50},{38,50}}, color={159,159,223}));
+    annotation (Line(points={{50,50},{38,50}}, color={28,108,200}));
   connect(sensBIn.outlet, sinkPressureB.flange)
-    annotation (Line(points={{-36,-30},{-16,-30}}, color={159,159,223}));
+    annotation (Line(points={{-36,-30},{-16,-30}}, color={28,108,200}));
   connect(sensBOut.inlet, sourceMassFlowB.flange)
-    annotation (Line(points={{56,-30},{40,-30}}, color={159,159,223}));
+    annotation (Line(points={{56,-30},{40,-30}}, color={28,108,200}));
 
   connect(sensBIn.x, sourceMassFlowB.in_X) annotation (Line(points={{-35,-23},{-25.5,
           -23},{-25.5,-25},{36,-25}}, color={0,0,127}));

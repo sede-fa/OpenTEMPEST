@@ -1,7 +1,7 @@
 ﻿within OpenTEMPEST.SOC.Cell.CrossFlow;
 model Cell "2D cross-flow cell repeating unit with PEN, fuel and air channels and interconnects"
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   parameter Integer nX=5 "Number of control volumes in the x-direction";
   parameter Integer nY=5 "Number of control volumes in the y-direction";
@@ -127,15 +127,15 @@ model Cell "2D cross-flow cell repeating unit with PEN, fuel and air channels an
             {-86,20}}), iconTransformation(extent={{-106,0},{-86,20}})));
   Modelica.Electrical.Analog.Interfaces.NegativePin pin_n annotation (Placement(transformation(extent={{-106,40},
             {-86,60}}), iconTransformation(extent={{-106,40},{-86,60}})));
-  ThermoPower.Gas.FlangeA fuelIn(redeclare package Medium = Medium.Fuel_CH4)
+  OpenTEMPEST.Interfaces.GasFlangeA fuelIn(redeclare package Medium = Medium.Fuel_CH4)
     annotation (Placement(transformation(extent={{-112,68},{-92,88}}),
         iconTransformation(extent={{-112,68},{-92,88}})));
-  ThermoPower.Gas.FlangeA airIn(redeclare package Medium = Medium.Air_Medium)
+  OpenTEMPEST.Interfaces.GasFlangeA airIn(redeclare package Medium = Medium.Air_Medium)
     annotation (Placement(transformation(extent={{-110,-110},{-90,-90}}),
         iconTransformation(extent={{-110,-110},{-90,-90}})));
-  ThermoPower.Gas.FlangeB fuelOut(redeclare package Medium = Medium.Fuel_CH4)
+  OpenTEMPEST.Interfaces.GasFlangeB fuelOut(redeclare package Medium = Medium.Fuel_CH4)
     annotation (Placement(transformation(extent={{90,50},{110,70}})));
-  ThermoPower.Gas.FlangeB airout(redeclare package Medium = Medium.Air_Medium)
+  OpenTEMPEST.Interfaces.GasFlangeB airout(redeclare package Medium = Medium.Air_Medium)
     annotation (Placement(transformation(extent={{90,-70},{110,-50}})));
   OpenTEMPEST.Heat.Solid2D iCAir(
     redeclare package SolidMat = OpenTEMPEST.Solid.Material.Crofer22APU,
@@ -155,13 +155,13 @@ model Cell "2D cross-flow cell repeating unit with PEN, fuel and air channels an
     lY=lY,
     lZ=lZsolid)
     annotation (Placement(transformation(extent={{-4,86},{16,106}})));
-  ThermoPower.Thermal.DHTVolumes dHT_x0(N=nY)
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_x0(N=nY)
     annotation (Placement(transformation(extent={{-100,-60},{-88,-20}}),
         iconTransformation(extent={{-100,-60},{-88,-20}})));
-  ThermoPower.Thermal.DHTVolumes dHT_y0(N=nX)
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_y0(N=nX)
     annotation (Placement(transformation(extent={{-52,-120},{58,-108}}),
         iconTransformation(extent={{-52,-120},{58,-108}})));
-  ThermoPower.Thermal.DHTVolumes dHT_yN(N=nX)
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_yN(N=nX)
     annotation (Placement(transformation(extent={{-54,88},{56,100}}),
         iconTransformation(extent={{-54,88},{56,100}})));
   Heat.DHTVolumes2D dHT2_z1(i=nX, j=nY) annotation (Placement(transformation(
@@ -170,7 +170,7 @@ model Cell "2D cross-flow cell repeating unit with PEN, fuel and air channels an
   Heat.DHTVolumes2D dHT2_z0(i=nX, j=nY) annotation (Placement(transformation(
           extent={{-16,-146},{20,-138}}), iconTransformation(extent={{-52,-68},
             {58,-44}})));
-  ThermoPower.Thermal.DHTVolumes dHT_xN(N=nY)
+  OpenTEMPEST.Interfaces.DHTVolumes dHT_xN(N=nY)
     annotation (Placement(transformation(extent={{86,-20},{100,20}}),
         iconTransformation(extent={{86,-20},{100,20}})));
   Components.CrossFlowTopology crossFlowTopology1(
@@ -244,11 +244,11 @@ equation
   connect(manifold.ports_b, fuelChannel.infl)
     annotation (Line(points={{-68,58},{-31.78,58.46}}, color={0,127,255}));
   connect(fuelChannel.outfl, manifold_out.ports_a) annotation (Line(points={{
-          37.78,59},{50,59},{50,56},{61.4,56}}, color={159,159,223}));
+          37.78,59},{50,59},{50,56},{61.4,56}}, color={28,108,200}));
   connect(manifold1.ports_b, airChannel.infl)
     annotation (Line(points={{-64,-58},{-35.54,-57.32}}, color={0,127,255}));
   connect(airChannel.outfl, manifold_out1.ports_a) annotation (Line(points={{
-          41.54,-58},{41.54,-60},{59.4,-60}}, color={159,159,223}));
+          41.54,-58},{41.54,-60},{59.4,-60}}, color={28,108,200}));
 
   // Crossflow topology connections
   connect(crossFlowTopology.dHTT_side1, pen.dhT2_z0) annotation (Line(points={{1,-27},

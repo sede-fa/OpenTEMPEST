@@ -20,7 +20,7 @@ public
       Modelica.Electrical.Analog.Sources.SignalCurrent signalCurrent[nChannels] if not
     useVoltageInput                                                  annotation (
         Placement(transformation(extent={{-10,-10},{10,10}},  rotation=0,    origin={0,0})));
-      Modelica.Blocks.Interfaces.RealInput currentInput[nChannels](unit="A")
+      Modelica.Blocks.Interfaces.RealInput currentInput[nChannels](each unit="A")
                                                                    if not
     useVoltageInput
     "The set current"                                              annotation (Placement(
@@ -40,7 +40,7 @@ public
             transformation(extent={{-60,-100},{-20,-60}}), iconTransformation(
               extent={{-40,-100},{-20,-80}})));
 public
-      ThermoPower.PowerPlants.Buses.Sensors sensors "Sensor bus"
+      OpenTEMPEST.Interfaces.SensorBus sensors "Sensor bus"
         annotation (Placement(transformation(extent={{80,20},{100,40}}),
         iconTransformation(extent={{80,20},{100,40}})));
 protected
@@ -50,7 +50,7 @@ protected
         rotation=-90,
         origin={-16,54})));
 public
-  ThermoPower.Electrical.PowerConnection gridConnectionAC "AC grid connection"
+  OpenTEMPEST.Interfaces.PowerConnection gridConnectionAC "AC grid connection"
     annotation (Placement(transformation(rotation=0, extent={{80,-40},{100,-20}}),
         iconTransformation(extent={{80,-40},{100,-20}})));
       Modelica.Blocks.Interfaces.RealInput voltageInput[nChannels]
@@ -71,7 +71,7 @@ protected
   Blocks.ComputationBlocks.AddX addPower(n=nChannels)
     annotation (Placement(transformation(extent={{40,20},{60,40}})));
 protected
-  ThermoPower.Electrical.Load load(Pnom(displayUnit="kW") = 50000,usePowerInput=
+  OpenTEMPEST.Electrical.Load load(Pnom(displayUnit="kW") = 50000,usePowerInput=
        true) annotation (Placement(transformation(extent={{80,16},{100,-4}})));
 protected
   Modelica.Blocks.Math.Product productCurrent[nChannels]     if not

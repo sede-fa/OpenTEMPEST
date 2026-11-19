@@ -1,6 +1,6 @@
 within OpenTEMPEST.Flow;
 model SensGasFlow "Sensor for mass flow and composition of a gas flow"
-  extends ThermoPower.Icons.Gas.SensThrough;
+  extends OpenTEMPEST.Icons.GasSensor;
 
   parameter Boolean mfOutput = true "Sensor has output for mass flow";
   parameter Boolean pOutput = true "Sensor has output for pressure flow";
@@ -18,14 +18,14 @@ model SensGasFlow "Sensor for mass flow and composition of a gas flow"
     "= true to allow flow reversal, false restricts to design direction"
     annotation(Evaluate=true);
 
-  Modelica.SIunits.MolarMass M = 1/sum(outlet.Xi_outflow[:]./Medium.MMX[:]);
-  Modelica.SIunits.MolarFlowRate n_f = inlet.m_flow/M;
+  Modelica.Units.SI.MolarMass M = 1/sum(outlet.Xi_outflow[:]./Medium.MMX[:]);
+  Modelica.Units.SI.MolarFlowRate n_f = inlet.m_flow/M;
 
-  outer ThermoPower.System system "System wide properties";
-  ThermoPower.Gas.FlangeA inlet(redeclare package Medium = Medium, m_flow(min=
+  outer OpenTEMPEST.System system "System wide properties";
+  OpenTEMPEST.Interfaces.GasFlangeA inlet(redeclare package Medium = Medium, m_flow(min=
           if allowFlowReversal then -Modelica.Constants.inf else 0)) annotation (
      Placement(transformation(extent={{-80,-60},{-40,-20}}, rotation=0)));
-  ThermoPower.Gas.FlangeB outlet(redeclare package Medium = Medium, m_flow(max=
+  OpenTEMPEST.Interfaces.GasFlangeB outlet(redeclare package Medium = Medium, m_flow(max=
           if allowFlowReversal then +Modelica.Constants.inf else 0)) annotation (
      Placement(transformation(extent={{40,-60},{80,-20}}, rotation=0)));
   Modelica.Blocks.Interfaces.RealOutput Hf if HfOutput annotation (Placement(

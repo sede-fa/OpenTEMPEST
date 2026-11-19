@@ -1,7 +1,7 @@
 ﻿within OpenTEMPEST.SOC.Stack;
 model Stack0D "Lumped (0D) stack based on an ASR, with full internal reforming and no pressure loss"
 
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   parameter Integer nCells = 30 "Number of electrochemical cells connected in series";
   parameter Integer nParallel = 1 "Parallel stacks with equal voltage";
@@ -45,16 +45,16 @@ model Stack0D "Lumped (0D) stack based on an ASR, with full internal reforming a
 
   parameter Real eps=Modelica.Constants.eps "compare vs. 0 in a conform way, needed for FMU import since other environments implement it differently with different eps. eps=1e-6 needed for simulink import as model exchange";
 
-  ThermoPower.Gas.FlangeA airInlet(redeclare package Medium = Air) annotation (
+  OpenTEMPEST.Interfaces.GasFlangeA airInlet(redeclare package Medium = Air) annotation (
       Placement(transformation(rotation=0, extent={{-80,-40},{-60,-20}}),
         iconTransformation(extent={{-100,-60},{-60,-20}})));
-  ThermoPower.Gas.FlangeA fuelInlet(redeclare package Medium = Fuel)
+  OpenTEMPEST.Interfaces.GasFlangeA fuelInlet(redeclare package Medium = Fuel)
     annotation (Placement(transformation(rotation=0, extent={{-80,40},{-60,60}}),
         iconTransformation(extent={{-100,20},{-60,60}})));
-  ThermoPower.Gas.FlangeB fuelOutlet(redeclare package Medium = Fuel)
+  OpenTEMPEST.Interfaces.GasFlangeB fuelOutlet(redeclare package Medium = Fuel)
     annotation (Placement(transformation(rotation=0, extent={{80,40},{100,60}}),
         iconTransformation(extent={{60,20},{100,60}})));
-  ThermoPower.Gas.FlangeB airOutlet(redeclare package Medium = Air) annotation (
+  OpenTEMPEST.Interfaces.GasFlangeB airOutlet(redeclare package Medium = Air) annotation (
      Placement(transformation(rotation=0, extent={{80,-40},{100,-20}}),
         iconTransformation(extent={{60,-60},{100,-20}})));
   Modelica.Electrical.Analog.Interfaces.PositivePin pinP annotation (Placement(
@@ -123,13 +123,13 @@ model Stack0D "Lumped (0D) stack based on an ASR, with full internal reforming a
     TOutput=false,
     rhoOutput=true)
     annotation (Placement(transformation(extent={{46,44},{66,64}})));
-  ThermoPower.Gas.SinkPressure sinkPressure(
+  OpenTEMPEST.Flow.SinkPressure sinkPressure(
     redeclare package Medium = Fuel,
     Xnom=XStartGas,
     use_in_p0=true,
     use_in_T=true)
     annotation (Placement(transformation(extent={{-26,40},{-6,60}})));
-  ThermoPower.Gas.SourceMassFlow sourceMassFlowFuel(
+  OpenTEMPEST.Flow.SourceMassFlow sourceMassFlowFuel(
     redeclare package Medium = Fuel,
     Xnom=XStartGas,
     w0=1e-4,
@@ -145,12 +145,12 @@ model Stack0D "Lumped (0D) stack based on an ASR, with full internal reforming a
     annotation (Placement(transformation(extent={{0,74},{12,86}})));
   Modelica.Blocks.Sources.RealExpression rexXOut[6](y=XOutGas)
     annotation (Placement(transformation(extent={{24,74},{44,94}})));
-  ThermoPower.Gas.SinkPressure sinkPressure1(
+  OpenTEMPEST.Flow.SinkPressure sinkPressure1(
     redeclare package Medium = Air,
     use_in_p0=true,
     use_in_T=true)
     annotation (Placement(transformation(extent={{-16,-40},{4,-20}})));
-  ThermoPower.Gas.SourceMassFlow sourceMassFlowAir(
+  OpenTEMPEST.Flow.SourceMassFlow sourceMassFlowAir(
     redeclare package Medium = Medium.Air_Medium,
     w0=1e-4,
     use_in_w0=true,
@@ -161,28 +161,28 @@ model Stack0D "Lumped (0D) stack based on an ASR, with full internal reforming a
     annotation (Placement(transformation(extent={{-2,-16},{4,-10}})));
   Modelica.Blocks.Sources.RealExpression rexXOutAir[Air.nXi](y=XOutAir)
     annotation (Placement(transformation(extent={{12,-80},{32,-60}})));
-  ThermoPower.Thermal.HT htSideLeft
+  OpenTEMPEST.Interfaces.HT htSideLeft
     annotation (Placement(transformation(extent={{-70,76},{-50,96}}),
         iconTransformation(extent={{-46,60},{-34,72}})));
-  ThermoPower.Thermal.HT htSideRight
+  OpenTEMPEST.Interfaces.HT htSideRight
     annotation (Placement(transformation(extent={{56,-98},{76,-78}}),
         iconTransformation(extent={{34,-72},{46,-60}})));
-  ThermoPower.Thermal.DHTVolumes dhtBottom(N=n) annotation (Placement(
+  OpenTEMPEST.Interfaces.DHTVolumes dhtBottom(N=n) annotation (Placement(
         transformation(extent={{-10,-100},{10,-80}}), iconTransformation(extent=
            {{-10,-80},{10,-60}})));
-  ThermoPower.Thermal.DHTVolumes dhtTop(N=n) annotation (Placement(
+  OpenTEMPEST.Interfaces.DHTVolumes dhtTop(N=n) annotation (Placement(
         transformation(extent={{4,88},{24,108}}),   iconTransformation(extent={{
             -10,60},{10,80}})));
-  ThermoPower.Thermal.DHTVolumes dhtInlet(N=if useDhtInletOutlet then nCells else 1)        annotation (
+  OpenTEMPEST.Interfaces.DHTVolumes dhtInlet(N=if useDhtInletOutlet then nCells else 1)        annotation (
       Placement(transformation(extent={{-100,-10},{-80,10}}),
         iconTransformation(extent={{-80,-10},{-60,10}})));
-  ThermoPower.Thermal.HT htPlatesInlet[if useDhtInletOutlet then 2 + integer((floor((nCells - 1)/intermediatePlateDistance))) else 1]
+  OpenTEMPEST.Interfaces.HT htPlatesInlet[if useDhtInletOutlet then 2 + integer((floor((nCells - 1)/intermediatePlateDistance))) else 1]
     annotation (Placement(transformation(extent={{-100,-14},{-80,6}}),
         iconTransformation(extent={{-92,-6},{-80,6}})));
-  ThermoPower.Thermal.DHTVolumes dhtOutlet(N=if useDhtInletOutlet then nCells else 1)        annotation (
+  OpenTEMPEST.Interfaces.DHTVolumes dhtOutlet(N=if useDhtInletOutlet then nCells else 1)        annotation (
       Placement(transformation(extent={{80,-10},{100,10}}), iconTransformation(
           extent={{60,-10},{80,10}})));
-  ThermoPower.Thermal.HT htPlatesOutlet[if useDhtInletOutlet then 2 + integer((floor((nCells - 1)/intermediatePlateDistance))) else 1]
+  OpenTEMPEST.Interfaces.HT htPlatesOutlet[if useDhtInletOutlet then 2 + integer((floor((nCells - 1)/intermediatePlateDistance))) else 1]
     annotation (Placement(transformation(extent={{86,-12},{106,8}}),
         iconTransformation(extent={{80,-6},{92,6}})));
   Modelica.Blocks.Interfaces.RealOutput TMEACenterOut(unit="K",displayUnit="degC") annotation (Placement(
@@ -231,7 +231,7 @@ equation
                    sum(dhtInlet.Q) + sum(htPlatesInlet.Q_flow) + sum(dhtOutlet.Q) + sum(htPlatesOutlet.Q_flow);
 
   // Electrochemical reaction gas side
-  z = if I >= 0 then sum(zFC * sensFuelIn.y) else sum(zEC * sensFuelIn.y);
+  z = if I >= 0 then zFC * sensFuelIn.y else zEC * sensFuelIn.y;
   RC = if z>eps then abs(I)*nCells*nParallel/z/Modelica.Constants.F / (sensFuelIn.mf/sensFuelIn.M + 1e-19) else 0;
   YOutGuess[1] = if I>=0 then sensFuelIn.y[1]*(1-RC) else sensFuelIn.y[1]+sensFuelIn.y[5]*RC;
   YOutGuess[2] = if I>=0 then sensFuelIn.y[2]*(1-RC) else 0;
@@ -261,17 +261,17 @@ equation
   TMEACenterOut = TASR;
 
   connect(sensAirOut.outlet, airOutlet)
-    annotation (Line(points={{68,-30},{90,-30}}, color={159,159,223}));
+    annotation (Line(points={{68,-30},{90,-30}}, color={28,108,200}));
   connect(airInlet, sensAirIn.inlet)
-    annotation (Line(points={{-70,-30},{-48,-30}}, color={159,159,223}));
+    annotation (Line(points={{-70,-30},{-48,-30}}, color={28,108,200}));
   connect(fuelInlet, sensFuelIn.inlet)
-    annotation (Line(points={{-70,50},{-52,50}}, color={159,159,223}));
+    annotation (Line(points={{-70,50},{-52,50}}, color={28,108,200}));
   connect(sensFuelOut.outlet, fuelOutlet)
-    annotation (Line(points={{62,50},{90,50}}, color={159,159,223}));
+    annotation (Line(points={{62,50},{90,50}}, color={28,108,200}));
   connect(sensFuelIn.outlet, sinkPressure.flange)
-    annotation (Line(points={{-40,50},{-26,50}}, color={159,159,223}));
+    annotation (Line(points={{-40,50},{-26,50}}, color={28,108,200}));
   connect(sensFuelOut.inlet, sourceMassFlowFuel.flange)
-    annotation (Line(points={{50,50},{38,50}}, color={159,159,223}));
+    annotation (Line(points={{50,50},{38,50}}, color={28,108,200}));
   if calcPressureDrop then
     connect(pfuel_in.y, sinkPressure.in_p0);
   else
@@ -286,9 +286,9 @@ equation
   connect(sourceMassFlowFuel.in_X, rexXOut.y) annotation (Line(points={{34,55},{
           34,76},{45,76},{45,84}}, color={0,0,127}));
   connect(sensAirIn.outlet, sinkPressure1.flange)
-    annotation (Line(points={{-36,-30},{-16,-30}}, color={159,159,223}));
+    annotation (Line(points={{-36,-30},{-16,-30}}, color={28,108,200}));
   connect(sensAirOut.inlet, sourceMassFlowAir.flange)
-    annotation (Line(points={{56,-30},{40,-30}}, color={159,159,223}));
+    annotation (Line(points={{56,-30},{40,-30}}, color={28,108,200}));
   connect(sensAirIn.mf, add1.u2) annotation (Line(points={{-35,-15},{-35,-14.8},
           {-2.6,-14.8}}, color={0,0,127}));
   connect(rexMfO2cr.y, add1.u1) annotation (Line(points={{-39,26},{-22,26},{-22,

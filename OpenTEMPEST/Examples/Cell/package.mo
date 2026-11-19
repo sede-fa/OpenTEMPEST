@@ -1,3 +1,4 @@
 within OpenTEMPEST.Examples;
-package Cell "Cell level examples (to be added)"
+package Cell "Cell level examples"
+  extends Modelica.Icons.ExamplesPackage;
 end Cell;

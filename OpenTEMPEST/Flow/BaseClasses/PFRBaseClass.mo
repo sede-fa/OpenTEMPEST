@@ -1,20 +1,27 @@
 within OpenTEMPEST.Flow.BaseClasses;
 partial model PFRBaseClass "Base class for a single phase plug flow reactor without external mass transfer"
   extends Flow1DBaseClass;
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
+
+  replaceable function fluxInterp =
+      OpenTEMPEST.Flow.FluxInterpolators.LUDSinterp constrainedby OpenTEMPEST.Flow.FluxInterpolators.DifferencingSchemeInterpBase
+    "Differencing scheme for the fluxes at the CV faces (default: linear upwind)"
+    annotation (choicesAllMatching=true);
 
   // Vertex Values
-  SI.MassFlowRate mfv[N+1] "Mass flow rate in and leaving CV";
   SI.SpecificEnthalpy hv[N+1] "Average enthalpy in CV";
   SI.MassFraction xiv[N+1, nSpecies] "Mass fractions in CV";
 
   // Catalyst parameters
-  parameter Real por = 1 "Reactor porosity, leave as 1 if no heterogenous catalyst";
+  parameter Real por = 1 "Reactor porosity, leave as 1 if no heterogenous catalyst"
+    annotation (Evaluate=true); // evaluated so that the catalyst heat capacity term (1-por)*rhoCat*cpCat*der(T) vanishes for por = 1 instead of giving a division by zero
   parameter SI.Density rhoCat=1;
   parameter SI.SpecificHeatCapacity cpCat=1;
 
   // External Heat Transfer - total HT to surroundings
   Real Qext[N];
+
+  SI.SpecificEnthalpy hvInterp[N] "Interpolated enthalpies at the downstream CV faces";
 
   // Total Species Generation Rate - User will need to define to enter the reaction rates at top level
   SI.MassFlowRate R[N, nSpecies]; // for single channel
@@ -35,7 +42,7 @@ equation
   // Energy Balance - Heat generation from reaction already accounted for
   Ntubes*dV.*theta[:,1].*der(por.*Gas[:].d.*Gas[:].u .+ (1-por).*rhoCat.*cpCat.*Gas[:].T) = mfv[1:N].*hv[1:N] .- mfv[2:N+1].*hv[2:N+1] .+ Qext[:];
 
-  // Momentum Balance Needed at top level
+  // Momentum balance: see Flow1DBaseClass (constant gradient or Darcy-Forchheimer)
 
   // Interface interpolation
     // At x=0
@@ -64,14 +71,13 @@ equation
 //     hv[j+1] = (3*Gas[j].h - Gas[j-1].h)/2; //homotopy((3*Gas[j].h - Gas[j-1].h)/2, Gas[j].h);
 //     xiv[j+1, 1:nSpecies] = (3*Gas[j].Xi[1:nSpecies] - Gas[j-1].Xi[1:nSpecies])/2; // .+ 1e-3*(Gas[j+1].Xi[1:nSpecies] .- Gas[j].Xi[1:nSpecies]);   //homotopy((3*Gas[j].Xi[1:nSpecies] - Gas[j-1].Xi[1:nSpecies])/2, Gas[j].Xi[1:nSpecies]);
 //   end for;
-  mfv[2] = (3*mf[1] - mfv[1])/2;
-  hv[2] = (3*Gas[1].h - hv[1])/2;
-  // Remaining CVs
-  mfv[3:N+1] = (3*mf[2:N] - mf[1:N-1])/2; // Linear Upwind Differencing
-  hv[3:N+1] = (3*Gas[2:N].h - Gas[1:N-1].h)/2;
+  // The mass flow at the faces follows from the mass balance (conservative); the differencing
+  // scheme is applied to enthalpy and composition. mf[i] is the mass flow leaving CV i.
+  mf = mfv[2:N+1];
+  hvInterp = fluxInterp(N, Gas.h, hv[1]);
+  hv[2:N+1] = hvInterp;
   for i in 1:nSpecies loop
-    xiv[2, i] = (3*Gas[1].Xi[i] - xiv[1, i])/2;
-    xiv[3:N+1, i] = (3*Gas[2:N].Xi[i] - Gas[1:N-1].Xi[i])/2;
+    xiv[2:N+1, i] = fluxInterp(N, Gas.Xi[i], xiv[1, i]);
   end for;
   //mfv[N+1] = (3*mf[N] - mf[N-1])/2;//mf[N];
   //hv[N+1] = Gas[N].h;
@@ -81,6 +87,5 @@ equation
   outfl.m_flow = -mfv[N+1];
   outfl.Xi_outflow[:] = xiv[N+1, :];
   outfl.h_outflow = hv[N+1];
-  outfl.p = Gas[N].p; // Pressure is upwinded for the last control volume, alternative options given below
 
 end PFRBaseClass;

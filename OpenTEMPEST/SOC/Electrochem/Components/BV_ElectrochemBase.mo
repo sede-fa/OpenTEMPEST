@@ -1,7 +1,7 @@
 ﻿within OpenTEMPEST.SOC.Electrochem.Components;
 partial model BV_ElectrochemBase "Base model for detailed electrochemistry with Butler-Volmer, ohmic and diffusion losses"
   extends OpenTEMPEST.SOC.Electrochem.Components.ElectrochemBase;
-  import SI = Modelica.SIunits;
+  import SI = Modelica.Units.SI;
 
   replaceable model ASRobj = ASR.ASR_Ohm_ESC (
       A=35.316e4,
@@ -119,13 +119,13 @@ equation
   // Diffusion overvoltage
   // Diffusivities - for calculating diffusion overvoltages
   if diffusionActive then
-   Deff_h2_k  =(dpFE/3)*smooth(1, ThermoPower.Functions.sqrtReg((8*Modelica.Constants.R
+   Deff_h2_k  =(dpFE/3)*smooth(1, Modelica.Fluid.Utilities.regRoot((8*Modelica.Constants.R
       *Tpen)/(Modelica.Constants.pi*Medium.Fuel_CH4.MMX[1])))*(epsiFE/PhsiFE);
-   Deff_h2o_k =(dpFE/3)*smooth(1, ThermoPower.Functions.sqrtReg((8*Modelica.Constants.R
+   Deff_h2o_k =(dpFE/3)*smooth(1, Modelica.Fluid.Utilities.regRoot((8*Modelica.Constants.R
       *Tpen)/(Modelica.Constants.pi*Medium.Fuel_CH4.MMX[5])))*(epsiFE/PhsiFE);
-   Deff_co_k  =(dpFE/3)*smooth(1, ThermoPower.Functions.sqrtReg((8*Modelica.Constants.R
+   Deff_co_k  =(dpFE/3)*smooth(1, Modelica.Fluid.Utilities.regRoot((8*Modelica.Constants.R
       *Tpen)/(Modelica.Constants.pi*Medium.Fuel_CH4.MMX[4])))*(epsiFE/PhsiFE);
-   Deff_co2_k =(dpFE/3)*smooth(1, ThermoPower.Functions.sqrtReg((8*Modelica.Constants.R
+   Deff_co2_k =(dpFE/3)*smooth(1, Modelica.Fluid.Utilities.regRoot((8*Modelica.Constants.R
       *Tpen)/(Modelica.Constants.pi*Medium.Fuel_CH4.MMX[3])))*(epsiFE/PhsiFE);
 
        // Effective binary diffusion - FE - H reaction
@@ -145,7 +145,7 @@ equation
     Deff_co2n2  = 0.1615e-4*((Tpen/310)^1.75)*(p0/P_F)*(epsiFE/PhsiFE);
     Deff_co2ch4 = 0.1777e-4*((Tpen/310)^1.75)*(p0/P_F)*(epsiFE/PhsiFE);
        // Effective Knudsen Diffusion - AE
-    Deff_o2_k =(dpAE/3)*smooth(1, ThermoPower.Functions.sqrtReg((8*Modelica.Constants.R
+    Deff_o2_k =(dpAE/3)*smooth(1, Modelica.Fluid.Utilities.regRoot((8*Modelica.Constants.R
       *Tpen)/(Modelica.Constants.pi*Medium.Air_Medium.MMX[1])))*(epsiAE/PhsiAE);
        // Effective binary diffusion - AE
     Deff_o2n2 = 0.2176e-4*((Tpen/310)^1.75)*(p0/P_A)*(epsiAE/PhsiAE);

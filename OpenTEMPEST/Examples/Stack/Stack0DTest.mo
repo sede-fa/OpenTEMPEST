@@ -2,7 +2,7 @@ within OpenTEMPEST.Examples.Stack;
 model Stack0DTest "Example of the lumped stack model Stack0D, adiabatic"
   extends Modelica.Icons.Example;
 
-  import SI = Modelica.SIunits;
+  import      Modelica.Units.SI;
 
   // Initial conditions
   parameter SI.Pressure pStart=100000;
@@ -28,14 +28,16 @@ model Stack0DTest "Example of the lumped stack model Stack0D, adiabatic"
     intermediatePlateDistance=intermediatePlateDistance,
     calcPressureDrop=calcPressureDrop,
     useDhtInletOutlet=useDhtInletOutlet,
-    redeclare model Electrochem = OpenTEMPEST.SOC.Electrochem.Components.ASR_Steam (redeclare model ASRobj =
+    redeclare model Electrochem =
+        OpenTEMPEST.SOC.Electrochem.Components.ASR_Steam (                          redeclare
+          model                                                                                     ASRobj =
             OpenTEMPEST.SOC.Electrochem.ASR.ASR_log (A=stack.alphaASR, B=stack.betaASR)),
     XStartGas=fuelSource.Xnom,
     XStartAir=airSource.Xnom,
     TASR(start=681.85)) annotation (Placement(transformation(extent={{-28,-26},{28,28}})));
-  BOP.PowerElectronics powerElectronics(nChannels=1, currentFactor=1)
+  OpenTEMPEST.BOP.PowerElectronics powerElectronics(nChannels=1, currentFactor=1)
                                         annotation (Placement(transformation(extent={{-110,-12},{-84,12}})));
-  ThermoPower.Gas.SourceMassFlow airSource(
+  OpenTEMPEST.Flow.SourceMassFlow airSource(
     redeclare package Medium = OpenTEMPEST.Medium.Air_Medium,
     w0=nCells*4.29048E-04,
     p0=1.1*sinkAir.p0,
@@ -43,14 +45,14 @@ model Stack0DTest "Example of the lumped stack model Stack0D, adiabatic"
            annotation (Placement(transformation(extent={{-112,-64},{-92,-44}},
           rotation=0)));
 
-  ThermoPower.Gas.SinkPressure sinkAir(
+  OpenTEMPEST.Flow.SinkPressure sinkAir(
     redeclare package Medium = OpenTEMPEST.Medium.Air_Medium,
     p0=pStart,
     use_in_p0=false) annotation (Placement(transformation(extent={{88,-58},{108,-38}},rotation=0)));
-  ThermoPower.Gas.SinkPressure sinkFuel(redeclare package Medium =
+  OpenTEMPEST.Flow.SinkPressure sinkFuel(redeclare package Medium =
         OpenTEMPEST.Medium.Fuel_CH4,                                                            p0=pStart)
     annotation (Placement(transformation(extent={{88,32},{108,52}}, rotation=0)));
-  ThermoPower.Electrical.Grid grid(Pgrid=55555555555) annotation (Placement(transformation(extent={{-82,-36},{-62,-16}})));
+  OpenTEMPEST.Electrical.Grid grid(Pgrid=55555555555) annotation (Placement(transformation(extent={{-82,-36},{-62,-16}})));
   Blocks.Sources.MultiRamp currentRamp(
     n=3,
     height=fill(-15, currentRamp.n),
@@ -67,11 +69,11 @@ model Stack0DTest "Example of the lumped stack model Stack0D, adiabatic"
 equation
   // Flanges connections
   connect(airSource.flange, stack.airInlet)
-    annotation (Line(points={{-92,-54},{-32,-54},{-32,-9.8},{-22.4,-9.8}}, color={159,159,223}));
+    annotation (Line(points={{-92,-54},{-32,-54},{-32,-9.8},{-22.4,-9.8}}, color={28,108,200}));
   connect(stack.fuelOutlet, sinkFuel.flange)
-    annotation (Line(points={{22.4,11.8},{78,11.8},{78,42},{88,42}}, color={159,159,223}));
+    annotation (Line(points={{22.4,11.8},{78,11.8},{78,42},{88,42}}, color={28,108,200}));
   connect(stack.airOutlet, sinkAir.flange)
-    annotation (Line(points={{22.4,-9.8},{78,-9.8},{78,-48},{88,-48}}, color={159,159,223}));
+    annotation (Line(points={{22.4,-9.8},{78,-9.8},{78,-48},{88,-48}}, color={28,108,200}));
 
   // Electrical connections
   connect(powerElectronics.pinN[1], stack.pinP)
@@ -85,7 +87,7 @@ equation
       thickness=0.5));
 
   connect(fuelSource.flange, stack.fuelInlet)
-    annotation (Line(points={{-120,52},{-80,52},{-80,14},{-36,14},{-36,11.8},{-22.4,11.8}}, color={159,159,223}));
+    annotation (Line(points={{-120,52},{-80,52},{-80,14},{-36,14},{-36,11.8},{-22.4,11.8}}, color={28,108,200}));
   connect(currentRamp.y, fuelSource.in_I) annotation (Line(points={{-191,6},{-144,6},{-144,57},{-136,57}}, color={0,0,127}));
   connect(currentRamp.y, powerElectronics.currentInput[1])
     annotation (Line(points={{-191,6},{-144,6},{-144,20},{-100.9,20},{-100.9,10.8}}, color={0,0,127}));

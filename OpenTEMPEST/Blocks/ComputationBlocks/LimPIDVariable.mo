@@ -10,11 +10,11 @@ block LimPIDVariable
   parameter .Modelica.Blocks.Types.SimpleController controllerType=
          .Modelica.Blocks.Types.SimpleController.PID "Type of controller";
   parameter Real k(min=0, unit="1") = 1 "Gain of controller";
-  parameter Modelica.SIunits.Time Ti(min=Modelica.Constants.small)=0.5
+  parameter Modelica.Units.SI.Time Ti(min=Modelica.Constants.small)=0.5
     "Time constant of Integrator block" annotation (Dialog(enable=
           controllerType == .Modelica.Blocks.Types.SimpleController.PI or
           controllerType == .Modelica.Blocks.Types.SimpleController.PID));
-  parameter Modelica.SIunits.Time Td(min=0)=0.1
+  parameter Modelica.Units.SI.Time Td(min=0)=0.1
     "Time constant of Derivative block" annotation (Dialog(enable=
           controllerType == .Modelica.Blocks.Types.SimpleController.PD or
           controllerType == .Modelica.Blocks.Types.SimpleController.PID));
@@ -59,7 +59,7 @@ block LimPIDVariable
   parameter Boolean limitsAtInit=true
     "Has no longer an effect and is only kept for backwards compatibility (the implementation uses now the homotopy operator)"
     annotation (Dialog(tab="Dummy"),Evaluate=true, choices(checkBox=true));
-  constant Modelica.SIunits.Time unitTime=1 annotation (HideResult=true);
+  constant Modelica.Units.SI.Time unitTime=1 annotation (HideResult=true);
   Modelica.Blocks.Interfaces.RealInput u_ff if withFeedForward
     "Optional connector of feed-forward input signal"
    annotation (Placement(
